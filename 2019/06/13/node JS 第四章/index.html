@@ -5,21 +5,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>mongodb下载安装 - Hexo</title>
+    <title>node JS 第四章 - Hexo</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="安装和配置
-下载地址
-安装过程
-点击完整版，不要勾选MongoD服务
-不要勾选MongoDB Compass
+    <meta name="description" content="身份验证
+原因
+http请求是无状态的，不知道访问者是谁
+频繁登录，增大服务器开销
 
 
-环境变量
-从C:\Program Files\MongoDB往里找到bin目录
-wi,"> 
+方案
+session+cookie
+区别
+cookie存放在浏览器上，session存放在服务器上
+单个coo,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -45,7 +46,7 @@ wi,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">mongodb下载安装</h3>
+    <h3 class="subtitle">node JS 第四章</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -63,125 +64,133 @@ wi,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">mongodb下载安装</h1>
+        <h1 class="title">node JS 第四章</h1>
         <div class="stuff">
-            <span>十二月 01, 2019</span>
+            <span>六月 13, 2019</span>
             
 
         </div>
         <div class="content markdown">
-            <h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><ul>
-<li><a href="https://www.mongodb.com/download-center/community" target="_blank" rel="noopener">下载地址</a></li>
-<li>安装过程<ul>
-<li>点击完整版，不要勾选MongoD服务</li>
-<li>不要勾选MongoDB Compass</li>
+            <h2 id="身份验证"><a href="#身份验证" class="headerlink" title="身份验证"></a>身份验证</h2><ul>
+<li>原因<ul>
+<li>http请求是无状态的，不知道访问者是谁</li>
+<li>频繁登录，增大服务器开销</li>
 </ul>
 </li>
-<li>环境变量<ul>
-<li>从C:\Program Files\MongoDB往里找到bin目录</li>
-<li>win7:<blockquote>
-<p>右键我的电脑，选择属性 -&gt; 点击高级系统设置 -&gt; 高级 -&gt; 环境变量 -&gt; 在系统变量中选中Path，点击编辑 -&gt; 把刚才的bin目录地址添加在后面，注意不要覆盖原来的内容，路径之间用分号隔开 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>win10：<blockquote>
-<p>打开一个文件夹，在左侧找到这台电脑，右键选择属性 -&gt; 一直到点击编辑都是和win7一样 -&gt; 点击新建，把刚才的bin目录地址复制过来 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>打开cmd，输入mongod<ul>
-<li>如果报”不是内部命令”的错，说明环境变量配置失败</li>
-<li>如果出现”一大堆英文”，说明环境变量配置成功</li>
+<li>方案<ul>
+<li>session+cookie<ul>
+<li>区别<ul>
+<li>cookie存放在浏览器上，session存放在服务器上</li>
+<li>单个cookie保存的数据不能超过4K，session理论上无限制</li>
+<li>cookie不是很安全</li>
+<li>不允许JS访问跨域的Cookie</li>
 </ul>
 </li>
+<li>联系<ul>
+<li>都是用来记录客户端的信息</li>
+<li>session的id值保存在cookie中</li>
 </ul>
 </li>
-<li>启动数据库<ul>
-<li>在命令行中输入mongod，没有自动退出命令行就说明数据库启动成功</li>
-<li>缺少数据库文件的存放目录<ul>
-<li>方法一：直接在命令行中找到缺失的目录路径（倒数第三行），然后手动添加</li>
-<li>方法二：输入mongod –dbpath “C:\data\db”，路径值可以自定义</li>
+<li>使用<ul>
+<li>express-session</li>
+<li>前端登录成功，后端返回session</li>
+<li>cookie不需要手动操控</li>
+<li>后端拦截路由，获取session，并作判断</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>可视化工具<ul>
-<li><a href="https://robomongo.org/download" target="_blank" rel="noopener">Robo 3T</a></li>
-<li>创建连接，默认端口号为27017</li>
-<li>点击collections</li>
-<li>更改查看方式</li>
-<li>顶部输入命令</li>
-<li>右键refresh</li>
+<li>jwt<ul>
+<li>特点<ul>
+<li>减少不必要的上传，减轻服务端压力</li>
+<li>避免受到CSRF跨站伪造的请求攻击</li>
+<li>json的通用性，支持跨语言请求</li>
 </ul>
 </li>
+<li>使用<ul>
+<li>jwt<ul>
+<li>sign</li>
+<li>verify</li>
 </ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a><a href="https://www.mongodb.org.cn/" target="_blank" rel="noopener">命令</a></h2><ul>
-<li>基础命令<ul>
-<li>显示所有数据库：show dbs</li>
-<li>切换到某个数据库：use 库名，不存在就创建一个</li>
-<li>显示当前数据库的名字：db</li>
-<li>删除当前数据库：db.dropDatabase()</li>
-<li>显示该库下所有的集合：show connections</li>
-<li>创建集合：db.createCollection(集合名)</li>
-<li>获取集合：db.getCollection(集合名)，db.集合名<ul>
-<li>新建文档：create(OBJECT)</li>
-<li>插入文档：insert(OBJECT)，insertMany</li>
-<li>更新文档：update(OBJECT)，save，updateOne，updateMany</li>
-<li>查看文档：find(OBJECT)，findOne，findById</li>
-<li>清空文档：remove(OBJECT)，deleteOne，deleteMany</li>
-<li>删除集合：drop()</li>
+</li>
+<li>封装<ul>
+<li>createToken</li>
+<li>verifyToken</li>
+</ul>
+</li>
+<li>登录成功，后端返回token</li>
+<li>前端获取token，存到localStorage</li>
+<li>前端从localStorage读取token，上传后端</li>
+<li>后端拦截路由，获取token，并校验</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>其他命令<ul>
-<li>格式化：pretty()</li>
-<li>排序：sort({KEY: 1|-1})</li>
-<li>跳过：skip(NUMBER)</li>
-<li>批量：limit(NUMBER)  </li>
-</ul>
-</li>
-<li>命令操作符<ul>
-<li>查询：$eq，$ne，$gt，$gte，$lt，$lte，$in，$and，$or，$type，$regex</li>
-<li>更新：$set，$unset，$inc</li>
-</ul>
-</li>
-<li>命令参数<ul>
-<li>更新：multi</li>
-<li>删除：justOne</li>
 </ul>
 </li>
 </ul>
-<h2 id="mongoose"><a href="#mongoose" class="headerlink" title="mongoose"></a>mongoose</h2><ul>
-<li><a href="http://mongoosejs.net/docs/index.html" target="_blank" rel="noopener">中文文档</a></li>
-<li>安装</li>
-<li>连接<ul>
-<li>connect，connection</li>
-<li>error，open</li>
+<h2 id="验证码"><a href="#验证码" class="headerlink" title="验证码"></a>验证码</h2><ul>
+<li>原因</li>
+<li>方法<ul>
+<li>使用random</li>
+<li>邮件模块<ul>
+<li>引入nodemailer</li>
+<li>封装函数</li>
+<li>使用promise</li>
 </ul>
 </li>
-<li>schema<ul>
-<li>定义集合的结构，类似一个表头</li>
-<li>实例化之后，传入model</li>
-</ul>
-</li>
-<li>model<ul>
-<li>创建一个model实例的同时，生成数据库中对应的collection</li>
-<li>数据库的操作对象</li>
+<li>存入内存</li>
 </ul>
 </li>
 </ul>
-<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><ul>
-<li>回调地狱<ul>
-<li>回调函数的疯狂嵌套</li>
-<li>不利于阅读和维护</li>
+<h2 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h2><ul>
+<li>添加</li>
+<li>修改</li>
+<li>查询<ul>
+<li>按id</li>
+<li>按分类</li>
+<li>按关键字</li>
+<li>按分页</li>
 </ul>
 </li>
-<li>promise<ul>
-<li>创建一个包含异步操作的promise对象</li>
-<li>链接调用：then，return</li>
-<li>捕获错误：catch</li>
+<li>删除</li>
+</ul>
+<h2 id="apidoc"><a href="#apidoc" class="headerlink" title="apidoc"></a><a href="http://apidocjs.com/" target="_blank" rel="noopener">apidoc</a></h2><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install apidoc -g</span></pre></td></tr></table></figure></li>
+<li>apidoc.json<ul>
+<li>项目根目录</li>
+<li>字段<ul>
+<li>name</li>
+<li>description</li>
+<li>url：服务器域名（<a href="http://localhost:8888）" target="_blank" rel="noopener">http://localhost:8888）</a></li>
 </ul>
 </li>
-<li>async/await</li>
+</ul>
+</li>
+<li>语法<ul>
+<li>注释格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">* This is a comment.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">*&#x2F;</span></pre></td></tr></table></figure></li>
+<li>@api：接口（方式，路径，说明）</li>
+<li>@apiName：接口名称</li>
+<li>@apiGroup：接口组名</li>
+<li>@apiParam：请求参数（类型，名称，说明）</li>
+<li>@apiSuccess：响应参数（类型，名称，说明）</li>
+</ul>
+</li>
+<li>生成<pre><code>apidoc -i myapp/ -o apidoc/ -t mytemplate/</code></pre></li>
+<li>在浏览器中打开   </li>
+</ul>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>使用session+cookie进行身份验证</li>
+<li>使用jwt进行身份验证</li>
+<li>结合验证码进行用户登录</li>
+<li>使用apidoc生成接口文档</li>
+</ul>
+<h2 id="cookie、localstorage等之间的区别"><a href="#cookie、localstorage等之间的区别" class="headerlink" title="cookie、localstorage等之间的区别"></a>cookie、localstorage等之间的区别</h2><ul>
+<li>cookie数据始终在同源（需要指定作用域，不可以跨域调用）的http请求中携带（即使不需要），即在浏览器和服务器间来回传递，随着HTTP事务一起被发送，会浪费一部分带宽；对于sessionStorage和localStorage，一旦数据保存在本地后，就可以避免再向服务器请求数据，减少数据在浏览器和服务器间不必要地来回传递。</li>
+<li>cookie中每条cookie的存储空间为4k，localStorage中一般浏览器支持的是5M。</li>
+<li>cookie只在设置的过期时间之前一直有效，即使窗口或浏览器关闭；localStorage用作持久保存数据，将数据保存在客户端本地的硬件设备中；而很多时候数据只需要在用户浏览一组页面期间使用，关闭窗口后数据就可以丢弃了，这种情况使用sessionStorage非常方便，它将数据保存在session对象中。</li>
+<li>Web Storage支持事件通知机制，可以将数据更新的通知发送给监听者，而且Web Storage 的api接口使用更方便，不像cookie要自行封装setCooike和getCookie。</li>
+<li>cookie是不可以或缺的，它的作用是与服务器进行交互，作为HTTP规范的一部分而存在，而Web Storage仅仅是为了在本地”存储”数据而生。</li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->

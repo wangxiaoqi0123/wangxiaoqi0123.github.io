@@ -5,21 +5,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>mongodb下载安装 - Hexo</title>
+    <title>node JS 第二章 - Hexo</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="安装和配置
-下载地址
-安装过程
-点击完整版，不要勾选MongoD服务
-不要勾选MongoDB Compass
+    <meta name="description" content="安装  1npm install express --save
+
+使用
+Express中文文档
+Postman
+实例化，开启监听
+GET请求
+登录接口
+对比原生    
 
 
-环境变量
-从C:\Program Files\MongoDB往里找到bin目录
-wi,"> 
+中间件
+位置：请求之前
+,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -45,7 +49,7 @@ wi,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">mongodb下载安装</h3>
+    <h3 class="subtitle">node JS 第二章</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -63,125 +67,124 @@ wi,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">mongodb下载安装</h1>
+        <h1 class="title">node JS 第二章</h1>
         <div class="stuff">
-            <span>十二月 01, 2019</span>
+            <span>六月 12, 2019</span>
             
 
         </div>
         <div class="content markdown">
-            <h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><ul>
-<li><a href="https://www.mongodb.com/download-center/community" target="_blank" rel="noopener">下载地址</a></li>
-<li>安装过程<ul>
-<li>点击完整版，不要勾选MongoD服务</li>
-<li>不要勾选MongoDB Compass</li>
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install express --save</span></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li><a href="http://www.expressjs.com.cn/" target="_blank" rel="noopener">Express中文文档</a></li>
+<li><a href="https://www.getpostman.com/downloads/" target="_blank" rel="noopener">Postman</a></li>
+<li>实例化，开启监听</li>
+<li>GET请求<ul>
+<li>登录接口</li>
+<li>对比原生    </li>
 </ul>
 </li>
-<li>环境变量<ul>
-<li>从C:\Program Files\MongoDB往里找到bin目录</li>
-<li>win7:<blockquote>
-<p>右键我的电脑，选择属性 -&gt; 点击高级系统设置 -&gt; 高级 -&gt; 环境变量 -&gt; 在系统变量中选中Path，点击编辑 -&gt; 把刚才的bin目录地址添加在后面，注意不要覆盖原来的内容，路径之间用分号隔开 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>win10：<blockquote>
-<p>打开一个文件夹，在左侧找到这台电脑，右键选择属性 -&gt; 一直到点击编辑都是和win7一样 -&gt; 点击新建，把刚才的bin目录地址复制过来 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>打开cmd，输入mongod<ul>
-<li>如果报”不是内部命令”的错，说明环境变量配置失败</li>
-<li>如果出现”一大堆英文”，说明环境变量配置成功</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>启动数据库<ul>
-<li>在命令行中输入mongod，没有自动退出命令行就说明数据库启动成功</li>
-<li>缺少数据库文件的存放目录<ul>
-<li>方法一：直接在命令行中找到缺失的目录路径（倒数第三行），然后手动添加</li>
-<li>方法二：输入mongod –dbpath “C:\data\db”，路径值可以自定义</li>
+<li>中间件<ul>
+<li>位置：请求之前</li>
+<li>作用：拦截请求</li>
+<li>种类：自带，第三方，自定义</li>
+<li>挂载路径：默认，手动</li>
+<li>next<ul>
+<li>不加，挂起</li>
+<li>加，下一个</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>可视化工具<ul>
-<li><a href="https://robomongo.org/download" target="_blank" rel="noopener">Robo 3T</a></li>
-<li>创建连接，默认端口号为27017</li>
-<li>点击collections</li>
-<li>更改查看方式</li>
-<li>顶部输入命令</li>
-<li>右键refresh</li>
+<li>POST请求<ul>
+<li>使用中间件body-parser</li>
+<li>针对x-www-form-urlencoded，使用urlencoded</li>
+<li>针对application/json，使用json</li>
 </ul>
 </li>
+<li>路由<ul>
+<li>实例化</li>
+<li>路径分层</li>
 </ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a><a href="https://www.mongodb.org.cn/" target="_blank" rel="noopener">命令</a></h2><ul>
-<li>基础命令<ul>
-<li>显示所有数据库：show dbs</li>
-<li>切换到某个数据库：use 库名，不存在就创建一个</li>
-<li>显示当前数据库的名字：db</li>
-<li>删除当前数据库：db.dropDatabase()</li>
-<li>显示该库下所有的集合：show connections</li>
-<li>创建集合：db.createCollection(集合名)</li>
-<li>获取集合：db.getCollection(集合名)，db.集合名<ul>
-<li>新建文档：create(OBJECT)</li>
-<li>插入文档：insert(OBJECT)，insertMany</li>
-<li>更新文档：update(OBJECT)，save，updateOne，updateMany</li>
-<li>查看文档：find(OBJECT)，findOne，findById</li>
-<li>清空文档：remove(OBJECT)，deleteOne，deleteMany</li>
-<li>删除集合：drop()</li>
+</li>
+<li>静态资源托管<ul>
+<li>自带中间件static</li>
+<li><a href="http://nodejs.cn/api/path.html" target="_blank" rel="noopener">path</a><ul>
+<li>获取：__dirname，dirname，basename，extname</li>
+<li>组合：join，resovle</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>其他命令<ul>
-<li>格式化：pretty()</li>
-<li>排序：sort({KEY: 1|-1})</li>
-<li>跳过：skip(NUMBER)</li>
-<li>批量：limit(NUMBER)  </li>
+<li>模板引擎<ul>
+<li>作用<ul>
+<li>模板文件</li>
+<li>插入数据</li>
+<li>生成html</li>
 </ul>
 </li>
-<li>命令操作符<ul>
-<li>查询：$eq，$ne，$gt，$gte，$lt，$lte，$in，$and，$or，$type，$regex</li>
-<li>更新：$set，$unset，$inc</li>
+<li>jade</li>
+<li>ejs<ul>
+<li><a href="https://ejs.bootcss.com/" target="_blank" rel="noopener">安装</a></li>
+<li>模板语法<ul>
+<li>转义输出</li>
+<li>不转义输出</li>
+<li>执行js</li>
+<li>include    </li>
 </ul>
 </li>
-<li>命令参数<ul>
-<li>更新：multi</li>
-<li>删除：justOne</li>
+<li>配置引擎<ul>
+<li>ejs文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.set(&#39;view engine&#39;,&#39;ejs&#39;);</span></pre></td></tr></table></figure></li>
+<li>替换成html文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.engine(&#39;html&#39;, ejs.__express);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">app.set(&#39;view engine&#39;,&#39;html&#39;);</span></pre></td></tr></table></figure></li>
 </ul>
 </li>
-</ul>
-<h2 id="mongoose"><a href="#mongoose" class="headerlink" title="mongoose"></a>mongoose</h2><ul>
-<li><a href="http://mongoosejs.net/docs/index.html" target="_blank" rel="noopener">中文文档</a></li>
-<li>安装</li>
-<li>连接<ul>
-<li>connect，connection</li>
-<li>error，open</li>
-</ul>
-</li>
-<li>schema<ul>
-<li>定义集合的结构，类似一个表头</li>
-<li>实例化之后，传入model</li>
-</ul>
-</li>
-<li>model<ul>
-<li>创建一个model实例的同时，生成数据库中对应的collection</li>
-<li>数据库的操作对象</li>
+<li>注意事项<ul>
+<li>渲染文件时可省略后缀名</li>
+<li>外链资源需要配置访问路径</li>
 </ul>
 </li>
 </ul>
-<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><ul>
-<li>回调地狱<ul>
-<li>回调函数的疯狂嵌套</li>
-<li>不利于阅读和维护</li>
+</li>
 </ul>
 </li>
-<li>promise<ul>
-<li>创建一个包含异步操作的promise对象</li>
-<li>链接调用：then，return</li>
-<li>捕获错误：catch</li>
+</ul>
+<h2 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h2><ul>
+<li>jsonp<ul>
+<li>前端<ul>
+<li>全局函数，script标签</li>
+<li>$.ajax</li>
 </ul>
 </li>
-<li>async/await</li>
+<li>后端：拼接函数名和数据</li>
+<li>弊端<ul>
+<li>GET请求</li>
+<li>脚本注入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cors<ul>
+<li>前端：不做任何处理</li>
+<li>后端<ul>
+<li>Access-Control-Allow-Origin</li>
+<li>中间件<a href="https://github.com/expressjs/cors#readme" target="_blank" rel="noopener">cors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>代理<ul>
+<li>前端：修改请求地址</li>
+<li>中间服务</li>
+<li>后端：不做任何处理</li>
+</ul>
+</li>
+</ul>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>使用express写API接口</li>
+<li>使用express搭建静态服务器</li>
+<li>使用express和ejs动态渲染页面</li>
+<li>学会解决跨域问题</li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->

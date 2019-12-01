@@ -5,21 +5,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>mongodb下载安装 - Hexo</title>
+    <title>node JS 第一章 - Hexo</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="安装和配置
-下载地址
-安装过程
-点击完整版，不要勾选MongoD服务
-不要勾选MongoDB Compass
+    <meta name="description" content="NodeJS是什么
+是运行在服务端的JavaScript
+都是JavaScript，但又有所不同
+v8引擎，事件驱动，非阻塞I/O
 
-
-环境变量
-从C:\Program Files\MongoDB往里找到bin目录
-wi,"> 
+为什么学它
+快速上手一门服务端语言
+了解前后端的交互流程
+防止后,"> 
     <meta name="author" content="John Doe"> 
     <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -45,7 +44,7 @@ wi,">
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" target="_blank" rel="noopener" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">mongodb下载安装</h3>
+    <h3 class="subtitle">node JS 第一章</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" target="_blank" rel="noopener" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -63,125 +62,120 @@ wi,">
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">mongodb下载安装</h1>
+        <h1 class="title">node JS 第一章</h1>
         <div class="stuff">
-            <span>十二月 01, 2019</span>
+            <span>六月 12, 2019</span>
             
 
         </div>
         <div class="content markdown">
-            <h2 id="安装和配置"><a href="#安装和配置" class="headerlink" title="安装和配置"></a>安装和配置</h2><ul>
-<li><a href="https://www.mongodb.com/download-center/community" target="_blank" rel="noopener">下载地址</a></li>
-<li>安装过程<ul>
-<li>点击完整版，不要勾选MongoD服务</li>
-<li>不要勾选MongoDB Compass</li>
+            <h2 id="NodeJS是什么"><a href="#NodeJS是什么" class="headerlink" title="NodeJS是什么"></a>NodeJS是什么</h2><ul>
+<li>是运行在服务端的JavaScript</li>
+<li>都是JavaScript，但又有所不同</li>
+<li>v8引擎，事件驱动，非阻塞I/O</li>
+</ul>
+<h2 id="为什么学它"><a href="#为什么学它" class="headerlink" title="为什么学它"></a>为什么学它</h2><ul>
+<li>快速上手一门服务端语言</li>
+<li>了解前后端的交互流程</li>
+<li>防止后端甩锅</li>
+</ul>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h2><ul>
+<li><a href="http://nodejs.cn/" target="_blank" rel="noopener">NodeJS中文网</a></li>
+<li>版本</li>
+<li>运行<ul>
+<li>命令行</li>
+<li>js文件</li>
 </ul>
 </li>
-<li>环境变量<ul>
-<li>从C:\Program Files\MongoDB往里找到bin目录</li>
-<li>win7:<blockquote>
-<p>右键我的电脑，选择属性 -&gt; 点击高级系统设置 -&gt; 高级 -&gt; 环境变量 -&gt; 在系统变量中选中Path，点击编辑 -&gt; 把刚才的bin目录地址添加在后面，注意不要覆盖原来的内容，路径之间用分号隔开 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>win10：<blockquote>
-<p>打开一个文件夹，在左侧找到这台电脑，右键选择属性 -&gt; 一直到点击编辑都是和win7一样 -&gt; 点击新建，把刚才的bin目录地址复制过来 -&gt; 点击确定</p>
-</blockquote>
-</li>
-<li>打开cmd，输入mongod<ul>
-<li>如果报”不是内部命令”的错，说明环境变量配置失败</li>
-<li>如果出现”一大堆英文”，说明环境变量配置成功</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>启动数据库<ul>
-<li>在命令行中输入mongod，没有自动退出命令行就说明数据库启动成功</li>
-<li>缺少数据库文件的存放目录<ul>
-<li>方法一：直接在命令行中找到缺失的目录路径（倒数第三行），然后手动添加</li>
-<li>方法二：输入mongod –dbpath “C:\data\db”，路径值可以自定义</li>
+<li>工具<ul>
+<li><a href="https://www.npmjs.com/package/nodemon" target="_blank" rel="noopener">nodemon</a></li>
+<li>vscode中的终端</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>可视化工具<ul>
-<li><a href="https://robomongo.org/download" target="_blank" rel="noopener">Robo 3T</a></li>
-<li>创建连接，默认端口号为27017</li>
-<li>点击collections</li>
-<li>更改查看方式</li>
-<li>顶部输入命令</li>
-<li>右键refresh</li>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><ul>
+<li><a href="http://javascript.ruanyifeng.com/nodejs/module.html" target="_blank" rel="noopener">CommonJS规范</a></li>
+<li>自定义模块<ul>
+<li>创建（一个js文件就是一个模块）</li>
+<li>导出 (module.exports=xxx)</li>
+<li>引用（require，js后缀名可省）</li>
 </ul>
 </li>
+<li>内置模块<ul>
+<li>fs<ul>
+<li>操作目录（mkdir，readdir，rename，rmdir）</li>
+<li>操作文件（writeFile，appendFile，readFile，unlink，stat）</li>
 </ul>
-<h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a><a href="https://www.mongodb.org.cn/" target="_blank" rel="noopener">命令</a></h2><ul>
-<li>基础命令<ul>
-<li>显示所有数据库：show dbs</li>
-<li>切换到某个数据库：use 库名，不存在就创建一个</li>
-<li>显示当前数据库的名字：db</li>
-<li>删除当前数据库：db.dropDatabase()</li>
-<li>显示该库下所有的集合：show connections</li>
-<li>创建集合：db.createCollection(集合名)</li>
-<li>获取集合：db.getCollection(集合名)，db.集合名<ul>
-<li>新建文档：create(OBJECT)</li>
-<li>插入文档：insert(OBJECT)，insertMany</li>
-<li>更新文档：update(OBJECT)，save，updateOne，updateMany</li>
-<li>查看文档：find(OBJECT)，findOne，findById</li>
-<li>清空文档：remove(OBJECT)，deleteOne，deleteMany</li>
-<li>删除集合：drop()</li>
+</li>
+<li>path<ul>
+<li>获取：__dirname，dirname，basename，extname</li>
+<li>组合：join，resovle</li>
+</ul>
+</li>
+<li>http<ul>
+<li>创建服务，接收请求，解析参数，返回数据</li>
+<li>静态资源服务<ul>
+<li>获取pathname</li>
+<li>使用readFile</li>
+<li>设置content-type</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>其他命令<ul>
-<li>格式化：pretty()</li>
-<li>排序：sort({KEY: 1|-1})</li>
-<li>跳过：skip(NUMBER)</li>
-<li>批量：limit(NUMBER)  </li>
+<li>url<ul>
+<li>parse</li>
+<li>format</li>
 </ul>
 </li>
-<li>命令操作符<ul>
-<li>查询：$eq，$ne，$gt，$gte，$lt，$lte，$in，$and，$or，$type，$regex</li>
-<li>更新：$set，$unset，$inc</li>
-</ul>
-</li>
-<li>命令参数<ul>
-<li>更新：multi</li>
-<li>删除：justOne</li>
+<li>querystring<ul>
+<li>parse</li>
+<li>stringify</li>
+<li>escape</li>
+<li>unescape</li>
 </ul>
 </li>
 </ul>
-<h2 id="mongoose"><a href="#mongoose" class="headerlink" title="mongoose"></a>mongoose</h2><ul>
-<li><a href="http://mongoosejs.net/docs/index.html" target="_blank" rel="noopener">中文文档</a></li>
-<li>安装</li>
-<li>连接<ul>
-<li>connect，connection</li>
-<li>error，open</li>
+</li>
+<li>第三方模块<ul>
+<li>定位到项目根目录</li>
+<li>初始化项目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm init --yes</span></pre></td></tr></table></figure></li>
+<li>安装模块<ul>
+<li>npm<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install 模块名 --save</span></pre></td></tr></table></figure></li>
+<li>cnpm<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span></pre></td></tr></table></figure></li>
 </ul>
 </li>
-<li>schema<ul>
-<li>定义集合的结构，类似一个表头</li>
-<li>实例化之后，传入model</li>
-</ul>
-</li>
-<li>model<ul>
-<li>创建一个model实例的同时，生成数据库中对应的collection</li>
-<li>数据库的操作对象</li>
+<li>安装到项目根目录的node_modules</li>
+<li>使用require方法引入模块</li>
 </ul>
 </li>
 </ul>
-<h2 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h2><ul>
-<li>回调地狱<ul>
-<li>回调函数的疯狂嵌套</li>
-<li>不利于阅读和维护</li>
+<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><ul>
+<li>特点<ul>
+<li>一种数据的传输手段</li>
+<li>区别于fs模块的直接读取<ul>
+<li>分段读取，减少内存的占用</li>
+<li>可以控制读取速度</li>
+<li>可以边读取边写入</li>
 </ul>
 </li>
-<li>promise<ul>
-<li>创建一个包含异步操作的promise对象</li>
-<li>链接调用：then，return</li>
-<li>捕获错误：catch</li>
 </ul>
 </li>
-<li>async/await</li>
+<li>操作<ul>
+<li>可读流（createReadStream）</li>
+<li>可写流（createWriteStream）</li>
+<li>管道流（pipe）</li>
+</ul>
+</li>
+</ul>
+<h2 id="nodemailer"><a href="#nodemailer" class="headerlink" title="nodemailer"></a>nodemailer</h2><ul>
+<li><a href="https://nodemailer.com/about/" target="_blank" rel="noopener">官方文档</a></li>
+<li>createTransport</li>
+<li>sendMail</li>
+</ul>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><ul>
+<li>熟悉目录和文件的读写操作</li>
+<li>使用NodeJS搭建一个静态服务器</li>
+<li>用自己的邮箱给别人发邮件</li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
