@@ -21,13 +21,14 @@
   </script>
 
   <meta name="description" content="main.js 创建实例化新的vue实例 作为bus  1&amp;#x2F;&amp;#x2F; 使用全局bus 跨组件传递数据2Vue.prototype.bus &amp;#x3D; new Vue();  数据之间传递 父组件通过 on   接受数据子组件通过 emit 传递出数据  注意:    1. 数据传向由子组件传递出数据, 父组件接受数据    2. 子组件emit出数据, 父组件立即响应到数据(不要试">
+<meta name="keywords" content="vue 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="事件总线 bus">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;19&#x2F;vue%20%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%20bus&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千">
 <meta property="og:description" content="main.js 创建实例化新的vue实例 作为bus  1&amp;#x2F;&amp;#x2F; 使用全局bus 跨组件传递数据2Vue.prototype.bus &amp;#x3D; new Vue();  数据之间传递 父组件通过 on   接受数据子组件通过 emit 传递出数据  注意:    1. 数据传向由子组件传递出数据, 父组件接受数据    2. 子组件emit出数据, 父组件立即响应到数据(不要试">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-10T10:40:24.897Z">
+<meta property="og:updated_time" content="2020-07-10T17:34:14.762Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/19/vue%20%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF%20bus/">
@@ -216,8 +217,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-10 18:40:24" itemprop="dateModified" datetime="2020-07-10T18:40:24+08:00">2020-07-10</time>
+                <time title="修改时间：2020-07-11 01:34:14" itemprop="dateModified" datetime="2020-07-11T01:34:14+08:00">2020-07-11</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
 
           
 
@@ -248,6 +258,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue-2-0/" rel="tag"># vue 2.0</a>
+          </div>
 
         
 
@@ -255,12 +268,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20watch%20%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC/" rel="prev" title="watch实现深度对象监听">
-      <i class="fa fa-chevron-left"></i> watch实现深度对象监听
+    <a href="/2020/06/19/vue%20%E5%8D%95%E6%96%87%E4%BB%B6%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D/" rel="prev" title="Vue 单文件组件介绍">
+      <i class="fa fa-chevron-left"></i> Vue 单文件组件介绍
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20watch%20computed/" rel="next" title="watch监听属性 computed计算属性">
-      watch监听属性 computed计算属性 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/06/19/vue%20watch%20%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC/" rel="next" title="watch实现深度对象监听">
+      watch实现深度对象监听 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -334,20 +347,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

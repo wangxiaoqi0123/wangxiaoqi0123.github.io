@@ -21,13 +21,14 @@
   </script>
 
   <meta name="description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  :style 运算符写法:style&#x3D;”{color:num &#x3D;&#x3D; 3 ? ‘red’ :’green’}”:style&#x3D;”[{color:num &#x3D;&#x3D; 3 ? ‘red’ :">
+<meta name="keywords" content="vue 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue 指令事件样式">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;19&#x2F;vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千">
 <meta property="og:description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  :style 运算符写法:style&#x3D;”{color:num &#x3D;&#x3D; 3 ? ‘red’ :’green’}”:style&#x3D;”[{color:num &#x3D;&#x3D; 3 ? ‘red’ :">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-10T10:40:24.897Z">
+<meta property="og:updated_time" content="2020-07-10T17:47:39.745Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/19/vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F/">
@@ -216,8 +217,17 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-10 18:40:24" itemprop="dateModified" datetime="2020-07-10T18:40:24+08:00">2020-07-10</time>
+                <time title="修改时间：2020-07-11 01:47:39" itemprop="dateModified" datetime="2020-07-11T01:47:39+08:00">2020-07-11</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
 
           
 
@@ -230,7 +240,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h2><ul>
+        <h3 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h3><ul>
 <li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
 </li>
 <li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
@@ -240,34 +250,24 @@
 <li><p>:class 运算符写法<br>:class=”[isShow(变量) ? ‘icon-quanxuan1’(选择器一) : ‘icon-quanxuan’(选择器二)]”</p>
 </li>
 </ul>
-<h2 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h2><ul>
+<h3 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h3><ul>
 <li>修改数组 对象中的值来改变页面的渲染<br>(数组)通过数组变异方法(可以改变原数组的方法)操作的方法来操作 pop push shift unshift splice sort reserve<br>(数组, 对象)通过改变引用值的方式 , 将整个数组或对象都替换掉<br>(数组, 对象) Vue.set(对象/数组,属性/下标,值) 实例上也可以引用到 set 方法 , this.$set(对象/数组,属性/下标,值)<br>(对象) 原生对象的的合并 Object.assign({},obj,obj) 一定要加{} 改变原来对象值的引用</li>
 </ul>
-<h2 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h2><ol>
+<h3 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h3><ol>
 <li>:style=”{}” json 格式的对象</li>
 <li>:style=”[{},{}]” 数组的形式</li>
 <li>:class=”{class 选择器:true}”</li>
 <li>:class=”[{class 选择器:true},obj,’calss 选择器’]”</li>
 </ol>
-<h2 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h2><ul>
+<h3 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h3><ul>
 <li><p>事件修饰符<br>stop 阻止事件的冒泡 相当于原生的 e.stopPropagation() e.cancelBubble=true<br>prevent 阻止默认事件 相当于原生的 return false e.returnValue=false e.preventDefault()<br>captrue 事件的捕获<br>self 只有点击时 target 为目标元素 事件才可以生效</p>
 </li>
 <li><p>v-model 数据修饰符<br>number 自动把绑定的数据类型转化为 number 类型<br>lazy 数据在双向绑定时 只会触发@change 函数 数据修改完成失去焦点时 页面才会重新渲染<br>trim 修剪首尾空格</p>
 </li>
 </ul>
-<h2 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h2><ol>
+<h3 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h3><ol>
 <li>通过 v-for:”item in/of list” 实现对数组 对象的循环渲染</li>
 <li>key 的描述<br>如果不加 key 或者 key 为 index vue 在更新视图的时候, 采用就地更新策略, 每个元素只是一个容器,不会改变现有元素的排列顺序, 只是依次改变容器的内容<br>如果加了 key 并且 key 是唯一标识, vue 在更新列表的时候, 直接复用这些元素, 就会改变现有元素的排列顺序</li>
-</ol>
-<h2 id="6-v-model"><a href="#6-v-model" class="headerlink" title="6. v-model"></a>6. v-model</h2><ol>
-<li><p>文本类型(type=”text” type=”textarea”)<br>v-model 绑定的数据 与输入的文本一致</p>
-</li>
-<li><p>选择框不设置 value (type=”radio” type=”checkbox”)<br>v-model 绑定的数据 为选择框的 checked (true/false)</p>
-</li>
-<li><p>选择框设置 value (type=”radio” type=”checkbox”)<br>单选 v-model 绑定的数据为 单选框 value 的 值<br>多选 v-model 绑定的数据为 多选框 value 的 数组<br>(向数组中添加 多选框的 value 可以实现多选框的选中/不选中)</p>
-</li>
-<li><p>select<br>不设置 multiple(是否可以多选) select v-model 绑定的数据为 option value 的 值<br>设置 multiple select v-model 绑定的数据为 option value 的 数组</p>
-</li>
 </ol>
 
     </div>
@@ -277,6 +277,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue-2-0/" rel="tag"># vue 2.0</a>
+          </div>
 
         
 
@@ -284,8 +287,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%BA%95%E5%B1%82/" rel="prev" title="Vue 数据双向帮定底层实现">
-      <i class="fa fa-chevron-left"></i> Vue 数据双向帮定底层实现
+    <a href="/2020/06/19/vue%20%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" rel="prev" title="Vue 路由跳转">
+      <i class="fa fa-chevron-left"></i> Vue 路由跳转
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/06/19/vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="next" title="Vue 小知识">
@@ -349,7 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数据-变量"><span class="nav-number">1.</span> <span class="nav-text">1. 数据 变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-修改数据更新视图"><span class="nav-number">2.</span> <span class="nav-text">2. 修改数据更新视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Vue-样式的绑定"><span class="nav-number">3.</span> <span class="nav-text">3. Vue 样式的绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-修饰符"><span class="nav-number">4.</span> <span class="nav-text">4. 修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-列表渲染"><span class="nav-number">5.</span> <span class="nav-text">5. 列表渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-v-model"><span class="nav-number">6.</span> <span class="nav-text">6. v-model</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据-变量"><span class="nav-number">1.</span> <span class="nav-text">1. 数据 变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-修改数据更新视图"><span class="nav-number">2.</span> <span class="nav-text">2. 修改数据更新视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Vue-样式的绑定"><span class="nav-number">3.</span> <span class="nav-text">3. Vue 样式的绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-修饰符"><span class="nav-number">4.</span> <span class="nav-text">4. 修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-列表渲染"><span class="nav-number">5.</span> <span class="nav-text">5. 列表渲染</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -363,20 +366,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
