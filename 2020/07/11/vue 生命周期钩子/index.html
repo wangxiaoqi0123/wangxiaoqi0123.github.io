@@ -20,16 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前端笔记">
+  <meta name="description" content="beforeCreate() 可以获取this(组件 实例)，但无法获取真实的数据和节点  created() 可以获取this(组件 实例)和真实的数据，但无法获取真实的节点  beforeMount() 这个阶段，它渲染出了虚拟DOM  mounted() 这个阶段，它渲染出了真实DOM  beforeUpdate() 发生更新，可以获取更新后的数据，但是节点还未更新完  updated">
 <meta name="keywords" content="vue 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue 生命周期钩子">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;11&#x2F;vue%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千">
-<meta property="og:description" content="前端笔记">
+<meta property="og:description" content="beforeCreate() 可以获取this(组件 实例)，但无法获取真实的数据和节点  created() 可以获取this(组件 实例)和真实的数据，但无法获取真实的节点  beforeMount() 这个阶段，它渲染出了虚拟DOM  mounted() 这个阶段，它渲染出了真实DOM  beforeUpdate() 发生更新，可以获取更新后的数据，但是节点还未更新完  updated">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-10T17:45:42.881Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;lifecycle.png">
+<meta property="og:updated_time" content="2020-07-10T18:18:38.795Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;lifecycle.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/07/11/vue%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/">
 
@@ -211,7 +213,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-11 01:45:13 / 修改时间：01:45:42" itemprop="dateCreated datePublished" datetime="2020-07-11T01:45:13+08:00">2020-07-11</time>
+              <time title="创建时间：2020-07-11 01:45:13 / 修改时间：02:18:38" itemprop="dateCreated datePublished" datetime="2020-07-11T01:45:13+08:00">2020-07-11</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,7 +236,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        
+        <img src="/images/2020/lifecycle.png" />
+
+<ol>
+<li><p>beforeCreate()<br> 可以获取this(组件 实例)，但无法获取真实的数据和节点</p>
+</li>
+<li><p>created()<br> 可以获取this(组件 实例)和真实的数据，但无法获取真实的节点</p>
+</li>
+<li><p>beforeMount()<br> 这个阶段，它渲染出了虚拟DOM</p>
+</li>
+<li><p>mounted()<br> 这个阶段，它渲染出了真实DOM</p>
+</li>
+<li><p>beforeUpdate()<br> 发生更新，可以获取更新后的数据，但是节点还未更新完</p>
+</li>
+<li><p>updated()<br> 更新完成，数据和节点都是最新的</p>
+</li>
+<li><p>beforeDestroy()<br> 组件销毁之前的一瞬间</p>
+</li>
+<li><p>destroyed()<br> 组件被销毁</p>
+</li>
+<li><p>activated()<br> 组件被激活</p>
+</li>
+<li><p>deactivated()<br>组件未激活</p>
+</li>
+</ol>
+
     </div>
 
     
@@ -252,8 +278,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/export%E4%B8%8Eexports/" rel="prev" title="export与exports">
-      <i class="fa fa-chevron-left"></i> export与exports
+    <a href="/2020/06/19/vue%20watch%20computed/" rel="prev" title="watch监听属性 computed计算属性">
+      <i class="fa fa-chevron-left"></i> watch监听属性 computed计算属性
     </a></div>
       <div class="post-nav-item"></div>
     </div>
