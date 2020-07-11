@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="我寄白雪三千片">
 <meta property="og:description" content="配置页面缓存  app.vue 使用keep-alive进行缓存  1&amp;lt;template&amp;gt;2  &amp;lt;div id&amp;#x3D;&amp;quot;app&amp;quot;&amp;gt;3    &amp;lt;keep-alive&amp;gt;4      &amp;lt;router-view v-if&amp;#x3D;&amp;quot;$route.meta.keepAlive&amp;quot; &amp;#x2F;&amp;gt;5    &amp;lt;&amp;#">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-10T17:35:13.545Z">
+<meta property="og:updated_time" content="2020-07-11T11:23:45.177Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/19/vue%20%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98%20keep-alive/">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-11 01:35:13" itemprop="dateModified" datetime="2020-07-11T01:35:13+08:00">2020-07-11</time>
+                <time title="修改时间：2020-07-11 19:23:45" itemprop="dateModified" datetime="2020-07-11T19:23:45+08:00">2020-07-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,11 +240,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h2><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
-<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  meta: &#123; title: &quot;公告&quot;, icon: &quot;index&quot;, keepAlive: true, affix: true &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<h2 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+        <h3 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h3><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
+<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  meta: &#123; keepAlive: true &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<h3 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h2 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h2><ul>
+<h3 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h3><ul>
 <li>使用keep-alive 之后页面被缓存</li>
 <li>再次打开页面 触发activated 生命周期钩子函数</li>
 </ul>
@@ -270,8 +270,8 @@
       <i class="fa fa-chevron-left"></i> vuex 使用
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" rel="next" title="Vue 路由跳转">
-      Vue 路由跳转 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/06/19/vue%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E8%AE%AF/" rel="next" title="Vue 父子组件通讯">
+      Vue 父子组件通讯 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置页面缓存"><span class="nav-number">1.</span> <span class="nav-text">配置页面缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由守卫-监听路由-进入-离开"><span class="nav-number">2.</span> <span class="nav-text">路由守卫 监听路由 进入/离开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件激活生命周期钩子-activated"><span class="nav-number">3.</span> <span class="nav-text">组件激活生命周期钩子 activated</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置页面缓存"><span class="nav-number">1.</span> <span class="nav-text">配置页面缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由守卫-监听路由-进入-离开"><span class="nav-number">2.</span> <span class="nav-text">路由守卫 监听路由 进入/离开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件激活生命周期钩子-activated"><span class="nav-number">3.</span> <span class="nav-text">组件激活生命周期钩子 activated</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -345,7 +345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
