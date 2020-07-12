@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="实现理论 v-model 实际上是 @input + :value 的语法糖 vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)1model: &amp;#123;2    &amp;#x2F;&amp;#x2F; 自定义 v-mode1 的props 变量名3    prop: &amp;#39;uname&amp;#39;,4    &amp;#x2F;&amp;#x2F; 自定义 v-mode1">
+  <meta name="description" content="实现理论 v-model 实际上是 @input + :value 的语法糖 vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)1model: &amp;#123;2    &amp;#x2F;&amp;#x2F; 自定义 v-model 的props 变量名3    prop: &amp;#39;uname&amp;#39;,4    &amp;#x2F;&amp;#x2F; 自定义 v-model">
 <meta name="keywords" content="vue 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模块(组件)上的 v-model 实现">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;19&#x2F;%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="实现理论 v-model 实际上是 @input + :value 的语法糖 vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)1model: &amp;#123;2    &amp;#x2F;&amp;#x2F; 自定义 v-mode1 的props 变量名3    prop: &amp;#39;uname&amp;#39;,4    &amp;#x2F;&amp;#x2F; 自定义 v-mode1">
+<meta property="og:description" content="实现理论 v-model 实际上是 @input + :value 的语法糖 vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)1model: &amp;#123;2    &amp;#x2F;&amp;#x2F; 自定义 v-model 的props 变量名3    prop: &amp;#39;uname&amp;#39;,4    &amp;#x2F;&amp;#x2F; 自定义 v-model">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-11T11:37:43.968Z">
+<meta property="og:updated_time" content="2020-07-12T15:50:38.686Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/19/%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-11 19:37:43" itemprop="dateModified" datetime="2020-07-11T19:37:43+08:00">2020-07-11</time>
+                <time title="修改时间：2020-07-12 23:50:38" itemprop="dateModified" datetime="2020-07-12T23:50:38+08:00">2020-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
       
         <h3 id="实现理论"><a href="#实现理论" class="headerlink" title="实现理论"></a>实现理论</h3><ol>
 <li>v-model 实际上是 @input + :value 的语法糖</li>
-<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-mode1 的props 变量名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-mode1 $emit事件命名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model 的props 变量名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model $emit事件命名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
 <li>两个方向数据双向绑定<br>父向同过 v-model 向组件传值<br>组件通过 this.$emit(“input”, value) 向父传值</li>
 </ol>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
@@ -266,12 +266,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/vuex%20%E4%BD%BF%E7%94%A8/" rel="prev" title="vuex 使用">
-      <i class="fa fa-chevron-left"></i> vuex 使用
+    <a href="/2020/06/19/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/" rel="prev" title="Vue 路由守卫">
+      <i class="fa fa-chevron-left"></i> Vue 路由守卫
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" rel="next" title="Vue 路由跳转 router">
-      Vue 路由跳转 router <i class="fa fa-chevron-right"></i>
+    <a href="/2020/06/19/vue%20%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98%20keep-alive/" rel="next" title="Vue 页面缓存 keep-alive">
+      Vue 页面缓存 keep-alive <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -345,7 +345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -358,7 +358,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

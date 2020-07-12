@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="对象合并的方式 Object.assign(obj ,{}) 在vue中对象的合并 必须是 Object.assign({},obj,{}) 的方式,改变引用地址,从而使数据的视图更新  computed 计算属性 watch 监听属性 形式上是函数 实际上是变量 , 且computed 计算的属性不能在data中存在  Vue 模板中的this指向 window  模板中有且仅有一个顶层标签">
-<meta name="keywords" content="vue 2.0">
+  <meta name="description" content="map(callback) 作用 -对数组进行映射  参数说明    参数  描述    (currentValue, index,arr)&#x3D;&amp;gt;{}        必须。函数，数组中的每个元素都会执行这个函数    函数参数:                  参数        描述                    currentValue        当前元素的值">
+<meta name="keywords" content="javascript,ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue 小知识">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;19&#x2F;vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86&#x2F;index.html">
+<meta property="og:title" content="数组常用 ES6方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;12&#x2F;%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="对象合并的方式 Object.assign(obj ,{}) 在vue中对象的合并 必须是 Object.assign({},obj,{}) 的方式,改变引用地址,从而使数据的视图更新  computed 计算属性 watch 监听属性 形式上是函数 实际上是变量 , 且computed 计算的属性不能在data中存在  Vue 模板中的this指向 window  模板中有且仅有一个顶层标签">
+<meta property="og:description" content="map(callback) 作用 -对数组进行映射  参数说明    参数  描述    (currentValue, index,arr)&#x3D;&amp;gt;{}        必须。函数，数组中的每个元素都会执行这个函数    函数参数:                  参数        描述                    currentValue        当前元素的值">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-10T17:30:40.744Z">
+<meta property="og:updated_time" content="2020-07-12T16:22:04.372Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/19/vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86/">
+<link rel="canonical" href="http://yoursite.com/2020/07/12/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -44,7 +44,7 @@
   };
 </script>
 
-  <title>Vue 小知识 | 我寄白雪三千片</title>
+  <title>数组常用 ES6方法 | 我寄白雪三千片</title>
   
 
 
@@ -187,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -200,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue 小知识
+          数组常用 ES6方法
         </h1>
 
         <div class="post-meta">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-19 18:11:37" itemprop="dateCreated datePublished" datetime="2020-06-19T18:11:37+08:00">2020-06-19</time>
+              <time title="创建时间：2020-07-12 23:47:21" itemprop="dateCreated datePublished" datetime="2020-07-12T23:47:21+08:00">2020-07-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-11 01:30:40" itemprop="dateModified" datetime="2020-07-11T01:30:40+08:00">2020-07-11</time>
+                <time title="修改时间：2020-07-13 00:22:04" itemprop="dateModified" datetime="2020-07-13T00:22:04+08:00">2020-07-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
                 </span>
             </span>
 
@@ -240,34 +240,132 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ol>
-<li><p>对象合并的方式 Object.assign(obj ,{}) 在vue中对象的合并 必须是 Object.assign({},obj,{}) 的方式,改变引用地址,从而使数据的视图更新</p>
+        <h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
+<li><p>作用 <code>-对数组进行映射</code></p>
 </li>
-<li><p>computed 计算属性 watch 监听属性 形式上是函数 实际上是变量 , 且computed 计算的属性不能在data中存在</p>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+     必须。函数，数组中的每个元素都会执行这个函数<br>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
 </li>
-<li><p>Vue 模板中的this指向 window</p>
+<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
 </li>
-<li><p>模板中有且仅有一个顶层标签</p>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.map(e &#x3D;&gt; e.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.map(e &#x3D;&gt; e.age); &#x2F;&#x2F; [18, 19, 18]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure>
 </li>
-<li><p>所有的数据都是从外向内传递</p>
+</ol>
+<hr>
+<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
+<li><p><code>-对数组进行筛选过滤</code></p>
 </li>
-<li><p>component 的第一个参数组件名称 可以短横线 可以是驼峰 (不能使用关键字和标签名), 使用组件时 只能使用短横线的形式</p>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+     必须。函数，数组中的每个元素都会执行这个函数<br>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
 </li>
-<li><p>给父组件下 子组件 绑定(原生)事件 使用事件修饰符 .native 就可以从父组件上直接监听到子组件</p>
+<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
 </li>
-<li><p>computed 默认get() 方法 手动修改数据 使用set(修改的值)方法</p>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.filter(e &#x3D;&gt; e.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure>
 </li>
-<li><p><template></template> 标签是一个虚拟的标签,包裹原生标签,将vue语法写在template,使原生标签与逻辑分离</p>
+</ol>
+<hr>
+<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
+<li><p>作用 <code>- 查找数组中的某一项</code></p>
 </li>
-<li><p>Vue 中不要使用 function , 尽量使用箭头函数 避免 this 的指向发生问题</p>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+     必须。函数，数组中的每个元素都会执行这个函数<br>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
 </li>
-<li><p><router-view/> 页面上是哪个路由组件 就显示哪个组件<br>a.router-link-exact-active 在对应的路由页面 显示对应 router-link 样式</p>
+<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
 </li>
-<li><p>组件切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;keep-alive include&#x3D;&quot;froms&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- component 站位符用来站位符 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- v-once组件缓存在内存中 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;component :is&#x3D;&#39;temp&#39; v-once&gt;&lt;&#x2F;component&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;keep-alive&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>Vue.nextTick(callback) 确保数据和视图更新完</p>
-</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.find(e &#x3D;&gt; e.age &#x3D;&#x3D; 18) &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure></li>
 </ol>
 
     </div>
@@ -278,7 +376,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/vue-2-0/" rel="tag"># vue 2.0</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/ES6/" rel="tag"># ES6</a>
           </div>
 
         
@@ -287,13 +386,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%BA%95%E5%B1%82/" rel="prev" title="Vue 数据双向绑定底层实现">
-      <i class="fa fa-chevron-left"></i> Vue 数据双向绑定底层实现
+    <a href="/2020/07/12/async%20await%20%E4%BD%BF%E7%94%A8/" rel="prev" title="async await 使用方式">
+      <i class="fa fa-chevron-left"></i> async await 使用方式
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/19/vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F/" rel="next" title="Vue 指令事件样式">
-      Vue 指令事件样式 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -352,6 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#map-callback"><span class="nav-number">1.</span> <span class="nav-text">map(callback)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter-callback"><span class="nav-number">2.</span> <span class="nav-text">filter(callback)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find-callback"><span class="nav-number">3.</span> <span class="nav-text">find(callback)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
