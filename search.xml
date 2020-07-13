@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>async await 使用方式</title>
+    <url>/2020/07/12/async%20await%20%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>作用: 用于将 <code>JS异步链式化</code> 使代码从上向下顺序执行, 相当于promise的 .then 的链式操作</p>
+</blockquote>
+<h3 id="asyns"><a href="#asyns" class="headerlink" title="asyns"></a>asyns</h3><ol>
+<li>声明了此函数为异步函数</li>
+<li>默认返回一个 promise 对象(函数后面可以接 .then 返回的结果就是 async函数里面 return的值 )</li>
+</ol>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><ol>
+<li>一般是一个 promise 封装的异步函数 </li>
+<li>await的结果 是promise返回成功的回调 resolve 的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明了此函数为异步函数</span></pre></td></tr><tr><td class="code"><pre><span class="line">async asyFun() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    let res &#x3D; await this.test();</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;res :&quot;, res); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return res;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;error :&quot;, error);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般是一个 promise 封装的异步函数</span></pre></td></tr><tr><td class="code"><pre><span class="line">test() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 做一些异步操作</span></pre></td></tr><tr><td class="code"><pre><span class="line">    setTimeout(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      resolve(&quot;随便什么数据&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;, 2000);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认返回一个 promise 对象</span></pre></td></tr><tr><td class="code"><pre><span class="line">handle() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.asyFun().then(data &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;data :&quot;, data); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Promise 介绍</title>
     <url>/2020/07/12/Promise/</url>
     <content><![CDATA[<h3 id="1-Promise是一个构造函数"><a href="#1-Promise是一个构造函数" class="headerlink" title="1. Promise是一个构造函数"></a>1. Promise是一个构造函数</h3><ul>
@@ -41,26 +64,56 @@
       </tags>
   </entry>
   <entry>
-    <title>async await 使用方式</title>
-    <url>/2020/07/12/async%20await%20%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<blockquote>
-<p>作用: 用于将 <code>JS异步链式化</code> 使代码从上向下顺序执行, 相当于promise的 .then 的链式操作</p>
+    <title>Vue slot 插槽</title>
+    <url>/2020/07/12/vue%20slot%E6%8F%92%E6%A7%BD/</url>
+    <content><![CDATA[<h3 id="1-默认插槽"><a href="#1-默认插槽" class="headerlink" title="1. 默认插槽"></a>1. 默认插槽</h3><blockquote>
+<p>默认插槽 只有一个 添加后 组件标签对里面直接写入类容</p>
 </blockquote>
-<h3 id="asyns"><a href="#asyns" class="headerlink" title="asyns"></a>asyns</h3><ol>
-<li>声明了此函数为异步函数</li>
-<li>默认返回一个 promise 对象(函数后面可以接 .then 返回的结果就是 async函数里面 return的值 )</li>
-</ol>
-<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><ol>
-<li>一般是一个 promise 封装的异步函数 </li>
-<li>await的结果 是promise返回成功的回调 resolve 的值</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明了此函数为异步函数</span></pre></td></tr><tr><td class="code"><pre><span class="line">async asyFun() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    let res &#x3D; await this.test();</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;res :&quot;, res); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return res;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;error :&quot;, error);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般是一个 promise 封装的异步函数</span></pre></td></tr><tr><td class="code"><pre><span class="line">test() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 做一些异步操作</span></pre></td></tr><tr><td class="code"><pre><span class="line">    setTimeout(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      resolve(&quot;随便什么数据&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;, 2000);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认返回一个 promise 对象</span></pre></td></tr><tr><td class="code"><pre><span class="line">handle() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.asyFun().then(data &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&quot;data :&quot;, data); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加一个默认插槽，可以在外部随意定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- Content组件 添加的slot 内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;div&gt;hello world&lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+
+<h3 id="2-具名插槽"><a href="#2-具名插槽" class="headerlink" title="2. 具名插槽"></a>2. 具名插槽</h3><blockquote>
+<p>通过name 指定名称 添加后 组件标签对里 指定对应名称的slot 书写类容</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加一个默认插槽，可以在外部随意定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;solt name&#x3D;&quot;footer&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加 name 名称 外部可指定footer名称来定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;solt&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;div&gt;hello world&lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- v-slot:footer 指定 &lt;solt name&#x3D;&quot;footer&quot;&gt;&lt;&#x2F;solt&gt; 的插槽 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;template v-slot:footer&gt;footer&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+
+<h3 id="3-作用域插槽"><a href="#3-作用域插槽" class="headerlink" title="3. 作用域插槽"></a>3. 作用域插槽</h3><blockquote>
+<p>通过 v-bind 传递出 数据 添加后 通过 v-slot:main=”scope” 下就可以接受组件传递出的数据</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;!-- 通过 v-bind 传递出 数据 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot name&#x3D;&quot;main&quot; v-bind&#x3D;&quot;&#123;text:&#39;hello world&#39;&#125;&quot;&gt;&lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- v-slot:main&#x3D;&quot;scope&quot; 接受到slot传递出的数据 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;template v-slot:main&#x3D;&quot;scope&quot;&gt;&#123;&#123;scope.text&#125;&#125;&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+
+<h3 id="默认值插槽"><a href="#默认值插槽" class="headerlink" title="默认值插槽"></a>默认值插槽</h3><blockquote>
+<p>顾名思义 插槽内添加默认值<br>  使用插槽时，插槽内部<code>不添加</code>任意值 就使用插槽 内默认的值</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot name&#x3D;&quot;main&quot; v-bind&#x3D;&quot;&#123;text:&#39;hello world&#39;&#125;&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;p&gt;这是mian插槽的默认值标签 当使用插槽时 插槽里不添加任意内容 就使用当前默认值&lt;&#x2F;p&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>export与exports</title>
+    <url>/2020/06/19/export%E4%B8%8Eexports/</url>
+    <content><![CDATA[<h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
+<p>var {key1,key2,key3} = require(‘路径’)</p>
+<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
+<p>var obj = require(‘路径’)</p>
+<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
+<p>import {key,fn,Fn} from “路径”</p>
+<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
+<p>import obj from “路径”</p>
+<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
+]]></content>
       <categories>
         <category>javascript</category>
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -105,26 +158,6 @@
       </tags>
   </entry>
   <entry>
-    <title>export与exports</title>
-    <url>/2020/06/19/export%E4%B8%8Eexports/</url>
-    <content><![CDATA[<h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
-<p>var {key1,key2,key3} = require(‘路径’)</p>
-<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
-<p>var obj = require(‘路径’)</p>
-<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
-<p>import {key,fn,Fn} from “路径”</p>
-<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
-<p>import obj from “路径”</p>
-<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>阿里巴巴图标库</title>
     <url>/2020/06/19/iconfont/</url>
     <content><![CDATA[<h3 id="线上引用"><a href="#线上引用" class="headerlink" title="线上引用"></a>线上引用</h3><ol>
@@ -166,39 +199,6 @@
       </categories>
       <tags>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue slot 插槽</title>
-    <url>/2020/07/12/vue%20slot%E6%8F%92%E6%A7%BD/</url>
-    <content><![CDATA[<h3 id="1-默认插槽"><a href="#1-默认插槽" class="headerlink" title="1. 默认插槽"></a>1. 默认插槽</h3><blockquote>
-<p>默认插槽 只有一个 添加后 组件标签对里面直接写入类容</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加一个默认插槽，可以在外部随意定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- Content组件 添加的slot 内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;div&gt;hello world&lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="2-具名插槽"><a href="#2-具名插槽" class="headerlink" title="2. 具名插槽"></a>2. 具名插槽</h3><blockquote>
-<p>通过name 指定名称 添加后 组件标签对里 指定对应名称的slot 书写类容</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加一个默认插槽，可以在外部随意定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;solt name&#x3D;&quot;footer&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- 添加 name 名称 外部可指定footer名称来定义内容 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;solt&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;div&gt;hello world&lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- v-slot:footer 指定 &lt;solt name&#x3D;&quot;footer&quot;&gt;&lt;&#x2F;solt&gt; 的插槽 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;template v-slot:footer&gt;footer&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="3-作用域插槽"><a href="#3-作用域插槽" class="headerlink" title="3. 作用域插槽"></a>3. 作用域插槽</h3><blockquote>
-<p>通过 v-bind 传递出 数据 添加后 通过 v-slot:main=”scope” 下就可以接受组件传递出的数据</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;!-- 通过 v-bind 传递出 数据 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot name&#x3D;&quot;main&quot; v-bind&#x3D;&quot;&#123;text:&#39;hello world&#39;&#125;&quot;&gt;&lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;!-- v-slot:main&#x3D;&quot;scope&quot; 接受到slot传递出的数据 --&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;template v-slot:main&#x3D;&quot;scope&quot;&gt;&#123;&#123;scope.text&#125;&#125;&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;Content&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="默认值插槽"><a href="#默认值插槽" class="headerlink" title="默认值插槽"></a>默认值插槽</h3><blockquote>
-<p>顾名思义 插槽内添加默认值<br>  使用插槽时，插槽内部<code>不添加</code>任意值 就使用插槽 内默认的值</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;slot name&#x3D;&quot;main&quot; v-bind&#x3D;&quot;&#123;text:&#39;hello world&#39;&#125;&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;p&gt;这是mian插槽的默认值标签 当使用插槽时 插槽里不添加任意内容 就使用当前默认值&lt;&#x2F;p&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
       </tags>
   </entry>
   <entry>
@@ -325,46 +325,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue 指令事件样式</title>
-    <url>/2020/06/19/vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h3><ul>
-<li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
-</li>
-<li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
-</li>
-<li><p>:style 运算符写法<br>:style=”{color:num == 3 ? ‘red’ :’green’}”<br>:style=”[{color:num == 3 ? ‘red’ :’green’}]”</p>
-</li>
-<li><p>:class 运算符写法<br>:class=”[isShow(变量) ? ‘icon-quanxuan1’(选择器一) : ‘icon-quanxuan’(选择器二)]”</p>
-</li>
-</ul>
-<h3 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h3><ul>
-<li>修改数组 对象中的值来改变页面的渲染<br>(数组)通过数组变异方法(可以改变原数组的方法)操作的方法来操作 pop push shift unshift splice sort reserve<br>(数组, 对象)通过改变引用值的方式 , 将整个数组或对象都替换掉<br>(数组, 对象) Vue.set(对象/数组,属性/下标,值) 实例上也可以引用到 set 方法 , this.$set(对象/数组,属性/下标,值)<br>(对象) 原生对象的的合并 Object.assign({},obj,obj) 一定要加{} 改变原来对象值的引用</li>
-</ul>
-<h3 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h3><ol>
-<li>:style=”{}” json 格式的对象</li>
-<li>:style=”[{},{}]” 数组的形式</li>
-<li>:class=”{class 选择器:true}”</li>
-<li>:class=”[{class 选择器:true},obj,’calss 选择器’]”</li>
-</ol>
-<h3 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h3><ul>
-<li><p>事件修饰符<br>stop 阻止事件的冒泡 相当于原生的 e.stopPropagation() e.cancelBubble=true<br>prevent 阻止默认事件 相当于原生的 return false e.returnValue=false e.preventDefault()<br>captrue 事件的捕获<br>self 只有点击时 target 为目标元素 事件才可以生效</p>
-</li>
-<li><p>v-model 数据修饰符<br>number 自动把绑定的数据类型转化为 number 类型<br>lazy 数据在双向绑定时 只会触发@change 函数 数据修改完成失去焦点时 页面才会重新渲染<br>trim 修剪首尾空格</p>
-</li>
-</ul>
-<h3 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h3><ol>
-<li>通过 v-for:”item in/of list” 实现对数组 对象的循环渲染</li>
-<li>key 的描述<br>如果不加 key 或者 key 为 index vue 在更新视图的时候, 采用就地更新策略, 每个元素只是一个容器,不会改变现有元素的排列顺序, 只是依次改变容器的内容<br>如果加了 key 并且 key 是唯一标识, vue 在更新列表的时候, 直接复用这些元素, 就会改变现有元素的排列顺序</li>
-</ol>
-]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue 小知识</title>
     <url>/2020/06/19/vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<ol>
@@ -405,6 +365,46 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue 指令事件样式</title>
+    <url>/2020/06/19/vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h3><ul>
+<li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
+</li>
+<li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
+</li>
+<li><p>:style 运算符写法<br>:style=”{color:num == 3 ? ‘red’ :’green’}”<br>:style=”[{color:num == 3 ? ‘red’ :’green’}]”</p>
+</li>
+<li><p>:class 运算符写法<br>:class=”[isShow(变量) ? ‘icon-quanxuan1’(选择器一) : ‘icon-quanxuan’(选择器二)]”</p>
+</li>
+</ul>
+<h3 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h3><ul>
+<li>修改数组 对象中的值来改变页面的渲染<br>(数组)通过数组变异方法(可以改变原数组的方法)操作的方法来操作 pop push shift unshift splice sort reserve<br>(数组, 对象)通过改变引用值的方式 , 将整个数组或对象都替换掉<br>(数组, 对象) Vue.set(对象/数组,属性/下标,值) 实例上也可以引用到 set 方法 , this.$set(对象/数组,属性/下标,值)<br>(对象) 原生对象的的合并 Object.assign({},obj,obj) 一定要加{} 改变原来对象值的引用</li>
+</ul>
+<h3 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h3><ol>
+<li>:style=”{}” json 格式的对象</li>
+<li>:style=”[{},{}]” 数组的形式</li>
+<li>:class=”{class 选择器:true}”</li>
+<li>:class=”[{class 选择器:true},obj,’calss 选择器’]”</li>
+</ol>
+<h3 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h3><ul>
+<li><p>事件修饰符<br>stop 阻止事件的冒泡 相当于原生的 e.stopPropagation() e.cancelBubble=true<br>prevent 阻止默认事件 相当于原生的 return false e.returnValue=false e.preventDefault()<br>captrue 事件的捕获<br>self 只有点击时 target 为目标元素 事件才可以生效</p>
+</li>
+<li><p>v-model 数据修饰符<br>number 自动把绑定的数据类型转化为 number 类型<br>lazy 数据在双向绑定时 只会触发@change 函数 数据修改完成失去焦点时 页面才会重新渲染<br>trim 修剪首尾空格</p>
+</li>
+</ul>
+<h3 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h3><ol>
+<li>通过 v-for:”item in/of list” 实现对数组 对象的循环渲染</li>
+<li>key 的描述<br>如果不加 key 或者 key 为 index vue 在更新视图的时候, 采用就地更新策略, 每个元素只是一个容器,不会改变现有元素的排列顺序, 只是依次改变容器的内容<br>如果加了 key 并且 key 是唯一标识, vue 在更新列表的时候, 直接复用这些元素, 就会改变现有元素的排列顺序</li>
+</ol>
+]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vue 数据双向绑定底层实现</title>
     <url>/2020/06/19/vue%20%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%BA%95%E5%B1%82/</url>
     <content><![CDATA[<p>  Vue 2.0 主要通过 Object.defineProperty 实现 vm（改变数据更新视图）<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;head&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;head&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;body&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;ipt&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;span id&#x3D;&quot;text&quot;&gt;&lt;&#x2F;span&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;body&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F;先获取节点</span></pre></td></tr><tr><td class="code"><pre><span class="line">    var ipt &#x3D; document.querySelector(&quot;#ipt&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    var text &#x3D; document.querySelector(&quot;#text&quot;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F;定义一个数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">    var data &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        content: &quot;123456&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F;实现能够更新数据的函数</span></pre></td></tr><tr><td class="code"><pre><span class="line">    var fn &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        content: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">            function (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                ipt.value &#x3D; val</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            function (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                text.innerHTML &#x3D; val</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    for (let attr in data) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;得到 data里面的数据 content</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;获取到data里原本的值</span></pre></td></tr><tr><td class="code"><pre><span class="line">        var oldVal &#x3D; data[attr]</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;通过监听模式来双向监听数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;                  目标对象 目标属性</span></pre></td></tr><tr><td class="code"><pre><span class="line">        Object.defineProperty(data, attr, &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#x2F;&#x2F;在读取属性时执行 get() 方法</span></pre></td></tr><tr><td class="code"><pre><span class="line">            get() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                return oldVal;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#x2F;&#x2F;在调用属性时执行 set() 方法</span></pre></td></tr><tr><td class="code"><pre><span class="line">            set(newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                if (newVal &#x3D;&#x3D; oldVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    return;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125; else &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    &#x2F;&#x2F;对页面上的两个节点的值进行替换</span></pre></td></tr><tr><td class="code"><pre><span class="line">                    fn[attr].forEach(e &#x3D;&gt; e(newVal));</span></pre></td></tr><tr><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;初始化视图 , 节点添加数据</span></pre></td></tr><tr><td class="code"><pre><span class="line">        for (let attr in data) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            fn.content.forEach(e &#x3D;&gt; e(data[attr]))</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F;改变属性值触发事件</span></pre></td></tr><tr><td class="code"><pre><span class="line">        ipt.oninput &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            data.content &#x3D; this.value</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;html&gt;</span></pre></td></tr></table></figure></p>
@@ -434,6 +434,296 @@
 <h3 id="兄弟组件之间传递消息-非父子组件"><a href="#兄弟组件之间传递消息-非父子组件" class="headerlink" title="兄弟组件之间传递消息(非父子组件)"></a>兄弟组件之间传递消息(非父子组件)</h3><ol>
 <li>只有通过 Vue实例 实现通讯的一种方式<br>(1) 创建一个 Vue实例 专门用于实现兄弟元素之间的通讯 var bus = new Vue()<br>(2) 发送消息的兄弟 在 methods 中 使用 bus.$emit(“名称” , 数据)<br>(3) 接受消息的兄弟 在 mounted (生命周期回调函数) 使用 bus.$on(“名称”,callback) 回调函数中接受消息</li>
 </ol>
+]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue 生命周期钩子</title>
+    <url>/2020/07/11/vue%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</url>
+    <content><![CDATA[<img src="/images/2020/lifecycle.png" />
+
+<ol>
+<li><p>beforeCreate()<br> 可以获取this(组件 实例)，但无法获取真实的数据和节点</p>
+</li>
+<li><p>created()<br> 可以获取this(组件 实例)和真实的数据，但无法获取真实的节点</p>
+</li>
+<li><p>beforeMount()<br> 这个阶段，它渲染出了虚拟DOM</p>
+</li>
+<li><p>mounted()<br> 这个阶段，它渲染出了真实DOM</p>
+</li>
+<li><p>beforeUpdate()<br> 发生更新，可以获取更新后的数据，但是节点还未更新完</p>
+</li>
+<li><p>updated()<br> 更新完成，数据和节点都是最新的</p>
+</li>
+<li><p>beforeDestroy()<br> 组件销毁之前的一瞬间</p>
+</li>
+<li><p>destroyed()<br> 组件被销毁</p>
+</li>
+<li><p>activated()<br> 组件被激活</p>
+</li>
+<li><p>deactivated()<br>组件未激活</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数组常用 ES6方法</title>
+    <url>/2020/07/12/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h3 id="reduce-callback-initialValue"><a href="#reduce-callback-initialValue" class="headerlink" title="reduce(callback,initialValue)"></a>reduce(callback,initialValue)</h3><ol>
+<li><p>作用 <code>- 对数组每项进行迭代操作</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(total,currentValue,index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>total</td>
+       <td>初始值, 或者计算结束后的返回值。</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+<tr>
+<td>initialValue</td>
+<td>传递给函数的初始值</td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-数组中每一项迭代后的结果</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let person &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 0, name: &quot;小明&quot;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小张&quot;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小李&quot;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 3, name: &quot;小孙&quot;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小周&quot;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小陈&quot;&#125;,   </span></pre></td></tr><tr><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="code"><pre><span class="line">let obj &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">let peon &#x3D; person.reduce((total,currentValue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    obj[currentValue.id] ? &quot;&quot; : obj[currentValue.id] &#x3D; true &amp;&amp; total.push(currentValue);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return total;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;,[])</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(peon)</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
+<li><p>作用 <code>-对数组进行映射</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.map(currentValue &#x3D;&gt; currentValue.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
+<li><p><code>-对数组进行筛选过滤</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.filter(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
+<li><p>作用 <code>- 查找数组中的某一项</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.find(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18) </span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result); &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue 页面缓存 keep-alive</title>
+    <url>/2020/06/19/vue%20%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98%20keep-alive/</url>
+    <content><![CDATA[<h3 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h3><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
+<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  meta: &#123; keepAlive: true &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<h3 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h3>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h3 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h3><ul>
+<li>使用keep-alive 之后页面被缓存</li>
+<li>再次打开页面 触发activated 生命周期钩子函数</li>
+</ul>
+]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模块(组件)上的 v-model 实现</title>
+    <url>/2020/06/19/%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/</url>
+    <content><![CDATA[<h3 id="实现理论"><a href="#实现理论" class="headerlink" title="实现理论"></a>实现理论</h3><ol>
+<li>v-model 实际上是 @input + :value 的语法糖</li>
+<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model 的props 变量名</span></pre></td></tr><tr><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model $emit事件命名</span></pre></td></tr><tr><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>两个方向数据双向绑定<br>父向同过 v-model 向组件传值<br>组件通过 this.$emit(“input”, value) 向父传值</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>页面通过 自定义属性的方式组件传值 涉及到异步数据 要对数据进行监听!!!</p>
+</blockquote>
+<h3 id="常用两种实现方式"><a href="#常用两种实现方式" class="headerlink" title="常用两种实现方式"></a>常用两种实现方式</h3><h4 id="watch监听-和-过渡属性-immediate-true"><a href="#watch监听-和-过渡属性-immediate-true" class="headerlink" title="watch监听 和 过渡属性 immediate: true"></a>watch监听 和 过渡属性 immediate: true</h4><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;model&quot; &gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  data () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      model: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  watch: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      immediate: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      handler (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        this.model &#x3D; newVal;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    model (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure></code></pre><h4 id="计算属性-setter-getter"><a href="#计算属性-setter-getter" class="headerlink" title="计算属性 setter getter"></a>计算属性 setter getter</h4><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;model&quot; &gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  computed: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    model: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      get () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return this.value;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      set (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure></code></pre>]]></content>
+      <categories>
+        <category>vue 2.0</category>
+      </categories>
+      <tags>
+        <tag>vue 2.0</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue 路由守卫</title>
+    <url>/2020/06/19/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
+    <content><![CDATA[<h3 id="beforeEach-全局前置守卫钩子"><a href="#beforeEach-全局前置守卫钩子" class="headerlink" title="beforeEach 全局前置守卫钩子"></a>beforeEach 全局前置守卫钩子</h3><blockquote>
+<p>router.beforeEach<br>  to 即将要进入的目标 路由对象<br>  from 当前导航正要离开的路由<br>  next 路由拦截器</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<h3 id="afterEach-全局后置守卫钩子"><a href="#afterEach-全局后置守卫钩子" class="headerlink" title="afterEach 全局后置守卫钩子"></a>afterEach 全局后置守卫钩子</h3><blockquote>
+<p>router.afterEach<br>  afterEach 不会接受 next 函数也不会改变导航本身</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<h3 id="beforeRouteEnter-进入组件时路由守卫"><a href="#beforeRouteEnter-进入组件时路由守卫" class="headerlink" title="beforeRouteEnter 进入组件时路由守卫"></a>beforeRouteEnter 进入组件时路由守卫</h3><blockquote>
+<p>beforeRouteEnter(to,from,next){}<br>   to 进入到哪个路由(默认当前)<br>   from 从哪个路由进入<br>   进入之前获取不到 this<br>   next 路由拦截器 第一个参数 等价于this</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    data()&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            name:&quot;Arya&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    beforeRouteEnter(to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x2F;&#x2F; 不能获取组件实例 &#96;this&#96; 因为当钩子执行前，组件实例还没被创建</span></pre></td></tr><tr><td class="code"><pre><span class="line">      console.log(&quot;this :&gt;&gt; &quot;, this);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      next(vm &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        alert(&quot;hello&quot; + vm.name);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+
+<h3 id="beforeRouteLeave-离开组件时路由守卫"><a href="#beforeRouteLeave-离开组件时路由守卫" class="headerlink" title="beforeRouteLeave 离开组件时路由守卫"></a>beforeRouteLeave 离开组件时路由守卫</h3><blockquote>
+<p>beforeRouteLeave(to,from,next){}<br>   from 从哪个路由离开 (默认当前)<br>   to 离开到哪个路由<br>   注意 直接为函数的写法 才可以获取到 <code>this</code><br>   next 路由拦截器 第一个参数 等价于 <code>this</code></p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">beforeRouteLeave(to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 导航离开该组件的对应路由时调用 可以访问组件实例 &#96;this&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 注意 直接为函数的写法 才可以获取到 &#96;this&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (confirm(&quot;确定离开此页面吗？&quot;) &#x3D;&#x3D;&#x3D; true) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    next();</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    next(false);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>vue 2.0</category>
@@ -494,145 +784,6 @@
       </categories>
       <tags>
         <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数组常用 ES6方法</title>
-    <url>/2020/07/12/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
-<li><p>作用 <code>-对数组进行映射</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-     必须。函数，数组中的每个元素都会执行这个函数<br>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.map(e &#x3D;&gt; e.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.map(e &#x3D;&gt; e.age); &#x2F;&#x2F; [18, 19, 18]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
-<li><p><code>-对数组进行筛选过滤</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-     必须。函数，数组中的每个元素都会执行这个函数<br>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.filter(e &#x3D;&gt; e.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
-<li><p>作用 <code>- 查找数组中的某一项</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-     必须。函数，数组中的每个元素都会执行这个函数<br>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; arr.find(e &#x3D;&gt; e.age &#x3D;&#x3D; 18) &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(arr);</span></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>javascript</category>
-      </categories>
-      <tags>
-        <tag>javascript</tag>
-        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
@@ -698,109 +849,6 @@
 </blockquote>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue 页面缓存 keep-alive</title>
-    <url>/2020/06/19/vue%20%E9%A1%B5%E9%9D%A2%E7%BC%93%E5%AD%98%20keep-alive/</url>
-    <content><![CDATA[<h3 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h3><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
-<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  meta: &#123; keepAlive: true &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<h3 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h3>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h3 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h3><ul>
-<li>使用keep-alive 之后页面被缓存</li>
-<li>再次打开页面 触发activated 生命周期钩子函数</li>
-</ul>
-]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue 生命周期钩子</title>
-    <url>/2020/07/11/vue%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90/</url>
-    <content><![CDATA[<img src="/images/2020/lifecycle.png" />
-
-<ol>
-<li><p>beforeCreate()<br> 可以获取this(组件 实例)，但无法获取真实的数据和节点</p>
-</li>
-<li><p>created()<br> 可以获取this(组件 实例)和真实的数据，但无法获取真实的节点</p>
-</li>
-<li><p>beforeMount()<br> 这个阶段，它渲染出了虚拟DOM</p>
-</li>
-<li><p>mounted()<br> 这个阶段，它渲染出了真实DOM</p>
-</li>
-<li><p>beforeUpdate()<br> 发生更新，可以获取更新后的数据，但是节点还未更新完</p>
-</li>
-<li><p>updated()<br> 更新完成，数据和节点都是最新的</p>
-</li>
-<li><p>beforeDestroy()<br> 组件销毁之前的一瞬间</p>
-</li>
-<li><p>destroyed()<br> 组件被销毁</p>
-</li>
-<li><p>activated()<br> 组件被激活</p>
-</li>
-<li><p>deactivated()<br>组件未激活</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模块(组件)上的 v-model 实现</title>
-    <url>/2020/06/19/%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/</url>
-    <content><![CDATA[<h3 id="实现理论"><a href="#实现理论" class="headerlink" title="实现理论"></a>实现理论</h3><ol>
-<li>v-model 实际上是 @input + :value 的语法糖</li>
-<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model 的props 变量名</span></pre></td></tr><tr><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model $emit事件命名</span></pre></td></tr><tr><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>两个方向数据双向绑定<br>父向同过 v-model 向组件传值<br>组件通过 this.$emit(“input”, value) 向父传值</li>
-</ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
-<p>页面通过 自定义属性的方式组件传值 涉及到异步数据 要对数据进行监听!!!</p>
-</blockquote>
-<h3 id="常用两种实现方式"><a href="#常用两种实现方式" class="headerlink" title="常用两种实现方式"></a>常用两种实现方式</h3><h4 id="watch监听-和-过渡属性-immediate-true"><a href="#watch监听-和-过渡属性-immediate-true" class="headerlink" title="watch监听 和 过渡属性 immediate: true"></a>watch监听 和 过渡属性 immediate: true</h4><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;model&quot; &gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  data () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      model: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  watch: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      immediate: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      handler (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        this.model &#x3D; newVal;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    model (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure></code></pre><h4 id="计算属性-setter-getter"><a href="#计算属性-setter-getter" class="headerlink" title="计算属性 setter getter"></a>计算属性 setter getter</h4><pre><code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;model&quot; &gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  computed: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    model: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      get () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return this.value;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      set (newVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure></code></pre>]]></content>
-      <categories>
-        <category>vue 2.0</category>
-      </categories>
-      <tags>
-        <tag>vue 2.0</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue 路由守卫</title>
-    <url>/2020/06/19/%E8%B7%AF%E7%94%B1%E5%AE%88%E5%8D%AB/</url>
-    <content><![CDATA[<h3 id="beforeEach-全局前置守卫钩子"><a href="#beforeEach-全局前置守卫钩子" class="headerlink" title="beforeEach 全局前置守卫钩子"></a>beforeEach 全局前置守卫钩子</h3><blockquote>
-<p>router.beforeEach<br>  to 即将要进入的目标 路由对象<br>  from 当前导航正要离开的路由<br>  next 路由拦截器</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<h3 id="afterEach-全局后置守卫钩子"><a href="#afterEach-全局后置守卫钩子" class="headerlink" title="afterEach 全局后置守卫钩子"></a>afterEach 全局后置守卫钩子</h3><blockquote>
-<p>router.afterEach<br>  afterEach 不会接受 next 函数也不会改变导航本身</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteEnter-进入组件时路由守卫"><a href="#beforeRouteEnter-进入组件时路由守卫" class="headerlink" title="beforeRouteEnter 进入组件时路由守卫"></a>beforeRouteEnter 进入组件时路由守卫</h3><blockquote>
-<p>beforeRouteEnter(to,from,next){}<br>   to 进入到哪个路由(默认当前)<br>   from 从哪个路由进入<br>   进入之前获取不到 this<br>   next 路由拦截器 第一个参数 等价于this</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    data()&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        return&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">            name:&quot;Arya&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    beforeRouteEnter(to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#x2F;&#x2F; 不能获取组件实例 &#96;this&#96; 因为当钩子执行前，组件实例还没被创建</span></pre></td></tr><tr><td class="code"><pre><span class="line">      console.log(&quot;this :&gt;&gt; &quot;, this);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      next(vm &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        alert(&quot;hello&quot; + vm.name);</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteLeave-离开组件时路由守卫"><a href="#beforeRouteLeave-离开组件时路由守卫" class="headerlink" title="beforeRouteLeave 离开组件时路由守卫"></a>beforeRouteLeave 离开组件时路由守卫</h3><blockquote>
-<p>beforeRouteLeave(to,from,next){}<br>   from 从哪个路由离开 (默认当前)<br>   to 离开到哪个路由<br>   注意 直接为函数的写法 才可以获取到 <code>this</code><br>   next 路由拦截器 第一个参数 等价于 <code>this</code></p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">beforeRouteLeave(to, from, next) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 导航离开该组件的对应路由时调用 可以访问组件实例 &#96;this&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 注意 直接为函数的写法 才可以获取到 &#96;this&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (confirm(&quot;确定离开此页面吗？&quot;) &#x3D;&#x3D;&#x3D; true) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    next();</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    next(false);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>vue 2.0</category>
