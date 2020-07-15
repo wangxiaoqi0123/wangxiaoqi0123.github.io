@@ -184,6 +184,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/15/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">JS原型链</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-15 16:10:51 / 修改时间：18:24:24" itemprop="dateCreated datePublished" datetime="2020-07-15T16:10:51+08:00">2020-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<li>访问一个对象属性时<ul>
+<li>先在自身属性中查找，找到返回</li>
+<li>如果没有，再沿着<code>__proto__</code>这条链先上查找，找到返回</li>
+<li>如果最终没找到，返回undefined</li>
+</ul>
+</li>
+<li>作用：查找对象的属性（方法）</li>
+</ul>
+<h3 id="构造函数-原型-实例对象的关系（图解）"><a href="#构造函数-原型-实例对象的关系（图解）" class="headerlink" title="构造函数/原型/实例对象的关系（图解）"></a>构造函数/原型/实例对象的关系（图解）</h3>  <img src="/images/2020/prototype3.jpg">
+
+<ul>
+<li>声明构造函数时 会添加prototype属性 它的值是一个Object空对象</li>
+<li><code>Object空对象</code>为<code>构造函数Object</code>的实例，它的隐式原型<code>__prpto__</code>指向构造函数的显式原型</li>
+<li><code>构造函数Object</code>的原型对象的隐式原型<code>__proto__</code>的值为 <code>null</code></li>
+</ul>
+<h3 id="Function-Object-自定义构造函数（图解）"><a href="#Function-Object-自定义构造函数（图解）" class="headerlink" title="Function/Object/自定义构造函数（图解）"></a>Function/Object/自定义构造函数（图解）</h3>  <img src="/images/2020/prototype4.jpg">
+
+<ul>
+<li><code>构造函数Function</code>通过new自身创建，他的显式原型与隐式原型是同一个对象</li>
+<li><code>构造函数Object</code>与<code>自定义构造函数</code>通过new Function 创建，属于<code>构造函数Function</code>的实例，它们的<code>隐式原型__proto__</code>指向<code>构造函数Function</code>的显式原型对象。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/JS%E5%87%BD%E6%95%B0%E7%9A%84prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -209,7 +298,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-15 11:13:01 / 修改时间：15:05:20" itemprop="dateCreated datePublished" datetime="2020-07-15T11:13:01+08:00">2020-07-15</time>
+              <time title="创建时间：2020-07-15 11:13:01 / 修改时间：16:09:12" itemprop="dateCreated datePublished" datetime="2020-07-15T11:13:01+08:00">2020-07-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,10 +384,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-14 16:21:30 / 修改时间：19:02:59" itemprop="dateCreated datePublished" datetime="2020-07-14T16:21:30+08:00">2020-07-14</time>
+              <time title="创建时间：2020-07-14 16:21:30" itemprop="dateCreated datePublished" datetime="2020-07-14T16:21:30+08:00">2020-07-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-15 16:09:26" itemprop="dateModified" datetime="2020-07-15T16:09:26+08:00">2020-07-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -396,10 +491,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-14 14:33:32 / 修改时间：16:14:52" itemprop="dateCreated datePublished" datetime="2020-07-14T14:33:32+08:00">2020-07-14</time>
+              <time title="创建时间：2020-07-14 14:33:32" itemprop="dateCreated datePublished" datetime="2020-07-14T14:33:32+08:00">2020-07-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-15 16:09:17" itemprop="dateModified" datetime="2020-07-15T16:09:17+08:00">2020-07-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1194,88 +1295,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/export%E4%B8%8Eexports/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/export%E4%B8%8Eexports/" class="post-title-link" itemprop="url">export与exports</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 18:11:37" itemprop="dateCreated datePublished" datetime="2020-06-19T18:11:37+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-12 17:57:35" itemprop="dateModified" datetime="2020-07-12T17:57:35+08:00">2020-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
-<p>var {key1,key2,key3} = require(‘路径’)</p>
-<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
-<p>var obj = require(‘路径’)</p>
-<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
-<p>import {key,fn,Fn} from “路径”</p>
-<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
-<p>import obj from “路径”</p>
-<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1345,7 +1364,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1358,7 +1377,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -20,16 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前端笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我寄白雪三千片">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;ES6&#x2F;index.html">
+  <meta name="description" content="原型链 访问一个对象属性时 先在自身属性中查找，找到返回 如果没有，再沿着__proto__这条链先上查找，找到返回 如果最终没找到，返回undefined   作用：查找对象的属性（方法）  构造函数&#x2F;原型&#x2F;实例对象的关系（图解）     声明构造函数时 会添加prototype属性 它的值是一个Object空对象 Object空对象为构造函数Object的实例，它的隐式原型__prpto__指">
+<meta name="keywords" content="javascript,JS基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型链">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;15&#x2F;JS%E5%8E%9F%E5%9E%8B%E9%93%BE&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="前端笔记">
+<meta property="og:description" content="原型链 访问一个对象属性时 先在自身属性中查找，找到返回 如果没有，再沿着__proto__这条链先上查找，找到返回 如果最终没找到，返回undefined   作用：查找对象的属性（方法）  构造函数&#x2F;原型&#x2F;实例对象的关系（图解）     声明构造函数时 会添加prototype属性 它的值是一个Object空对象 Object空对象为构造函数Object的实例，它的隐式原型__prpto__指">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;prototype3.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;prototype4.jpg">
+<meta property="og:updated_time" content="2020-07-15T10:24:24.508Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;prototype3.jpg">
 
-<link rel="canonical" href="http://yoursite.com/tags/ES6/">
+<link rel="canonical" href="http://yoursite.com/2020/07/15/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
 
 <script id="page-configurations">
@@ -37,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: ES6 | 我寄白雪三千片</title>
+  <title>JS原型链 | 我寄白雪三千片</title>
   
 
 
@@ -178,91 +183,111 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">ES6
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS原型链
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-15 16:10:51 / 修改时间：18:24:24" itemprop="dateCreated datePublished" datetime="2020-07-15T16:10:51+08:00">2020-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
+        <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<li>访问一个对象属性时<ul>
+<li>先在自身属性中查找，找到返回</li>
+<li>如果没有，再沿着<code>__proto__</code>这条链先上查找，找到返回</li>
+<li>如果最终没找到，返回undefined</li>
+</ul>
+</li>
+<li>作用：查找对象的属性（方法）</li>
+</ul>
+<h3 id="构造函数-原型-实例对象的关系（图解）"><a href="#构造函数-原型-实例对象的关系（图解）" class="headerlink" title="构造函数/原型/实例对象的关系（图解）"></a>构造函数/原型/实例对象的关系（图解）</h3>  <img src="/images/2020/prototype3.jpg">
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<ul>
+<li>声明构造函数时 会添加prototype属性 它的值是一个Object空对象</li>
+<li><code>Object空对象</code>为<code>构造函数Object</code>的实例，它的隐式原型<code>__prpto__</code>指向构造函数的显式原型</li>
+<li><code>构造函数Object</code>的原型对象的隐式原型<code>__proto__</code>的值为 <code>null</code></li>
+</ul>
+<h3 id="Function-Object-自定义构造函数（图解）"><a href="#Function-Object-自定义构造函数（图解）" class="headerlink" title="Function/Object/自定义构造函数（图解）"></a>Function/Object/自定义构造函数（图解）</h3>  <img src="/images/2020/prototype4.jpg">
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-12T23:47:21+08:00"
-              content="2020-07-12">
-          07-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/12/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/" itemprop="url">
-            <span itemprop="name">数组常用 ES6方法</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-12T23:14:39+08:00"
-              content="2020-07-12">
-          07-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/12/async%20await%20%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">async await 使用方式</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-12T22:57:00+08:00"
-              content="2020-07-12">
-          07-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/12/Promise/" itemprop="url">
-            <span itemprop="name">Promise 介绍</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<ul>
+<li><code>构造函数Function</code>通过new自身创建，他的显式原型与隐式原型是同一个对象</li>
+<li><code>构造函数Object</code>与<code>自定义构造函数</code>通过new Function 创建，属于<code>构造函数Function</code>的实例，它们的<code>隐式原型__proto__</code>指向<code>构造函数Function</code>的显式原型对象。</li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"># JS基础</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/15/JS%E5%87%BD%E6%95%B0%E7%9A%84prototype/" rel="prev" title="JS函数的prototype">
+      <i class="fa fa-chevron-left"></i> JS函数的prototype
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -315,6 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">1.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数-原型-实例对象的关系（图解）"><span class="nav-number">2.</span> <span class="nav-text">构造函数/原型/实例对象的关系（图解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function-Object-自定义构造函数（图解）"><span class="nav-number">3.</span> <span class="nav-text">Function/Object/自定义构造函数（图解）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
