@@ -298,7 +298,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-15 11:13:01 / 修改时间：16:09:12" itemprop="dateCreated datePublished" datetime="2020-07-15T11:13:01+08:00">2020-07-15</time>
+              <time title="创建时间：2020-07-15 11:13:01 / 修改时间：18:41:13" itemprop="dateCreated datePublished" datetime="2020-07-15T11:13:01+08:00">2020-07-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -322,13 +322,9 @@
 
       
           <h3 id="函数的prototype属性"><a href="#函数的prototype属性" class="headerlink" title="函数的prototype属性"></a>函数的prototype属性</h3><ul>
-<li><p>每个函数都有一个prototype属性，它默认指向一个Object空对象（即称为：原型对象）</p>
-</li>
-<li><p>原型对象中有一个属性 constructor，它指向函数对象</p>
-<img src="/images/2020/prototype1.jpg">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">console.log(Date.prototype.constructor &#x3D;&#x3D;&#x3D; Date) &#x2F;&#x2F; true</span></pre></td></tr></table></figure></li>
-<li><p>给原型对象添加属性（一般都是方法），函数所有的实例对象自动拥有构造函数原型中的属性（方法）</p>
-</li>
+<li>每个函数都有一个prototype属性，它默认指向一个Object空对象（即称为：原型对象）</li>
+<li>原型对象中有一个属性 constructor，它指向函数对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">console.log(Date.prototype.constructor &#x3D;&#x3D;&#x3D; Date) &#x2F;&#x2F; true</span></pre></td></tr></table></figure></li>
+<li>给原型对象添加属性（一般都是方法），函数所有的实例对象自动拥有构造函数原型中的属性（方法）</li>
 </ul>
 <h3 id="显式原型与隐式原型"><a href="#显式原型与隐式原型" class="headerlink" title="显式原型与隐式原型"></a>显式原型与隐式原型</h3><ul>
 <li><p>每个函数function都有一个 <code>prototype</code>，即显式原型（属性）</p>
@@ -361,7 +357,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/JS%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -375,7 +371,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/14/%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">数据变量内存</a>
+            <a href="/2020/07/14/JS%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">JS数据变量内存</a>
         </h2>
 
         <div class="post-meta">
@@ -392,7 +388,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-15 16:09:26" itemprop="dateModified" datetime="2020-07-15T16:09:26+08:00">2020-07-15</time>
+                <time title="修改时间：2020-07-15 18:51:08" itemprop="dateModified" datetime="2020-07-15T18:51:08+08:00">2020-07-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -439,7 +435,7 @@
 <li>内存用来存储数据的空间</li>
 <li>变量是内存的标识 </li>
 </ul>
-<h3 id="变量创建-赋值-读取-过程"><a href="#变量创建-赋值-读取-过程" class="headerlink" title="变量创建 赋值 读取 过程"></a>变量创建 赋值 读取 过程</h3><img src="/images/2020/variable.png" style="width:80%" />
+<h3 id="变量创建-赋值-读取-过程"><a href="#变量创建-赋值-读取-过程" class="headerlink" title="变量创建 赋值 读取 过程"></a>变量创建 赋值 读取 过程</h3>  <img src="/images/2020/prototype1.jpg" />
 
 <ol>
 <li><p><strong>创建</strong>  当声明 var obj = { name: ‘Tom’ }，相当于在<code>堆内存</code>开辟一块变量<code>内存地址：0x123</code>存储<code>数据name:&#39;Tom&#39;</code>，同时在<code>栈内存</code>开辟一块变量，<code>变量名obj</code>存储数据为<code>堆内存的引用地址：0x123</code></p>
@@ -1193,7 +1189,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/iconfont/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/export%E4%B8%8Eexports/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1207,7 +1203,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/iconfont/" class="post-title-link" itemprop="url">阿里巴巴图标库</a>
+            <a href="/2020/06/19/export%E4%B8%8Eexports/" class="post-title-link" itemprop="url">export与exports</a>
         </h2>
 
         <div class="post-meta">
@@ -1224,7 +1220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-12 16:43:50" itemprop="dateModified" datetime="2020-07-12T16:43:50+08:00">2020-07-12</time>
+                <time title="修改时间：2020-07-12 17:57:35" itemprop="dateModified" datetime="2020-07-12T17:57:35+08:00">2020-07-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1232,7 +1228,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
                 </span>
             </span>
 
@@ -1247,39 +1243,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="线上引用"><a href="#线上引用" class="headerlink" title="线上引用"></a>线上引用</h3><ol>
-<li><p>查找图标添加至项目 进入项目</p>
-</li>
-<li><p>复制 Font class 在线生成 的地址<br>//at.alicdn.com/t/font_1199553_u7298mmz27i.css</p>
-</li>
-<li><p>页面 link 引用 注意加 http:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;http:&#x2F;&#x2F;at.alicdn.com&#x2F;t&#x2F;font_1199553_u7298mmz27i.css&quot;&gt;</span></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="4">
-<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>当项目 添加新的 图标 在线地址要更新 页面的引用地址也要更新</p>
-</li>
-</ol>
-<h3 id="下载引用"><a href="#下载引用" class="headerlink" title="下载引用"></a>下载引用</h3><ol>
-<li><p>查找图标添加至项目 进入项目</p>
-</li>
-<li><p>点击下载 解压文件 选取 iconfont.css iconfont.eot iconfont.svg iconfont.ttf iconfont.woff 文件, 放在项目 assets 文件夹下 (最好新建一个文件夹 一起放进去)</p>
-</li>
-<li><p>main.js 中引入 iconfont.css 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &quot;@&#x2F;assets&#x2F;font&#x2F;iconfont.css&quot;;</span></pre></td></tr></table></figure>
-</li>
-<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>当项目 添加新的 图标 整个文件夹需要重新打包 替换</p>
-</li>
-</ol>
-<h3 id="UI库扩展-iconfont"><a href="#UI库扩展-iconfont" class="headerlink" title="UI库扩展 iconfont"></a>UI库扩展 iconfont</h3><p>UI 一般也是icon一般也是使用字体图标 所以可以在可添加字体图标的组件上使用 icon=”iconfont icon-xxx”  方式扩展</p>
+          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
+<p>var {key1,key2,key3} = require(‘路径’)</p>
+<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
+<p>var obj = require(‘路径’)</p>
+<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
+<p>import {key,fn,Fn} from “路径”</p>
+<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
+<p>import obj from “路径”</p>
+<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
 
       
     </div>
