@@ -184,6 +184,193 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="post-title-link" itemprop="url">JS事件循环</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-18 17:11:26 / 修改时间：19:56:01" itemprop="dateCreated datePublished" datetime="2020-07-18T17:11:26+08:00">2020-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><ul>
+<li>进程<ul>
+<li>程序的独立执行，它占有一片独有的内存空间</li>
+</ul>
+</li>
+<li>线程<ul>
+<li>是进程的一个独立执行单元</li>
+<li>是程序执行的一个完整流程</li>
+<li>是CPU的最小的调度单元</li>
+</ul>
+</li>
+<li>相关<ul>
+<li>应用程序必须运行在<code>某个进程的某个线程上</code></li>
+<li>一个进程中至少有一个运行的线程：主线程，进程启动后自动创建</li>
+<li>一个进程中也可以同时运行多个线程，程序多线程运行</li>
+<li>一个进程内的数据可以供其中的多个线程直接共享</li>
+<li>多个进程之间的数据是不能直接共享的</li>
+<li>线程池（thread pool）: 保存多个线程对象的容器，实现线程对象的反复利用</li>
+</ul>
+</li>
+</ul>
+<h3 id="浏览器内核模块（主要）"><a href="#浏览器内核模块（主要）" class="headerlink" title="浏览器内核模块（主要）"></a>浏览器内核模块（主要）</h3><ul>
+<li>主线程<ul>
+<li>js引擎模块：负责js程序的编译与运行</li>
+<li>html,css文档解析模块：负责页面文本的解析</li>
+<li>DOM/CSS模块：负责dom/css在内存中的相关处理</li>
+<li>布局和渲染模块：负责页面的布局和效果的绘制（内存中的对象）</li>
+</ul>
+</li>
+<li>分线程<ul>
+<li>定时器模块：负责定时器的管理</li>
+<li>事件响应模块：负责事件的管理</li>
+<li>网路请求模块：扶着ajax请求</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件循环-（event-loop）"><a href="#事件循环-（event-loop）" class="headerlink" title="事件循环 （event loop）"></a>事件循环 （event loop）</h3><ol>
+<li>执行初始化代码，将事件回调函数交给对应的管理模块</li>
+<li>当事件发生时，管理模块会将回调函数及其数据添加到回调队列中</li>
+<li>只有当初始化代码执行完后（可能需要一定时间），才会遍历读取回调队列中的回调函数执行</li>
+</ol>
+  <img src="/images/2020/eventloop.jpg">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E8%B0%9C%E4%B9%8Bthis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/javascript/JS%E8%B0%9C%E4%B9%8Bthis/" class="post-title-link" itemprop="url">JS谜之this</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-18 15:42:18 / 修改时间：15:56:10" itemprop="dateCreated datePublished" datetime="2020-07-18T15:42:18+08:00">2020-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="this-是什么"><a href="#this-是什么" class="headerlink" title="this 是什么"></a>this 是什么</h3><ol>
+<li>任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）</li>
+<li>所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
+</ol>
+<h3 id="如何确定this的值"><a href="#如何确定this的值" class="headerlink" title="如何确定this的值"></a>如何确定this的值</h3><ol>
+<li>全局函数调用时，this 为 window</li>
+<li>以方法的形式调用时，this就为调用方法的那个对象</li>
+<li>以构造函数的形式实例对象，则构造函数中的this为实例出的对象</li>
+<li>以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）</li>
+<li>响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁</li>
+<li>ES6中箭头函数没有this，他的this为当前作用域中的this</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -289,7 +476,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-17 11:25:30 / 修改时间：16:44:59" itemprop="dateCreated datePublished" datetime="2020-07-17T11:25:30+08:00">2020-07-17</time>
+              <time title="创建时间：2020-07-17 11:25:30 / 修改时间：18:10:57" itemprop="dateCreated datePublished" datetime="2020-07-17T11:25:30+08:00">2020-07-17</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -355,14 +542,15 @@
 <li>父函数调用时执行上下文对象创建完成时</li>
 </ul>
 </li>
-<li>死亡：在嵌套的内部函数成为垃圾对象时</li>
+<li>死亡：在嵌套的内部函数成为垃圾对象时<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  function fn1() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 此时闭包就已经产生了（函数提升，内部函数对象已经创建了）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    var a &#x3D; 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    function fn2() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      a++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      console.log(&#39;a :&gt;&gt; &#39;, a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    return fn2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  var f &#x3D; fn1()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  f()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  f &#x3D; null &#x2F;&#x2F; 闭包死亡（包含闭包的函数对象成为垃圾对象）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+
+</li>
 </ol>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  function fn1() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 此时闭包就已经产生了（函数提升，内部函数对象已经创建了）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    var a &#x3D; 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    function fn2() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      a++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      console.log(&#39;a :&gt;&gt; &#39;, a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    return fn2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  var f &#x3D; fn1()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  f()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  f &#x3D; null &#x2F;&#x2F; 闭包死亡（包含闭包的函数对象成为垃圾对象）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-<h3 id="闭包应用定义Js模块"><a href="#闭包应用定义Js模块" class="headerlink" title="闭包应用定义Js模块"></a>闭包应用定义Js模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function myModule () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 私有数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var msg &#x3D; &#39;Hello World&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 操作数据的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  function doToUpper () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToUpper() :&gt;&gt; &#39;, msg.toUpperCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  function doToLower () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToLower() :&gt;&gt; &#39;, msg.toLowerCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 向外暴露的对象（给外部使用的方法）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    doToUpper,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    doToLower</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;myModules.js&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var module &#x3D; myModule()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  module.doToUpper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  module.doToLower()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+<h3 id="闭包应用定义Js模块"><a href="#闭包应用定义Js模块" class="headerlink" title="闭包应用定义Js模块"></a>闭包应用定义Js模块</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function myModule () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 私有数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var msg &#x3D; &#39;Hello World&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 操作数据的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  function doToUpper () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToUpper() :&gt;&gt; &#39;, msg.toUpperCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  function doToLower () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToLower() :&gt;&gt; &#39;, msg.toLowerCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 向外暴露的对象（给外部使用的方法）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    doToUpper,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    doToLower</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;myModules.js&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var module &#x3D; myModule()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  module.doToUpper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  module.doToLower()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">(function (window) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 私有数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var msg &#x3D; &#39;Hello World&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 操作数据的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  function doToUpper () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToUpper() :&gt;&gt; &#39;, msg.toUpperCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  function doToLower () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToLower() :&gt;&gt; &#39;, msg.toLowerCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 向外暴露的对象（给外部使用的方法）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  window.myModule &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    doToUpper,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    doToLower</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;)(window)</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;myModules.js&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  myModule.doToUpper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  myModule.doToLower()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">(function (window) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 私有数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  var msg &#x3D; &#39;Hello World&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 操作数据的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  function doToUpper () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToUpper() :&gt;&gt; &#39;, msg.toUpperCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  function doToLower () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;doToLower() :&gt;&gt; &#39;, msg.toLowerCase())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 向外暴露的对象（给外部使用的方法）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  window.myModule &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    doToUpper,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    doToLower</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;)(window)</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;myModules.js&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  myModule.doToUpper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  myModule.doToLower()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
 
 <h3 id="闭包缺点"><a href="#闭包缺点" class="headerlink" title="闭包缺点"></a>闭包缺点</h3><ol>
 <li>缺点<ul>
@@ -648,7 +836,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-17 18:01:15" itemprop="dateModified" datetime="2020-07-17T18:01:15+08:00">2020-07-17</time>
+                <time title="修改时间：2020-07-17 18:20:10" itemprop="dateModified" datetime="2020-07-17T18:20:10+08:00">2020-07-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -701,7 +889,7 @@
 <li>给子类型的原型对象上添加方法</li>
 <li>实例子类型对象：可以调用父类型的方法</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 父类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  function Supper() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.supProp &#x3D; &#39;Supper property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Supper.prototype.showSupperProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.supProp :&gt;&gt; &#39;, this.supProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  function Sub() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    this.subProp &#x3D; &#39;Sub property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型的原型对象为父类型的一个实例对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype &#x3D; new Supper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.showSubProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.subProp :&gt;&gt; &#39;, this.subProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  var sub &#x3D; new Sub()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  sub.showSupperProp() &#x2F;&#x2F; Supper property</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 父类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  function Supper() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.supProp &#x3D; &#39;Supper property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Supper.prototype.showSupperProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.supProp :&gt;&gt; &#39;, this.supProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  function Sub() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    this.subProp &#x3D; &#39;Sub property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型的原型对象为父类型的一个实例对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype &#x3D; new Supper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 让子类型的原型的constructor指向子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.constructor &#x3D; Sub</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.showSubProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.subProp :&gt;&gt; &#39;, this.subProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  var sub &#x3D; new Sub()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  sub.showSupperProp() &#x2F;&#x2F; Supper property</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
       
     </div>
 
@@ -1037,338 +1225,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数组常用 ES6方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-12 23:47:21" itemprop="dateCreated datePublished" datetime="2020-07-12T23:47:21+08:00">2020-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:26:14" itemprop="dateModified" datetime="2020-07-16T11:26:14+08:00">2020-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="reduce-callback-initialValue"><a href="#reduce-callback-initialValue" class="headerlink" title="reduce(callback,initialValue)"></a>reduce(callback,initialValue)</h3><ol>
-<li><p>作用 <code>- 对数组每项进行迭代操作</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(total,currentValue,index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>total</td>
-       <td>初始值, 或者计算结束后的返回值。</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-<tr>
-<td>initialValue</td>
-<td>传递给函数的初始值</td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-数组中每一项迭代后的结果</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let person &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 0, name: &quot;小明&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小张&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小李&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 3, name: &quot;小孙&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小周&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小陈&quot;&#125;,   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">let obj &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">let peon &#x3D; person.reduce((total,currentValue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    obj[currentValue.id] ? &quot;&quot; : obj[currentValue.id] &#x3D; true &amp;&amp; total.push(currentValue);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    return total;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;,[])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">console.log(peon)</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
-<li><p>作用 <code>-对数组进行映射</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.map(currentValue &#x3D;&gt; currentValue.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
-<li><p><code>-对数组进行筛选过滤</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.filter(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
-<li><p>作用 <code>- 查找数组中的某一项</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.find(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result); &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/async%20await%20%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/javascript/async%20await%20%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">async await 使用方式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-12 23:14:39" itemprop="dateCreated datePublished" datetime="2020-07-12T23:14:39+08:00">2020-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:25:55" itemprop="dateModified" datetime="2020-07-16T11:25:55+08:00">2020-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>作用: 用于将 <code>JS异步链式化</code> 使代码从上向下顺序执行, 相当于promise的 .then 的链式操作</p>
-</blockquote>
-<h3 id="asyns"><a href="#asyns" class="headerlink" title="asyns"></a>asyns</h3><ol>
-<li>声明了此函数为异步函数</li>
-<li>默认返回一个 promise 对象(函数后面可以接 .then 返回的结果就是 async函数里面 return的值 )</li>
-</ol>
-<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><ol>
-<li>一般是一个 promise 封装的异步函数 </li>
-<li>await的结果 是promise返回成功的回调 resolve 的值</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明了此函数为异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">async asyFun() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let res &#x3D; await this.test();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;res :&quot;, res); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;error :&quot;, error);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般是一个 promise 封装的异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">test() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 做一些异步操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    setTimeout(function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      resolve(&quot;随便什么数据&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;, 2000);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认返回一个 promise 对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">handle() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  this.asyFun().then(data &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;data :&quot;, data); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1438,7 +1294,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
