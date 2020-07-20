@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" class="post-title-link" itemprop="url">JS事件循环</a>
+            <a href="/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">JS事件执行机制</a>
         </h2>
 
         <div class="post-meta">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-18 17:11:26 / 修改时间：19:56:01" itemprop="dateCreated datePublished" datetime="2020-07-18T17:11:26+08:00">2020-07-18</time>
+              <time title="创建时间：2020-07-18 17:11:26" itemprop="dateCreated datePublished" datetime="2020-07-18T17:11:26+08:00">2020-07-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-20 17:20:36" itemprop="dateModified" datetime="2020-07-20T17:20:36+08:00">2020-07-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -274,84 +280,28 @@
 <li>只有当初始化代码执行完后（可能需要一定时间），才会遍历读取回调队列中的回调函数执行</li>
 </ol>
   <img src="/images/2020/eventloop.jpg">
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E8%B0%9C%E4%B9%8Bthis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/18/javascript/JS%E8%B0%9C%E4%B9%8Bthis/" class="post-title-link" itemprop="url">JS谜之this</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-18 15:42:18 / 修改时间：15:56:10" itemprop="dateCreated datePublished" datetime="2020-07-18T15:42:18+08:00">2020-07-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="this-是什么"><a href="#this-是什么" class="headerlink" title="this 是什么"></a>this 是什么</h3><ol>
-<li>任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）</li>
-<li>所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
-</ol>
-<h3 id="如何确定this的值"><a href="#如何确定this的值" class="headerlink" title="如何确定this的值"></a>如何确定this的值</h3><ol>
-<li>全局函数调用时，this 为 window</li>
-<li>以方法的形式调用时，this就为调用方法的那个对象</li>
-<li>以构造函数的形式实例对象，则构造函数中的this为实例出的对象</li>
-<li>以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）</li>
-<li>响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁</li>
-<li>ES6中箭头函数没有this，他的this为当前作用域中的this</li>
-</ol>
+<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><blockquote>
+<p><code>宿主环境</code>提供的叫宏任务，由<code>语言标准</code>提供的叫微任务</p>
+</blockquote>
+<ul>
+<li>宿主环境<ul>
+<li>简单来说就是能使javascript完美运行的环境，只要能完美运行javascript的载体就是javascript的宿主环境。目前我们常见的两种宿主环境有浏览器和node</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>语言标准<ul>
+<li>JavaScript是一种编程语言，JavaScript由ECMA制定标准，称之为ECMAScript,所以由语言标准提供的就是微任务，比如ES6提供的promise.then Object.observe 等。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>事件循环中宏任务与微任务<ul>
+<li>JS异步机制，遇到宏任务，先执行宏任务，将宏任务放入event queue，然后再执行微任务，将微任务放入eventqueue，但是，<code>这两个queue不是一个queue</code>。<strong>当你往外拿的时候先从微任务里拿这个回调函数，然后再从宏任务的queue拿宏任务的回调函数</strong></li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -394,10 +344,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-07-17 16:21:59 / 修改时间：16:27:52" itemprop="dateCreated datePublished" datetime="2020-07-17T16:21:59+08:00">2020-07-17</time>
+              <time title="创建时间：2020-07-17 16:21:59" itemprop="dateCreated datePublished" datetime="2020-07-17T16:21:59+08:00">2020-07-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-20 17:39:12" itemprop="dateModified" datetime="2020-07-20T17:39:12+08:00">2020-07-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -429,6 +385,20 @@
 <li>占用内存没有及时释放</li>
 <li>内存泄漏多了就容易导致内存溢出</li>
 <li>常见的内存泄漏<br>（1）意外的全局变量<br>（2）没有及时清理的计时器或回调函数<br>（3）闭包 </li>
+</ul>
+</li>
+<li>this<ul>
+<li>this 是什么<br>（1）任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）<br>（2）所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
+<li>如何确定this的值<br>（1）全局函数调用时，this 为 window<br>（2）以方法的形式调用时，this就为调用方法的那个对象<br>（3）以构造函数的形式实例对象，则构造函数中的this为实例出的对象<br>（4）以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）<br>（5）响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁<br>（6）ES6中箭头函数没有this，他的this为当前作用域中的this</li>
+</ul>
+</li>
+<li>事件冒泡<ul>
+<li>所谓的事件冒泡值得就是事件的向上传到，当后代元素上的事件被触发时，其祖先元素上的相同事件也会触发</li>
+<li>取消事件冒泡的方法<br>（1）event.cancelBubble = true<br>（2）event.stopPropagation()</li>
+</ul>
+</li>
+<li>事件委派<ul>
+<li>将事件统一绑定给元素共同的祖先元素，这样当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件</li>
 </ul>
 </li>
 </ol>
@@ -1225,6 +1195,254 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数组常用 ES6方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-12 23:47:21" itemprop="dateCreated datePublished" datetime="2020-07-12T23:47:21+08:00">2020-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-16 11:26:14" itemprop="dateModified" datetime="2020-07-16T11:26:14+08:00">2020-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="reduce-callback-initialValue"><a href="#reduce-callback-initialValue" class="headerlink" title="reduce(callback,initialValue)"></a>reduce(callback,initialValue)</h3><ol>
+<li><p>作用 <code>- 对数组每项进行迭代操作</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(total,currentValue,index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>total</td>
+       <td>初始值, 或者计算结束后的返回值。</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+<tr>
+<td>initialValue</td>
+<td>传递给函数的初始值</td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-数组中每一项迭代后的结果</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let person &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 0, name: &quot;小明&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小张&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小李&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 3, name: &quot;小孙&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小周&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小陈&quot;&#125;,   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">let obj &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">let peon &#x3D; person.reduce((total,currentValue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    obj[currentValue.id] ? &quot;&quot; : obj[currentValue.id] &#x3D; true &amp;&amp; total.push(currentValue);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    return total;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;,[])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">console.log(peon)</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
+<li><p>作用 <code>-对数组进行映射</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.map(currentValue &#x3D;&gt; currentValue.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
+<li><p><code>-对数组进行筛选过滤</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.filter(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
+<li><p>作用 <code>- 查找数组中的某一项</code></p>
+</li>
+<li><p>参数说明</p>
+<table border="1">
+<tr>
+ <th>参数</th>
+ <th>描述</th>
+</tr>
+<tr>
+ <td>(currentValue, index,arr)=>{}</td>
+ <td>
+   函数参数:
+   <table border="1">
+     <tr>
+       <td>参数</td>
+       <td>描述</td>
+     </tr>
+     <tr>
+       <td>currentValue</td>
+       <td>当前元素的值</td>
+     </tr>
+     <tr>
+       <td>index</td>
+       <td>当前元素的索引值</td>
+     </tr>
+     <tr>
+       <td>arr</td>
+       <td>当前元素属于的数组对象</td>
+     </tr>
+   </table>
+ </td>
+</tr>
+</table>
+</li>
+<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
+</li>
+<li><p>影响  <code>-不对原数组造成影响</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.find(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result); &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1294,7 +1512,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
