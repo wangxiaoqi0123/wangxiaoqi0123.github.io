@@ -20,33 +20,29 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="进程与线程 进程 程序的独立执行，它占有一片独有的内存空间   线程 是进程的一个独立执行单元 是程序执行的一个完整流程 是CPU的最小的调度单元   相关 应用程序必须运行在某个进程的某个线程上 一个进程中至少有一个运行的线程：主线程，进程启动后自动创建 一个进程中也可以同时运行多个线程，程序多线程运行 一个进程内的数据可以供其中的多个线程直接共享 多个进程之间的数据是不能直接共享的 线程池（t">
-<meta name="keywords" content="javascript,JS基础">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS事件执行机制">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;18&#x2F;javascript&#x2F;JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6&#x2F;index.html">
+  <meta name="description" content="前端笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我寄白雪三千片">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;4&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="进程与线程 进程 程序的独立执行，它占有一片独有的内存空间   线程 是进程的一个独立执行单元 是程序执行的一个完整流程 是CPU的最小的调度单元   相关 应用程序必须运行在某个进程的某个线程上 一个进程中至少有一个运行的线程：主线程，进程启动后自动创建 一个进程中也可以同时运行多个线程，程序多线程运行 一个进程内的数据可以供其中的多个线程直接共享 多个进程之间的数据是不能直接共享的 线程池（t">
+<meta property="og:description" content="前端笔记">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;eventloop.jpg">
-<meta property="og:updated_time" content="2020-07-20T09:20:36.375Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2020&#x2F;eventloop.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/">
+<link rel="canonical" href="http://yoursite.com/page/4/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
-    isPost : true,
+    isHome : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>JS事件执行机制 | 我寄白雪三千片</title>
+  <title>我寄白雪三千片</title>
   
 
 
@@ -182,14 +178,13 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content index posts-expand">
             
-
-    
+      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/javascript/export%E4%B8%8Eexports/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -201,9 +196,10 @@
       <meta itemprop="name" content="我寄白雪三千片">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          JS事件执行机制
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/javascript/export%E4%B8%8Eexports/" class="post-title-link" itemprop="url">export与exports</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -212,14 +208,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-18 17:11:26" itemprop="dateCreated datePublished" datetime="2020-07-18T17:11:26+08:00">2020-07-18</time>
+              <time title="创建时间：2020-06-19 18:11:37" itemprop="dateCreated datePublished" datetime="2020-06-19T18:11:37+08:00">2020-06-19</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-20 17:20:36" itemprop="dateModified" datetime="2020-07-20T17:20:36+08:00">2020-07-20</time>
+                <time title="修改时间：2020-07-16 11:25:55" itemprop="dateModified" datetime="2020-07-16T11:25:55+08:00">2020-07-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,103 +238,35 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h3><ul>
-<li>进程<ul>
-<li>程序的独立执行，它占有一片独有的内存空间</li>
-</ul>
-</li>
-<li>线程<ul>
-<li>是进程的一个独立执行单元</li>
-<li>是程序执行的一个完整流程</li>
-<li>是CPU的最小的调度单元</li>
-</ul>
-</li>
-<li>相关<ul>
-<li>应用程序必须运行在<code>某个进程的某个线程上</code></li>
-<li>一个进程中至少有一个运行的线程：主线程，进程启动后自动创建</li>
-<li>一个进程中也可以同时运行多个线程，程序多线程运行</li>
-<li>一个进程内的数据可以供其中的多个线程直接共享</li>
-<li>多个进程之间的数据是不能直接共享的</li>
-<li>线程池（thread pool）: 保存多个线程对象的容器，实现线程对象的反复利用</li>
-</ul>
-</li>
-</ul>
-<h3 id="浏览器内核模块（主要）"><a href="#浏览器内核模块（主要）" class="headerlink" title="浏览器内核模块（主要）"></a>浏览器内核模块（主要）</h3><ul>
-<li>主线程<ul>
-<li>js引擎模块：负责js程序的编译与运行</li>
-<li>html,css文档解析模块：负责页面文本的解析</li>
-<li>DOM/CSS模块：负责dom/css在内存中的相关处理</li>
-<li>布局和渲染模块：负责页面的布局和效果的绘制（内存中的对象）</li>
-</ul>
-</li>
-<li>分线程<ul>
-<li>定时器模块：负责定时器的管理</li>
-<li>事件响应模块：负责事件的管理</li>
-<li>网路请求模块：扶着ajax请求</li>
-</ul>
-</li>
-</ul>
-<h3 id="事件循环-（event-loop）"><a href="#事件循环-（event-loop）" class="headerlink" title="事件循环 （event loop）"></a>事件循环 （event loop）</h3><ol>
-<li>执行初始化代码，将事件回调函数交给对应的管理模块</li>
-<li>当事件发生时，管理模块会将回调函数及其数据添加到回调队列中</li>
-<li>只有当初始化代码执行完后（可能需要一定时间），才会遍历读取回调队列中的回调函数执行</li>
-</ol>
-  <img src="/images/2020/eventloop.jpg">
+          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
+<p>var {key1,key2,key3} = require(‘路径’)</p>
+<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
+<p>var obj = require(‘路径’)</p>
+<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
+<p>import {key,fn,Fn} from “路径”</p>
+<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
+<p>import obj from “路径”</p>
+<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
 
-<h3 id="宏任务和微任务"><a href="#宏任务和微任务" class="headerlink" title="宏任务和微任务"></a>宏任务和微任务</h3><blockquote>
-<p><code>宿主环境</code>提供的叫宏任务，由<code>语言标准</code>提供的叫微任务</p>
-</blockquote>
-<ul>
-<li>宿主环境<ul>
-<li>简单来说就是能使javascript完美运行的环境，只要能完美运行javascript的载体就是javascript的宿主环境。目前我们常见的两种宿主环境有浏览器和node</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>语言标准<ul>
-<li>JavaScript是一种编程语言，JavaScript由ECMA制定标准，称之为ECMAScript,所以由语言标准提供的就是微任务，比如ES6提供的promise.then Object.observe 等。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>事件循环中宏任务与微任务<ul>
-<li>JS异步机制，遇到宏任务，先执行宏任务，将宏任务放入event queue，然后再执行微任务，将微任务放入eventqueue，但是，<code>这两个queue不是一个queue</code>。<strong>当你往外拿的时候先从微任务里拿这个回调函数，然后再从宏任务的queue拿宏任务的回调函数</strong></li>
-</ul>
-</li>
-</ul>
-
+      
     </div>
 
     
     
     
-
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/javascript/" rel="tag"># javascript</a>
-              <a href="/tags/JS%E5%9F%BA%E7%A1%80/" rel="tag"># JS基础</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/07/17/javascript/JS%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86/" rel="prev" title="JS零碎知识">
-      <i class="fa fa-chevron-left"></i> JS零碎知识
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/21/javascript/Iterator%E4%B8%8EGenerator/" rel="next" title="Iterator与Generator">
-      Iterator与Generator <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
+        <div class="post-eof"></div>
       </footer>
-    
   </article>
   
   
   
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
 
 
 
@@ -390,7 +318,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器内核模块（主要）"><span class="nav-number">2.</span> <span class="nav-text">浏览器内核模块（主要）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件循环-（event-loop）"><span class="nav-number">3.</span> <span class="nav-text">事件循环 （event loop）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏任务和微任务"><span class="nav-number">4.</span> <span class="nav-text">宏任务和微任务</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
