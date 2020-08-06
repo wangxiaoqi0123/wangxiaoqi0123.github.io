@@ -184,6 +184,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/javascript/JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/16/javascript/JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/" class="post-title-link" itemprop="url">JS执行上下文</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-16 11:12:58 / 修改时间：19:00:50" itemprop="dateCreated datePublished" datetime="2020-07-16T11:12:58+08:00">2020-07-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="全局执行上下文"><a href="#全局执行上下文" class="headerlink" title="全局执行上下文"></a>全局执行上下文</h3><ul>
+<li>在执行全局代码前将window确定为全局执行上下文</li>
+<li>对全局数据进行预处理<ol>
+<li>var定义的全局变量==&gt;undefined，添加为window的属性</li>
+<li>function声明的全局函数==&gt;赋值（fun），添加为window的方法</li>
+<li>this==&gt;赋值（window）</li>
+</ol>
+</li>
+<li>开始执行全局代码</li>
+</ul>
+<h3 id="函数执行上下文"><a href="#函数执行上下文" class="headerlink" title="函数执行上下文"></a>函数执行上下文</h3><ul>
+<li>在调用函数之前，准备执行函数体之前，创建对应的函数执行上下文对象（虚拟的，存在于栈内存中）</li>
+<li>对局部参数进行预处理<ol>
+<li>形参变量==&gt;赋值（实参）==&gt;添加为执行上下文的属性</li>
+<li>arrguments(伪数组)==&gt;赋值（实参列表），添加为执行上下文的属性</li>
+<li>var定义的局部变量==&gt;undefined，添加为执行上下文的属性</li>
+<li>function声明的函数==&gt;赋值（fun），添加为执行上下文的方法</li>
+<li>this==&gt;赋值（调用函数的对象）</li>
+</ol>
+</li>
+<li>开始执行函数体代码</li>
+</ul>
+<h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><ol>
+<li><p>在全局代码执行前，JS引擎就会创建一个栈来存储管理所有的执行上下文对象</p>
+</li>
+<li><p>在全局执行上下文（window）确定后，将其添加到栈中（压栈）</p>
+</li>
+<li><p>在函数执行上下文创建后，将其添加到栈中（压栈）</p>
+</li>
+<li><p>在当前函数执行完后，将栈顶的对象移除（出栈）</p>
+</li>
+<li><p>当所有代码执行完成后，栈中只剩下window</p>
+<img src="/images/2020/context.jpg">
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/javascript/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/15/javascript/JS%E5%8E%9F%E5%9E%8B%E9%93%BE/" class="post-title-link" itemprop="url">JS原型链</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-15 16:10:51" itemprop="dateCreated datePublished" datetime="2020-07-15T16:10:51+08:00">2020-07-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-17 18:20:10" itemprop="dateModified" datetime="2020-07-17T18:20:10+08:00">2020-07-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<li>访问一个对象属性时<ul>
+<li>先在自身属性中查找，找到返回</li>
+<li>如果没有，再沿着<code>__proto__</code>这条链先上查找，找到返回</li>
+<li>如果最终没找到，返回undefined</li>
+</ul>
+</li>
+<li>作用：查找对象的属性（方法）</li>
+</ul>
+<h3 id="构造函数-原型-实例对象的关系（图解）"><a href="#构造函数-原型-实例对象的关系（图解）" class="headerlink" title="构造函数/原型/实例对象的关系（图解）"></a>构造函数/原型/实例对象的关系（图解）</h3>  <img src="/images/2020/prototype3.jpg">
+
+<ul>
+<li>声明构造函数时 会添加prototype属性 它的值是一个Object空对象</li>
+<li><code>Object空对象</code>为<code>构造函数Object</code>的实例，它的隐式原型<code>__prpto__</code>指向构造函数的显式原型</li>
+<li><code>构造函数Object</code>的原型对象的隐式原型<code>__proto__</code>的值为 <code>null</code></li>
+</ul>
+<h3 id="Function-Object-自定义构造函数（图解）"><a href="#Function-Object-自定义构造函数（图解）" class="headerlink" title="Function/Object/自定义构造函数（图解）"></a>Function/Object/自定义构造函数（图解）</h3>  <img src="/images/2020/prototype4.jpg">
+
+<ul>
+<li><code>构造函数Function</code>通过new自身创建，他的显式原型与隐式原型是同一个对象</li>
+<li><code>构造函数Object</code>与<code>自定义构造函数</code>通过new Function 创建，属于<code>构造函数Function</code>的实例，它们的<code>隐式原型__proto__</code>指向<code>构造函数Function</code>的显式原型对象。</li>
+</ul>
+<h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><ol>
+<li>定义父类型构造函数</li>
+<li>给父类型的原型添加方法</li>
+<li>定义子类型构造函数</li>
+<li><span style="color:#f7c544">把父类型的实例对象赋值给子类型的原型</span></li>
+<li>给子类型的原型对象上添加方法</li>
+<li>实例子类型对象：可以调用父类型的方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 父类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  function Supper() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.supProp &#x3D; &#39;Supper property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Supper.prototype.showSupperProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.supProp :&gt;&gt; &#39;, this.supProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  function Sub() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    this.subProp &#x3D; &#39;Sub property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型的原型对象为父类型的一个实例对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype &#x3D; new Supper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 让子类型的原型的constructor指向子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.constructor &#x3D; Sub</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.showSubProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.subProp :&gt;&gt; &#39;, this.subProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  var sub &#x3D; new Sub()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  sub.showSupperProp() &#x2F;&#x2F; Supper property</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/javascript/JS%E5%87%BD%E6%95%B0%E7%9A%84prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1126,194 +1331,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/css/iconfont/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/css/iconfont/" class="post-title-link" itemprop="url">阿里巴巴图标库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 18:11:37" itemprop="dateCreated datePublished" datetime="2020-06-19T18:11:37+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:27:19" itemprop="dateModified" datetime="2020-07-16T11:27:19+08:00">2020-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="线上引用"><a href="#线上引用" class="headerlink" title="线上引用"></a>线上引用</h3><ol>
-<li><p>查找图标添加至项目 进入项目</p>
-</li>
-<li><p>复制 Font class 在线生成 的地址<br>//at.alicdn.com/t/font_1199553_u7298mmz27i.css</p>
-</li>
-<li><p>页面 link 引用 注意加 http:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;http:&#x2F;&#x2F;at.alicdn.com&#x2F;t&#x2F;font_1199553_u7298mmz27i.css&quot;&gt;</span></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="4">
-<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>当项目 添加新的 图标 在线地址要更新 页面的引用地址也要更新</p>
-</li>
-</ol>
-<h3 id="下载引用"><a href="#下载引用" class="headerlink" title="下载引用"></a>下载引用</h3><ol>
-<li><p>查找图标添加至项目 进入项目</p>
-</li>
-<li><p>点击下载 解压文件 选取 iconfont.css iconfont.eot iconfont.svg iconfont.ttf iconfont.woff 文件, 放在项目 assets 文件夹下 (最好新建一个文件夹 一起放进去)</p>
-</li>
-<li><p>main.js 中引入 iconfont.css 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &quot;@&#x2F;assets&#x2F;font&#x2F;iconfont.css&quot;;</span></pre></td></tr></table></figure>
-</li>
-<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>当项目 添加新的 图标 整个文件夹需要重新打包 替换</p>
-</li>
-</ol>
-<h3 id="UI库扩展-iconfont"><a href="#UI库扩展-iconfont" class="headerlink" title="UI库扩展 iconfont"></a>UI库扩展 iconfont</h3><p>UI 一般也是icon一般也是使用字体图标 所以可以在可添加字体图标的组件上使用 icon=”iconfont icon-xxx”  方式扩展</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/javascript/export%E4%B8%8Eexports/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/javascript/export%E4%B8%8Eexports/" class="post-title-link" itemprop="url">export与exports</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 18:11:37" itemprop="dateCreated datePublished" datetime="2020-06-19T18:11:37+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:25:55" itemprop="dateModified" datetime="2020-07-16T11:25:55+08:00">2020-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
-<p>var {key1,key2,key3} = require(‘路径’)</p>
-<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
-<p>var obj = require(‘路径’)</p>
-<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
-<p>import {key,fn,Fn} from “路径”</p>
-<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
-<p>import obj from “路径”</p>
-<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1383,20 +1400,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
