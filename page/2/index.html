@@ -184,6 +184,128 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/javascript/Iterator%E4%B8%8EGenerator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/21/javascript/Iterator%E4%B8%8EGenerator/" class="post-title-link" itemprop="url">Iterator与Generator</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-21 18:34:00" itemprop="dateCreated datePublished" datetime="2020-07-21T18:34:00+08:00">2020-07-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-24 10:38:55" itemprop="dateModified" datetime="2020-07-24T10:38:55+08:00">2020-07-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Iterator（迭代器）"><a href="#Iterator（迭代器）" class="headerlink" title="Iterator（迭代器）"></a>Iterator（迭代器）</h3><ul>
+<li><p>概念</p>
+<ul>
+<li>iterator是一种接口机制，为不同的数据结构提供统一的访问机制</li>
+</ul>
+</li>
+<li><p>作用</p>
+<ul>
+<li>为各种数据结构（Object、Array、Set、Map…），提供一个统一的、简便的访问接口</li>
+<li>使得数据结构的成员能够按照某种次序排列</li>
+<li>ES6创造了一种新的遍历命令for…of循环，Iterator接口主要供for…of消费</li>
+</ul>
+</li>
+<li><p>执行顺序</p>
+<ul>
+<li>创建一个指针对象，指向当前数据结构的起始位置。也就是说遍历器对象本质上，就是一个指针对象</li>
+<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员</li>
+<li>第二次调用指针对象的next方法，指针就指向数据结构的第二个成员</li>
+<li>不断调用指针的next方法，直到它指向数据结构的结束位置</li>
+</ul>
+</li>
+<li><p>模拟next()方法执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let it &#x3D; makeIterator([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">function makeIterator(arr) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  let nextIndex &#x3D; 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    next: function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      return nextIndex &lt; arr.length ? &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        value: arr[nextIndex++],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        done: false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125; : &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        value: undefined,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        done: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F; &#123; value:&#39;a&#39;, done:false &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F; &#123; value:&#39;b&#39;, done:false &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F; &#123; value:&#39;c&#39;, done:false &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F; &#123; value:undefined, done:true &#125;</span></pre></td></tr></table></figure></li>
+<li><p>js数据结构内置iterator接口</p>
+<ul>
+<li>Object、Array、Set、Map…内置iterator接口调用方法<code>Symbol.iterator</code>,原型上可查看到</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let arr &#x3D; [&#39;aa&#39;, &#39;bb&#39;, &#39;cc&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">let it &#x3D; arr[Symbol.iterator](); &#x2F;&#x2F;调用Array内置的iterator接口</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F;&#123;value: &quot;aa&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F;&#123;value: &quot;bb&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F;&#123;value: &quot;cc&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;it.next() :&gt;&gt; &#39;, it.next());&#x2F;&#x2F;&#123;value: undefined, done: true&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Generator（迭代器生成函数）"><a href="#Generator（迭代器生成函数）" class="headerlink" title="Generator（迭代器生成函数）"></a>Generator（迭代器生成函数）</h3><ul>
+<li>概念<ul>
+<li>Generator是一个迭代器生成函数，其返回值是一个迭代器（Iterator），可用于异步调用</li>
+</ul>
+</li>
+<li>语法<ul>
+<li>在function后面，函数名之前有个 * ，用来表示函数为Generator函数</li>
+<li>函数内部有yield表达式，yield用来定义函数内部的状态</li>
+</ul>
+</li>
+<li>执行机制<ul>
+<li>调用Generator函数和普通函数一样，在函数名后面加上 () 即可，但是Generator函数不会像普通函数一样立即执行，而是返回一个指向内部状态对象的指针，所以要调用遍历对象Iterator的next方法，指针就会从函数头部或者上一次停下来的地方开始执行</li>
+</ul>
+</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function* tell() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;a&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  yield &#39;a&#39; &#x2F;&#x2F; 暂停的标识</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;b&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  yield &#39;b&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">let it &#x3D; tell() &#x2F;&#x2F; 执行tell()返回的是一个Iterator对象，并不是函数的执行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(it.next());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(it.next());</span></pre></td></tr></table></figure></li>
+<li>分段调用传参<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function* myGenerator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  console.log(1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  let a &#x3D; yield &#x2F;&#x2F; 1.暂停标识 2.第二次next的传参</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;a :&gt;&gt; &#39;, a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  let b &#x3D; yield</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;b :&gt;&gt; &#39;, b);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">let it &#x3D; myGenerator()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">it.next(10) &#x2F;&#x2F; 1  第一个next 传参数没有任何意义</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">it.next(20) &#x2F;&#x2F; 20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">it.next(30) &#x2F;&#x2F; 30</span></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/javascript/JS%E4%BA%8B%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1195,254 +1317,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/12/javascript/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%20ES6%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数组常用 ES6方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-12 23:47:21" itemprop="dateCreated datePublished" datetime="2020-07-12T23:47:21+08:00">2020-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:26:14" itemprop="dateModified" datetime="2020-07-16T11:26:14+08:00">2020-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="reduce-callback-initialValue"><a href="#reduce-callback-initialValue" class="headerlink" title="reduce(callback,initialValue)"></a>reduce(callback,initialValue)</h3><ol>
-<li><p>作用 <code>- 对数组每项进行迭代操作</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(total,currentValue,index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>total</td>
-       <td>初始值, 或者计算结束后的返回值。</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-<tr>
-<td>initialValue</td>
-<td>传递给函数的初始值</td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-数组中每一项迭代后的结果</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let person &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 0, name: &quot;小明&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小张&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小李&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 3, name: &quot;小孙&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 1, name: &quot;小周&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">     &#123;id: 2, name: &quot;小陈&quot;&#125;,   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">let obj &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">let peon &#x3D; person.reduce((total,currentValue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    obj[currentValue.id] ? &quot;&quot; : obj[currentValue.id] &#x3D; true &amp;&amp; total.push(currentValue);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    return total;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;,[])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">console.log(peon)</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="map-callback"><a href="#map-callback" class="headerlink" title="map(callback)"></a>map(callback)</h3><ol>
-<li><p>作用 <code>-对数组进行映射</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值 <code>-返回计算完成后的新数组</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.map(currentValue &#x3D;&gt; currentValue.age * 2); &#x2F;&#x2F; [36, 38, 36]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="filter-callback"><a href="#filter-callback" class="headerlink" title="filter(callback)"></a>filter(callback)</h3><ol>
-<li><p><code>-对数组进行筛选过滤</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-返回一个符合条件的新数组集合</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.filter(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;  [&#123;name: &quot;张三&quot;, age: 18, sex: 1&#125;,&#123;name: &quot;王五&quot;, age: 18, sex: 2&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result);</span></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h3 id="find-callback"><a href="#find-callback" class="headerlink" title="find(callback)"></a>find(callback)</h3><ol>
-<li><p>作用 <code>- 查找数组中的某一项</code></p>
-</li>
-<li><p>参数说明</p>
-<table border="1">
-<tr>
- <th>参数</th>
- <th>描述</th>
-</tr>
-<tr>
- <td>(currentValue, index,arr)=>{}</td>
- <td>
-   函数参数:
-   <table border="1">
-     <tr>
-       <td>参数</td>
-       <td>描述</td>
-     </tr>
-     <tr>
-       <td>currentValue</td>
-       <td>当前元素的值</td>
-     </tr>
-     <tr>
-       <td>index</td>
-       <td>当前元素的索引值</td>
-     </tr>
-     <tr>
-       <td>arr</td>
-       <td>当前元素属于的数组对象</td>
-     </tr>
-   </table>
- </td>
-</tr>
-</table>
-</li>
-<li><p>返回值  <code>-当数组中的元素在测试条件时返回 true 时, find() 返回符合条件的元素，之后的值不会再调用执行函数如果没有符合条件的元素返回 undefined</code></p>
-</li>
-<li><p>影响  <code>-不对原数组造成影响</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var arr &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;李四&#39;,age: 19,sex: 2&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;name: &#39;王五&#39;,age: 18,sex: 2&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var result &#x3D; arr.find(currentValue &#x3D;&gt; currentValue.age &#x3D;&#x3D; 18) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(result); &#x2F;&#x2F; &#123;name: &#39;张三&#39;,age: 18,sex: 1&#125;</span></pre></td></tr></table></figure>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1512,7 +1386,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
