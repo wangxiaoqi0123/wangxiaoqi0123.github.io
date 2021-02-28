@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  :style 运算符写法:style&#x3D;”{color:num &#x3D;&#x3D; 3 ? ‘red’ :’green’}”:style&#x3D;”[{color:num &#x3D;&#x3D; 3 ? ‘red’ :">
+  <meta name="description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  data-xxx 自定义属性 1&amp;lt;div @click&#x3D;&quot;onGoToDetail&quot; :data-id&#x3D;&quot;postId&quot;&amp;gt;&amp;lt;&#x2F;div&amp;gt; 1onGoToD">
 <meta name="keywords" content="vue 2.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue 指令事件样式">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;19&#x2F;vue&#x2F;vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  :style 运算符写法:style&#x3D;”{color:num &#x3D;&#x3D; 3 ? ‘red’ :’green’}”:style&#x3D;”[{color:num &#x3D;&#x3D; 3 ? ‘red’ :">
+<meta property="og:description" content="1. 数据 变量 插值表达式放置 死值放置 变量可以支持运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + -  :属性:属性&#x3D; 后面都支持 运算符 &amp;gt; &amp;lt; ? : ( 三元运算符 ) + - * &#x2F;  data-xxx 自定义属性 1&amp;lt;div @click&#x3D;&quot;onGoToDetail&quot; :data-id&#x3D;&quot;postId&quot;&amp;gt;&amp;lt;&#x2F;div&amp;gt; 1onGoToD">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-07-16T03:27:04.378Z">
+<meta property="og:updated_time" content="2021-02-28T03:10:40.382Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/19/vue/vue%20%E6%8C%87%E4%BB%A4%E4%BA%8B%E4%BB%B6%E6%A0%B7%E5%BC%8F/">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-16 11:27:04" itemprop="dateModified" datetime="2020-07-16T11:27:04+08:00">2020-07-16</time>
+                <time title="修改时间：2021-02-28 11:10:40" itemprop="dateModified" datetime="2021-02-28T11:10:40+08:00">2021-02-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,6 +244,11 @@
 <li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
 </li>
 <li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
+</li>
+<li><p>data-xxx 自定义属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"onGoToDetail"</span> <span class="attr">:data-id</span>=<span class="string">"postId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onGoToDetail(event) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(event.srcElement.dataset.id)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>通过<code>data-</code>形式自定义的属性可以在event.srcElement.dataset中获取到。<br>1.自定义的属性在dataset中data-会被省略。例如 data-id =&gt; id<br>2.当自定义属性中存在大写字母会被转换成小写。例如 data-postId =&gt; postid<br>3.当自定义属性中存在多个-会被转换成驼峰。例如 data-post-id =&gt; postId</p>
 </li>
 <li><p>:style 运算符写法<br>:style=”{color:num == 3 ? ‘red’ :’green’}”<br>:style=”[{color:num == 3 ? ‘red’ :’green’}]”</p>
 </li>
@@ -287,8 +292,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/19/vue/vue%20%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%BA%95%E5%B1%82/" rel="prev" title="Vue 数据双向绑定底层实现">
-      <i class="fa fa-chevron-left"></i> Vue 数据双向绑定底层实现
+    <a href="/2020/06/19/vue/vue%20%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E8%AE%AF/" rel="prev" title="Vue 父子组件通讯">
+      <i class="fa fa-chevron-left"></i> Vue 父子组件通讯
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/06/19/vue/vue%20%E5%B0%8F%E7%9F%A5%E8%AF%86/" rel="next" title="Vue 小知识">
@@ -366,7 +371,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
