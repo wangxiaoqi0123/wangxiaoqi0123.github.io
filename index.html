@@ -184,6 +184,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/23/react/recoil/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/23/react/recoil/" class="post-title-link" itemprop="url">Recoil</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-23 17:54:26 / 修改时间：19:38:32" itemprop="dateCreated datePublished" datetime="2021-05-23T17:54:26+08:00">2021-05-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p><strong>React 的状态管理库 Recoil。同 vuex redux … 功能类型对全局数据状态进行管理。</strong></p>
+</blockquote>
+<h3 id="下载与文档"><a href="#下载与文档" class="headerlink" title="下载与文档"></a>下载与文档</h3><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install recoil</span></pre></td></tr></table></figure></li>
+<li>recoil 文档地址<br><a href="https://www.recoiljs.cn/docs/introduction/getting-started" target="_blank" rel="noopener">https://www.recoiljs.cn/docs/introduction/getting-started</a></li>
+</ul>
+<h3 id="RecoilRoot"><a href="#RecoilRoot" class="headerlink" title="RecoilRoot"></a>RecoilRoot</h3><ul>
+<li>RecoilRoot <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;RecoilRoot, atom, selector, useRecoilState, useRecoilValue&#125; <span class="keyword">from</span> <span class="string">'recoil'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">App</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;RecoilRoot&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &lt;CharacterCounter /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/RecoilRoot&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr></table></figure>
+初始化recoil需要将RecoilRoot组件放在，所有组件树的父节点上，最好将其放在根组件中。</li>
+</ul>
+<h3 id="Atom"><a href="#Atom" class="headerlink" title="Atom"></a>Atom</h3><blockquote>
+<p>atom 代表一个状态</p>
+</blockquote>
+<ul>
+<li>创建一个count的atom<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; atom &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> count = atom(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  key: <span class="string">"test_count"</span>, <span class="comment">// key 为 atom 的唯一值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">default</span>: <span class="number">0</span>, <span class="comment">// 默认值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure></li>
+<li>useRecoilValue获取atom count<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRecoilValue &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count &#125; <span class="keyword">from</span> <span class="string">"../../store/test"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">props: HomeProps</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> num = useRecoilValue(count);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;num&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Home;</span></pre></td></tr></table></figure></li>
+<li>useRecoilState类似于React hooks 的useState，可以对count进行读取和修改<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRecoilState &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count &#125; <span class="keyword">from</span> <span class="string">"../../store/test"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">props: HomeProps</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> [num, setNum] = useRecoilState(count);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;div onClick=&#123;() =&gt; setNum(num+<span class="number">1</span>)&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      &#123;num&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">export default Home;</span></span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h3><blockquote>
+<p>selector 代表一个派生状态。即计算属性，由其他的值计算得到一个新的值（selector）。</p>
+</blockquote>
+<ul>
+<li>根据count（atom）创建一个countSince的selector<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; selector &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count &#125; <span class="keyword">from</span> <span class="string">"./atoms"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> countSince = selector(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  key: <span class="string">"test_count_since"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">get</span>: (&#123; <span class="keyword">get</span> &#125;) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="keyword">get</span>(count) + 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure></li>
+<li>useRecoilValue获取selector countSince<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRecoilState, useRecoilValue &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count, countSince &#125; <span class="keyword">from</span> <span class="string">"../../store/test"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">props: HomeProps</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> [num, setNum] = useRecoilState(count);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> numSince = useRecoilValue(countSince);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &lt;div onClick=&#123;() =&gt; setNum(num + <span class="number">1</span>)&#125;&gt;&#123;num&#125;&lt;<span class="regexp">/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;div&gt;&#123;numSince&#125;&lt;/</span>div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">export default Home;</span></span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="自定义hooks"><a href="#自定义hooks" class="headerlink" title="自定义hooks"></a>自定义hooks</h3><blockquote>
+<p>同其他自定义hooks一样，实现对逻辑的抽离，状态派发。</p>
+</blockquote>
+<ul>
+<li>创建一个 useCountAdd 自定义hooks<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRecoilState &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count &#125; <span class="keyword">from</span> <span class="string">"./atoms"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCountAdd = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> [num, setNum] = useRecoilState(count);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="function">(<span class="params">addNumber: number</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    setNum(num + addNumber);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>使用 useCountAdd 对 count 进行自增<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useRecoilValue &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; count, useCountAdd &#125; <span class="keyword">from</span> <span class="string">"../../store/test"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">props: HomeProps</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> num = useRecoilValue(count);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> numAdd = useCountAdd();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> numAdd(1)&#125;&gt;&#123;num&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Home;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h3><blockquote>
+<p>同其他状态管理库一样，由于状态缓存在页面，当页面被初始化时。状态也会被清空</p>
+</blockquote>
+<ul>
+<li>本地local持久化<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; DefaultValue, AtomEffect &#125; <span class="keyword">from</span> <span class="string">"recoil"</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> localStorageEffect = (key: string): AtomEffect&lt;any&gt; =&gt; (&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  setSelf,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  onSet,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> savedValue = localStorage.getItem(key);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (savedValue != <span class="literal">null</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    setSelf(<span class="built_in">JSON</span>.parse(savedValue));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  onSet(<span class="function">(<span class="params">newValue: any, oldValue: any</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (newValue <span class="keyword">instanceof</span> DefaultValue) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      localStorage.removeItem(key);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      localStorage.setItem(key, <span class="built_in">JSON</span>.stringify(newValue));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>count（atom）设置持久化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; atom &#125; from &quot;recoil&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#123; localStorageEffect &#125; from &quot;..&#x2F;effects&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export const count &#x3D; atom(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  key: &quot;test_count&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  default: 0,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  effects_UNSTABLE: [localStorageEffect(&quot;test_count&quot;)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/05/react/%E6%B7%B1%E5%85%A5JSX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/05/react/%E6%B7%B1%E5%85%A5JSX/" class="post-title-link" itemprop="url">深入JSX</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-05 16:39:42 / 修改时间：19:31:51" itemprop="dateCreated datePublished" datetime="2021-04-05T16:39:42+08:00">2021-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>JSX 仅仅只是 React.createElement(component, props, …children) 函数的语法糖。</strong></p>
+<h3 id="React-createElement"><a href="#React-createElement" class="headerlink" title="React.createElement"></a>React.createElement</h3><blockquote>
+<pre><code>React.createElement(
+  type,
+  props,
+  [...children]
+)</code></pre><p><code>type</code>: 元素标签名 例如：div<br><code>props</code>: 标签上的属性对象<br><code>[...children]</code>: 子节点</p>
+</blockquote>
+<ul>
+<li><p>使用React.createElement创建React DOM</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">InputText</span>(<span class="params">props</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> input = React.createElement(<span class="string">"input"</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    key: <span class="string">"xxxKey"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    onChange: <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">console</span>.log(event.target.value);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> React.createElement(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"div"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      className: <span class="string">"container_box"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    [input, <span class="string">"文本子节点"</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2021/react_jsx_01.png">
+</li>
+<li><p>等同于使用jsx创建React DOM</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">InputText</span>(<span class="params">props</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &lt;input</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        onChange=&#123;(event) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">          <span class="built_in">console</span>.log(event.target.value);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      文本子节点</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/div&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="React-cloneElement"><a href="#React-cloneElement" class="headerlink" title="React.cloneElement"></a>React.cloneElement</h3><blockquote>
+<pre><code>React.cloneElement(
+  element,
+  config,
+  [...children]
+)</code></pre><p><code>element</code>: 用于克隆的React元素<br><code>config</code>: 为新生成的React元素添加新的props，覆盖从中克隆的props<br><code>[...children]</code>: 为新生成的React元素添加新的children，取代从克隆元素的children</p>
+</blockquote>
+<ul>
+<li><p>创建一个列表项组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListItem</span>(<span class="params">props</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> &#123; list, handleDel &#125; = props;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;ul&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &#123;list.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">          &lt;li key=&#123;index&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            文章&#123;item&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &lt;button onClick=&#123;() =&gt; &#123;handleDel(index)&#125;&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">              删除</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            &lt;<span class="regexp">/button&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">          &lt;/</span>li&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &#125;)&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/ul&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr></table></figure>
+</li>
+<li><p>创建容器组件，用于包裹组件ListItem</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListContainer</span>(<span class="params">props</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> &#123; children &#125; = props;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> getControlled = <span class="function">(<span class="params">propsType</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      ...propsType,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      handleDel: <span class="function">(<span class="params">index</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">"劫持 handleDel 事件..."</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        propsType.handleDel(index);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &lt;div className=<span class="string">"list_container"</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &lt;h1&gt;xxx大标题&lt;<span class="regexp">/h1&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &#123;React.cloneElement(children, getControlled(children.props))&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>React.cloneElement 复制插槽children ReactDOM，并劫持事件handleDel</strong></p>
+</li>
+<li><p>渲染组件</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Home</span>(<span class="params">params</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> [list, setList] = useState([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> handleDel = <span class="function">(<span class="params">index</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> arr = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(list));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    arr.splice(index, <span class="number">1</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    setList(arr);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &lt;ListContainer&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      &lt;ListItem list=&#123;list&#125; handleDel=&#123;handleDel&#125; /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/ListContainer&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  );</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/21/react/react%20Router/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1335,431 +1553,6 @@ model 操作集合 即可以通过回调函数的形式读取操作结果，也�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/17/server/mongodb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/17/server/mongodb/" class="post-title-link" itemprop="url">mongodb基本使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-17 10:10:23" itemprop="dateCreated datePublished" datetime="2021-02-17T10:10:23+08:00">2021-02-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-23 15:51:56" itemprop="dateModified" datetime="2021-02-23T15:51:56+08:00">2021-02-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
-<li>mongodb安装<ul>
-<li>社区版本安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install mongodb-community</span></pre></td></tr></table></figure></li>
-<li><a href="https://github.com/mongodb/homebrew-brew" target="_blank" rel="noopener">https://github.com/mongodb/homebrew-brew</a> （文档）</li>
-</ul>
-</li>
-<li>mongodb服务启动/停止<ul>
-<li>启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew services start mongodb-community</span></pre></td></tr></table></figure></li>
-<li>停止<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew services stop mongodb-community</span></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li>下载mongodb可视化工具<ul>
-<li>例如 Navicat Premium</li>
-</ul>
-</li>
-</ul>
-<h3 id="mongodb简介"><a href="#mongodb简介" class="headerlink" title="mongodb简介"></a>mongodb简介</h3><ul>
-<li>数据库<ul>
-<li>mongodb是一个数据的服务或者系统。一个数据库系统可以对接多个服务，一个服务也可以对接多个数据库。</li>
-</ul>
-</li>
-<li>集合collection<ul>
-<li>集合是mongodb的文档组，存在于数据库中。</li>
-</ul>
-</li>
-<li>文档document<ul>
-<li>文档是单条数据，可以被增删改查。</li>
-</ul>
-</li>
-<li>bson<ul>
-<li>mongodb内数据存储是一以一种<strong>二进制类型的json</strong>存储的，数据格式是一种json的格式。</li>
-</ul>
-</li>
-<li>NoSQL<ul>
-<li>mongodb 与 一些关系型数据库不同，不需要使用SQL语句查询。</li>
-</ul>
-</li>
-<li>mongodb区别于关系型数据库<table border="1">
-<tr>
-  <th width='50%'>mysql</th>
-  <th width='50%'>mongodb</th>
-</tr>
-<tr>
-  <td>数据库</td>
-  <td>数据库</td>
-</tr>
-<tr>
-  <td>表格</td>
-  <td>集合</td>
-</tr>
-<tr>
-  <td>行</td>
-  <td>文档</td>
-</tr>
-<tr>
-  <td>列</td>
-  <td>字段</td>
-</tr>
-<tr>
-  <td>主键</td>
-  <td>mongodb 默认主键 _id</td>
-</tr>
-</table>
-
-</li>
-</ul>
-<h3 id="mongodb-常用命令"><a href="#mongodb-常用命令" class="headerlink" title="mongodb 常用命令"></a>mongodb 常用命令</h3><blockquote>
-<p><strong>数据库</strong></p>
-</blockquote>
-<ul>
-<li>产看数据库列表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show dbs</span></pre></td></tr></table></figure></li>
-<li>切换数据库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">use mydb</span></pre></td></tr></table></figure>
-当存在数据库时，切换到该数据库。当不存在数据库时，创建该数据库，并切换到该数据库。</li>
-</ul>
-<ul>
-<li>删除数据库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">use mydb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">db.dropDatabase()</span></pre></td></tr></table></figure>
-先切换到需要删除的数据库，然后执行db.dropDatabase()删除数据库。</li>
-</ul>
-<blockquote>
-<p><strong>集合collection</strong></p>
-</blockquote>
-<ul>
-<li>查看当前数据库集合列表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show collections</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show tables</span></pre></td></tr></table></figure></li>
-<li>插入文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert(&#123;name:&quot;wangxiaoqi&quot;&#125;)</span></pre></td></tr></table></figure>
-当存在集合时，向集合中插入一条数据。当集合不存在时，创建新的集合并插入数据。</li>
-</ul>
-<ul>
-<li>删除集合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollecction.drop()</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p><strong>插入文档</strong></p>
-</blockquote>
-<ul>
-<li>insert 插入一条或多条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert(&#123;number:1&#125;) &#x2F;&#x2F; 插入单条数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert([&#123;number:2&#125;,&#123;number:3&#125;]) &#x2F;&#x2F; 插入多条数据</span></pre></td></tr></table></figure></li>
-<li>insertOne 插入一条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insertOne(&#123;number:4&#125;)</span></pre></td></tr></table></figure></li>
-<li>insertMany 插入多条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insertMany([&#123;number:5&#125;,&#123;number:6&#125;])</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p><strong>更新文档</strong></p>
-</blockquote>
-<ul>
-<li>update 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.update(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;query&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;update&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    upsert: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    multi: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    writeConcern: &lt;ducument&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
-query: update的查询条件，类似sql update查询内where后面的<br>update: update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的<br>upsert: 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入<br>multi: 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新<br>writeConcern: 可选，抛出异常的级别</li>
-</ul>
-<ul>
-<li>update<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.update(&#123;number:6&#125;,&#123;$set:&#123;number:66&#125;&#125;,&#123;multi:true&#125;)</span></pre></td></tr></table></figure>
-匹配number为6的文档，文档的number字段全部更新为66。</li>
-</ul>
-<blockquote>
-<p><strong>删除文档</strong></p>
-</blockquote>
-<ul>
-<li>remove 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;query&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    justOne: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    writeConcern: &lt;document&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
-query: (可选) 删除的文档的条件<br>justOne: (可选) 如果设为 true 或 1，则只删除第一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档<br>writeConcern: (可选) 抛出异常的级别</li>
-</ul>
-<ul>
-<li>remove<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(&#123;number:66&#125;,&#123;justOne:true&#125;)</span></pre></td></tr></table></figure>
-删除第一个number为66的文档。</li>
-</ul>
-<ul>
-<li>删除所有数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(&#123;&#125;)</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteMany(&#123;&#125;)</span></pre></td></tr></table></figure></li>
-<li>deleteOne 删除匹配的第一条文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteOne(&#123;number:2&#125;)</span></pre></td></tr></table></figure></li>
-<li>deleteMany 删除匹配到的所有文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteMany(&#123;number:2&#125;)</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p><strong>查询文档</strong></p>
-</blockquote>
-<ul>
-<li>find 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(query)</span></pre></td></tr></table></figure>
-query: 可选，使用查询操作符指定查询条件</li>
-</ul>
-<ul>
-<li>条件操作符<table border="1">
-<tr>
-  <th width='25%'>操作</th>
-  <th width='25%'>格式</th>
-  <th width='50%'>范例</th>
-</tr>
-<tr>
-  <td>等于</td>
-  <td>{key:valve}</td>
-  <td>db.myCollection.find({number:1})</td>
-</tr>
-<tr>
-  <td>小于</td>
-  <td>{key:{$lt:value}}</td>
-  <td>db.myCollection.find({number:{$lt:5}})</td>
-</tr>
-<tr>
-  <td>小于等于</td>
-  <td>{key:{$lte:value}}</td>
-  <td>db.myCollection.find({number:{$lte:5}})</td>
-</tr>
-<tr>
-  <td>大于</td>
-  <td>{key:{$gt:value}}</td>
-  <td>db.myCollection.find({number:{$gt:5}})</td>
-</tr>
-<tr>
-  <td>大于等于</td>
-  <td>{key:{$gte:value}}</td>
-  <td>db.myCollection.find({number:{$gte:5}})</td>
-</tr>
-<tr>
-  <td>不等于</td>
-  <td>{key:{$ne:value}}</td>
-  <td>db.myCollection.find({number:{$ne:5}})</td>
-</tr>
-</table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;number:&#123;$gt:2,$lt:5&#125;&#125;)</span></pre></td></tr></table></figure>
-number 大于2小于5的文档。
-
-
-</li>
-</ul>
-<ul>
-<li>and条件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;number:&#123;$gt:1&#125;,author:&quot;zhangsan&quot;&#125;)</span></pre></td></tr></table></figure>
-传入多个键(key)，每个键(key)以逗号隔开，相当于 SQL 的 AND 条件。</li>
-</ul>
-<ul>
-<li>or条件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  $or:[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;number:1,author:&quot;zhangsan&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;number:&#123;$gt:5&#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
- $or 数组中 每个对象的查询结果，得到的并集。</li>
-</ul>
-<ul>
-<li>and与or组合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  number:7,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  $or:[&#123;number:1&#125;,&#123;number:&#123;$gt:5&#125;&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-query 中 查询条件交集的结果。</li>
-</ul>
-<ul>
-<li>模糊查询<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;XXX&#x2F;&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 或者</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#123;$regex:&#x2F;XXX&#x2F;&#125;&#125;)</span></pre></td></tr></table></figure>
-查询description中包含 ‘XXX’ 的文档。<br/>
-<br/>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;^XXX&#x2F;&#125;)</span></pre></td></tr></table></figure>
-查询description字段以 'XXX 开头的文档。
-<br/>
-<br/>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;XXX$&#x2F;&#125;)</span></pre></td></tr></table></figure>
-查询description 字段以 'XXX' 结尾的文档。
-
-
-</li>
-</ul>
-<ul>
-<li>limit指定数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().limit(2)</span></pre></td></tr></table></figure>
-limit()方法接受一个数字参数，该参数指定从MongoDB中读取的记录条数</li>
-</ul>
-<ul>
-<li>skip跳过数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollecion.find().skip(2)</span></pre></td></tr></table></figure>
-skip方法接受一个数字参数作为跳过的记录条数</li>
-</ul>
-<ul>
-<li>sort 排序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().sort(&#123;number:-1&#125;)</span></pre></td></tr></table></figure>
-sort方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列</li>
-</ul>
-<ul>
-<li>skip、limit、sort 联合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().skip(2).limit(2).sort(&#123;number:-1&#125;)</span></pre></td></tr></table></figure>
-skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是先 sort(), 然后是 skip()，最后是显示的 limit()。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/09/server/pm2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/09/server/pm2/" class="post-title-link" itemprop="url">pm2基本使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-09 09:40:28" itemprop="dateCreated datePublished" datetime="2021-02-09T09:40:28+08:00">2021-02-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-23 15:51:53" itemprop="dateModified" datetime="2021-02-23T15:51:53+08:00">2021-02-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
-<li>pm2 安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm insrall pm2 -g</span></pre></td></tr></table></figure></li>
-<li>版本查看<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 --version</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="pm2-常用命令"><a href="#pm2-常用命令" class="headerlink" title="pm2 常用命令"></a>pm2 常用命令</h3><ul>
-<li>启动服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 start ...</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_01.png">
-可以是项目入口文件如 app.js，也可以是pm2配置文件 如pm2.conf.json。</li>
-<li>查看列表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 list</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_02.png"></li>
-<li>重启服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 restart (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_03.png"></li>
-<li>停止服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 stop (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_04.png"></li>
-<li>删除服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 delete (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_05.png"></li>
-<li>进程日志<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 log (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_07.png"></li>
-<li>进程基本信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 info (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_06.png"></li>
-<li>监听进程cpu内存信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pm2 monit (name &#x2F; id)</span></pre></td></tr></table></figure>
-<img style="margin-left:0px" src="/images/2021/pm2_08.png">
-
-</li>
-</ul>
-<h3 id="pm2-功能介绍"><a href="#pm2-功能介绍" class="headerlink" title="pm2 功能介绍"></a>pm2 功能介绍</h3><ul>
-<li><p><strong>进程守护</strong></p>
-<ul>
-<li>由于 NodeJs 是单线程执行的，所以主线程抛出了一个错误就会退出程序。所以线上部署的项目需要进程守护，当程序崩溃时重启服务。</li>
-</ul>
-</li>
-<li><p><strong>日志管理</strong></p>
-<ul>
-<li>console.log打印的文本默认会输出到 .pm2/logs/app-out.log 中。</li>
-<li>console.error 打印的文本默认会输出到 .pm2/logs/app-error.log 中。</li>
-</ul>
-</li>
-<li><p><strong>多进程</strong></p>
-<ul>
-<li>为了充分利用服务器资源，pm2可以对node服务进行多进程管理</li>
-<li>多进程之间，内存无法共享。可以使用访问同一个redis实现数据共享</li>
-</ul>
-</li>
-<li><p><strong>配置项</strong></p>
-<ul>
-<li>pm2启动配置项 pm2 start pm2.conf.json</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"apps"</span>: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 进程名称</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"name"</span>: <span class="string">"pm2-test-server"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 启动文件的相对路径</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"script"</span>: <span class="string">"app.js"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 文件发生变化是否重启服务</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"watch"</span>: <span class="literal">false</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 忽略因文件变化而重启服务</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"ignore_watch"</span>: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      <span class="string">"node_modules"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      <span class="string">"logs"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 进程数量，一般为电脑核数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"instances"</span>: <span class="number">4</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 错误日志的相对路径</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"error_file"</span>: <span class="string">"logs/err.log"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 自定义日志文件的相对路径</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"out_file"</span>: <span class="string">"logs/out.log"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 为每行日志添加时间前缀</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"log_date_format"</span>: <span class="string">"YYYY-MM-DD HH:mm:ss"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1829,7 +1622,7 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
