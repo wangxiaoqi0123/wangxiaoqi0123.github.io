@@ -184,6 +184,224 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/10/24/configuration/configuration12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/24/configuration/configuration12/" class="post-title-link" itemprop="url">单页架构方案设计</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-24 00:00:00" itemprop="dateCreated datePublished" datetime="2023-10-24T00:00:00+08:00">2023-10-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-25 15:59:08" itemprop="dateModified" datetime="2023-10-25T15:59:08+08:00">2023-10-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>前端单页应用的框架基本搭建完成，要对接业务时，需要对<code>登录鉴权</code>、<code>数据请求</code>这个两个模块进行配置，已确保业务系统的正常接入。</p>
+<h3 id="登录鉴权"><a href="#登录鉴权" class="headerlink" title="登录鉴权"></a>登录鉴权</h3><p>登录鉴权一般按照以下流程对 用户是否登录、用户的基本信息是否存在、用户是否拥有当前页面权限 当都满足条件时，才允许访问当前页面。<br><img src="/images/2023/plan-design-001.png" style="width:380px;" /><br><strong>以vue3项目举例:</strong><br>应为必须满足某些条件（页面拥有用户信息、当前用户有该页面的权限），用户才能进入页面，所以处理的<code>登录鉴权</code>的场景在全局路由守卫的<code>beforeEach</code>中处理最为合适。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> beforeAuth <span class="keyword">from</span> <span class="string">'./auths'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">'./routes'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  history: createWebHistory(<span class="keyword">import</span>.meta.env.BASE_URL),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  routes: routes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">router.beforeEach(beforeAuth)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>为了处理这一系列任务，一般会用中间件的方式对每个场景单独处理，以降低代码的耦合度。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; RouteLocationNormalized &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> loginAuthMiddleware <span class="keyword">from</span> <span class="string">'./loginAuthMiddleware'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> initDataMiddleware <span class="keyword">from</span> <span class="string">'./initDataMiddleware'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> routeAuthMiddleware <span class="keyword">from</span> <span class="string">'./routeAuthMiddleware'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> MiddlewareFn = <span class="function">(<span class="params">to: RouteLocationNormalized, <span class="keyword">from</span>: RouteLocationNormalized, next: (<span class="params">...args: <span class="built_in">any</span>[]</span>) =&gt; <span class="built_in">void</span></span>) =&gt;</span> <span class="built_in">void</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> middlewares = [loginAuthMiddleware, initDataMiddleware, routeAuthMiddleware]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> callMiddleware: MiddlewareFn = <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> stack = [...middlewares]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> _next = <span class="function">(<span class="params">...args: <span class="built_in">any</span>[]</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (args.length &gt; <span class="number">0</span> || stack.length === <span class="number">0</span>) <span class="keyword">return</span> next(...args)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> middleware = stack.shift() <span class="keyword">as</span> MiddlewareFn</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    middleware(to, <span class="keyword">from</span>, _next)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  _next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> beforeAuth: MiddlewareFn = <span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  callMiddleware(to, <span class="keyword">from</span>, <span class="function">(<span class="params">...args: <span class="built_in">any</span>[]</span>) =&gt;</span> &#123; next(...args) &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> beforeAuth</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>登录鉴权中间件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; RouteLocationNormalized &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useUserStoreWithOut &#125; <span class="keyword">from</span> <span class="string">'/@/store/modules/user'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">'/@/utils/token'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> (to: RouteLocationNormalized, _from: <span class="built_in">any</span>, next: <span class="built_in">any</span>) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> &#123; ticket &#125; = to.query</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> userStore = useUserStoreWithOut()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> token = getToken()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (ticket &amp;&amp; !token) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">await</span> userStore.getUserByTicket(ticket.toString())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (!token &amp;&amp; !ticket) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    userStore.login()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>数据鉴权中间件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; RouteLocationNormalized &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useUserStoreWithOut &#125; <span class="keyword">from</span> <span class="string">'/@/store/modules/user'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">async</span> (to: RouteLocationNormalized, _from: <span class="built_in">any</span>, next: <span class="built_in">any</span>) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> userStore = useUserStoreWithOut()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> reqList = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 校验store里的userInfo 是否存在</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> userInfoToken = userStore.token</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (!userInfoToken) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    reqList.push(userStore.getUserByToken)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 校验store里的meuns 是否存在</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> menus = userStore.menus</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (!menus) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    reqList.push(userStore.getMenus)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (reqList?.length) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">await</span> <span class="built_in">Promise</span>.all(reqList.map(<span class="function"><span class="params">fn</span> =&gt;</span> fn()))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>路由鉴权中间件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; RouteLocationNormalized &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useUserStoreWithOut &#125; <span class="keyword">from</span> <span class="string">'/@/store/modules/user'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (to: RouteLocationNormalized, _from: <span class="built_in">any</span>, next: <span class="built_in">any</span>) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> permissions = (to.meta?.permissions <span class="keyword">as</span> <span class="built_in">string</span>[]) || []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 配置权限校验</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (permissions.length) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> userStore = useUserStoreWithOut()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> codes = userStore.pagePermissionCodes || []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> hasPermission = codes.some(<span class="function"><span class="params">role</span> =&gt;</span> permissions.includes(role))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (hasPermission) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      next(&#123; path: <span class="string">'/404'</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 无配置，直接放行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>经过中间件处理，如果用户能正常进入页面，那么进入页面时，cookie中必定存在token，paina中必定存在用户的基本信息。</strong></p>
+<h3 id="数据请求"><a href="#数据请求" class="headerlink" title="数据请求"></a>数据请求</h3><p>数据请求即对axios封装，对axios赋能，其中不仅仅包含请求异常处理，还包含是否重复请求，配置获取数据等等。<br><img src="/images/2023/plan-design-002.png" style="width:670px;" /><br>请求封装</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Axios, &#123; AxiosInstance, AxiosRequestConfig &#125; <span class="keyword">from</span> <span class="string">'axios'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; HttpError, HttpResponse, HttpRequestConfig &#125; <span class="keyword">from</span> <span class="string">'./types.d'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qs <span class="keyword">from</span> <span class="string">'qs'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AxiosCanceler &#125; <span class="keyword">from</span> <span class="string">'./axiosCancel'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; checkStatus &#125; <span class="keyword">from</span> <span class="string">'./checkStatus'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; httpErrorStatusHandle &#125; <span class="keyword">from</span> <span class="string">'./httpError'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">'../token'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> env = <span class="keyword">import</span>.meta.env</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axiosCanceler = <span class="keyword">new</span> AxiosCanceler()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> defaultConfig: AxiosRequestConfig = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  baseURL: env.VITE_GLOB_API_URL,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  timeout: <span class="number">100000</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  headers: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    Accept: <span class="string">'application/json, text/plain, */*'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="string">'X-Requested-With'</span>: <span class="string">'XMLHttpRequest'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 数组格式参数序列化</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  paramsSerializer: <span class="function"><span class="params">params</span> =&gt;</span> qs.stringify(params, &#123; indices: <span class="literal">false</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Http &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.httpInterceptorsRequest()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.httpInterceptorsResponse()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 初始化配置对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> initConfig: HttpRequestConfig = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    ignoreCancelToken: <span class="literal">true</span>, <span class="comment">// 是否取消重复请求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    reductDataFormat: <span class="literal">true</span>, <span class="comment">// 是否获取简洁响应数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    errorMessageShow: <span class="literal">true</span> <span class="comment">// 是否开启全局默认的异常提示</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 保存当前Axios实例对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> axiosInstance: AxiosInstance = Axios.create(defaultConfig)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 请求拦截</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> httpInterceptorsRequest(): <span class="built_in">void</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    Http.axiosInstance.interceptors.request.use(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">      (config: HttpRequestConfig) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">const</span> $config = config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 添加token</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">const</span> token = getToken()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">        token &amp;&amp; ($config.headers.token = token)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 处理重复请求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        !$config.ignoreCancelToken &amp;&amp; axiosCanceler.addPending(config)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> $config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">      error =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 响应拦截</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">private</span> httpInterceptorsResponse(): <span class="built_in">void</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> instance = Http.axiosInstance</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">    instance.interceptors.response.use(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">      (response: HttpResponse) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">const</span> $config = response.config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 处理重复请求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">        !$config.ignoreCancelToken &amp;&amp; axiosCanceler.removePending($config)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 接口请求提示</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">        httpErrorStatusHandle($config.errorMessageShow, &#123; response &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 校验登录过期</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">        checkStatus(response.data.code)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 处理是否取简洁数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> $config.reductDataFormat ? response.data : response</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">      (error: HttpError) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">const</span> $config = error.config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">82</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 接口请求提示</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">83</span></pre></td><td class="code"><pre><span class="line">        $config &amp;&amp; httpErrorStatusHandle($config.errorMessageShow, error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">84</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">85</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">86</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">87</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">88</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">89</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 通用请求工具函数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">90</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> request&lt;T = HttpResponse&gt;(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">91</span></pre></td><td class="code"><pre><span class="line">    config: AxiosRequestConfig,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">92</span></pre></td><td class="code"><pre><span class="line">    options?: HttpRequestConfig</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">93</span></pre></td><td class="code"><pre><span class="line">  ): <span class="built_in">Promise</span>&lt;T&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">94</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> conf = &#123; ...config, ...Http.initConfig, ...options &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">95</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 单独处理自定义请求/响应回掉</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">96</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Http.axiosInstance.request(conf)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">97</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">98</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">99</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">100</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> http = <span class="keyword">new</span> Http()</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>处理重复请求</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> &#123; AxiosRequestConfig, Canceler &#125; <span class="keyword">from</span> <span class="string">'axios'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; isFunction &#125; <span class="keyword">from</span> <span class="string">'/@/utils/is'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pendingMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, Canceler&gt;()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getPendingUrl = <span class="function">(<span class="params">config: AxiosRequestConfig</span>) =&gt;</span> [config.method, config.url].join(<span class="string">'&amp;'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AxiosCanceler &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  addPending(config: AxiosRequestConfig) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.removePending(config)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> url = getPendingUrl(config)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    config.cancelToken =</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      config.cancelToken ||</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">new</span> axios.CancelToken(<span class="function"><span class="params">cancel</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> (!pendingMap.has(url)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">          pendingMap.set(url, cancel)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  removeAllPending() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    pendingMap.forEach(<span class="function"><span class="params">cancel</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      cancel &amp;&amp; isFunction(cancel) &amp;&amp; cancel()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    pendingMap.clear()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  removePending(config: AxiosRequestConfig) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> url = getPendingUrl(config)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (pendingMap.has(url)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> cancel = pendingMap.get(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">      cancel &amp;&amp; cancel(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">      pendingMap.delete(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  reset(): <span class="built_in">void</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    pendingMap = <span class="keyword">new</span> Map&lt;<span class="built_in">string</span>, Canceler&gt;()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>处理异常提示</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; messageInstance &#125; <span class="keyword">from</span> <span class="string">'@fs/smart-design'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * 处理异常</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;*&#125; result</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">httpErrorStatusHandle</span>(<span class="params">isConfigShow, result</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (!isConfigShow) <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 服务端200</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (result.response?.data?.code === <span class="number">200</span>) <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 处理被取消的请求</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (axios.isCancel(result))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.log(<span class="string">'请求的重复请求：'</span> + result.message)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> message = <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (result &amp;&amp; result.response) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">switch</span> (result.response.status) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">200</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        message = result.response.data?.msg</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">302</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'接口重定向了！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">400</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'参数不正确！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">401</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">// 您未登录，或者登录已经超时，请先登录！</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">403</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'您没有权限操作！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">404</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">`请求地址出错: <span class="subst">$&#123;result.response.config.url&#125;</span>`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span> <span class="comment">// 在正确域名下</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">408</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'请求超时！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">409</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'系统已存在相同数据！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">500</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'服务器内部错误！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">501</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'服务未实现！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">502</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'网关错误！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">503</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'服务不可用！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">504</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'服务暂时无法访问，请稍后再试！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">case</span> <span class="number">505</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'HTTP版本不受支持！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">default</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">        message = <span class="string">'异常问题，请联系管理员！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (result.message?.includes(<span class="string">'timeout'</span>)) message = <span class="string">'网络请求超时！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (result.message?.includes(<span class="string">'Network'</span>)) message = <span class="built_in">window</span>.navigator.onLine ? <span class="string">'服务端异常！'</span> : <span class="string">'您断网了！'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (message) messageInstance.error(message)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>&nbsp;<br>处理异常登录</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useUserStoreWithOut &#125; <span class="keyword">from</span> <span class="string">'/@/store/modules/user'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">checkStatus</span>(<span class="params">code: <span class="built_in">number</span></span>): <span class="title">void</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> userStore = useUserStoreWithOut()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">switch</span> (code) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="number">401</span>: <span class="comment">// 未授权</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="number">403</span>: <span class="comment">// 权限不足</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      userStore.login()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">default</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/23/configuration/configuration11/" class="post-title-link" itemprop="url">husky+lint-staged+commitlint git提交配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-23T00:00:00+08:00">2023-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-21 10:29:52" itemprop="dateModified" datetime="2023-10-21T10:29:52+08:00">2023-10-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>使用 husky、lint-staged 对 git commit时进行代码修复检查<br>使用 commitlint 对 git commit message 进行规范</p>
+</blockquote>
+<h3 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h3><blockquote>
+<p>husky 使用git提交代码的过程中会触发的钩子</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm add husky -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>在package.json中的script中添加一条脚本命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>执行 pnpm prepare 命令，根目录下生成 .husky目录</p>
+</li>
+<li><p>husky命令添加pre-commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm husky add .husky&#x2F;pre-commit &quot;pnpm lint&quot;</span></pre></td></tr></table></figure>
+<p>执行命令后会在.husky目录下生成一个pre-commit文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">. &quot;$(dirname -- &quot;$0&quot;)&#x2F;_&#x2F;husky.sh&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pnpm lint</span></pre></td></tr></table></figure>
+</li>
+<li><p>git commit<br>执行git commit时，就会 执行 pnpm lint。通过配置pnpm lint 命令对代码修复 和错误检查。</p>
+</li>
+</ol>
+<h3 id="lint-staged"><a href="#lint-staged" class="headerlink" title="lint-staged"></a>lint-staged</h3><blockquote>
+<p>当我们执行 pnpm lint:eslint、pnpm lint:prettier、pnpm lint:style 这些命令时，会把项目中的文件都检查一遍。<br>lint-staged 用于校验我们修改过的文件，而不是全部文件。</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i lint-staged -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>在packages.json的scripts中添加命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint-staged&quot;: &quot;lint-staged&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+</li>
+<li><p>修改.husky/pre-commit下的npm命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm run lint-staged</span></pre></td></tr></table></figure>
+</li>
+<li><p>项目根目录下创建.lintstagedrc配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;js,jsx,ts,tsx&#125;&quot;: [&quot;prettier --write&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;&#123;!(package)*.json,.!(browserslist)*rc&#125;&quot;: [&quot;prettier --write--parser json&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;package.json&quot;: [&quot;prettier --write&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;*.vue&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;vue,css,scss,postcss,less&#125;&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &quot;*.md&quot;: [&quot;prettier --write&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>提交commit时，pre-commit钩子执行npm run lint-staged命令，lint-staged找到.lintstagedrc配置文件，对git暂存区的文件，根据文件类型，执行相应的命令。</p>
+</li>
+</ol>
+<h3 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h3><blockquote>
+<p>使用 commitlint 对 git commit message 进行规范</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i @commitlint&#x2F;cli @commitlint&#x2F;config-conventional -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>husky命令添加commit-msg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx husky add .husky&#x2F;commit-msg &quot;npx commitlint -e&quot;</span></pre></td></tr></table></figure>
+</li>
+<li><p>根目录下创建 commitlint.config.js 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ignores: [(commit) &#x3D;&gt; commit.includes(&#39;init&#39;)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  extends: [&#39;@commitlint&#x2F;config-conventional&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  rules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#39;body-leading-blank&#39;: [2, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#39;footer-leading-blank&#39;: [1, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#39;header-max-length&#39;: [2, &#39;always&#39;, 108],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#39;subject-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#39;type-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#39;type-enum&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#39;feat&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#39;fix&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#39;perf&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &#39;style&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#39;docs&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#39;test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#39;refactor&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        &#39;build&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &#39;ci&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#39;chore&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        &#39;revert&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        &#39;wip&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        &#39;workflow&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#39;types&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        &#39;release&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -329,132 +547,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint:style&quot;: &quot;stylelint \&quot;.&#x2F;**&#x2F;*.&#123;css,less,vue,html&#125;\&quot; --fix --aei&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p><a href="https://stylelint.bootcss.com/user-guide/usage/cli.html" target="_blank" rel="noopener">命令行文档</a></p>
 </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/23/configuration/configuration11/" class="post-title-link" itemprop="url">husky+lint-staged+commitlint git提交配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-23T00:00:00+08:00">2023-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-21 10:29:52" itemprop="dateModified" datetime="2023-10-21T10:29:52+08:00">2023-10-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>使用 husky、lint-staged 对 git commit时进行代码修复检查<br>使用 commitlint 对 git commit message 进行规范</p>
-</blockquote>
-<h3 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h3><blockquote>
-<p>husky 使用git提交代码的过程中会触发的钩子</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm add husky -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>在package.json中的script中添加一条脚本命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>执行 pnpm prepare 命令，根目录下生成 .husky目录</p>
-</li>
-<li><p>husky命令添加pre-commit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm husky add .husky&#x2F;pre-commit &quot;pnpm lint&quot;</span></pre></td></tr></table></figure>
-<p>执行命令后会在.husky目录下生成一个pre-commit文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">. &quot;$(dirname -- &quot;$0&quot;)&#x2F;_&#x2F;husky.sh&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pnpm lint</span></pre></td></tr></table></figure>
-</li>
-<li><p>git commit<br>执行git commit时，就会 执行 pnpm lint。通过配置pnpm lint 命令对代码修复 和错误检查。</p>
-</li>
-</ol>
-<h3 id="lint-staged"><a href="#lint-staged" class="headerlink" title="lint-staged"></a>lint-staged</h3><blockquote>
-<p>当我们执行 pnpm lint:eslint、pnpm lint:prettier、pnpm lint:style 这些命令时，会把项目中的文件都检查一遍。<br>lint-staged 用于校验我们修改过的文件，而不是全部文件。</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i lint-staged -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>在packages.json的scripts中添加命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint-staged&quot;: &quot;lint-staged&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-</li>
-<li><p>修改.husky/pre-commit下的npm命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm run lint-staged</span></pre></td></tr></table></figure>
-</li>
-<li><p>项目根目录下创建.lintstagedrc配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;js,jsx,ts,tsx&#125;&quot;: [&quot;prettier --write&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;&#123;!(package)*.json,.!(browserslist)*rc&#125;&quot;: [&quot;prettier --write--parser json&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;package.json&quot;: [&quot;prettier --write&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;*.vue&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;vue,css,scss,postcss,less&#125;&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &quot;*.md&quot;: [&quot;prettier --write&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>提交commit时，pre-commit钩子执行npm run lint-staged命令，lint-staged找到.lintstagedrc配置文件，对git暂存区的文件，根据文件类型，执行相应的命令。</p>
-</li>
-</ol>
-<h3 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h3><blockquote>
-<p>使用 commitlint 对 git commit message 进行规范</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i @commitlint&#x2F;cli @commitlint&#x2F;config-conventional -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>husky命令添加commit-msg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx husky add .husky&#x2F;commit-msg &quot;npx commitlint -e&quot;</span></pre></td></tr></table></figure>
-</li>
-<li><p>根目录下创建 commitlint.config.js 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ignores: [(commit) &#x3D;&gt; commit.includes(&#39;init&#39;)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  extends: [&#39;@commitlint&#x2F;config-conventional&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  rules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#39;body-leading-blank&#39;: [2, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#39;footer-leading-blank&#39;: [1, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#39;header-max-length&#39;: [2, &#39;always&#39;, 108],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#39;subject-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#39;type-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#39;type-enum&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#39;feat&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#39;fix&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#39;perf&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &#39;style&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#39;docs&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#39;test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#39;refactor&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        &#39;build&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &#39;ci&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#39;chore&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        &#39;revert&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        &#39;wip&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        &#39;workflow&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#39;types&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        &#39;release&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -745,172 +837,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/typescript/typescript08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/30/typescript/typescript08/" class="post-title-link" itemprop="url">Typescript 操作符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-30T00:00:00+08:00">2022-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:27:52" itemprop="dateModified" datetime="2023-10-20T12:27:52+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
-<li><p>extends接口继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B extends A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>相当于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<br>
-</li>
-<li><p>extends类型约束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T extends string | number&gt; &#x3D; T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a:A&lt;boolean&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-001.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>extends条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T&gt; &#x3D; T extends string ? true : false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a: A&lt;string&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<hr>
-
-</li>
-</ul>
-<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
-<li>typeof对静态的js变量推到为ts类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  info: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    male: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-002.png" style="width:480px;margin-left:0" />
-<hr>
-
-</li>
-</ul>
-<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
-<p>将对象类型的接口中所有的键取出，并返回一个联合声明类型。</p>
-</blockquote>
-<ul>
-<li><p>提取对象接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">type TestTypeKey &#x3D; keyof TestType</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-003.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>提取数组接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKey &#x3D; keyof ArrType</span></pre></td></tr></table></figure>
-<p>由于ts不能直接提示数组，这里借助一个工具类型展开显示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type Extend&lt;T&gt; &#x3D; T extends infer O ? O : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKeyExtend &#x3D; Extend&lt;ArrTypeKey&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ArrTypeKey &#x3D;&#x3D;&#x3D; ArrTypeKeyExtend</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-004.png" style="width:580px;margin-left:0" />
-可以看出是将数组对象上的属性展示。
-<br>
-如果是想单独取出数组的项呢?
-<img src="/images/2022/ty-operator-009.png" style="width:480px;margin-left:0" />
-可以通过number可以取出。
-<br>
-<br>
-</li>
-<li><p>提取枚举类型的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type TestEnumKey &#x3D; keyof TestEnum</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-005.png" style="width:580px;margin-left:0" />
-可以看出同样是枚举对象上的属性展示。
-<br>
-如果是想单独取出枚举的键呢?
-<img src="/images/2022/ts-operator-006.png" style="width:580px;margin-left:0" />
-可以看出通过keyof可以取出。
-<hr>
-
-</li>
-</ul>
-<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><blockquote>
-<p>对联合声明类型进行循环</p>
-</blockquote>
-<ul>
-<li><p>对象接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type AType &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof A]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-007.png" style="width:480px;margin-left:0" />
-通过keyof将对象类型的键转换为联合类型，然后通过in进行循环
-<br>
-<br>
-</li>
-<li><p>对数组接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [&#39;1&#39;, 2, &#39;hello&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [Key in ArrType[number]]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-008.png" style="width:480px;margin-left:0" />
-<br>
-<br>
-</li>
-<li><p>对枚举类型循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof typeof TestEnum]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-010.png" style="width:480px;margin-left:0" />
-<hr>
-
-
-</li>
-</ul>
-<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><blockquote>
-<p>infer用于extends后面，可以理解为一个变量</p>
-</blockquote>
-<ul>
-<li>对类型进行推导<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type First&lt;T&gt; &#x3D; T extends [infer F, ...infer _Rest] ? F : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; First&lt;ArrType&gt;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-011.png" style="width:480px;margin-left:0" />
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/configuration/configuration09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1090,6 +1016,172 @@
 <p>setup 中使用useUserStore，ts 中使用useUserStoreWithOut</p>
 </li>
 </ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/typescript/typescript08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/30/typescript/typescript08/" class="post-title-link" itemprop="url">Typescript 操作符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-30T00:00:00+08:00">2022-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:27:52" itemprop="dateModified" datetime="2023-10-20T12:27:52+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
+<li><p>extends接口继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B extends A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<br>
+</li>
+<li><p>extends类型约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T extends string | number&gt; &#x3D; T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a:A&lt;boolean&gt; &#x3D; true</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-001.png" style="width:480px;margin-left:0" />
+<br>
+</li>
+<li><p>extends条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T&gt; &#x3D; T extends string ? true : false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a: A&lt;string&gt; &#x3D; true</span></pre></td></tr></table></figure>
+<hr>
+
+</li>
+</ul>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
+<li>typeof对静态的js变量推到为ts类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  info: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    male: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-002.png" style="width:480px;margin-left:0" />
+<hr>
+
+</li>
+</ul>
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
+<p>将对象类型的接口中所有的键取出，并返回一个联合声明类型。</p>
+</blockquote>
+<ul>
+<li><p>提取对象接口的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">type TestTypeKey &#x3D; keyof TestType</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-003.png" style="width:480px;margin-left:0" />
+<br>
+</li>
+<li><p>提取数组接口的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKey &#x3D; keyof ArrType</span></pre></td></tr></table></figure>
+<p>由于ts不能直接提示数组，这里借助一个工具类型展开显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type Extend&lt;T&gt; &#x3D; T extends infer O ? O : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKeyExtend &#x3D; Extend&lt;ArrTypeKey&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ArrTypeKey &#x3D;&#x3D;&#x3D; ArrTypeKeyExtend</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-004.png" style="width:580px;margin-left:0" />
+可以看出是将数组对象上的属性展示。
+<br>
+如果是想单独取出数组的项呢?
+<img src="/images/2022/ty-operator-009.png" style="width:480px;margin-left:0" />
+可以通过number可以取出。
+<br>
+<br>
+</li>
+<li><p>提取枚举类型的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type TestEnumKey &#x3D; keyof TestEnum</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-005.png" style="width:580px;margin-left:0" />
+可以看出同样是枚举对象上的属性展示。
+<br>
+如果是想单独取出枚举的键呢?
+<img src="/images/2022/ts-operator-006.png" style="width:580px;margin-left:0" />
+可以看出通过keyof可以取出。
+<hr>
+
+</li>
+</ul>
+<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><blockquote>
+<p>对联合声明类型进行循环</p>
+</blockquote>
+<ul>
+<li><p>对象接口循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type AType &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof A]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-007.png" style="width:480px;margin-left:0" />
+通过keyof将对象类型的键转换为联合类型，然后通过in进行循环
+<br>
+<br>
+</li>
+<li><p>对数组接口循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [&#39;1&#39;, 2, &#39;hello&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [Key in ArrType[number]]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-008.png" style="width:480px;margin-left:0" />
+<br>
+<br>
+</li>
+<li><p>对枚举类型循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof typeof TestEnum]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-010.png" style="width:480px;margin-left:0" />
+<hr>
+
+
+</li>
+</ul>
+<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><blockquote>
+<p>infer用于extends后面，可以理解为一个变量</p>
+</blockquote>
+<ul>
+<li>对类型进行推导<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type First&lt;T&gt; &#x3D; T extends [infer F, ...infer _Rest] ? F : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; First&lt;ArrType&gt;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-011.png" style="width:480px;margin-left:0" />
+
+</li>
+</ul>
 
       
     </div>
@@ -1583,137 +1675,6 @@ index.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span
 <p>.browserslistrc</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">last 1 version</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&gt; 1%</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">maintained node versions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">not dead</span></pre></td></tr></table></figure>
 </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/13/configuration/configuration07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/13/configuration/configuration07/" class="post-title-link" itemprop="url">Monorepo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-13 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-13T00:00:00+08:00">2022-07-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:10:44" itemprop="dateModified" datetime="2023-10-20T12:10:44+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>Monorepo是一个仓库，分为多个包管理的一直管理模式。<br><a href="https://juejin.cn/post/6944877410827370504" target="_blank" rel="noopener">https://juejin.cn/post/6944877410827370504</a></p>
-</blockquote>
-<h3 id="pnpm构建"><a href="#pnpm构建" class="headerlink" title="pnpm构建"></a>pnpm构建</h3><ol>
-<li>pnpm安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g pnpm</span></pre></td></tr></table></figure></li>
-<li>创建workspace<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm init</span></pre></td></tr></table></figure></li>
-<li>根目录创建pnpm-workspace.yaml<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">packages:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">- &quot;packages&#x2F;**&quot;</span></pre></td></tr></table></figure></li>
-<li>构建目录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">├─ packages</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">│  ├─ project01</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">│  │  ├─ package.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">│  │  └─src</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">│  │     └─ index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">│  └─ utils</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">│     ├─ index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">│     └─ package.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">├─ package.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">├─ pnpm-lock.yaml</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">└─ pnpm-workspace.yaml</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="pnpm常用命令"><a href="#pnpm常用命令" class="headerlink" title="pnpm常用命令"></a>pnpm常用命令</h3><ol>
-<li>-F –filter &lt;package_name&gt; <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; utils模块单独安装dayjs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm -F @packages&#x2F;utils add dayjs</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; utils模块单独移除dayjs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm -F @packages&#x2F;utils remove dayjs</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 根据utils下package.json安装所有包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm -F @packages&#x2F;utils install</span></pre></td></tr></table></figure></li>
-<li>-w, –workspace-root<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 根目录单独安装webpack</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm -w add webpack -D</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="lib之间相互引用"><a href="#lib之间相互引用" class="headerlink" title="lib之间相互引用"></a>lib之间相互引用</h3><ol>
-<li>uitls子包模块<br>安装 dayjs<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm -F @package&#x2F;utils add dayjs</span></pre></td></tr></table></figure>
-index.js function 导出<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import dayjs from &#39;dayjs&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export function format(time, f &#x3D; &#39;YYYY-MM-DD&#39;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  return &#39;日期：&#39; + dayjs(time).format(f)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-package.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>project01子包模块<br>安装utils子包模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm -F project01 add @package&#x2F;utils</span></pre></td></tr></table></figure>
-package.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;@packages&#x2F;utils&quot;: &quot;workspace:*&quot;, &#x2F;&#x2F; 默认为&quot;workspace:1.0.0&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-命名空间参照: <a href="https://pnpm.io/zh/workspaces" target="_blank" rel="noopener">workspace</a><br>文件中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; format &#125; from &#39;@packages&#x2F;utils&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;format(new Date())&#39;, format(new Date()))</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="changesets配置"><a href="#changesets配置" class="headerlink" title="changesets配置"></a>changesets配置</h3><ol>
-<li>@changesets/cli<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm -w add @changesets&#x2F;cli -D</span></pre></td></tr></table></figure></li>
-<li>初始化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm changeset init</span></pre></td></tr></table></figure>
-执行完命令后根目录下生成.changeset目录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">├─ .changeset</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">│  ├─ config.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">│  └─ README.md</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;$schema&quot;: &quot;https:&#x2F;&#x2F;unpkg.com&#x2F;@changesets&#x2F;config@2.0.1&#x2F;schema.json&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;changelog&quot;: &quot;@changesets&#x2F;cli&#x2F;changelog&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 不要让 changeset 在 publish 的时候帮我们做 git add</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;commit&quot;: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;fixed&quot;: [],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 配置哪些包要共享版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &quot;linked&quot;: [],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; access: 公私有安全设定，内网建议 restricted ，开源使用 public</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &quot;access&quot;: &quot;restricted&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 项目git主分支</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &quot;baseBranch&quot;: &quot;main&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 确保某包依赖的包发生 upgrade，该包也要发生 version upgrade 的衡量单位（量级）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &quot;updateInternalDependencies&quot;: &quot;patch&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 不需要变动 version 的包</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &quot;ignore&quot;: []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>根目录package.json script 配置构建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;build&quot;: &quot;pnpm --filter&#x3D;@packages&#x2F;* run build&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;clear&quot;: &quot;rimraf &#39;packages&#x2F;*&#x2F;&#123;lib,node_modules&#125;&#39; &amp;&amp; rimraf node_modules&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;changeset&quot;: &quot;changeset&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;version-packages&quot;: &quot;changeset version&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr></table></figure>
-<ul>
-<li>build: 打包所有子包模块。运行子包模块package.json中build命令。</li>
-<li>clear: 删除所有 node_modules及lib。需安装rimraf。</li>
-</ul>
-</li>
-</ol>
-<h3 id="changesets发包"><a href="#changesets发包" class="headerlink" title="changesets发包"></a>changesets发包</h3><ol start="4">
-<li>changeset<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm changeset</span></pre></td></tr></table></figure>
-<ul>
-<li>选择需要发布的包<img src="/images/2022/configuration-monorepo-01.png"></li>
-<li>选择版本一共有三种类型，分别是 major、minor、patch。（主版本、次版本、修订版本）</li>
-<li>.changeset 下生成文件 stale-swans-xxxx.md</li>
-</ul>
-</li>
-<li>version-packages<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm version-packages</span></pre></td></tr></table></figure>
-<ul>
-<li>修改子包模块package.json 的version。</li>
-<li>生成 CHANGELOG.md 文件</li>
-</ul>
-</li>
-<li>npm login<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm login &#x2F;&#x2F; 登录命令</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Username: &#x2F;&#x2F; 输入注册时候的用户名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Password: &#x2F;&#x2F; 密码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Email: (this IS public) &#x2F;&#x2F; 注册时的邮箱</span></pre></td></tr></table></figure></li>
-<li>npm publish<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm changeset publish</span></pre></td></tr></table></figure></li>
 </ol>
 
       
