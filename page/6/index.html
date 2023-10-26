@@ -184,6 +184,125 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/10/technical/technical02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/10/technical/technical02/" class="post-title-link" itemprop="url">require.context 前端工程自动化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-10T00:00:00+08:00">2021-01-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:12:55" itemprop="dateModified" datetime="2023-10-20T12:12:55+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%82%B9/" itemprop="url" rel="index"><span itemprop="name">技术点</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="require-context-介绍"><a href="#require-context-介绍" class="headerlink" title="require.context 介绍"></a>require.context 介绍</h3><blockquote>
+<p>1.require.context 是一个webpack的api<br>2.通过执行require.context 函数获取一个特定的上下文，主要用来实现自动化导入模块</p>
+</blockquote>
+<h3 id="语法解析"><a href="#语法解析" class="headerlink" title="语法解析"></a>语法解析</h3><blockquote>
+<p>语法: require.context(directory, useSubdirectories, regExp);</p>
+</blockquote>
+<ol>
+<li>require.context函数接受三个参数<ul>
+<li>directory 读取文件的路径</li>
+<li>useSubdirectories 是否遍历文件的子目录</li>
+<li>regExp 匹配文件的正则 </li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><p>require.context函数执行后返回的是一个<strong>函数</strong>，并且这个函数有三个属性</p>
+<img src="/images/2020/require_context_1.png" style="margin-left:30px" />
+
+<ul>
+<li><strong>id</strong> 属性返回了<strong>匹配</strong>的文件夹相对于工程的相对路径 是否遍历子目录 匹配文件的正则 组成的字符串 </li>
+<li><strong>keys</strong> 执行keys方法 返回了匹配文件的文件名组成的数组<img src="/images/2020/require_context_3.png" style="margin-left:0px" />
+<img src="/images/2020/require_context_2.png" style="margin-left:0px" /></li>
+<li><strong>reslove</strong> 方法接受一个keys方法执行结果的数组中文件名 并返回当前文件相对于整个工程的相对路径<img src="/images/2020/require_context_5.png" style="margin-left:0px" />
+<img src="/images/2020/require_context_4.png" style="margin-left:0px" />
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li>require.context函数执行后返回的是一个<strong>函数</strong>，这个<strong>函数</strong>执行后会返回一个模块<ul>
+<li>这个函数也接受一个参数（匹配的文件名）为参数，函数执行返回的是一个模块，<strong>这个模块和使用import导入的模块是一样的</strong><img src="/images/2020/require_context_6.png" style="margin-left:0px" />
+<img src="/images/2020/require_context_7.png" style="margin-left:0px" />
+
+
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="vue-项目中使用场景"><a href="#vue-项目中使用场景" class="headerlink" title="vue 项目中使用场景"></a>vue 项目中使用场景</h3><ul>
+<li>自动化引入路由模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let routers &#x3D; []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const requireContext &#x3D; require.context(&#39;.&#x2F;modules&#39;, false, &#x2F;\.js$&#x2F;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">requireContext.keys().forEach(fileName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  const routerModule &#x3D; requireContext(fileName)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  routers &#x3D; [...routers, ...(routerModule.default || routerModule)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">export const asyncRoutes &#x3D; routers || []</span></pre></td></tr></table></figure></li>
+<li>自动化引入vuex模块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import Vuex from &#39;vuex&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const requireContext &#x3D; require.context(&#39;.&#x2F;modules&#39;, false, &#x2F;\.js$&#x2F;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const modules &#x3D; requireContext.keys().reduce((modules, fileName) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用文件名称作为vuex模块名称</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  const moduleName &#x3D; fileName.replace(&#x2F;^\.\&#x2F;(.*)\.\w+$&#x2F;, &#39;$1&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  const value &#x3D; requireContext(fileName)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  modules[moduleName] &#x3D; value.default</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  return modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;, &#123;&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">Vue.use(Vuex)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></li>
+<li>自动化引入svg<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const requireAll &#x3D; requireContext &#x3D;&gt; requireContext.keys().map(requireContext);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const req &#x3D; require.context(&quot;.&#x2F;svg&quot;, false, &#x2F;\.svg$&#x2F;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">requireAll(req);</span></pre></td></tr></table></figure></li>
+<li>自动化全局注册组件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const requireContext &#x3D; require.context(&#39;.&#x2F;&#39;, false, &#x2F;\.vue$&#x2F;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">requireContext.keys().forEach(fileName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  const requireModule &#x3D; requireContext(fileName)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const componentModule &#x3D; requireModule.default || requireModule</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用文件名称作为组件名称</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  const componentName &#x3D; fileName.replace(&#x2F;^\.\&#x2F;(.*)\.\w+$&#x2F;, &#39;$1&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  Vue.component(componentName, componentModule)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/06/typescript/typescript06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -623,6 +742,109 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/01/typescript/typescript07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/01/typescript/typescript07/" class="post-title-link" itemprop="url">Typescript环境搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:27:36" itemprop="dateModified" datetime="2023-10-20T12:27:36+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="安装编译"><a href="#安装编译" class="headerlink" title="安装编译"></a>安装编译</h3><ol>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span></pre></td></tr></table></figure></li>
+<li>运行<blockquote>
+<p>将ts编译成js，并输出js文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc helloworld.ts</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="ts-node"><a href="#ts-node" class="headerlink" title="ts-node"></a>ts-node</h3><ol>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g ts-node</span></pre></td></tr></table></figure></li>
+<li>运行<blockquote>
+<p>同node 运行js 一样，ts-node 同样可以将 ts 在终端中执行并输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ts-node helloworld.ts</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="vscode-自动编译"><a href="#vscode-自动编译" class="headerlink" title="vscode 自动编译"></a>vscode 自动编译</h3><ol>
+<li><p>直接使用 tsc –watch 对单个文件自动编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc --watch helloworld.ts</span></pre></td></tr></table></figure>
+</li>
+<li><p>使用 tsconfig.json 对多文件自动编译</p>
+<ul>
+<li>当前项目根目录下 tsc –init 生成配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc --init</span></pre></td></tr></table></figure>
+<img src="/images/2020/ts_01.png" style="width:480px;margin-left:0" /></li>
+<li>找到 vscode <strong>终端</strong> =&gt; <strong>运行任务</strong> =&gt; <strong>typescript</strong>  =&gt; <strong>tsc:监视-xxx/tsconfig.json</strong> <img src="/images/2020/ts_02.png" style="width:480px;margin-left:0" /></li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/01/typescript/typescript04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -773,109 +995,6 @@
 <h3 id="接口-interface-类型"><a href="#接口-interface-类型" class="headerlink" title="接口 interface 类型"></a>接口 interface 类型</h3><ul>
 <li>定义应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const per: Person &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiao qi&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/01/typescript/typescript07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/01/typescript/typescript07/" class="post-title-link" itemprop="url">Typescript环境搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:27:36" itemprop="dateModified" datetime="2023-10-20T12:27:36+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="安装编译"><a href="#安装编译" class="headerlink" title="安装编译"></a>安装编译</h3><ol>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g typescript</span></pre></td></tr></table></figure></li>
-<li>运行<blockquote>
-<p>将ts编译成js，并输出js文件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc helloworld.ts</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="ts-node"><a href="#ts-node" class="headerlink" title="ts-node"></a>ts-node</h3><ol>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install -g ts-node</span></pre></td></tr></table></figure></li>
-<li>运行<blockquote>
-<p>同node 运行js 一样，ts-node 同样可以将 ts 在终端中执行并输出</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ts-node helloworld.ts</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="vscode-自动编译"><a href="#vscode-自动编译" class="headerlink" title="vscode 自动编译"></a>vscode 自动编译</h3><ol>
-<li><p>直接使用 tsc –watch 对单个文件自动编辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc --watch helloworld.ts</span></pre></td></tr></table></figure>
-</li>
-<li><p>使用 tsconfig.json 对多文件自动编译</p>
-<ul>
-<li>当前项目根目录下 tsc –init 生成配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tsc --init</span></pre></td></tr></table></figure>
-<img src="/images/2020/ts_01.png" style="width:480px;margin-left:0" /></li>
-<li>找到 vscode <strong>终端</strong> =&gt; <strong>运行任务</strong> =&gt; <strong>typescript</strong>  =&gt; <strong>tsc:监视-xxx/tsconfig.json</strong> <img src="/images/2020/ts_02.png" style="width:480px;margin-left:0" /></li>
-</ul>
-</li>
-</ol>
 
       
     </div>
@@ -1220,132 +1339,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/05/vue/vue14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/05/vue/vue14/" class="post-title-link" itemprop="url">vue自定义指令directive</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-09-05T00:00:00+08:00">2020-09-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:23:13" itemprop="dateModified" datetime="2023-10-20T12:23:13+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><blockquote>
-<ol>
-<li>vue官方介绍：对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。</li>
-<li>所以我认为 directive 的绝大多数用于处理，静态的UI交互逻辑的封装。</li>
-</ol>
-</blockquote>
-<h3 id="注册使用"><a href="#注册使用" class="headerlink" title="注册使用"></a>注册使用</h3><blockquote>
-<p>与 filter component mixin 注册使用方式类似，directive 也是使用 install function 在这种方式注册</p>
-</blockquote>
-<ol>
-<li><p>局部注册</p>
-<ul>
-<li>书写指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  bind(el, binding, vnode) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 第一次绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  update(el, binding, vnode) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 当视图发生变化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
-<li>引入组件局部注册<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import test from &quot;.&#x2F;test.js&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  directives: &#123; test &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>全局注册</p>
-<ul>
-<li>书写指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  install: function (Vue) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    Vue.directive(&quot;demo&quot;, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      bind(el, binding, vnode) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 第一次绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      update(el, binding, vnode) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 当视图发生变化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
-<li>Vue.use 全局注册<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &quot;vue&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import demo from &quot;.&#x2F;demo&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Vue.use(demo);</span></pre></td></tr></table></figure></li>
-<li>main.js 导入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &quot;@&#x2F;directive&quot;;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="常用钩子函数介绍"><a href="#常用钩子函数介绍" class="headerlink" title="常用钩子函数介绍"></a>常用钩子函数介绍</h3><blockquote>
-<p>指令的钩子函数 一共5个 bind inserted update componentUpdated unbind 具体详细解释看官网，这里只介绍常用的两个，以及常用的钩子函数参数。</p>
-</blockquote>
-<h5 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h5><ol>
-<li><code>bind</code><ul>
-<li>只调用一次，指令第一次绑定到元素时调用</li>
-</ul>
-</li>
-</ol>
-<ol start="2">
-<li><code>update</code><ul>
-<li>官方：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。</li>
-<li>简单理解：当指令节点下的视图发生变化时，触发update。</li>
-</ul>
-</li>
-</ol>
-<h5 id="钩子函数参数"><a href="#钩子函数参数" class="headerlink" title="钩子函数参数"></a>钩子函数参数</h5><ol>
-<li><code>el</code> 指令所绑定的元素，可以用来直接操作 DOM。</li>
-</ol>
-<ol start="2">
-<li><code>binding</code> 一个对象，包含以下常用 property<ul>
-<li><code>value</code>: 指令传入的绑定值。</li>
-<li><code>oldValue</code>: 指令绑定的前一个值，仅在 update 和 componentUpdated 钩子中可用。</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1415,7 +1408,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-count">100</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
