@@ -184,6 +184,288 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/04/26/linux/01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/26/linux/01/" class="post-title-link" itemprop="url">Linux文件及目录操作相关</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-26 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-26T00:00:00+08:00">2024-04-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-28 16:41:22" itemprop="dateModified" datetime="2024-04-28T16:41:22+08:00">2024-04-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="目录文件操作"><a href="#目录文件操作" class="headerlink" title="目录文件操作"></a>目录文件操作</h3><p>1.查看当前路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pwd</span></pre></td></tr></table></figure>
+<p>2.查看当前目录下所有文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ls -a 列出目录所有文件，包含以.开始的隐藏文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">ls -l 除了文件名之外，还将文件的权限、所有者、文件大小等信息详细列出来</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">ls -t 以文件修改时间排序</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">ls -h 以易读大小显示</span></pre></td></tr></table></figure>
+<p>3.查找目录和文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">find [查找目录] -name&quot;[文件名]&quot; -print</span></pre></td></tr></table></figure>
+<p>4.正则匹配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">* 模糊匹配一个或多个字符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">? 匹配一个字符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 示例：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">find . -name &quot;*.h&quot; -print</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">grep &#39;99$&#39; file2.txt</span></pre></td></tr></table></figure>
+<p>5.切换目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd [相对路径|绝对路径]</span></pre></td></tr></table></figure>
+<p>6.创建目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir [相对路径|绝对路径]</span></pre></td></tr></table></figure>
+<p>7.创建文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">touch [文件名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">[任意可以屏幕输出内容的命令] &gt; [文件名] 文件不存在时创建，文件存在时内容覆盖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[任意可以屏幕输出内容的命令] &gt;&gt; [文件名] 文件不存在时创建，文件存在时内容追加</span></pre></td></tr></table></figure>
+<p>8.删除目录和文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rm 删除文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">rm -r 删除目录文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">rm -f 强制删除，不需要确认</span></pre></td></tr></table></figure>
+<p>9.复制目录和文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cp [旧文件路径] [新文件路径]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cp -r [旧目录或文件路径] [新目录或文件路径]</span></pre></td></tr></table></figure>
+<p>10.移动目录和文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mv [旧目录或文件路径] [新目录或文件路径] 第二个参数不存在移动该位置，存在移动到该目录下</span></pre></td></tr></table></figure>
+
+<h3 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h3><p>1.vim</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vi [文件名] 打开一个文件，如果文件不存在，就创建它。</span></pre></td></tr></table></figure>
+<p>vi 有两种模式，命令模式和编辑模式，在命令模式下，键盘输入是命令，在编辑模式下，键盘输入的才是字符。<br>vi的常用命令</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k</td>
+<td>类似方向键上。</td>
+</tr>
+<tr>
+<td>j</td>
+<td>类似方向键下。</td>
+</tr>
+<tr>
+<td>h</td>
+<td>类似方向键左。</td>
+</tr>
+<tr>
+<td>l</td>
+<td>类是方向键右。</td>
+</tr>
+<tr>
+<td>i</td>
+<td>在光标所在位置前面开始插入。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>在光标所在的位置后面开始插入。</td>
+</tr>
+<tr>
+<td>o</td>
+<td>在光标所在位置的下面插入空白行。</td>
+</tr>
+<tr>
+<td>O</td>
+<td>在光标所在位置的上面插入空白行。</td>
+</tr>
+<tr>
+<td>I</td>
+<td>在光标所在位置的行首开始插入。</td>
+</tr>
+<tr>
+<td>A</td>
+<td>在光标所在位置的行末开始插入。</td>
+</tr>
+<tr>
+<td>Ctrl+u</td>
+<td>上翻半页。</td>
+</tr>
+<tr>
+<td>Ctrl+d</td>
+<td>下翻半页。</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>从编辑模式切换到命令模式。</td>
+</tr>
+<tr>
+<td>:w回车</td>
+<td>存盘。</td>
+</tr>
+<tr>
+<td>:w!回车</td>
+<td>强制存盘。</td>
+</tr>
+<tr>
+<td>:wq回车</td>
+<td>存盘退出。</td>
+</tr>
+<tr>
+<td>:w 文件名</td>
+<td>把当前文件另存为……</td>
+</tr>
+<tr>
+<td>:x回车</td>
+<td>存盘退出。</td>
+</tr>
+<tr>
+<td>:q回车</td>
+<td>不存盘退出。</td>
+</tr>
+<tr>
+<td>:q!回车</td>
+<td>不存盘强制退出。</td>
+</tr>
+</tbody></table>
+<p>2.查看文件内容cat</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cat [文件名]</span></pre></td></tr></table></figure>
+<p style="margin-top: -8px;">一次显示文件全部的内容，适用于内容很少的文本文件。</p>
+3.查看文件的内容less
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">less [文件名]</span></pre></td></tr></table></figure>
+<p style="margin-top: -8px;">按space（空格键）继续显示；Ctrl+u上翻页；Ctrl+d下翻页；j下一行；k上一行；q退出。</p>
+4.查看文件的内容more
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">more [文件名]</span></pre></td></tr></table></figure>
+<p style="margin-top: -8px;">按space（空格键）显示下一页；按b显示上一页；q退出。</p>
+5.统计文件的行数wc
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wc [文件名可多个]</span></pre></td></tr></table></figure>
+6.查找文件中的内容grep
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">grep &quot;[搜索内容]&quot; [文件名可多个]</span></pre></td></tr></table></figure>
+7.显示文件头部的内容head
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">head -[行数] [文件名]</span></pre></td></tr></table></figure>
+8.显示文件尾部的内容tail
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tail -[行数] [文件名]</span></pre></td></tr></table></figure>
+9.跟踪文件尾部的内容tail -f
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tail -f [文件名] 文件变化打印变化内容</span></pre></td></tr></table></figure>
+10.管道
+管道就是将一个命令输出的内容重定向为另一个命令的输入。
+管道操作符是|，用它将命令连起来就行了。
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 示例</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">s -l|more</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">grep &quot;90&quot; file.txt|wc</span></pre></td></tr></table></figure>
+
+<h3 id="目录文件权限"><a href="#目录文件权限" class="headerlink" title="目录文件权限"></a>目录文件权限</h3><p>1.目录和文件的详细信息<br>ls -l 命令可以列出目录和文件权限、大小、用户和组等信息。<br><img src="/images/2024/linux_document_001.png" style="margin-left: 0px; width: 480px;"><br><img src="/images/2024/linux_document_002.png" style="margin-left: 0px; width: 480px;"></p>
+<p style="margin: -8px 0 0;">第1列权限的标志位。<br/>第1个字符为文件类型：d是目录；-是普通文件；l是链接；p是管道文件；b是块设备文件（硬盘）；c是字符设备文件（终端、打印机）；s是套接字文件；<br/>第2-10个字符为文件权限（r-读权限；w-写权限；x-可执行权限，-表示无权限）</p>
+第2列是文件硬链接数或目录的子目录数<br/>
+第3列是文件拥有者用户<br/>
+第4列是文件拥有者用户所在组<br/>
+第5列是目录或文件的大小<br/>
+第6、7、8列是目录或文件最后一次被修改的时间<br/>
+第9列是目录或文件名<br/><br/>
+
+<p>2.文件的权限<br>r：表示具有读取文件内容的权限。<br>w：表示具有修改文件内容的权限，同时需要有r权限。注意，如果要删除文件，需要有目录的w权限。<br>x：表示具有执行文件的权限，同时需要有r权限。注意，文件是否能真的执行，还要由文件本身决定。</p>
+<p>3.目录的权限<br>x：表示可以进入目录。<br>r：表示可以浏览目录中有哪些子目录和文件，同时需要有x权限。<br>w：表示可以在目录中新增、删除、移动子目录和文件，同时需要有x权限。</p>
+<p>4.设置权限（八进制语法）<br>权限也可以用八进制的数字表示：r的值为4，w的值为2，x的值为1。<br>7 rwx &nbsp;&nbsp; 6 rw- &nbsp;&nbsp; 5 r-x &nbsp;&nbsp; 4 r-- &nbsp;&nbsp; 3 -wx &nbsp;&nbsp; 2 -w-  &nbsp;&nbsp; 1 --x  &nbsp;&nbsp; 0 ---<br><img src="/images/2024/linux_document_003.png" style="margin-left: 0px; width: 480px;"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [三位的八进制权限] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [三位的八进制权限] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
+<p>5.设置权限（符号模式）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [who][operator][permission] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [who][operator][permission] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>who</th>
+<th>用户类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u</td>
+<td>user</td>
+<td>文件的所有者</td>
+</tr>
+<tr>
+<td>g</td>
+<td>group</td>
+<td>文件所有者的组</td>
+</tr>
+<tr>
+<td>o</td>
+<td>others</td>
+<td>其它用户</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+<td>全部用户，相当于ugo</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>operator</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>+</td>
+<td>增加权限</td>
+</tr>
+<tr>
+<td>-</td>
+<td>取消权限</td>
+</tr>
+<tr>
+<td>=</td>
+<td>重新设置权限</td>
+</tr>
+</tbody></table>
+<h3 id="目录文件相关"><a href="#目录文件相关" class="headerlink" title="目录文件相关"></a>目录文件相关</h3><p>1.相对路径和绝对路径<br><code>绝对路径</code>是从根（/）算起。<br><code>相对路径</code>是从当前目录算起，如果当前目录是/usr/include，stdio.h等同于/usr/include/stdio.h。</p>
+<p>2.链接<br>Linux链接分硬链接和软链接（符号链接）。<br>硬链接可以简单的理解为文件的别名，只能为文件创建硬链接，不能为目录创建硬链接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln [文件名] [链接名]</span></pre></td></tr></table></figure>
+<p>硬链接不能跨文件系统。<br>硬链接允许一个文件拥有多个有效文件名，如果为重要文件建立硬链接，可以防止“误删除”，只有当删除最后一个链接的时候，文件才会被真正的删除。<br>软链接类似Windows的快捷方式，可以为目录和文件创建软链接。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln -s [目录或文件名] [链接名]</span></pre></td></tr></table></figure>
+
+<p>3.压缩zip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">zip [压缩包文件名] [文件名列表] </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">zip -r [压缩包文件名] [目录和文件名列表] 递归处理，打包各级子目录和文件。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">zip -q [压缩包文件名] [目录和文件名列表] 不显示命令执行的过程。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">zip -d [压缩包文件名] [目录和文件名列表] 把文件增加&#x2F;替换到压缩包中。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">zip -u [压缩包文件名] [目录和文件名列表] 从压缩包中删除指定的文件。</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">unzip [压缩包文件名] 解压</span></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/03/06/technical/technical08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -209,7 +491,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-03-06 00:00:00 / 修改时间：17:23:52" itemprop="dateCreated datePublished" datetime="2024-03-06T00:00:00+08:00">2024-03-06</time>
+              <time title="创建时间：2024-03-06 00:00:00 / 修改时间：17:44:34" itemprop="dateCreated datePublished" datetime="2024-03-06T00:00:00+08:00">2024-03-06</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -307,6 +589,7 @@
 <p>4.通过pdfDoc.getPage单独获取第1页的数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const renderPdfCanvas &#x3D; async (pdfViewerDom, pdfDoc, container) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 清除原来的pdf画布</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  pdfViewerDom.innerHTML &#x3D; &#39;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 获取总页数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const totalPage &#x3D; pdfDoc.numPages</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  for (let i &#x3D; 1; i &lt;&#x3D; totalPage; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 循环处理pdf的每页</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    await renderPdfOnePage(pdfViewerDom, pdfDoc, i, container)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">const renderPdfOnePage &#x3D; async (pdfViewerDom, pdfDoc, pageNum, container) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建画布</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  const canvas &#x3D; document.createElement(&#39;canvas&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  pdfViewerDom.appendChild(canvas)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  const dpr &#x3D; window.devicePixelRatio || 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  const currentWidth &#x3D; container.clientWidth</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  await pdfDoc.getPage(pageNum).then(page &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    const ratio &#x3D; dpr &lt; 2 ? 2 : dpr</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    const pdfWidth &#x3D; page.getViewport(&#123; scale: 1 &#125;).width</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    const scale &#x3D; currentWidth &#x2F; pdfWidth</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 获取当前pdf页内容, 并设置缩放</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    const viewport &#x3D; page.getViewport(&#123; scale: scale &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    canvas.width &#x3D; viewport.width * ratio &#x2F;&#x2F; 实际渲染像素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    canvas.height &#x3D; viewport.height * ratio &#x2F;&#x2F; 实际渲染像素</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    canvas.style.width &#x3D; &#96;$&#123;viewport.width&#125;px&#96; &#x2F;&#x2F; 控制显示大小</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    canvas.style.height &#x3D; &#96;$&#123;viewport.height&#125;px&#96; &#x2F;&#x2F; 控制显示大小</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    canvas.getContext(&#39;2d&#39;).setTransform(ratio, 0, 0, ratio, 0, 0)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    const context &#x3D; canvas.getContext(&#39;2d&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 将pdf当前页内容画到2d画板中</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    page.render(&#123; canvasContext: context, viewport &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
+<p><a href="https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html" target="_blank" rel="noopener">https://mozilla.github.io/pdf.js/api/draft/module-pdfjsLib.html</a></p>
 <h3 id="大文件切片预览"><a href="#大文件切片预览" class="headerlink" title="大文件切片预览"></a>大文件切片预览</h3><p>服务端关键逻辑</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const http &#x3D; require(&quot;http&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const fs &#x3D; require(&quot;fs&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const server &#x3D; http.createServer((req, res) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const filePath &#x3D; req.url.split(&quot;&#x2F;&quot;)[1] || &quot;1.pdf&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  fs.stat(filePath, (err, stat) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    if (err) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      res.writeHead(500, &#123; &quot;Content-Type&quot;: &quot;text&#x2F;plain&quot; &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      res.end(&quot;Internal Server Error&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      return;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 设置 CORS 头，允许所有域的请求</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    res.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    res.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, POST, PUT, DELETE&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    res.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    res.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    const range &#x3D; req.headers.range;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    const fileSize &#x3D; stat.size;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    if (fileSize &lt; 1 * 1024 * 1024) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      const file &#x3D; fs.createReadStream(filePath, &#123; start: 0, end: fileSize &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      file.pipe(res);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">      return</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    if (range) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      const parts &#x3D; range.replace(&#x2F;bytes&#x3D;&#x2F;, &quot;&quot;).split(&quot;-&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      const start &#x3D; parseInt(parts[0], 10);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">      const end &#x3D; parts[1] ? parseInt(parts[1], 10) : fileSize - 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">      const chunkSize &#x3D; end - start + 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">      const file &#x3D; fs.createReadStream(filePath, &#123; start, end &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">      res.writeHead(206, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Range&quot;: &#96;bytes $&#123;start&#125;-$&#123;end&#125;&#x2F;$&#123;fileSize&#125;&#96;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        &quot;Access-Control-Expose-Headers&quot;: &quot;Accept-Ranges,Content-Range&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Disposition&quot;: &#96;attachment;filename&#x3D;&quot;yldd.pdf&quot;&#96;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        &quot;Accept-Ranges&quot;: &quot;bytes&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Length&quot;: chunkSize,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Type&quot;: &quot;application&#x2F;pdf&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">      file.pipe(res);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">      res.writeHead(200, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">        &quot;Accept-Ranges&quot;: &quot;bytes&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        &quot;Access-Control-Expose-Headers&quot;: &quot;Accept-Ranges,Content-Range&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Disposition&quot;: &#96;inline;filename&#x3D;&quot;yldd.pdf&quot;&#96;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Length&quot;: fileSize,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        &quot;Content-Type&quot;: &quot;application&#x2F;pdf&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">      const file &#x3D; fs.createReadStream(filePath, &#123; start: 0, end: 0 &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">      file.pipe(res);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">const port &#x3D; 30001;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">server.listen(port, () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">  console.log(&#96;Server running at http:&#x2F;&#x2F;localhos:$&#123;port&#125;&#x2F;&#96;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
 <p>关键请求头参数<br><code>Range</code></p>
@@ -1074,172 +1357,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/typescript/typescript08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/30/typescript/typescript08/" class="post-title-link" itemprop="url">Typescript 操作符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-30T00:00:00+08:00">2022-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:27:52" itemprop="dateModified" datetime="2023-10-20T12:27:52+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
-<li><p>extends接口继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B extends A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>相当于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<br>
-</li>
-<li><p>extends类型约束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T extends string | number&gt; &#x3D; T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a:A&lt;boolean&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-001.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>extends条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T&gt; &#x3D; T extends string ? true : false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a: A&lt;string&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<hr>
-
-</li>
-</ul>
-<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
-<li>typeof对静态的js变量推到为ts类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  info: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    male: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-002.png" style="width:480px;margin-left:0" />
-<hr>
-
-</li>
-</ul>
-<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
-<p>将对象类型的接口中所有的键取出，并返回一个联合声明类型。</p>
-</blockquote>
-<ul>
-<li><p>提取对象接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">type TestTypeKey &#x3D; keyof TestType</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-003.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>提取数组接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKey &#x3D; keyof ArrType</span></pre></td></tr></table></figure>
-<p>由于ts不能直接提示数组，这里借助一个工具类型展开显示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type Extend&lt;T&gt; &#x3D; T extends infer O ? O : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKeyExtend &#x3D; Extend&lt;ArrTypeKey&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ArrTypeKey &#x3D;&#x3D;&#x3D; ArrTypeKeyExtend</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-004.png" style="width:580px;margin-left:0" />
-可以看出是将数组对象上的属性展示。
-<br>
-如果是想单独取出数组的项呢?
-<img src="/images/2022/ty-operator-009.png" style="width:480px;margin-left:0" />
-可以通过number可以取出。
-<br>
-<br>
-</li>
-<li><p>提取枚举类型的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type TestEnumKey &#x3D; keyof TestEnum</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-005.png" style="width:580px;margin-left:0" />
-可以看出同样是枚举对象上的属性展示。
-<br>
-如果是想单独取出枚举的键呢?
-<img src="/images/2022/ts-operator-006.png" style="width:580px;margin-left:0" />
-可以看出通过keyof可以取出。
-<hr>
-
-</li>
-</ul>
-<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><blockquote>
-<p>对联合声明类型进行循环</p>
-</blockquote>
-<ul>
-<li><p>对象接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type AType &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof A]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-007.png" style="width:480px;margin-left:0" />
-通过keyof将对象类型的键转换为联合类型，然后通过in进行循环
-<br>
-<br>
-</li>
-<li><p>对数组接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [&#39;1&#39;, 2, &#39;hello&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [Key in ArrType[number]]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-008.png" style="width:480px;margin-left:0" />
-<br>
-<br>
-</li>
-<li><p>对枚举类型循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof typeof TestEnum]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-010.png" style="width:480px;margin-left:0" />
-<hr>
-
-
-</li>
-</ul>
-<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><blockquote>
-<p>infer用于extends后面，可以理解为一个变量</p>
-</blockquote>
-<ul>
-<li>对类型进行推导<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type First&lt;T&gt; &#x3D; T extends [infer F, ...infer _Rest] ? F : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; First&lt;ArrType&gt;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-011.png" style="width:480px;margin-left:0" />
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/configuration/configuration09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1438,7 +1555,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/08/16/webpack/webpack06/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/typescript/typescript08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1452,7 +1569,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/08/16/webpack/webpack06/" class="post-title-link" itemprop="url">splitChunks</a>
+            <a href="/2022/10/30/typescript/typescript08/" class="post-title-link" itemprop="url">Typescript 操作符</a>
         </h2>
 
         <div class="post-meta">
@@ -1462,14 +1579,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2022-08-16T00:00:00+08:00">2022-08-16</time>
+              <time title="创建时间：2022-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-30T00:00:00+08:00">2022-10-30</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:19:13" itemprop="dateModified" datetime="2023-10-20T12:19:13+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:27:52" itemprop="dateModified" datetime="2023-10-20T12:27:52+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1477,7 +1594,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
                 </span>
             </span>
 
@@ -1492,86 +1609,98 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>Webpack提供代码提取或分离的插件，基础配置请参照<a href="https://webpack.docschina.org/plugins/split-chunks-plugin/#optimizationsplitchunks" target="_blank" rel="noopener">splitChunks 官方文档</a>。<br>这里主要深入了解关键配置核心属性。</p>
-</blockquote>
-<h3 id="chunks"><a href="#chunks" class="headerlink" title="chunks"></a>chunks</h3><blockquote>
-<p>chunks代码被提取的方式，async initial all。</p>
-</blockquote>
-<ul>
-<li><p>chunks可选项<br>async：只提取异步加载的模块出来打包到一个文件中。<br>initial：提取同步加载和异步加载模块，多入口相同文件分别同步异步加载时会分别打包到不同的文件中。<br>all：不管异步加载还是同步加载的模块都提取出来，打包到一个文件中。</p>
+          <h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
+<li><p>extends接口继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B extends A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>相当于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<br>
 </li>
-<li><p>概念静态加载、动态加载、同步加载、异步加载<br>动态加载和静态加载指的是什么时候加载。动态加载是运行时加载，静态加载是编译(预编译)时加载。<br>动态加载：require() 、import()<br>静态加载：import</p>
-<p>同步加载和异步加载指的是加载的方式。同步加载会阻塞接下来的流程，异步加载不会。<br>同步加载：import、require()<br>异步加载：import()、 require([‘xxx’],() =&gt;{})</p>
+<li><p>extends类型约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T extends string | number&gt; &#x3D; T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a:A&lt;boolean&gt; &#x3D; true</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-001.png" style="width:480px;margin-left:0" />
+<br>
 </li>
-</ul>
-<h5 id="单入口构建"><a href="#单入口构建" class="headerlink" title="单入口构建"></a>单入口构建</h5><ul>
-<li><p>构建文件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> date = moment().format(<span class="string">'YYYY-MM-DD'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'date'</span>, date)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="string">'lodash'</span>).then(<span class="function">(<span class="params">lodash</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> res = lodash.default.add(<span class="number">3</span>, <span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></li>
-<li><p>async<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-01.png">
-(index+moment).js <br>
-(lodash).js
-</li>
-<li><p>initial<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-02.png">
-(moment).js <br>
-(lodash).js <br>
-(index).js
-</li>
-<li><p>all<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-03.png">
-(moment).js <br>
-(lodash).js <br>
-(index).js
-
-</li>
-</ul>
-<p>单入口情况下 initial 与 all 几乎没有区别。</p>
+<li><p>extends条件判断</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T&gt; &#x3D; T extends string ? true : false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a: A&lt;string&gt; &#x3D; true</span></pre></td></tr></table></figure>
 <hr>
 
-<h5 id="多入口构建"><a href="#多入口构建" class="headerlink" title="多入口构建"></a>多入口构建</h5><ul>
-<li><p>构建文件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// index.js</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> date = moment().format(<span class="string">'YYYY-MM-DD'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'date'</span>, date)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>(<span class="string">'lodash'</span>).then(<span class="function">(<span class="params">lodash</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> res = lodash.default.add(<span class="number">3</span>, <span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// other.js</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">'moment'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lodash <span class="keyword">from</span> <span class="string">'lodash'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> date = moment().format(<span class="string">'YYYY-MM-DD'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'date'</span>, date)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> res = lodash.add(<span class="number">3</span>, <span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(res)</span></pre></td></tr></table></figure></li>
-<li><p>async<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-04.png">
-(other+moment+lodash).js <br>
-(index+moment).js <br>
-(lodash).js
 </li>
-<li><p>initial<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-05.png">
-(moment).js <br>
-(lodash).js <br>
-(lodash).js <br>
-(index).js <br>
-(other).js
-</li>
-<li><p>all<br>输出</p>
-<img style="margin-left:0;height:200px" src="/images/2022/split-chunks-06.png">
-(moment).js <br>
-(lodash).js <br>
-(index).js <br>
-(other).js
+</ul>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
+<li>typeof对静态的js变量推到为ts类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  info: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    male: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-002.png" style="width:480px;margin-left:0" />
+<hr>
 
 </li>
 </ul>
-<h3 id="分包规则属性"><a href="#分包规则属性" class="headerlink" title="分包规则属性"></a>分包规则属性</h3><ul>
-<li>minSize<br>生成 chunk 的最小体积（以 bytes 为单位）。默认20000，超过才会被提取。</li>
-<li>maxSize<br>生成 chunk 的体积大小不能超过maxSize值，如果超过了，要对其进行分割并打包生成新的文件。单位为字节，默认为0，表示不限制大小。</li>
-<li>minChunks<br>提取的模块最小被引用次数，引用次数超过或等于minChunks值，才能被提取。</li>
-<li>maxInitialRequests<br>打包后的入口文件加载时，还能同时加载js文件的数量（包括入口文件）。</li>
-<li>maxAsyncRequests<br>按需加载时的最大并行请求数。</li>
-<li>enforceSizeThreshold<br>强制执行拆分的体积阈值和其他限制（minRemainingSize，maxAsyncRequests，maxInitialRequests）将被忽略。</li>
-<li>提示<br>优先级 maxInitialRequest/maxAsyncRequests &lt; maxSize &lt; minSize</li>
+<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
+<p>将对象类型的接口中所有的键取出，并返回一个联合声明类型。</p>
+</blockquote>
+<ul>
+<li><p>提取对象接口的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">type TestTypeKey &#x3D; keyof TestType</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-003.png" style="width:480px;margin-left:0" />
+<br>
+</li>
+<li><p>提取数组接口的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKey &#x3D; keyof ArrType</span></pre></td></tr></table></figure>
+<p>由于ts不能直接提示数组，这里借助一个工具类型展开显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type Extend&lt;T&gt; &#x3D; T extends infer O ? O : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKeyExtend &#x3D; Extend&lt;ArrTypeKey&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ArrTypeKey &#x3D;&#x3D;&#x3D; ArrTypeKeyExtend</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-004.png" style="width:580px;margin-left:0" />
+可以看出是将数组对象上的属性展示。
+<br>
+如果是想单独取出数组的项呢?
+<img src="/images/2022/ty-operator-009.png" style="width:480px;margin-left:0" />
+可以通过number可以取出。
+<br>
+<br>
+</li>
+<li><p>提取枚举类型的键</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type TestEnumKey &#x3D; keyof TestEnum</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-005.png" style="width:580px;margin-left:0" />
+可以看出同样是枚举对象上的属性展示。
+<br>
+如果是想单独取出枚举的键呢?
+<img src="/images/2022/ts-operator-006.png" style="width:580px;margin-left:0" />
+可以看出通过keyof可以取出。
+<hr>
+
+</li>
 </ul>
-<h3 id="cacheGroups"><a href="#cacheGroups" class="headerlink" title="cacheGroups"></a>cacheGroups</h3><ul>
-<li>继承<br>cacheGroups可以继承和/或覆盖来自 splitChunks.* 的任何选项。但是 test、priority 和 reuseExistingChunk 只能在缓存组级别上进行配置。</li>
-<li>test<br>用来匹配要提取的模块的资源路径或名称。值是正则或函数。</li>
-<li>priority<br>优先级，值越大表示提取模块时优先采用此方案。默认值为0。</li>
-<li>reuseExistingChunk<br>为true时，如果当前要提取的模块，在已经在打包生成的js文件中存在，则将复用该模块，而不是把当前要提取的模块打包生成新的js文件。</li>
-<li>enforce<br>为true时，忽略minSize，minChunks，maxAsyncRequests和maxInitialRequests外面配置选项。</li>
+<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><blockquote>
+<p>对联合声明类型进行循环</p>
+</blockquote>
+<ul>
+<li><p>对象接口循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type AType &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof A]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-007.png" style="width:480px;margin-left:0" />
+通过keyof将对象类型的键转换为联合类型，然后通过in进行循环
+<br>
+<br>
+</li>
+<li><p>对数组接口循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [&#39;1&#39;, 2, &#39;hello&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [Key in ArrType[number]]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-008.png" style="width:480px;margin-left:0" />
+<br>
+<br>
+</li>
+<li><p>对枚举类型循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof typeof TestEnum]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-010.png" style="width:480px;margin-left:0" />
+<hr>
+
+
+</li>
+</ul>
+<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><blockquote>
+<p>infer用于extends后面，可以理解为一个变量</p>
+</blockquote>
+<ul>
+<li>对类型进行推导<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type First&lt;T&gt; &#x3D; T extends [infer F, ...infer _Rest] ? F : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; First&lt;ArrType&gt;</span></pre></td></tr></table></figure>
+<img src="/images/2022/ts-operator-011.png" style="width:480px;margin-left:0" />
+
+</li>
 </ul>
 
       

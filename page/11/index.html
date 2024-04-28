@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/javascript/javascript04/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/javascript/javascript04/" class="post-title-link" itemprop="url">export与exports</a>
+            <a href="/2020/06/19/vue/vue06/" class="post-title-link" itemprop="url">Vue 父子组件通讯</a>
         </h2>
 
         <div class="post-meta">
@@ -215,7 +215,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:10:27" itemprop="dateModified" datetime="2023-10-20T14:10:27+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:21:28" itemprop="dateModified" datetime="2023-10-20T12:21:28+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,7 +223,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
                 </span>
             </span>
 
@@ -238,21 +238,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><blockquote>
-<p><strong>动态引入 代码执行时引入</strong></p>
-</blockquote>
-<h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
-<p>var {key1,key2,key3} = require(‘路径’)</p>
-<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
-<p>var obj = require(‘路径’)</p>
-<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><blockquote>
-<p><strong>静态引入，代码编译时引入</strong></p>
-</blockquote>
-<h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
-<p>import {key,fn,Fn} from “路径”</p>
-<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
-<p>import obj from “路径”</p>
-<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
+          <h3 id="子组件向父组件传递消息"><a href="#子组件向父组件传递消息" class="headerlink" title="子组件向父组件传递消息"></a>子组件向父组件传递消息</h3><ol>
+<li><p>使用 ref 的方式<br>(1) 父组件下 子组件标签 上标识 ref=”” 标识<br>(2) 父组件 通过 this.$refs.标识 === 子组件Vue实例</p>
+</li>
+<li><p>父组件通过 $children 的方式获取子组件消息<br>(1) 父组件 通过 this.$children === [子组件Vue实例 ,…] 子组件Vue实例的数组</p>
+</li>
+<li><p>子组件使用 $emit 的方法 发布订阅向父组件 传递消息<br>(1) 子组件 发布 this.$emit(“订阅事件” , “要传递给父元素的数据”)<br>(2) 父组件下 子组件标签 上添加监听事件 @订阅事件 = callback<br>(3) 要接受的参数 在callback 中实现传递</p>
+</li>
+</ol>
+<h3 id="父组件向子组件传递消息"><a href="#父组件向子组件传递消息" class="headerlink" title="父组件向子组件传递消息"></a>父组件向子组件传递消息</h3><ol>
+<li>使用 props 方式<br>(1) 父组件下 子组件标签 通过数据属性向子组件传递数据 :数据名=”数据”<br>(2) 子组件 同过 props:[“数据名”] 的方式接受数据</li>
+<li>使用 $parent 的方式获取父元素上的信息<br>(1) 子组件 通过 this.$parent == 父组件Vue实例 (父组件唯一所以不是数组)</li>
+</ol>
+<h3 id="兄弟组件之间传递消息-非父子组件"><a href="#兄弟组件之间传递消息-非父子组件" class="headerlink" title="兄弟组件之间传递消息(非父子组件)"></a>兄弟组件之间传递消息(非父子组件)</h3><ol>
+<li>只有通过 Vue实例 实现通讯的一种方式<br>(1) 创建一个 Vue实例 专门用于实现兄弟元素之间的通讯 var bus = new Vue()<br>(2) 发送消息的兄弟 在 methods 中 使用 bus.$emit(“名称” , 数据)<br>(3) 接受消息的兄弟 在 mounted (生命周期回调函数) 使用 bus.$on(“名称”,callback) 回调函数中接受消息</li>
+</ol>
 
       
     </div>
