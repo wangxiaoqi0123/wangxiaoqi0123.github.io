@@ -184,6 +184,140 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/05/11/linux/02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/05/11/linux/02/" class="post-title-link" itemprop="url">Linux用户及权限管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-05-11 00:00:00 / 修改时间：14:57:31" itemprop="dateCreated datePublished" datetime="2024-05-11T00:00:00+08:00">2024-05-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p>1、组管理<br>Linux的用户属于组（角色），系统可以对一个组中的全部用户进行集中管理（权限）。<br>创建组：groupadd 组名<br>删除组：groupdel 组名<br>组的信息保存在文件<code>/etc/group</code>中。</p>
+<p>2、用户管理<br>创建用户：useradd -n 用户名 -g 组名 -d 用户的主目录<br>删除用户：userdel 用户名<br>用户的信息保存在文件<code>/etc/passwd</code>中。</p>
+<p>3、修改用户的密码<br>创建用户后，必须设置它的密码，否则无法登录。<br>root用户可以修改任何用户的密码：passwd 用户名<br>普通用户只能修改自己的密码：passwd<br>用户的密码保存在 文件<code>/etc/shadow</code>中。</p>
+<p>4、切换用户<br>root用户可以免密码切换到任何用户：su - 用户名<br>普通用户切换到其它用户：su - 或su - 用户名，然后输入目标用户的密码。</p>
+<p>5、修改目录和文件的拥有者<br>用root用户执行：<br>chown -R 用户:组 目录和文件列表<br>-R选项表示连同各子目录一起修改。</p>
+<h3 id="目录文件权限"><a href="#目录文件权限" class="headerlink" title="目录文件权限"></a>目录文件权限</h3><p>1.目录和文件的详细信息<br>ls -l 命令可以列出目录和文件权限、大小、用户和组等信息。<br><img src="/images/2024/linux_document_001.png" style="margin-left: 0px; width: 480px;"><br><img src="/images/2024/linux_document_002.png" style="margin-left: 0px; width: 280px;"></p>
+<p style="margin: -8px 0 0;">第1列权限的标志位。<br/>第1个字符为文件类型：d是目录；-是普通文件；l是链接；p是管道文件；b是块设备文件（硬盘）；c是字符设备文件（终端、打印机）；s是套接字文件；<br/>第2-10个字符为文件权限（r-读权限；w-写权限；x-可执行权限，-表示无权限）</p>
+第2列是文件硬链接数或目录的子目录数<br/>
+第3列是文件拥有者用户<br/>
+第4列是文件拥有者用户所在组<br/>
+第5列是目录或文件的大小<br/>
+第6、7、8列是目录或文件最后一次被修改的时间<br/>
+第9列是目录或文件名<br/><br/>
+
+<p>2.文件的权限<br>r：表示具有读取文件内容的权限。<br>w：表示具有修改文件内容的权限，同时需要有r权限。注意，如果要删除文件，需要有目录的w权限。<br>x：表示具有执行文件的权限，同时需要有r权限。注意，文件是否能真的执行，还要由文件本身决定。</p>
+<p>3.目录的权限<br>x：表示可以进入目录。<br>r：表示可以浏览目录中有哪些子目录和文件，同时需要有x权限。<br>w：表示可以在目录中新增、删除、移动子目录和文件，同时需要有x权限。</p>
+<p>4.设置权限（八进制语法）<br>权限也可以用八进制的数字表示：r的值为4，w的值为2，x的值为1。<br>7 rwx &nbsp;&nbsp; 6 rw- &nbsp;&nbsp; 5 r-x &nbsp;&nbsp; 4 r-- &nbsp;&nbsp; 3 -wx &nbsp;&nbsp; 2 -w-  &nbsp;&nbsp; 1 --x  &nbsp;&nbsp; 0 ---<br><img src="/images/2024/linux_document_003.png" style="margin-left: 0px; width: 280px;"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [三位的八进制权限] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [三位的八进制权限] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
+<p>5.设置权限（符号模式）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [who][operator][permission] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [who][operator][permission] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>who</th>
+<th>用户类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>u</td>
+<td>user</td>
+<td>文件的所有者</td>
+</tr>
+<tr>
+<td>g</td>
+<td>group</td>
+<td>文件所有者的组</td>
+</tr>
+<tr>
+<td>o</td>
+<td>others</td>
+<td>其它用户</td>
+</tr>
+<tr>
+<td>a</td>
+<td>all</td>
+<td>全部用户，相当于ugo</td>
+</tr>
+</tbody></table>
+<table border="1">
+  <tr>
+    <th width='123px'>operator</th>
+    <th >说明</th>
+  </tr>
+  <tr>
+    <td>+</td>
+    <td>增加权限</td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <td>取消权限</td>
+  </tr>
+  <tr>
+    <td>=</td>
+    <td>重新设置权限</td>
+  </tr>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/04/26/linux/01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,7 +349,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-10 15:46:14" itemprop="dateModified" datetime="2024-05-10T15:46:14+08:00">2024-05-10</time>
+                <time title="修改时间：2024-05-11 14:57:29" itemprop="dateModified" datetime="2024-05-11T14:57:29+08:00">2024-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -374,70 +508,6 @@
 管道操作符是|，用它将命令连起来就行了。
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 示例</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ls -l|more</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">grep &quot;90&quot; file.txt|wc</span></pre></td></tr></table></figure>
 
-<h3 id="目录文件权限"><a href="#目录文件权限" class="headerlink" title="目录文件权限"></a>目录文件权限</h3><p>1.目录和文件的详细信息<br>ls -l 命令可以列出目录和文件权限、大小、用户和组等信息。<br><img src="/images/2024/linux_document_001.png" style="margin-left: 0px; width: 480px;"><br><img src="/images/2024/linux_document_002.png" style="margin-left: 0px; width: 480px;"></p>
-<p style="margin: -8px 0 0;">第1列权限的标志位。<br/>第1个字符为文件类型：d是目录；-是普通文件；l是链接；p是管道文件；b是块设备文件（硬盘）；c是字符设备文件（终端、打印机）；s是套接字文件；<br/>第2-10个字符为文件权限（r-读权限；w-写权限；x-可执行权限，-表示无权限）</p>
-第2列是文件硬链接数或目录的子目录数<br/>
-第3列是文件拥有者用户<br/>
-第4列是文件拥有者用户所在组<br/>
-第5列是目录或文件的大小<br/>
-第6、7、8列是目录或文件最后一次被修改的时间<br/>
-第9列是目录或文件名<br/><br/>
-
-<p>2.文件的权限<br>r：表示具有读取文件内容的权限。<br>w：表示具有修改文件内容的权限，同时需要有r权限。注意，如果要删除文件，需要有目录的w权限。<br>x：表示具有执行文件的权限，同时需要有r权限。注意，文件是否能真的执行，还要由文件本身决定。</p>
-<p>3.目录的权限<br>x：表示可以进入目录。<br>r：表示可以浏览目录中有哪些子目录和文件，同时需要有x权限。<br>w：表示可以在目录中新增、删除、移动子目录和文件，同时需要有x权限。</p>
-<p>4.设置权限（八进制语法）<br>权限也可以用八进制的数字表示：r的值为4，w的值为2，x的值为1。<br>7 rwx &nbsp;&nbsp; 6 rw- &nbsp;&nbsp; 5 r-x &nbsp;&nbsp; 4 r-- &nbsp;&nbsp; 3 -wx &nbsp;&nbsp; 2 -w-  &nbsp;&nbsp; 1 --x  &nbsp;&nbsp; 0 ---<br><img src="/images/2024/linux_document_003.png" style="margin-left: 0px; width: 480px;"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [三位的八进制权限] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [三位的八进制权限] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
-<p>5.设置权限（符号模式）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [who][operator][permission] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [who][operator][permission] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>who</th>
-<th>用户类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>u</td>
-<td>user</td>
-<td>文件的所有者</td>
-</tr>
-<tr>
-<td>g</td>
-<td>group</td>
-<td>文件所有者的组</td>
-</tr>
-<tr>
-<td>o</td>
-<td>others</td>
-<td>其它用户</td>
-</tr>
-<tr>
-<td>a</td>
-<td>all</td>
-<td>全部用户，相当于ugo</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>operator</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>+</td>
-<td>增加权限</td>
-</tr>
-<tr>
-<td>-</td>
-<td>取消权限</td>
-</tr>
-<tr>
-<td>=</td>
-<td>重新设置权限</td>
-</tr>
-</tbody></table>
 <h3 id="目录文件相关"><a href="#目录文件相关" class="headerlink" title="目录文件相关"></a>目录文件相关</h3><p>1.相对路径和绝对路径<br><code>绝对路径</code>是从根（/）算起。<br><code>相对路径</code>是从当前目录算起，如果当前目录是/usr/include，stdio.h等同于/usr/include/stdio.h。</p>
 <p>2.链接<br>Linux链接分硬链接和软链接（符号链接）。<br>硬链接可以简单的理解为文件的别名，只能为文件创建硬链接，不能为目录创建硬链接。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ln [文件名] [链接名]</span></pre></td></tr></table></figure>
@@ -798,6 +868,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/23/configuration/configuration11/" class="post-title-link" itemprop="url">husky+lint-staged+commitlint git提交配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-23T00:00:00+08:00">2023-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-21 10:29:52" itemprop="dateModified" datetime="2023-10-21T10:29:52+08:00">2023-10-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>使用 husky、lint-staged 对 git commit时进行代码修复检查<br>使用 commitlint 对 git commit message 进行规范</p>
+</blockquote>
+<h3 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h3><blockquote>
+<p>husky 使用git提交代码的过程中会触发的钩子</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm add husky -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>在package.json中的script中添加一条脚本命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>执行 pnpm prepare 命令，根目录下生成 .husky目录</p>
+</li>
+<li><p>husky命令添加pre-commit</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm husky add .husky&#x2F;pre-commit &quot;pnpm lint&quot;</span></pre></td></tr></table></figure>
+<p>执行命令后会在.husky目录下生成一个pre-commit文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">. &quot;$(dirname -- &quot;$0&quot;)&#x2F;_&#x2F;husky.sh&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pnpm lint</span></pre></td></tr></table></figure>
+</li>
+<li><p>git commit<br>执行git commit时，就会 执行 pnpm lint。通过配置pnpm lint 命令对代码修复 和错误检查。</p>
+</li>
+</ol>
+<h3 id="lint-staged"><a href="#lint-staged" class="headerlink" title="lint-staged"></a>lint-staged</h3><blockquote>
+<p>当我们执行 pnpm lint:eslint、pnpm lint:prettier、pnpm lint:style 这些命令时，会把项目中的文件都检查一遍。<br>lint-staged 用于校验我们修改过的文件，而不是全部文件。</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i lint-staged -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>在packages.json的scripts中添加命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint-staged&quot;: &quot;lint-staged&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+</li>
+<li><p>修改.husky/pre-commit下的npm命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm run lint-staged</span></pre></td></tr></table></figure>
+</li>
+<li><p>项目根目录下创建.lintstagedrc配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;js,jsx,ts,tsx&#125;&quot;: [&quot;prettier --write&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;&#123;!(package)*.json,.!(browserslist)*rc&#125;&quot;: [&quot;prettier --write--parser json&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;package.json&quot;: [&quot;prettier --write&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;*.vue&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;vue,css,scss,postcss,less&#125;&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &quot;*.md&quot;: [&quot;prettier --write&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>提交commit时，pre-commit钩子执行npm run lint-staged命令，lint-staged找到.lintstagedrc配置文件，对git暂存区的文件，根据文件类型，执行相应的命令。</p>
+</li>
+</ol>
+<h3 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h3><blockquote>
+<p>使用 commitlint 对 git commit message 进行规范</p>
+</blockquote>
+<ol>
+<li><p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i @commitlint&#x2F;cli @commitlint&#x2F;config-conventional -D</span></pre></td></tr></table></figure>
+</li>
+<li><p>husky命令添加commit-msg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx husky add .husky&#x2F;commit-msg &quot;npx commitlint -e&quot;</span></pre></td></tr></table></figure>
+</li>
+<li><p>根目录下创建 commitlint.config.js 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ignores: [(commit) &#x3D;&gt; commit.includes(&#39;init&#39;)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  extends: [&#39;@commitlint&#x2F;config-conventional&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  rules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#39;body-leading-blank&#39;: [2, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#39;footer-leading-blank&#39;: [1, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#39;header-max-length&#39;: [2, &#39;always&#39;, 108],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#39;subject-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#39;type-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#39;type-enum&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#39;feat&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#39;fix&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#39;perf&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &#39;style&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#39;docs&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#39;test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#39;refactor&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        &#39;build&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &#39;ci&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#39;chore&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        &#39;revert&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        &#39;wip&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        &#39;workflow&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#39;types&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        &#39;release&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -943,132 +1139,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint:style&quot;: &quot;stylelint \&quot;.&#x2F;**&#x2F;*.&#123;css,less,vue,html&#125;\&quot; --fix --aei&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p><a href="https://stylelint.bootcss.com/user-guide/usage/cli.html" target="_blank" rel="noopener">命令行文档</a></p>
 </li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration11/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/23/configuration/configuration11/" class="post-title-link" itemprop="url">husky+lint-staged+commitlint git提交配置</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-23T00:00:00+08:00">2023-03-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-21 10:29:52" itemprop="dateModified" datetime="2023-10-21T10:29:52+08:00">2023-10-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>使用 husky、lint-staged 对 git commit时进行代码修复检查<br>使用 commitlint 对 git commit message 进行规范</p>
-</blockquote>
-<h3 id="husky"><a href="#husky" class="headerlink" title="husky"></a>husky</h3><blockquote>
-<p>husky 使用git提交代码的过程中会触发的钩子</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm add husky -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>在package.json中的script中添加一条脚本命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;prepare&quot;: &quot;husky install&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>执行 pnpm prepare 命令，根目录下生成 .husky目录</p>
-</li>
-<li><p>husky命令添加pre-commit</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm husky add .husky&#x2F;pre-commit &quot;pnpm lint&quot;</span></pre></td></tr></table></figure>
-<p>执行命令后会在.husky目录下生成一个pre-commit文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">. &quot;$(dirname -- &quot;$0&quot;)&#x2F;_&#x2F;husky.sh&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pnpm lint</span></pre></td></tr></table></figure>
-</li>
-<li><p>git commit<br>执行git commit时，就会 执行 pnpm lint。通过配置pnpm lint 命令对代码修复 和错误检查。</p>
-</li>
-</ol>
-<h3 id="lint-staged"><a href="#lint-staged" class="headerlink" title="lint-staged"></a>lint-staged</h3><blockquote>
-<p>当我们执行 pnpm lint:eslint、pnpm lint:prettier、pnpm lint:style 这些命令时，会把项目中的文件都检查一遍。<br>lint-staged 用于校验我们修改过的文件，而不是全部文件。</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i lint-staged -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>在packages.json的scripts中添加命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint-staged&quot;: &quot;lint-staged&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-</li>
-<li><p>修改.husky/pre-commit下的npm命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm run lint-staged</span></pre></td></tr></table></figure>
-</li>
-<li><p>项目根目录下创建.lintstagedrc配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;js,jsx,ts,tsx&#125;&quot;: [&quot;prettier --write&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;&#123;!(package)*.json,.!(browserslist)*rc&#125;&quot;: [&quot;prettier --write--parser json&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;package.json&quot;: [&quot;prettier --write&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;*.vue&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;, &quot;eslint --fix&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;*.&#123;vue,css,scss,postcss,less&#125;&quot;: [&quot;prettier --write&quot;, &quot;stylelint --fix --aei&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &quot;*.md&quot;: [&quot;prettier --write&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>提交commit时，pre-commit钩子执行npm run lint-staged命令，lint-staged找到.lintstagedrc配置文件，对git暂存区的文件，根据文件类型，执行相应的命令。</p>
-</li>
-</ol>
-<h3 id="commitlint"><a href="#commitlint" class="headerlink" title="commitlint"></a>commitlint</h3><blockquote>
-<p>使用 commitlint 对 git commit message 进行规范</p>
-</blockquote>
-<ol>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i @commitlint&#x2F;cli @commitlint&#x2F;config-conventional -D</span></pre></td></tr></table></figure>
-</li>
-<li><p>husky命令添加commit-msg</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx husky add .husky&#x2F;commit-msg &quot;npx commitlint -e&quot;</span></pre></td></tr></table></figure>
-</li>
-<li><p>根目录下创建 commitlint.config.js 文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ignores: [(commit) &#x3D;&gt; commit.includes(&#39;init&#39;)],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  extends: [&#39;@commitlint&#x2F;config-conventional&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  rules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#39;body-leading-blank&#39;: [2, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#39;footer-leading-blank&#39;: [1, &#39;always&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#39;header-max-length&#39;: [2, &#39;always&#39;, 108],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#39;subject-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#39;type-empty&#39;: [2, &#39;never&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#39;type-enum&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#39;feat&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#39;fix&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#39;perf&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &#39;style&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#39;docs&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#39;test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#39;refactor&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        &#39;build&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &#39;ci&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#39;chore&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        &#39;revert&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        &#39;wip&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        &#39;workflow&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#39;types&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        &#39;release&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
 </ol>
 
       
@@ -1359,172 +1429,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/typescript/typescript08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/30/typescript/typescript08/" class="post-title-link" itemprop="url">Typescript 操作符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-30 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-30T00:00:00+08:00">2022-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:27:52" itemprop="dateModified" datetime="2023-10-20T12:27:52+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
-<li><p>extends接口继承</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B extends A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>相当于</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<br>
-</li>
-<li><p>extends类型约束</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T extends string | number&gt; &#x3D; T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a:A&lt;boolean&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-001.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>extends条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type A&lt;T&gt; &#x3D; T extends string ? true : false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const a: A&lt;string&gt; &#x3D; true</span></pre></td></tr></table></figure>
-<hr>
-
-</li>
-</ul>
-<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><ul>
-<li>typeof对静态的js变量推到为ts类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  info: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    male: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-002.png" style="width:480px;margin-left:0" />
-<hr>
-
-</li>
-</ul>
-<h3 id="keyof"><a href="#keyof" class="headerlink" title="keyof"></a>keyof</h3><blockquote>
-<p>将对象类型的接口中所有的键取出，并返回一个联合声明类型。</p>
-</blockquote>
-<ul>
-<li><p>提取对象接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const test &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiou&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hobby: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    run: () &#x3D;&gt; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">type TestType &#x3D; typeof test</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">type TestTypeKey &#x3D; keyof TestType</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-003.png" style="width:480px;margin-left:0" />
-<br>
-</li>
-<li><p>提取数组接口的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKey &#x3D; keyof ArrType</span></pre></td></tr></table></figure>
-<p>由于ts不能直接提示数组，这里借助一个工具类型展开显示</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type Extend&lt;T&gt; &#x3D; T extends infer O ? O : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type ArrTypeKeyExtend &#x3D; Extend&lt;ArrTypeKey&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ArrTypeKey &#x3D;&#x3D;&#x3D; ArrTypeKeyExtend</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-004.png" style="width:580px;margin-left:0" />
-可以看出是将数组对象上的属性展示。
-<br>
-如果是想单独取出数组的项呢?
-<img src="/images/2022/ty-operator-009.png" style="width:480px;margin-left:0" />
-可以通过number可以取出。
-<br>
-<br>
-</li>
-<li><p>提取枚举类型的键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type TestEnumKey &#x3D; keyof TestEnum</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-005.png" style="width:580px;margin-left:0" />
-可以看出同样是枚举对象上的属性展示。
-<br>
-如果是想单独取出枚举的键呢?
-<img src="/images/2022/ts-operator-006.png" style="width:580px;margin-left:0" />
-可以看出通过keyof可以取出。
-<hr>
-
-</li>
-</ul>
-<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><blockquote>
-<p>对联合声明类型进行循环</p>
-</blockquote>
-<ul>
-<li><p>对象接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type AType &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof A]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-007.png" style="width:480px;margin-left:0" />
-通过keyof将对象类型的键转换为联合类型，然后通过in进行循环
-<br>
-<br>
-</li>
-<li><p>对数组接口循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [&#39;1&#39;, 2, &#39;hello&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [Key in ArrType[number]]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-008.png" style="width:480px;margin-left:0" />
-<br>
-<br>
-</li>
-<li><p>对枚举类型循环</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum TestEnum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  A &#x3D; 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  B &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [Key in keyof typeof TestEnum]: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-010.png" style="width:480px;margin-left:0" />
-<hr>
-
-
-</li>
-</ul>
-<h3 id="infer"><a href="#infer" class="headerlink" title="infer"></a>infer</h3><blockquote>
-<p>infer用于extends后面，可以理解为一个变量</p>
-</blockquote>
-<ul>
-<li>对类型进行推导<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">type ArrType &#x3D; [number, string, boolean]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">type First&lt;T&gt; &#x3D; T extends [infer F, ...infer _Rest] ? F : never</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">type A &#x3D; First&lt;ArrType&gt;</span></pre></td></tr></table></figure>
-<img src="/images/2022/ts-operator-011.png" style="width:480px;margin-left:0" />
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/10/30/configuration/configuration09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1788,7 +1692,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
