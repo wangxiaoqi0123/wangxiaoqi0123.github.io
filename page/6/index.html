@@ -184,6 +184,231 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/24/server/server01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/24/server/server01/" class="post-title-link" itemprop="url">Cookie</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-24T00:00:00+08:00">2021-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:28:37" itemprop="dateModified" datetime="2023-10-20T12:28:37+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="cookie-特点"><a href="#cookie-特点" class="headerlink" title="cookie 特点"></a>cookie 特点</h3><ol>
+<li>cookie 是存储在浏览器中的一段字符串，无数据结构的，但是统一约定为<code>key=value; key=value</code>（分号后紧接着空格）的一串字符串，大小一般不超过4k。</li>
+<li>发起http请求，会<strong>自动携带</strong>http请求所在域名的cookie。</li>
+</ol>
+<h3 id="cookie-重要属性"><a href="#cookie-重要属性" class="headerlink" title="cookie 重要属性"></a>cookie 重要属性</h3><ul>
+<li>属性说明<table border="1">
+<tr>
+  <th width='180px'>属性</th>
+  <th>说明</th>
+</tr>
+<tr>
+  <td>domain</td>
+  <td>指定cookie所属的域名，默认是当前域名</td>
+</tr>
+<tr>
+  <td>path</td>
+  <td>指定cookie在哪个路径（路由下生效）</td>
+</tr>
+<tr>
+  <td>maxAge</td>
+  <td>cookie失效日期，单位秒。如果为整数，则该cookie在maxAge秒后失效。如果为负数，该cookie为临时cookie，关闭浏览器即失效，浏览器也不会以任何形式保存该cookie。如果为0，标识删除该cookie。默认为-1</td>
+</tr>
+<tr>
+  <td>expires</td>
+  <td>
+    过期时间，在设置的某个时间点后该cookie就会消失。时间要转成GMT形式，toGMTString()。<br/>
+    一般浏览器的cookie都是默认存储的，当关闭浏览器结束这个回话的时候，这个cookie也就会被删除
+  </td>
+</tr>
+<tr>
+  <td>secure</td>
+  <td>该cookie是否仅被使用安全协议传输。安全协议有HTTPS，SSL等，在网络上传输数据之前先将数据加密。默认false。</td>
+</tr>
+<tr>
+  <td>httpOnly</td>
+  <td>如果给某个cookie设置了httpOnly属性，则无法通过js脚本读取到该cookie信息，但是还是可以通过Application中手动修改cookie</td>
+</tr>
+</table>
+
+</li>
+</ul>
+<h3 id="前端操作cookie"><a href="#前端操作cookie" class="headerlink" title="前端操作cookie"></a>前端操作cookie</h3><blockquote>
+<p>前端通过 document.cookie 设置 cookie， 设置多个 cookie 则需要编写多条 document.cookie = ‘…’， 如果需要对 cookie 进行修改创建一条相同名称的 cookie 即可对 cookie 进行替换</p>
+</blockquote>
+<ul>
+<li>设置cookie<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * 通用方法： 设置cookie 方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;String&#125; name     cookie 名称</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;String&#125; value    cookie 值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;Number&#125; maxAge   cookie 存活时间（maxAge秒， 默认存储 30 天）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">&#123; name, value, maxAge &#125;</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  maxAge = maxAge || <span class="number">30</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// escape： 对字符串进行编码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;<span class="built_in">escape</span> (value)&#125;</span>;max-age=<span class="subst">$&#123;maxAge&#125;</span>`</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<strong>创建</strong>：当document.cookie中没有相同的name时创建一个cookie<br><strong>修改</strong>：把对应document.cookie中的name的value直接替换<br><strong>删除</strong>：把对应document.cookie中的name的max-age设置为0<br/><br/></li>
+<li>获取cookie<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * 通用方法： 将 cookie 转为对象 &#123;anme: value&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @return &#123;Object&#125; &#123;name, value&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookieObj</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> cookieArr = <span class="built_in">document</span>.cookie.split(<span class="string">";"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> obj = &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  cookieArr.forEach(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> arr = v.split(<span class="string">"="</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> key = arr[<span class="number">0</span>].trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> val = arr[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    obj[key] = <span class="built_in">unescape</span>(val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> obj</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="后端操作cookie（nodejs）"><a href="#后端操作cookie（nodejs）" class="headerlink" title="后端操作cookie（nodejs）"></a>后端操作cookie（nodejs）</h3><blockquote>
+<p>服务端设置 cookie 主要是通过设置<strong>响应头</strong> set-cookie 来设置 cookie， 如果需要设置多个 cookie 得多写几个 set-cookie</p>
+</blockquote>
+<ul>
+<li><p>设置cookie</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  response.setHeader(<span class="string">'Set-Cookie'</span>, <span class="string">'token=xxx; path=/ ;max-age=30; httpOnly'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
+<p>通过<strong>response</strong>设置cookie token值为xxx 当前域根路径 失效时间30秒 客户端不可以通过js操作</p>
+</li>
+<li><p>获取cookie</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  request.cookie = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> cookieStr = request.headers.cookie || <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  cookieStr.split(<span class="string">';'</span>).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!item) &#123; <span class="keyword">return</span> &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> arr = item.split(<span class="string">'='</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> key = arr[<span class="number">0</span>].trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> val = arr[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    request.cookie[key] = val</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
+<p>通过<strong>request</strong>获取cookie</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/21/node/node04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/21/node/node04/" class="post-title-link" itemprop="url">Node操作MySQL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-21T00:00:00+08:00">2021-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:08:10" itemprop="dateModified" datetime="2023-10-20T14:08:10+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><ul>
+<li>安装 mysql<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install mysql -S</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><ul>
+<li>连接数据库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建连接对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = mysql.createConnection(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  host: <span class="string">'localhost'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  user: <span class="string">'root'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  password: <span class="string">'xxxxxxx'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  port: <span class="string">'3306'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  database: <span class="string">'myblog'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">db.connect()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行sql语句</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sql = <span class="string">`INSERT INTO blogs (title,content,createtime,author) VALUES ('标题C','内容C',1611216592611,'wangwu');`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">db.query(sql, (err, result) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (err) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.error(err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'result :&gt;&gt; '</span>, result);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 结束连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">db.end()</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="mysql项目配置"><a href="#mysql项目配置" class="headerlink" title="mysql项目配置"></a>mysql项目配置</h3><ul>
+<li>创建数据库连接配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 环境变量</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> env = process.env.NODE_ENV</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 配置</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> MYSQL_CONF</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 本地开发</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (env === <span class="string">'dev'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  MYSQL_CONF = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    host: <span class="string">'localhost'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    user: <span class="string">'root'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    password: <span class="string">'xxxxxxx'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    port: <span class="string">'3306'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    database: <span class="string">'myblog'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开发配置 todo</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (env === <span class="string">'prod'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  MYSQL_CONF = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    host: <span class="string">'localhost'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    user: <span class="string">'root'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    password: <span class="string">'xxxxxxx'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    port: <span class="string">'3306'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    database: <span class="string">'myblog'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  MYSQL_CONF</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>连接数据库配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mysql = <span class="built_in">require</span>(<span class="string">'mysql'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; MYSQL_CONF &#125; = <span class="built_in">require</span>(<span class="string">'../conf/db'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建连接对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = mysql.createConnection(MYSQL_CONF)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开始连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">db.connect()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建统一执行 sql 的函数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exec</span>(<span class="params">sql</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    db.query(sql, (err, result) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (err) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        reject(err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      resolve(result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> p</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  exec</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+暴露执行sql的函数exec并返回结果</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/20/server/server05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1243,290 +1468,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/08/typescript/typescript03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/08/typescript/typescript03/" class="post-title-link" itemprop="url">TS接口（interface）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-08T00:00:00+08:00">2020-11-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:26:25" itemprop="dateModified" datetime="2023-10-20T12:26:25+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="接口interface"><a href="#接口interface" class="headerlink" title="接口interface"></a>接口interface</h3><ol>
-<li>为什么需要接口?<ul>
-<li>为了定义对象内的各种属性。</li>
-</ul>
-</li>
-<li>什么是接口?<ul>
-<li>同 string,number.boolean 一样，接口也是一种类型，目的是为了约束对象内的各个属性。</li>
-</ul>
-</li>
-</ol>
-<h3 id="严格约束对象字段及字段类型"><a href="#严格约束对象字段及字段类型" class="headerlink" title="严格约束对象字段及字段类型"></a>严格约束对象字段及字段类型</h3><ol>
-<li>声明的对象的字段，及字段对应的类型必须和接口中一致，不可多字段，不可少字段，不可字段类型不一致。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  username: string,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  userage: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const per: Person &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  username: &#39;xiao qi&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  userage: 18</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>同声明变量一样字段 也可以用 | 指定多种类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  username: string,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  userage: number | string </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const per: Person &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  username: &#39;lili&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  userage: &#39;18岁&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">per.userage &#x3D; 18</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="属性字段可能不在情况"><a href="#属性字段可能不在情况" class="headerlink" title="属性字段可能不在情况"></a>属性字段可能不在情况</h3><ul>
-<li>使用可选属性，在属性名后面添加？实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  username: string,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  userage: number,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  address?: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">const per: Person &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  username: &#39;xiao qi&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  userage: 18</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">per.address &#x3D; &#39;武汉&#39;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="属性字段可能不够情况"><a href="#属性字段可能不够情况" class="headerlink" title="属性字段可能不够情况"></a>属性字段可能不够情况</h3><ul>
-<li>使用索引签名propName，定义对象中的key和value结构，则后续属性只要满足这个结构就可以无限添加字段<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person1 &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  [propName: string]: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const per1: Person1 &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  username: &#39;xiao qi&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  sex: &#39;男&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  2: &#39;la la&#39; &#x2F;&#x2F; tips：当propName为string无论什么key都会转成字符串，不会报错</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">interface Person2 &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  [propName: number]: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">const per2: Person2 &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  0: 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="接口继承"><a href="#接口继承" class="headerlink" title="接口继承"></a>接口继承</h3><ul>
-<li>同JS的class类一样，TS中的接口也可以继承<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface A &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  a: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  b: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">interface C extends A, B &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  c: boolean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">const obj: C &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  a: &#39;aaaaa&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  b: 11111,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  c: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="对函数约束"><a href="#对函数约束" class="headerlink" title="对函数约束"></a>对函数约束</h3><ul>
-<li>函数本身也是对象，也可以用接口来定义<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Sum &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  (a: number, b: number): number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const sum: Sum &#x3D; function (x, y) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  return x + y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">sum(1, 3)</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="对类约束"><a href="#对类约束" class="headerlink" title="对类约束"></a>对类约束</h3><ul>
-<li>定义完成接口后，类通过implements进行实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Animal &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: string,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  eat(name: string): void</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">class Dog implements Animal &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  public name: string;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  constructor(name: string) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    this.name &#x3D; name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  eat(food: string): void &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    alert(&#96;$&#123;this.name&#125;: 吃$&#123;food&#125;！&#96;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">const d: Dog &#x3D; new Dog(&#39;旺柴&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">d.eat(&#39;狗粮&#39;)</span></pre></td></tr></table></figure></li>
-<li>既可以继承父类，也可以实现接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Animal &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  eat(): void</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">interface Person extends Animal &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  work(): void</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">class Programmer &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  public name: string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  constructor(name: string) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    this.name &#x3D; name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  work(): void &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    alert(&#96;$&#123;this.name&#125;写代码！&#96;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">class Web extends Programmer implements Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  constructor(name: string) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    super(name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  eat(): void &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    alert(&#96;$&#123;this.name&#125;吃米饭！&#96;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">const p: Person &#x3D; new Web(&#39;张三&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">p.work()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">p.eat()</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/01/typescript/typescript04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/01/typescript/typescript04/" class="post-title-link" itemprop="url">TS类型声明</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-01T00:00:00+08:00">2020-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:26:38" itemprop="dateModified" datetime="2023-10-20T12:26:38+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p><strong>typescript 中的数据类型</strong></p>
-<ul>
-<li>布尔类型（boolean）</li>
-<li>数字类型（number）</li>
-<li>字符串类型（string）</li>
-<li>数组类型（array）</li>
-<li>元组类型（tuple）</li>
-<li>枚举类型（enum）</li>
-<li>任意类型（any）</li>
-<li>null 和 undefined</li>
-<li>void类型</li>
-<li>never类型</li>
-</ul>
-</blockquote>
-<h3 id="boolean-number-string-简单类型的变量声明"><a href="#boolean-number-string-简单类型的变量声明" class="headerlink" title="boolean number string 简单类型的变量声明"></a>boolean number string 简单类型的变量声明</h3><ul>
-<li>布尔类型 boolean<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let bool: boolean &#x3D; true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; bool &#x3D; &#39;&#39; &#x2F;&#x2F; error : Type &#39;string&#39; is not assignable to type &#39;boolean&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;bool :&gt;&gt; &#39;, bool);</span></pre></td></tr></table></figure></li>
-<li>数字类型 （整数、浮点数）number <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let num: number &#x3D; 1.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; num &#x3D; &quot;&quot; &#x2F;&#x2F; error : Type &#39;string&#39; is not assignable to type &#39;number&#39;.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">num &#x3D; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;num :&gt;&gt; &#39;, num);</span></pre></td></tr></table></figure></li>
-<li>字符串类型 string<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let str: string &#x3D; &quot;hello&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; str &#x3D; 2 &#x2F;&#x2F; error : Type &#39;number&#39; is not assignable to type &#39;string&#39;.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">str &#x3D; &#39;hello world!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;str :&gt;&gt; &#39;, str);</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="数组和元组类型的变量声明"><a href="#数组和元组类型的变量声明" class="headerlink" title="数组和元组类型的变量声明"></a>数组和元组类型的变量声明</h3><blockquote>
-<p>一 整个数组数据类型一致</p>
-</blockquote>
-<ul>
-<li>:Array&lt; number &gt;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 纯数字数字</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const arr1: Array&lt;number&gt; &#x3D; [1, 2, 3]</span></pre></td></tr></table></figure></li>
-<li>:string[]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 纯字符串数组</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const arr2: string[] &#x3D; [&#39;hello&#39;, &#39;world&#39;];</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p>二 整个数组数据类型不一致情况</p>
-</blockquote>
-<ul>
-<li>联合类型声明数组(number|string)[]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 数字或字符串数组</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const arr3: (number | string)[] &#x3D; [&#39;1&#39;, &#39;1&#39;, 2, 1]</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p>三 自由任意类型元素的数组</p>
-</blockquote>
-<ul>
-<li>any[]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 任意类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const arr4: any[] &#x3D; [&#39;1&#39;, 2, false, undefined]</span></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<blockquote>
-<p>四 严格限定类型和长度的元组</p>
-</blockquote>
-<ul>
-<li>:[string,number,boolean]<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 限定每项类型 与 长度</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const arr5: [string, number, boolean] &#x3D; [&#39;1&#39;, 2, false]</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="enum枚举类型"><a href="#enum枚举类型" class="headerlink" title="enum枚举类型"></a>enum枚举类型</h3><blockquote>
-<p>枚举用于表示固定的几个取值，如 性别 男女。</p>
-</blockquote>
-<ul>
-<li>定义运用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum Gender &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  Male &#x3D; 0,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Femal &#x3D; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">let sex: Gender &#x3D; Gender.Femal</span></pre></td></tr></table></figure></li>
-<li>默认值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; TS中的枚举类型的取值, 默认是从上至下从0开始递增的</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">enum Gender &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Male, &#x2F;&#x2F; 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Femal  &#x2F;&#x2F; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;Gender :&gt;&gt; &#39;, Gender); &#x2F;&#x2F; &#123;0: &quot;Male&quot;, 1: &quot;Femal&quot;, Male: 0, Femal: 1&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">enum Gender &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  Male&#x3D;3, &#x2F;&#x2F; 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Femal  &#x2F;&#x2F; 4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;Gender :&gt;&gt; &#39;, Gender); &#x2F;&#x2F; &#123;3: &quot;Male&quot;, 4: &quot;Femal&quot;, Male: 3, Femal: 4&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="用-指定多种类型"><a href="#用-指定多种类型" class="headerlink" title="用 | 指定多种类型"></a>用 | 指定多种类型</h3><ul>
-<li>当一个变量可能存在多个类型值时，可以使用 | 指定多个类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let temp: number | string | boolean &#x3D; 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">temp &#x3D; &#39;xiao qi&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">temp &#x3D; true</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="any-任意类型"><a href="#any-任意类型" class="headerlink" title="any 任意类型"></a>any 任意类型</h3><ul>
-<li>当不清楚值得类型时，可以使用any，任何数据类型的值都可以赋值给any<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let val: any;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">val &#x3D; true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">val &#x3D; 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">val &#x3D; &#39;hello world&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">val &#x3D; [1, &#39;2&#39;, 3]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">val &#x3D; null</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">val &#x3D; undefined</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="null-和-undefined"><a href="#null-和-undefined" class="headerlink" title="null 和 undefined"></a>null 和 undefined</h3><ul>
-<li>undefined和null各自的类型分别为undefined和null<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let u: undefined &#x3D; undefined;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">let n: null &#x3D; null;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="void-类型"><a href="#void-类型" class="headerlink" title="void 类型"></a>void 类型</h3><ul>
-<li>void与any相反，表示没有任何类型，一般用于函数返回值。在TS中只有undefined可以赋值给void类型。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function test(): void &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;hello world!&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">let val: void &#x3D; test()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;val :&gt;&gt; &#39;, val); &#x2F;&#x2F; undefined</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="never-类型"><a href="#never-类型" class="headerlink" title="never 类型"></a>never 类型</h3><ul>
-<li>表示永远不存在的值类型，一般用于抛出异常或者根本不可能有返回值的函数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function test():never &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    throw new Error(&#39;报错了&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test();</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="接口-interface-类型"><a href="#接口-interface-类型" class="headerlink" title="接口 interface 类型"></a>接口 interface 类型</h3><ul>
-<li>定义应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface Person &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  name: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  age: number</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const per: Person &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  name: &#39;xiao qi&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  age: 18,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1596,7 +1537,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

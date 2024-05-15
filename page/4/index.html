@@ -184,6 +184,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/23/react/react08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/23/react/react08/" class="post-title-link" itemprop="url">React项目搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-23T00:00:00+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:06:22" itemprop="dateModified" datetime="2023-10-20T14:06:22+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基本模块"><a href="#基本模块" class="headerlink" title="基本模块"></a>基本模块</h3><img src="/images/2021/react_project01.png">
+      通过基本的脚手架及环境配置、项目构建配置、数据管理、请求拦截器、配置路由及鉴权...构建基本的项目框架
+
+<h3 id="脚手架模板"><a href="#脚手架模板" class="headerlink" title="脚手架模板"></a>脚手架模板</h3><ul>
+<li><p>构建基本ts react模板</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx create-react-app my-app --template typescript</span></pre></td></tr></table></figure></li>
+<li><p>ts 配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;compilerOptions&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &quot;target&quot;: &quot;es5&quot;, &#x2F;&#x2F;编译后目标js版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &quot;lib&quot;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &quot;dom&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &quot;dom.iterable&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      &quot;esnext&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &quot;noImplicitAny&quot;: true, &#x2F;&#x2F;不需要显示的声明变量any</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &quot;allowJs&quot;: true, &#x2F;&#x2F;允许混合编译js文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &quot;skipLibCheck&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &quot;esModuleInterop&quot;: true, &#x2F;&#x2F;允许使用commonJs的方式import默认文件,import React from &#39;react</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &quot;allowSyntheticDefaultImports&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &quot;strict&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &quot;forceConsistentCasingInFileNames&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &quot;noFallthroughCasesInSwitch&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &quot;module&quot;: &quot;esnext&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &quot;moduleResolution&quot;: &quot;node&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &quot;resolveJsonModule&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &quot;isolatedModules&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &quot;noEmit&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &quot;jsx&quot;: &quot;react-jsx&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &quot;include&quot;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &quot;src&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li><p>global.d.ts<br>定义全局变量、函数、接口</p>
+</li>
+<li><p>react-app-env.d.ts<br>项目编译时将会根据tsconfig.json中include指定的目录去找代码所需要的类型声明文件，而react-app-env.d.ts会告诉编译器含有哪些类型声明，里面含有一些常用的类型声明，比如react、react-dom的一些API类型声明，图片、样式模块类型声明等等</p>
+</li>
+</ul>
+<h3 id="项目模块"><a href="#项目模块" class="headerlink" title="项目模块"></a>项目模块</h3><p>  <a href="https://xiaoqi0123.gitee.io/2021/08/10/react/react02/" target="_blank" rel="noopener">全局数据管理-redux</a><br>  <a href="https://xiaoqi0123.gitee.io/2021/09/23/react/react09/" target="_blank" rel="noopener">react-router react-router-dom配置路由及鉴权</a><br>  <a href="https://xiaoqi0123.gitee.io/2021/09/26/react/react10/" target="_blank" rel="noopener">customize-cra项目构建配置</a><br>  <a href="https://xiaoqi0123.gitee.io/2021/09/26/react/react11/" target="_blank" rel="noopener">request封装</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/23/react/react10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -265,6 +352,98 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">addWebpackPlugin(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  new CompressionPlugin(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    filename: &#39;[path].gz[query]&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    algorithm: &#39;gzip&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    test: productionGzipExtensions, &#x2F;&#x2F; 匹配文件名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    threshold: 10240, &#x2F;&#x2F; 对超过 10k 数据压缩</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    minRatio: 0.8,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    deleteOriginalAssets: false &#x2F;&#x2F; true-删除原文件 false-不删除源文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">),</span></pre></td></tr></table></figure></li>
 <li>setWebpackOptimizationSplitChunks 代码分离spilt<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">setWebpackOptimizationSplitChunks(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  chunks: &#39;all&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  cacheGroups: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; reactDom: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   test: &#x2F;[\\&#x2F;]node_modules[\\&#x2F;]_?react\-dom(.*)&#x2F;, &#x2F;&#x2F; 兼容cnpm 情况</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   name: &#39;react-dom&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   chunks: &#39;initial&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   minChunks: 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   minSize: 0,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   priority: 3,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;   reuseExistingChunk: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    libs: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 拆分第三方库（通过npm|yarn安装的库）</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      test: &#x2F;[\\&#x2F;]node_modules[\\&#x2F;]&#x2F;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      name: &#39;chunk-libs&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      chunks: &#39;initial&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      priority: 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;),</span></pre></td></tr></table></figure>
 <a href="https://juejin.cn/post/6919684767575179278" target="_blank" rel="noopener">cacheGroups 分包文章</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/23/react/react09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/23/react/react09/" class="post-title-link" itemprop="url">React配置路由及鉴权</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-09-23T00:00:00+08:00">2021-09-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:06:36" itemprop="dateModified" datetime="2023-10-20T14:06:36+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="路由配置"><a href="#路由配置" class="headerlink" title="路由配置"></a>路由配置</h3><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add react-router react-router-dom</span></pre></td></tr></table></figure></li>
+<li>实现<img src="/images/2021/react_router01.png">
+
+
+</li>
+</ul>
+<h3 id="参数配置路由"><a href="#参数配置路由" class="headerlink" title="参数配置路由"></a>参数配置路由</h3><ul>
+<li>约定路由数据结构<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">interface RouteItemMetaType &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  permissions: string[]; &#x2F;&#x2F; 路由权限</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hide?: boolean; &#x2F;&#x2F; 是否隐藏菜单</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  [key: string]: any;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">interface RouteItemType &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  path: string; &#x2F;&#x2F; 路由路径</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  component?: LazyExoticComponent&lt;any&gt;; &#x2F;&#x2F; lazy 组件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  render?: () &#x3D;&gt; any; &#x2F;&#x2F; route render</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  routes?: RouteItemType[]; &#x2F;&#x2F; 二级菜单</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  name?: string; &#x2F;&#x2F; 路由名称</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  exact?: boolean;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  strict?: boolean;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  meta?: RouteItemMetaType;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  [key: string]: any;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">const routes: RouteItemType[] &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    path: &quot;&#x2F;manage&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    component: lazy(() &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;manage&#x2F;ManageLayout&quot;)),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    routes: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        path: &quot;&#x2F;manage&#x2F;user&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        title: &quot;用户&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        meta: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">          permissions: [&quot;KEY1&quot;, &quot;KEY2&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        component: lazy(() &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;manage&#x2F;user&#x2F;UserLayout&quot;)),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        routes: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">          &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">            path: &quot;&#x2F;manage&#x2F;user&#x2F;index&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">            title: &quot;用户&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">            component: lazy(() &#x3D;&gt; import(&quot;..&#x2F;pages&#x2F;manage&#x2F;user&#x2F;index&#x2F;index&quot;)),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">            meta: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">              permissions: [&quot;KEY1&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">          &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr></table></figure></li>
+<li>根据路由配置参数动态生成路由树<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import React, &#123; Suspense &#125; from &quot;react&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#123; Switch, Route &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">function RenderRoutes(props: any) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  const &#123; routes, extraProps &#x3D; &#123;&#125;, switchProps &#x3D; &#123;&#125; &#125; &#x3D; props;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const mapFunc &#x3D; (routes: any) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return routes.map((route: any) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      if (route.routes &amp;&amp; route.routes.length &gt; 0) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 存在二级菜单</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        return (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">          &lt;Route</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            key&#x3D;&#123;route.path&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            path&#x3D;&#123;route.path&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            exact&#x3D;&#123;route.exact&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            strict&#x3D;&#123;route.strict&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            render&#x3D;&#123;() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">              return (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">                &lt;Suspense fallback&#x3D;&#123;null&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">                  &lt;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                    &#123;React.createElement(route.component,&#123;&#125;,mapFunc(route.routes))&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                  &lt;&#x2F;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">                &lt;&#x2F;Suspense&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">              );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">            &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 只存在一个路由</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        return (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">          &lt;Route</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">            key&#x3D;&#123;route.path&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">            path&#x3D;&#123;route.path&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">            exact&#x3D;&#123;route.exact&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">            strict&#x3D;&#123;route.strict&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">            render&#x3D;&#123;(props) &#x3D;&gt; (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">              &lt;Suspense fallback&#x3D;&#123;null&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">                &#123;route.render ? </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">                (route.render(&#123; ...props, ...extraProps, route: route &#125;)) : </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">                (&lt;route.component &#123;...props&#125; &#123;...extraProps&#125; route&#x3D;&#123;route&#125;&gt;&lt;&#x2F;route.component&gt;)&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">              &lt;&#x2F;Suspense&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">            )&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">        );</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">  return routes ? &lt;Switch &#123;...switchProps&#125;&gt;&#123;mapFunc(routes)&#125;&lt;&#x2F;Switch&gt; : null;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">export default RenderRoutes;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="鉴权配置"><a href="#鉴权配置" class="headerlink" title="鉴权配置"></a>鉴权配置</h3><ul>
+<li>鉴权流程<img src="/images/2021/react_router02.png"></li>
+<li>登录鉴权<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import React, &#123; useMemo &#125; from &#39;react&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#39;react-redux&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">import &#123; Redirect &#125; from &#39;react-router-dom&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const routeWhiteList &#x3D; [&#39;&#x2F;login&#39;, &#39;&#x2F;404&#39;, &#39;&#x2F;test&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const LoginAuth &#x3D; props &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  const &#123; token, path, children &#125; &#x3D; props</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  const isLogin &#x3D; useMemo(() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    if (token) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      return true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125; else if (routeWhiteList.includes(path)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      return true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      return false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;, [path, token])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  return isLogin ? &lt;&gt;&#123;children&#125;&lt;&#x2F;&gt; : &lt;Redirect to&#x3D;&quot;&#x2F;login&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">export default connect(function mapStateToProps(state: any) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    token: state.globalUserinfo.token</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;)(LoginAuth)</span></pre></td></tr></table></figure></li>
+<li>路由鉴权<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import React, &#123; useMemo &#125; from &#39;react&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#39;react-redux&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">import &#123; Redirect &#125; from &#39;react-router-dom&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const RouterAuth &#x3D; props &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const &#123; authKeys, permissions &#x3D; [], children &#125; &#x3D; props</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  const isPermissions &#x3D; useMemo(() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 路由中不配置权限，默认存在权限</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    if (!authKeys || authKeys.length &#x3D;&#x3D;&#x3D; 0) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      return true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 权限校验</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      return permissions.some(role &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        return authKeys.includes(role)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;, [authKeys, permissions])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  return isPermissions ? &lt;&gt;&#123;children&#125;&lt;&#x2F;&gt; : &lt;Redirect to&#x3D;&quot;&#x2F;404&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">export default connect(function mapStateToProps(state: any) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    permissions: state.globalUserinfo.premissions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;)(RouterAuth)</span></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -1254,310 +1433,6 @@ React.createRef调用后可以返回一个容器，该容器可以存储被ref�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/27/applets/applets01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/27/applets/applets01/" class="post-title-link" itemprop="url">小程序基础使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-27T00:00:00+08:00">2021-02-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:16:42" itemprop="dateModified" datetime="2023-10-20T12:16:42+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">微信小程序</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><blockquote>
-<p>WXML中的动态数据均来自对应Page的data。</p>
-</blockquote>
-<ul>
-<li>“Mustache”语法（双大括号）数据绑定<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;message&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    message: <span class="string">'Hello MINA!'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></li>
-<li><code>setData</code> 添加/修改data中数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    message: <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.setData(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      message:<span class="string">'Hello World!'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/data.html" target="_blank" rel="noopener">数据绑定</a></li>
-</ul>
-<h3 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h3><ul>
-<li>应用生命周期<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">App(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  onLaunch (options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something initial when launch.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onShow (options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something when show.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  onHide () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something when hide.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<strong>onLaunch</strong>: 小程序初始化完成时触发，全局只触发一次。<br><strong>onShow</strong>: 小程序启动，或从后台进入前台显示时触发。<br><strong>onHide</strong>: 小程序从前台进入后台时触发。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html" target="_blank" rel="noopener">小程序生命周期文档</a><br/>
-<br/></li>
-<li>页面生命周期<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面创建时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面出现在前台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面首次渲染完毕时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面从前台变为后台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  onUnload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面销毁时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<strong>onLoad</strong>: 页面创建时执行。<br><strong>onShow</strong>: 页面出现在前台时执行。<br><strong>onReady</strong>: 页面首次渲染完毕时执行。<br><strong>onHide</strong>: 页面从前台变为后台时执行。<br><strong>onUnload</strong>: 页面销毁时执行。<br>页面初始化时 <code>onLoad &gt; onShow &gt; onReady</code><br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html" target="_blank" rel="noopener">页面生命周期文档</a></li>
-</ul>
-<h3 id="WXML中常用语法"><a href="#WXML中常用语法" class="headerlink" title="WXML中常用语法"></a>WXML中常用语法</h3><ul>
-<li>插值表达式&lcub;&lcub;&rcub;&rcub;<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -<br>
-<br></li>
-<li>属性<br>属性=&lcub;&lcub;死值 变量 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /&rcub;&rcub;<br>
-<br></li>
-<li>data-xxx 自定义属性<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">bind:tap</span>=<span class="string">"onGoToDetail"</span> <span class="attr">data-id</span>=<span class="string">"&#123;&#123;postId&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onGoToDetail(event) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(event.currentTarget.dataset.id)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-  通过<code>data-</code>形式自定义的属性可以在event.currentTarget.dataset中获取到。<br>  1.自定义的属性在dataset中data-会被省略。例如 data-id =&gt; id<br>  2.当自定义属性中存在大写字母会被转换成小写。例如 data-postId =&gt; postid<br>  3.当自定义属性中存在多个-会被转换成驼峰。例如 data-post-id =&gt; postId<br>
-<br></li>
-<li>style 运算符写法<br>style=&quot;&lcub;&lcub;color?&apos;color:&apos;+color+&apos;;&apos;:&apos;&apos;&rcub;&rcub;&lcub;&lcub;size?&apos;font-size:&apos;+size+&apos;rpx&apos;:&apos;&apos;&rcub;&rcub;&quot;<br>
-<br></li>
-<li>class 运算符写法<br>class=&quot;text-class &lcub;&lcub;colorRed&rcub;&rcub; &lcub;&lcub;textSize&rcub;&rcub;&quot;<br>
-<br></li>
-<li>wx:if 条件渲染<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;view == 'WEBVIEW'&#125;&#125;"</span>&gt;</span> WEBVIEW <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:elif</span>=<span class="string">"&#123;&#123;view == 'APP'&#125;&#125;"</span>&gt;</span> APP <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>=<span class="string">"&#123;&#123;view == 'MINA'&#125;&#125;"</span>&gt;</span> MINA <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
-  <a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/conditional.html" target="_blank" rel="noopener">条件渲染</a><br>
-<br></li>
-<li>wx:for 列表渲染<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;array&#125;&#125;"</span> <span class="attr">wx:for-item</span>=<span class="string">"item"</span> <span class="attr">wx:for-index</span>=<span class="string">"index"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#123;&#123;index&#125;&#125;: &#123;&#123;item.message&#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
-  wx:for-item 默认值 item<br>  wx:for-index 默认值 index<br>  <a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/list.html" target="_blank" rel="noopener">列表渲染</a><br>
-<br></li>
-<li>事件<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">catch:tap</span>=<span class="string">"handleViewTap"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">bind:tap</span>=<span class="string">"handleTextTap"</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  handleViewTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'on view tap'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  handleTextTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'on text tap'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-bind <code>允许</code>事件冒泡<br>catch <code>阻止</code>事件冒泡<br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html" target="_blank" rel="noopener">事件系统</a></li>
-</ul>
-<h3 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h3><ul>
-<li>navigateTo<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.navigateTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-保留当前页面，跳转到应用内的某个页面。<br>不能跳到 tabbar 页面。<br>不可以无限使用，小程序中页面栈最多十层。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html" target="_blank" rel="noopener">wx.navigateTo</a><br/>
-<br/></li>
-<li>redirectTo<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.redirectTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-关闭当前页面，跳转到应用内的某个页面。<br>不能跳转到 tabbar 页面。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.redirectTo.html" target="_blank" rel="noopener">wx.redirectTo</a><br/>
-<br/></li>
-<li>switchTab<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.switchTab.html" target="_blank" rel="noopener">wx.switchTab</a><br/>
-<br/></li>
-<li>页面之间通讯<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.navigateTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts?pid='</span>+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-与浏览器地址传参一样，通过在url ？ 后面 以 key=value&amp;key=value 的方式传递数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onLoad(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(options) <span class="comment">// &#123; "pid": "1" &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-在跳转后的页面通过<code>onLoad生命周期函数</code>中拿到传递的参数对象</li>
-</ul>
-<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h3><ul>
-<li><p>App </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">App(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  globalData: <span class="string">'I am global data'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>app.js文件中，在App内可以存储公共数据</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = getApp()</span></pre></td></tr></table></figure>
-<p>在小程序的<code>任何位置</code>都可以通过getApp()函数，进行访问和修改。<br>当小程序<code>重新加载</code>时，数据会被<code>初始化</code>。</p>
-</li>
-<li><p>Storage</p>
-<blockquote>
-<p>小程序的Storage，类似于浏览器的localStorage，本地永久存储。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.setStorageSync(<span class="string">'data'</span>, &#123; <span class="attr">message</span>: <span class="string">'Storage'</span> &#125;)</span></pre></td></tr></table></figure>
-<p><code>setStorageSync</code> 同步操作 增加/修改Storage数据。</p>
-<br/>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = wx.getStorageSync(<span class="string">'data'</span>)</span></pre></td></tr></table></figure>
-<p><code>getStorageSync</code> 同步操作 获取Storage中对应key的数据。</p>
-<br/>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.removeStorageSync(<span class="string">'data'</span>)</span></pre></td></tr></table></figure>
-<p><code>removeStorageSync</code> 同步操作 删除Storage中对应key的数据。</p>
-<br/>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.clearStorageSync()</span></pre></td></tr></table></figure>
-<p><code>clearStorageSync</code> 同步操作 清空整个Storage数据。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/applets/applets02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/25/applets/applets02/" class="post-title-link" itemprop="url">小程序初体验</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-25T00:00:00+08:00">2021-02-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:16:56" itemprop="dateModified" datetime="2023-10-20T12:16:56+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">微信小程序</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><ul>
-<li>小程序开发工具下载<ul>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></li>
-</ul>
-</li>
-<li>使用开发工具创建小程序<ul>
-<li>项目名称</li>
-<li>目录</li>
-<li>AppID</li>
-<li>…</li>
-</ul>
-</li>
-<li>AppID获取<ul>
-<li>微信公众平台注册账号 <a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">https://mp.weixin.qq.com/</a></li>
-<li>登录微信公众平台 开发 &gt; 开发管理 &gt; 开发设置 中查看AppID</li>
-</ul>
-</li>
-<li>开发工具对项目配置详情<img style="margin-left:20px; height:500px" src="/images/2021/xcxcty_01.png">
-
-</li>
-</ul>
-<h3 id="小程序的基本结构"><a href="#小程序的基本结构" class="headerlink" title="小程序的基本结构"></a>小程序的基本结构</h3><blockquote>
-<p>小程序开发代码主要由四部分组成：<strong>.json 配置文件</strong>、<strong>.wxml 模板文件</strong>、<strong>.wxss 样式文件</strong>、<strong>.js 脚本逻辑文件</strong>。</p>
-</blockquote>
-<ul>
-<li>.json 配置文件<ul>
-<li>app.json 全局配置<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"pages"</span>:[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"pages/index/index"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"pages/logs/logs"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"window"</span>:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"backgroundTextStyle"</span>:<span class="string">"light"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"navigationBarBackgroundColor"</span>: <span class="string">"#fff"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"navigationBarTitleText"</span>: <span class="string">"Weixin"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="attr">"navigationBarTextStyle"</span>:<span class="string">"black"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"style"</span>: <span class="string">"v2"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">"sitemapLocation"</span>: <span class="string">"sitemap.json"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<code>pages</code>用于指定小程序由哪些页面组成，每一项都对应一个页面的 路径（含文件名） 信息。<br><code>window</code>用于设置小程序的状态栏、导航条、标题、窗口背景色。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html" target="_blank" rel="noopener">小程序app.json全局配置文档</a><br/>
-<br/></li>
-<li>页面配置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;navigationBarBackgroundColor&quot;: &quot;#ff0000&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &quot;navigationBarTextStyle&quot;: &quot;black&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &quot;navigationBarTitleText&quot;: &quot;微信接口功能演示&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &quot;backgroundColor&quot;: &quot;#eeeeee&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &quot;backgroundTextStyle&quot;: &quot;light&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-页面中配置项在当前页面会覆盖 app.json 的 window 中相同的配置项。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/page.html" target="_blank" rel="noopener">小程序page.json页面配置文档</a><br/>
-<br/></li>
-</ul>
-</li>
-<li>.wxml 模板文件<blockquote>
-<p>xwml 和 html 非常相似，都有标签、属性等等构成的页面结构</p>
-</blockquote>
-<ul>
-<li>标签<ul>
-<li>与html不同，小程序的标签大部分是根据用途语义化的。如，view text …</li>
-</ul>
-</li>
-<li>属性<ul>
-<li>在 wxml 文件中，多了类似 vue 的属性声明，如 wx:if wx:for …</li>
-</ul>
-</li>
-<li>WXML文档<ul>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/</a><br/>
-<br/></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>.wxss 样式文件<blockquote>
-<p>wxss和css基本上没有什么差别。区别在于wxss引入了新的尺寸单位rpx。</p>
-</blockquote>
-<ul>
-<li>单位rpx<ul>
-<li>rpx是把屏幕的宽度均分成了750个等份，然后1rpx就代表屏幕宽度的1/750，可以更方便的布局。</li>
-</ul>
-</li>
-<li>导入样式<ul>
-<li>@import语句可以导入外联样式表，@import后跟需要导入的外联样式表的相对路径，用;表示语句结束。</li>
-</ul>
-</li>
-<li>WXSS文档<ul>
-<li><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html</a><br/>
-<br/></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>.js 脚本逻辑文件<ul>
-<li>.js文件<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    text: <span class="string">"This is page data."</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面创建时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面出现在前台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面首次渲染完毕时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面从前台变为后台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  onUnload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面销毁时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  onPullDownRefresh: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 触发下拉刷新时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  onReachBottom: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面触底时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  onShareAppMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面被用户分享时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  onPageScroll: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面滚动时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  onResize: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面尺寸变化时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  onTabItemTap(item) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// tab 点击时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(item.index)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(item.pagePath)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(item.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 事件响应函数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">  viewTap: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.setData(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">      text: <span class="string">'Set some data for updating view.'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// this is setData callback</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 自由数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">  customData: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">    hi: <span class="string">'MINA'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html" target="_blank" rel="noopener">小程序.js 脚本逻辑文档</a></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1627,7 +1502,7 @@ bind <code>允许</code>事件冒泡<br>catch <code>阻止</code>事件冒泡<br
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

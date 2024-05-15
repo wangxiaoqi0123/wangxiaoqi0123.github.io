@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/configuration/configuration02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/11/javascript/javascript03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/06/configuration/configuration02/" class="post-title-link" itemprop="url">移动端rem适配</a>
+            <a href="/2020/08/11/javascript/javascript03/" class="post-title-link" itemprop="url">Decorator装饰器</a>
         </h2>
 
         <div class="post-meta">
@@ -208,14 +208,133 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
+              <time title="创建时间：2020-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-11T00:00:00+08:00">2020-08-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:09:57" itemprop="dateModified" datetime="2023-10-20T12:09:57+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 14:10:10" itemprop="dateModified" datetime="2023-10-20T14:10:10+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="装饰器介绍"><a href="#装饰器介绍" class="headerlink" title="装饰器介绍"></a>装饰器介绍</h3><ol>
+<li>装饰器（Decorator）是ES2016提出来的一个提案，当前处于Stage 2阶段，目前还没有定案。</li>
+<li>本质上是一个函数，使用方式以 @ + 函数名 的形式。</li>
+<li>是一种与类（class）相关的语法，用来包装或者修改类或者类的方法的行为。</li>
+</ol>
+<h3 id="装饰器属性描述"><a href="#装饰器属性描述" class="headerlink" title="装饰器属性描述"></a>装饰器属性描述</h3><ol>
+<li><code>target</code><ul>
+<li>对应修饰方法的父类</li>
+</ul>
+</li>
+<li><code>name</code><ul>
+<li>对应修饰方法的名称(string)</li>
+</ul>
+</li>
+<li><code>descriptor</code><ul>
+<li><code>descriptor.configurable</code>：表示能不能通过delete删除属性，能否修改属性的其他描述符特性，或者能否将数据属性修改为访问器属性。当我们通过let obj = {name: ‘’}声明一个对象的时候，这个对象里面所有的属性的configurable描述符的值都是true</li>
+<li><code>descriptor.enumerable</code>：表示能不能通过for in或者Object.keys等方式获取到属性，我们一般声明的对象里面这个描述符的值是true,但是对于class类里面的属性来说，这个值是false</li>
+<li><code>descriptor.writable</code>：表示能否修改属性的数据值，通过将这个修改为false,可以实现属性只读的效果。</li>
+<li><code>descriptor.value</code>：表示当前属性的数据值，读取属性值的时候，从这里读取；写入属性值的时候，会写到这个位置。</li>
+</ul>
+</li>
+<li>举个例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">class Parent &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  @testable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  test() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; console.log(&quot;hello World :&gt;&gt; &quot;, &quot;hello World&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">function testable(target, name, descriptor) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;target :&gt;&gt; &quot;, target, typeof target); &#x2F;&#x2F; 对应父类Parent</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;name :&gt;&gt; &quot;, name, typeof name); &#x2F;&#x2F; 直接输出 test string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;descriptor :&gt;&gt; &quot;, descriptor, typeof descriptor); &#x2F;&#x2F; 描述属性对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;descriptor.value :&gt;&gt; &quot;, descriptor.value); &#x2F;&#x2F; 对应当前test()函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  target.isTestable &#x3D; true;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="类的装饰"><a href="#类的装饰" class="headerlink" title="类的装饰"></a>类的装饰</h3><ul>
+<li>类的装饰 一般主要使用 <code>target</code> 属性在其类上添加属性与方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function testable(target) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  target.prototype.isTestable &#x3D; true;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">@testable</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">class MyTestableClass &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">let obj &#x3D; new MyTestableClass();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">obj.isTestable &#x2F;&#x2F; true</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="方法的装饰"><a href="#方法的装饰" class="headerlink" title="方法的装饰"></a>方法的装饰</h3><ul>
+<li>方法的装饰 一般组要使用 <code>descriptor.value</code> 属性对当前修饰的方法进行<code>重写</code> 包装</li>
+<li>一般会包裹一层方法用于传递参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; Toast &#125; from &quot;vant&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">* loading 装饰器</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">* @param &#123;*&#125; message 提示信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">* @param &#123;function&#125; errorFn 异常处理逻辑</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">*&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">export const loading &#x3D; function (message &#x3D; &quot;加载中...&quot;, errorFn &#x3D; function () &#123; &#125;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  return function (target, name, descriptor) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    const fn &#x3D; descriptor.value;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    descriptor.value &#x3D; async function (...rest) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      const loading &#x3D; Toast.loading(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        message: message,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        forbidClick: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        return await fn.call(this, ...rest);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 在调用失败，且用户自定义失败的回调函数时，则执行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        errorFn &amp;&amp; errorFn.call(this, error, ...rest);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        console.error(error);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#125; finally &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        loading.clear();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="装饰器环境配置"><a href="#装饰器环境配置" class="headerlink" title="装饰器环境配置"></a>装饰器环境配置</h3><ul>
+<li>Vue项目vue-cli3/4来新建的项目，默认支持了装饰器，不需要再配置太多额外的东西，如果你的项目使用了eslint,那么需要给eslint配置以下内容。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">parserOptions: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ecmaFeatures:&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 支持装饰器</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    legacyDecorators: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><ul>
+<li><a href="https://github.com/wangxiaoqi0123/vue-cli3-vant/tree/ae/src/views/learn/de" target="_blank" rel="noopener">https://github.com/wangxiaoqi0123/vue-cli3-vant/tree/ae/src/views/learn/de</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/09/configuration/configuration04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/09/configuration/configuration04/" class="post-title-link" itemprop="url">vue路由管控</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-09 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-09T00:00:00+08:00">2020-08-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:10:02" itemprop="dateModified" datetime="2023-10-20T12:10:02+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,39 +357,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="简单实现rem适配"><a href="#简单实现rem适配" class="headerlink" title="简单实现rem适配"></a>简单实现rem适配</h3><ol>
-<li>使用onresize事件，当设备窗口发生变化时，动态设置根节点的font-size</li>
-<li>设置尺寸时，以标准设计稿为基础设置，一般以750视口下font-size为100px动态换算当前设备的font-size（750一般为设计稿尺寸）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">window.onresize &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;窗口发生改变时 触发事件 用来做响应式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;将根节点的fontsize 设置为100px 作为 1rem</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    var clientX &#x3D; document.documentElement.clientWidth;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;750:100 &#x3D; clientX:?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;标准设计稿:100px &#x3D; 当前设备宽: ?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    document.documentElement.style.fontSize &#x3D; (clientX &#x2F; 7.5) + &quot;px&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+          <h3 id="1-创建router"><a href="#1-创建router" class="headerlink" title="1. 创建router"></a>1. 创建router</h3><blockquote>
+<p>将路由拆分成<code>静态路由</code>与<code>动态路由</code>。<code>静态路由</code>：所有用户均可以访问。<code>动态路由</code>：根据meta内roles权限组动态生成</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &quot;vue&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import Router from &quot;vue-router&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Vue.use(Router);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> * constantRoutes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"> * 没有权限要求的基本页面</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"> * 所有角色都可以访问</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"> * keepAlive&#x3D;true 页面缓存</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"> *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">export const constantRoutes &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    path: &quot;&#x2F;login&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    name: &quot;login&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    meta: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      title: &quot;登录&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;login&#x2F;index&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"> * asyncRoutes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"> * 需要根据用户角色动态加载的路由</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"> *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"> * roles 必须是字符串数组 根据字符串数组 动态匹配路由</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"> * roles 不写默认所有人都有权限</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"> *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">export const asyncRoutes &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    path: &quot;&#x2F;async&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    name: &quot;async&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    meta: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">      title: &quot;async&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">      roles: [&quot;admin&quot;, &quot;editor&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;async&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 404页面必须放置在末尾!!!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  &#123; path: &quot;*&quot;, redirect: &quot;&#x2F;404&quot;, hidden: true &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">const createRouter &#x3D; () &#x3D;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  new Router(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; mode: &#39;history&#39;, &#x2F;&#x2F; require service support</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    scrollBehavior: () &#x3D;&gt; (&#123; y: 0 &#125;),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    routes: constantRoutes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">const router &#x3D; createRouter();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">export function resetRouter() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">  const newRouter &#x3D; createRouter();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">  router.matcher &#x3D; newRouter.matcher; &#x2F;&#x2F; reset router</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">export default router;</span></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<h3 id="淘宝适配与网易适配"><a href="#淘宝适配与网易适配" class="headerlink" title="淘宝适配与网易适配"></a>淘宝适配与网易适配</h3><ol>
-<li>网易适配: 设计稿宽度是 750px，假定当前设计稿的 1rem = 100px，那么 屏幕宽度：设计稿宽度 = 设备的rem:设计稿假定的rem(100)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">html&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    font-size: calc(100vw&#x2F;7.5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    font-size: -webkit-calc(100vw&#x2F;7.5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>淘宝适配: 把设备宽度 100vw 分成 10等份，假设当前设备的rem 等于 其中的一份，那么1rem = 10vw<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">npm i lib-flexible -S</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; main.js 中引入</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#39;lib-flexible&#39;</span></pre></td></tr></table></figure>
+<h3 id="2-创建根据权限组动态生成路由方法"><a href="#2-创建根据权限组动态生成路由方法" class="headerlink" title="2. 创建根据权限组动态生成路由方法"></a>2. 创建根据权限组动态生成路由方法</h3><blockquote>
+<p>此方法引用vue-element-admin动态获取动态路由方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; asyncRoutes, constantRoutes &#125; from &quot;@&#x2F;router&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"> * Use meta.role to determine if the current user has permission</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"> * @param roles</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> * @param route</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"> *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">function hasPermission(roles, route) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  if (route.meta &amp;&amp; route.meta.roles) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    return roles.some(role &#x3D;&gt; route.meta.roles.includes(role));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    return true;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x2F;**</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"> * Filter asynchronous routing tables by recursion</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"> * @param routes asyncRoutes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"> * @param roles</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"> *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">export function filterAsyncRoutes(routes, roles) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  const res &#x3D; [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  routes.forEach(route &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    const tmp &#x3D; &#123; ...route &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    if (hasPermission(roles, tmp)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      if (tmp.children) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        tmp.children &#x3D; filterAsyncRoutes(tmp.children, roles);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      res.push(tmp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">  return res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">const state &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">  routes: [],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">  addRoutes: []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">const mutations &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">  SET_ROUTES: (state, routes) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    state.addRoutes &#x3D; routes;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    state.routes &#x3D; constantRoutes.concat(routes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">const actions &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">  generateRoutes(&#123; commit &#125;, roles) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    return new Promise(resolve &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">      let accessedRoutes;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">      if (roles.includes(&quot;admin&quot;)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">        accessedRoutes &#x3D; asyncRoutes || [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">        accessedRoutes &#x3D; filterAsyncRoutes(asyncRoutes, roles);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">      commit(&quot;SET_ROUTES&quot;, accessedRoutes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">      resolve(accessedRoutes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">  namespaced: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">  state,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">  mutations,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">  actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
 
+<h3 id="3-根据全局路由守卫，动态管控路由"><a href="#3-根据全局路由守卫，动态管控路由" class="headerlink" title="3. 根据全局路由守卫，动态管控路由"></a>3. 根据全局路由守卫，动态管控路由</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import router from &quot;.&#x2F;index&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import store from &quot;..&#x2F;store&#x2F;index&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">import NProgress from &quot;nprogress&quot;; &#x2F;&#x2F; progress bar</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">import &quot;nprogress&#x2F;nprogress.css&quot;; &#x2F;&#x2F; progress bar style</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">import &#123; getToken &#125; from &quot;@&#x2F;libs&#x2F;token&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">import &#123; setTitle &#125; from &quot;@&#x2F;libs&#x2F;tools&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">NProgress.configure(&#123; showSpinner: false &#125;); &#x2F;&#x2F; NProgress Configuration</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">const whiteList &#x3D; [&quot;&#x2F;login&quot;, &quot;&#x2F;404&quot;, &quot;&#x2F;test&quot;]; &#x2F;&#x2F; no redirect whitelist</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">router.beforeEach(async (to, from, next) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 开始进度条</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  NProgress.start();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 确定用户是否已经登录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  const hasToken &#x3D; getToken();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  if (hasToken) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    if (to.path &#x3D;&#x3D;&#x3D; &quot;&#x2F;login&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 如果已登录，则重定向到主页</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      next(&#123; path: &quot;&#x2F;&quot; &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      NProgress.done();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 确定用户是否通过getInfo获得了他的权限角色</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">      const hasRoles &#x3D; store.state.user.roles &amp;&amp; store.state.user.roles.length &gt; 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      if (hasRoles) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; roles 必须是字符串数组对象 such as: [&#39;admin&#39;] or ,[&#39;developer&#39;,&#39;editor&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">          const &#123; roles &#125; &#x3D; await store.dispatch(&quot;user&#x2F;getInfo&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; 根据角色生成可访问路由图</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">          const accessRoutes &#x3D; await store.dispatch(&quot;permission&#x2F;generateRoutes&quot;, roles);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; 动态添加可访问路由</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">          router.addRoutes(accessRoutes);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; 避免首页两次重定向</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">          if (to.path &#x3D;&#x3D;&#x3D; &quot;&#x2F;home&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">            next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">          &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">            &#x2F;&#x2F; 设置replace: true，这样导航将不会留下历史记录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">            next(&#123; ...to, replace: true &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">          &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; 清楚 token 重新登录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">          await store.dispatch(&quot;user&#x2F;resetToken&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">          next(&quot;&#x2F;login&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">          NProgress.done();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">          console.log(&quot;error :&gt;&gt; &quot;, error);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    &#x2F;* 没有 token 未登录 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">    if (whiteList.indexOf(to.path) !&#x3D;&#x3D; -1) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 在免登录白名单中，直接登录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">      next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 其他没有访问权限的页面被重定向到登录页面。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">      next(&quot;&#x2F;login&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">      NProgress.done();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">router.afterEach(to &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 动态设置HTML meta Title</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">  setTitle(to, router.app);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 完成进度条</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">  NProgress.done();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
 
-
-</li>
-</ol>
-<h3 id="lib-flexible与postcss-px2rem-exclude适配方案"><a href="#lib-flexible与postcss-px2rem-exclude适配方案" class="headerlink" title="lib-flexible与postcss-px2rem-exclude适配方案"></a>lib-flexible与postcss-px2rem-exclude适配方案</h3><ol>
-<li>设置理想视口：把默认的layout viewport的宽度设为移动设备的屏幕宽度，得到理想视口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;meta</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name&#x3D;&quot;viewport&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0,minimum-scale&#x3D;1.0,maximum-scale&#x3D;1.0,user-scalable&#x3D;no,viewport-fit&#x3D;cover&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&gt;</span></pre></td></tr></table></figure></li>
-<li>下载安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install lib-flexible postcss-px2rem-exclude --save-dev</span></pre></td></tr></table></figure></li>
-<li>mian.js引入 lib-flexible<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 移动端适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &quot;lib-flexible&quot;;</span></pre></td></tr></table></figure></li>
-<li>创建.postcssrc.js 使用postcss-px2rem-exclude将px转译为rem<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; ctx &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; vant 文件使用 37.5 适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    const isNormalDpr &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &#x2F;\.css$&#x2F;.test(ctx.file.basename) &amp;&amp; &#x2F;\bvant\b&#x2F;.test(ctx.file.dirname);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            autoprefixer: &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            &quot;postcss-px2rem-exclude&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                remUnit: isNormalDpr ? 37.5 : 75</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
-或者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        autoprefixer: &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;postcss-px2rem-exclude&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            &quot;remUnit&quot;: 75,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            exclude: &#x2F;node_modules&#x2F;i &#x2F;&#x2F; 忽略node_modules文件夹下所有文件的适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="postcss-px-to-viewport适配方案"><a href="#postcss-px-to-viewport适配方案" class="headerlink" title="postcss-px-to-viewport适配方案"></a>postcss-px-to-viewport适配方案</h3><ol>
-<li>设置理想视口：把默认的layout viewport的宽度设为移动设备的屏幕宽度，得到理想视口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;meta</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name&#x3D;&quot;viewport&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0,minimum-scale&#x3D;1.0,maximum-scale&#x3D;1.0,user-scalable&#x3D;no,viewport-fit&#x3D;cover&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&gt;</span></pre></td></tr></table></figure></li>
-<li>下载安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i postcss-px-to-viewport -D</span></pre></td></tr></table></figure></li>
-<li>创建.postcssrc.js 使用postcss-px-to-viewport将px转译为vw<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        autoprefixer: &#123;&#125;, &#x2F;&#x2F; 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;postcss-px-to-viewport&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            &quot;viewportWidth&quot;: 750,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            &quot;minPixelValue&quot;: 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            &quot;mediaQuery&quot;: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            &quot;selectorBlackList&quot;: [&quot;van&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &quot;landscape&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            &quot;landscapeUnit&quot;: &quot;vw&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            &quot;landscapeWidth&quot;: 2048 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
-<li>查看postcss-px-to-viewport文档<ul>
-<li><a href="https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md" target="_blank" rel="noopener">https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md</a></li>
+<h3 id="4-具体"><a href="#4-具体" class="headerlink" title="4. 具体"></a>4. 具体</h3><ul>
+<li><a href="https://github.com/wangxiaoqi0123/vue-cli3-vant" target="_blank" rel="noopener">https://github.com/wangxiaoqi0123/vue-cli3-vant</a></li>
 </ul>
-</li>
-</ol>
 
       
     </div>
@@ -358,6 +459,112 @@
 <h3 id="cross-env"><a href="#cross-env" class="headerlink" title="cross-env"></a>cross-env</h3><blockquote>
 <p>1.它是运行跨平台设置和使用环境变量(Node中的环境变量)的脚本。<br>2.webpack中本身提供<code>NODE_ENV</code>环境变量，分别对应 <code>开发：development</code> / <code>生产：production</code>。但是windows不支持NODE_ENV=development的设置方式，使用cross-env可以做到对windows的兼容。</p>
 </blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/configuration/configuration02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/configuration/configuration02/" class="post-title-link" itemprop="url">移动端rem适配</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:09:57" itemprop="dateModified" datetime="2023-10-20T12:09:57+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="简单实现rem适配"><a href="#简单实现rem适配" class="headerlink" title="简单实现rem适配"></a>简单实现rem适配</h3><ol>
+<li>使用onresize事件，当设备窗口发生变化时，动态设置根节点的font-size</li>
+<li>设置尺寸时，以标准设计稿为基础设置，一般以750视口下font-size为100px动态换算当前设备的font-size（750一般为设计稿尺寸）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">window.onresize &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;窗口发生改变时 触发事件 用来做响应式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;将根节点的fontsize 设置为100px 作为 1rem</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    var clientX &#x3D; document.documentElement.clientWidth;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;750:100 &#x3D; clientX:?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;标准设计稿:100px &#x3D; 当前设备宽: ?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    document.documentElement.style.fontSize &#x3D; (clientX &#x2F; 7.5) + &quot;px&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="淘宝适配与网易适配"><a href="#淘宝适配与网易适配" class="headerlink" title="淘宝适配与网易适配"></a>淘宝适配与网易适配</h3><ol>
+<li>网易适配: 设计稿宽度是 750px，假定当前设计稿的 1rem = 100px，那么 屏幕宽度：设计稿宽度 = 设备的rem:设计稿假定的rem(100)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">html&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    font-size: calc(100vw&#x2F;7.5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    font-size: -webkit-calc(100vw&#x2F;7.5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>淘宝适配: 把设备宽度 100vw 分成 10等份，假设当前设备的rem 等于 其中的一份，那么1rem = 10vw<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 安装</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">npm i lib-flexible -S</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; main.js 中引入</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#39;lib-flexible&#39;</span></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h3 id="lib-flexible与postcss-px2rem-exclude适配方案"><a href="#lib-flexible与postcss-px2rem-exclude适配方案" class="headerlink" title="lib-flexible与postcss-px2rem-exclude适配方案"></a>lib-flexible与postcss-px2rem-exclude适配方案</h3><ol>
+<li>设置理想视口：把默认的layout viewport的宽度设为移动设备的屏幕宽度，得到理想视口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;meta</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name&#x3D;&quot;viewport&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0,minimum-scale&#x3D;1.0,maximum-scale&#x3D;1.0,user-scalable&#x3D;no,viewport-fit&#x3D;cover&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&gt;</span></pre></td></tr></table></figure></li>
+<li>下载安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install lib-flexible postcss-px2rem-exclude --save-dev</span></pre></td></tr></table></figure></li>
+<li>mian.js引入 lib-flexible<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 移动端适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &quot;lib-flexible&quot;;</span></pre></td></tr></table></figure></li>
+<li>创建.postcssrc.js 使用postcss-px2rem-exclude将px转译为rem<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; ctx &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; vant 文件使用 37.5 适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    const isNormalDpr &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &#x2F;\.css$&#x2F;.test(ctx.file.basename) &amp;&amp; &#x2F;\bvant\b&#x2F;.test(ctx.file.dirname);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            autoprefixer: &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            &quot;postcss-px2rem-exclude&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                remUnit: isNormalDpr ? 37.5 : 75</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+或者<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        autoprefixer: &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;postcss-px2rem-exclude&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            &quot;remUnit&quot;: 75,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            exclude: &#x2F;node_modules&#x2F;i &#x2F;&#x2F; 忽略node_modules文件夹下所有文件的适配</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="postcss-px-to-viewport适配方案"><a href="#postcss-px-to-viewport适配方案" class="headerlink" title="postcss-px-to-viewport适配方案"></a>postcss-px-to-viewport适配方案</h3><ol>
+<li>设置理想视口：把默认的layout viewport的宽度设为移动设备的屏幕宽度，得到理想视口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;meta</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    name&#x3D;&quot;viewport&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    content&#x3D;&quot;width&#x3D;device-width,initial-scale&#x3D;1.0,minimum-scale&#x3D;1.0,maximum-scale&#x3D;1.0,user-scalable&#x3D;no,viewport-fit&#x3D;cover&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&gt;</span></pre></td></tr></table></figure></li>
+<li>下载安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i postcss-px-to-viewport -D</span></pre></td></tr></table></figure></li>
+<li>创建.postcssrc.js 使用postcss-px-to-viewport将px转译为vw<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        autoprefixer: &#123;&#125;, &#x2F;&#x2F; 用来给不同的浏览器自动添加相应前缀，如-webkit-，-moz-等等</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;postcss-px-to-viewport&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            &quot;viewportWidth&quot;: 750,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            &quot;minPixelValue&quot;: 1,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            &quot;mediaQuery&quot;: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            &quot;selectorBlackList&quot;: [&quot;van&quot;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            &quot;landscape&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            &quot;landscapeUnit&quot;: &quot;vw&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            &quot;landscapeWidth&quot;: 2048 </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>查看postcss-px-to-viewport文档<ul>
+<li><a href="https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md" target="_blank" rel="noopener">https://github.com/evrone/postcss-px-to-viewport/blob/master/README_CN.md</a></li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -495,6 +702,104 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/vue/vue18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/22/vue/vue18/" class="post-title-link" itemprop="url">Vuex 底层实现原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-22T00:00:00+08:00">2020-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:24:15" itemprop="dateModified" datetime="2023-10-20T12:24:15+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-创建store挂载到根节点上"><a href="#1-创建store挂载到根节点上" class="headerlink" title="1. 创建store挂载到根节点上"></a>1. 创建store挂载到根节点上</h3><ol>
+<li>创建Store<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>实例Store对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vuex from &#39;.&#x2F;vuex&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;&#125;)</span></pre></td></tr></table></figure></li>
+<li>将Store的实例挂载Vue根节点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import store from &#39;.&#x2F;store&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  store,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  router,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  render: h &#x3D;&gt; h(App)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;).$mount(&#39;#app&#39;)</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="2-挂载全局mixin-子节点在渲染时，添加根节点的store"><a href="#2-挂载全局mixin-子节点在渲染时，添加根节点的store" class="headerlink" title="2. 挂载全局mixin (子节点在渲染时，添加根节点的store)"></a>2. 挂载全局mixin (子节点在渲染时，添加根节点的store)</h3><ol>
+<li>创建全局mixin，子节点挂载根节点store<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const install &#x3D; (Vue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  Vue.mixin(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    beforeCreate() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 备注：组件渲染是从根节点向子节点渲染</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 使每个组件上都存在根节点的store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      if (this.$options &amp;&amp; this.$options.store) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从根节点上拿到store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$options.store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从父组件上查找</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$parent &amp;&amp; this.$parent.$store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  install,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>全局挂载mixin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import Vuex from &#39;.&#x2F;vuex&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Vue.use(Vuex)</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="3-state-getters-mutations-actions-方法实现"><a href="#3-state-getters-mutations-actions-方法实现" class="headerlink" title="3. state getters mutations actions 方法实现"></a>3. state getters mutations actions 方法实现</h3><ol>
+<li>state 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.vm &#x3D; new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 实现数据双向绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        state: options.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建并暴露state引用</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  get state() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    return this.vm.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>getters 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let getters &#x3D; options.getters || &#123;&#125; &#x2F;&#x2F; 传入的getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.getters &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的getters复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    Object.keys(getters).forEach(getterName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      Object.defineProperty(this.getters, getterName, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        get: () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">          return getters[getterName](this.state)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>mutations 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let mutations &#x3D; options.mutations || &#123;&#125; &#x2F;&#x2F; 传入的mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.mutations &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的mutations复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    Object.keys(mutations).forEach(mutationName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      this.mutations[mutationName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        mutations[mutationName](this.state, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用mutations内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  commit &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    this.mutations[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>actions 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    let actions &#x3D; options.actions || &#123;&#125; &#x2F;&#x2F; 传入的actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    this.actions &#x3D; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的actions复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Object.keys(actions).forEach(actionName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      this.actions[actionName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        actions[actionName](this, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用actions内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  dispatch &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    this.actions[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>完整实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.vm &#x3D; new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 实现数据双向绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        state: options.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    let getters &#x3D; options.getters || &#123;&#125; &#x2F;&#x2F; 传入的getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    this.getters &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的getters复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    Object.keys(getters).forEach(getterName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      Object.defineProperty(this.getters, getterName, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        get: () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">          return getters[getterName](this.state)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    let mutations &#x3D; options.mutations || &#123;&#125; &#x2F;&#x2F; 传入的mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    this.mutations &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的mutations复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    Object.keys(mutations).forEach(mutationName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      this.mutations[mutationName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        mutations[mutationName](this.state, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    let actions &#x3D; options.actions || &#123;&#125; &#x2F;&#x2F; 传入的actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    this.actions &#x3D; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的actions复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    Object.keys(actions).forEach(actionName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      this.actions[actionName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        actions[actionName](this, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用mutations内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">  commit &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    this.mutations[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用actions内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">  dispatch &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    this.actions[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建并暴露state引用</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">  get state() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">    return this.vm.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">const install &#x3D; (Vue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">  Vue.mixin(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">    beforeCreate() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 备注：组件渲染是从根节点向子节点渲染</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 使每个组件上都存在根节点的store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">      if (this.$options &amp;&amp; this.$options.store) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从根节点上拿到store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$options.store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从父组件上查找</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$parent &amp;&amp; this.$parent.$store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">  install,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">  Store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h3><ul>
+<li>具体请查看 <a href="https://github.com/wangxiaoqi0123/vue-vuex-hand" target="_blank" rel="noopener">https://github.com/wangxiaoqi0123/vue-vuex-hand</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/vue/vue04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -594,104 +899,6 @@
 </li>
 </ol>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>  具体请查看 <a href="https://github.com/wangxiaoqi0123/vue-cli3-vant/tree/master/src/views/learn/al" target="_blank" rel="noopener">https://github.com/wangxiaoqi0123/vue-cli3-vant/tree/master/src/views/learn/al</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/vue/vue18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/vue/vue18/" class="post-title-link" itemprop="url">Vuex 底层实现原理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-22 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-22T00:00:00+08:00">2020-07-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:24:15" itemprop="dateModified" datetime="2023-10-20T12:24:15+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-创建store挂载到根节点上"><a href="#1-创建store挂载到根节点上" class="headerlink" title="1. 创建store挂载到根节点上"></a>1. 创建store挂载到根节点上</h3><ol>
-<li>创建Store<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>实例Store对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vuex from &#39;.&#x2F;vuex&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default new Vuex.Store(&#123;&#125;)</span></pre></td></tr></table></figure></li>
-<li>将Store的实例挂载Vue根节点<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import store from &#39;.&#x2F;store&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  store,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  router,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  render: h &#x3D;&gt; h(App)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;).$mount(&#39;#app&#39;)</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="2-挂载全局mixin-子节点在渲染时，添加根节点的store"><a href="#2-挂载全局mixin-子节点在渲染时，添加根节点的store" class="headerlink" title="2. 挂载全局mixin (子节点在渲染时，添加根节点的store)"></a>2. 挂载全局mixin (子节点在渲染时，添加根节点的store)</h3><ol>
-<li>创建全局mixin，子节点挂载根节点store<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const install &#x3D; (Vue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  Vue.mixin(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    beforeCreate() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 备注：组件渲染是从根节点向子节点渲染</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 使每个组件上都存在根节点的store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      if (this.$options &amp;&amp; this.$options.store) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从根节点上拿到store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$options.store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从父组件上查找</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$parent &amp;&amp; this.$parent.$store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  install,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>全局挂载mixin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import Vuex from &#39;.&#x2F;vuex&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Vue.use(Vuex)</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="3-state-getters-mutations-actions-方法实现"><a href="#3-state-getters-mutations-actions-方法实现" class="headerlink" title="3. state getters mutations actions 方法实现"></a>3. state getters mutations actions 方法实现</h3><ol>
-<li>state 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.vm &#x3D; new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 实现数据双向绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        state: options.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建并暴露state引用</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  get state() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    return this.vm.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>getters 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let getters &#x3D; options.getters || &#123;&#125; &#x2F;&#x2F; 传入的getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.getters &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的getters复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    Object.keys(getters).forEach(getterName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      Object.defineProperty(this.getters, getterName, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        get: () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">          return getters[getterName](this.state)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>mutations 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let mutations &#x3D; options.mutations || &#123;&#125; &#x2F;&#x2F; 传入的mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.mutations &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的mutations复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    Object.keys(mutations).forEach(mutationName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      this.mutations[mutationName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        mutations[mutationName](this.state, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用mutations内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  commit &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    this.mutations[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>actions 实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    let actions &#x3D; options.actions || &#123;&#125; &#x2F;&#x2F; 传入的actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    this.actions &#x3D; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的actions复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Object.keys(actions).forEach(actionName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      this.actions[actionName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        actions[actionName](this, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用actions内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  dispatch &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    this.actions[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>完整实现<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &#39;vue&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">class Store &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  constructor(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    this.vm &#x3D; new Vue(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 实现数据双向绑定</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        state: options.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    let getters &#x3D; options.getters || &#123;&#125; &#x2F;&#x2F; 传入的getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    this.getters &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例getters</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的getters复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    Object.keys(getters).forEach(getterName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      Object.defineProperty(this.getters, getterName, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        get: () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">          return getters[getterName](this.state)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    let mutations &#x3D; options.mutations || &#123;&#125; &#x2F;&#x2F; 传入的mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    this.mutations &#x3D; &#123;&#125; &#x2F;&#x2F; 当前实例mutations</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的mutations复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    Object.keys(mutations).forEach(mutationName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      this.mutations[mutationName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        mutations[mutationName](this.state, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    let actions &#x3D; options.actions || &#123;&#125; &#x2F;&#x2F; 传入的actions</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    this.actions &#x3D; &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 传入的actions复制到实例上</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    Object.keys(actions).forEach(actionName &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      this.actions[actionName] &#x3D; payload &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        actions[actionName](this, payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用mutations内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">  commit &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">    this.mutations[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建调用actions内方法的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">  dispatch &#x3D; (method, payload) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 注意：使用箭头函数，避免dispatch 嵌套使用时 this 指向问题</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">    this.actions[method](payload)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 创建并暴露state引用</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">  get state() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">    return this.vm.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">const install &#x3D; (Vue) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">  Vue.mixin(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">    beforeCreate() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 备注：组件渲染是从根节点向子节点渲染</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 使每个组件上都存在根节点的store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">68</span></pre></td><td class="code"><pre><span class="line">      if (this.$options &amp;&amp; this.$options.store) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">69</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从根节点上拿到store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">70</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$options.store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">71</span></pre></td><td class="code"><pre><span class="line">      &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">72</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 从父组件上查找</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">73</span></pre></td><td class="code"><pre><span class="line">        this.$store &#x3D; this.$parent &amp;&amp; this.$parent.$store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">74</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">75</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">76</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">77</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">78</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">79</span></pre></td><td class="code"><pre><span class="line">  install,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">80</span></pre></td><td class="code"><pre><span class="line">  Store</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">81</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="4-最后"><a href="#4-最后" class="headerlink" title="4. 最后"></a>4. 最后</h3><ul>
-<li>具体请查看 <a href="https://github.com/wangxiaoqi0123/vue-vuex-hand" target="_blank" rel="noopener">https://github.com/wangxiaoqi0123/vue-vuex-hand</a></li>
-</ul>
 
       
     </div>
@@ -970,106 +1177,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/javascript10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/17/javascript/javascript10/" class="post-title-link" itemprop="url">JS零碎知识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00+08:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:12:03" itemprop="dateModified" datetime="2023-10-20T14:12:03+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>内存溢出<ul>
-<li>一种程序运行的错误</li>
-<li>当程序运行需要的内存超过了剩余内存时，就抛出内存溢出的错误</li>
-</ul>
-</li>
-<li>内存泄漏<ul>
-<li>占用内存没有及时释放</li>
-<li>内存泄漏多了就容易导致内存溢出</li>
-<li>常见的内存泄漏<br>（1）意外的全局变量<br>（2）没有及时清理的计时器或回调函数<br>（3）闭包 </li>
-</ul>
-</li>
-<li>this<ul>
-<li>this 是什么<br>（1）任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）<br>（2）所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
-<li>如何确定this的值<br>（1）全局函数调用时，this 为 window<br>（2）以方法的形式调用时，this就为调用方法的那个对象<br>（3）以构造函数的形式实例对象，则构造函数中的this为实例出的对象<br>（4）以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）<br>（5）响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁<br>（6）ES6中箭头函数没有this，他的this为当前作用域中的this</li>
-</ul>
-</li>
-<li>事件冒泡<ul>
-<li>所谓的事件冒泡值得就是事件的向上传到，当后代元素上的事件被触发时，其祖先元素上的相同事件也会触发</li>
-<li>取消事件冒泡的方法<br>（1）event.cancelBubble = true<br>（2）event.stopPropagation()</li>
-</ul>
-</li>
-<li>事件委派<ul>
-<li>将事件统一绑定给元素共同的祖先元素，这样当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/javascript07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1204,114 +1311,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/javascript/javascript15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/16/javascript/javascript15/" class="post-title-link" itemprop="url">JS执行上下文</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-16T00:00:00+08:00">2020-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:12:56" itemprop="dateModified" datetime="2023-10-20T14:12:56+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="全局执行上下文"><a href="#全局执行上下文" class="headerlink" title="全局执行上下文"></a>全局执行上下文</h3><ul>
-<li>在执行全局代码前将window确定为全局执行上下文</li>
-<li>对全局数据进行预处理<ol>
-<li>var定义的全局变量==&gt;undefined，添加为window的属性</li>
-<li>function声明的全局函数==&gt;赋值（fun），添加为window的方法</li>
-<li>this==&gt;赋值（window）</li>
-</ol>
-</li>
-<li>开始执行全局代码</li>
-</ul>
-<h3 id="函数执行上下文"><a href="#函数执行上下文" class="headerlink" title="函数执行上下文"></a>函数执行上下文</h3><ul>
-<li>在调用函数之前，准备执行函数体之前，创建对应的函数执行上下文对象（虚拟的，存在于栈内存中）</li>
-<li>对局部参数进行预处理<ol>
-<li>形参变量==&gt;赋值（实参）==&gt;添加为执行上下文的属性</li>
-<li>arrguments(伪数组)==&gt;赋值（实参列表），添加为执行上下文的属性</li>
-<li>var定义的局部变量==&gt;undefined，添加为执行上下文的属性</li>
-<li>function声明的函数==&gt;赋值（fun），添加为执行上下文的方法</li>
-<li>this==&gt;赋值（调用函数的对象）</li>
-</ol>
-</li>
-<li>开始执行函数体代码</li>
-</ul>
-<h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><ol>
-<li><p>在全局代码执行前，JS引擎就会创建一个栈来存储管理所有的执行上下文对象</p>
-</li>
-<li><p>在全局执行上下文（window）确定后，将其添加到栈中（压栈）</p>
-</li>
-<li><p>在函数执行上下文创建后，将其添加到栈中（压栈）</p>
-</li>
-<li><p>在当前函数执行完后，将栈顶的对象移除（出栈）</p>
-</li>
-<li><p>当所有代码执行完成后，栈中只剩下window</p>
-<img src="/images/2020/context.jpg">
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1381,7 +1380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

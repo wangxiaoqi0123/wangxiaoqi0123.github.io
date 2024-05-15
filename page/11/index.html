@@ -184,97 +184,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue02/" class="post-title-link" itemprop="url">模块(组件)上的 v-model 实现</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:20:28" itemprop="dateModified" datetime="2023-10-20T12:20:28+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="实现理论"><a href="#实现理论" class="headerlink" title="实现理论"></a>实现理论</h3><ol>
-<li>v-model 实际上是 @input + :value 的语法糖</li>
-<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model 的props 变量名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model $emit事件命名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-<li>两个方向数据双向绑定<br>父向同过 v-model 向组件传值<br>组件通过 this.$emit(“input”, value) 向父传值</li>
-</ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
-<p>页面通过 自定义属性的方式组件传值 涉及到异步数据 要对数据进行监听!!!</p>
-</blockquote>
-<h3 id="常用两种实现方式"><a href="#常用两种实现方式" class="headerlink" title="常用两种实现方式"></a>常用两种实现方式</h3><ol>
-<li><p>watch监听 和 过渡属性 immediate: true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;modelValue&quot; &gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      modelValue: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      immediate: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      handler (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        this.modelValue &#x3D; newVal;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    modelValue (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">      this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>计算属性 setter getter(建议使用)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;modelValue&quot; &gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    modelValue: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      get () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        return this.value;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      set (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,7 +283,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue15/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -388,7 +297,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue15/" class="post-title-link" itemprop="url">Vue install use 全局挂载</a>
+            <a href="/2020/06/19/vue/vue06/" class="post-title-link" itemprop="url">Vue 父子组件通讯</a>
         </h2>
 
         <div class="post-meta">
@@ -405,7 +314,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:23:28" itemprop="dateModified" datetime="2023-10-20T12:23:28+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:21:28" itemprop="dateModified" datetime="2023-10-20T12:21:28+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -428,34 +337,313 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Vue-use-plugin"><a href="#Vue-use-plugin" class="headerlink" title="Vue.use( plugin )"></a>Vue.use( plugin )</h3><ol>
-<li>参数 {Object | Function} plugin</li>
-<li>安装 Vue.js 插件。如果插件是一个对象，必须提供 install 方法。如果插件是一个函数，它会被作为 install 方法。install 方法调用时，会将 Vue 作为参数传入。该方法需要在调用 new Vue() 之前被调用。</li>
+          <h3 id="子组件向父组件传递消息"><a href="#子组件向父组件传递消息" class="headerlink" title="子组件向父组件传递消息"></a>子组件向父组件传递消息</h3><ol>
+<li><p>使用 ref 的方式<br>(1) 父组件下 子组件标签 上标识 ref=”” 标识<br>(2) 父组件 通过 this.$refs.标识 === 子组件Vue实例</p>
+</li>
+<li><p>父组件通过 $children 的方式获取子组件消息<br>(1) 父组件 通过 this.$children === [子组件Vue实例 ,…] 子组件Vue实例的数组</p>
+</li>
+<li><p>子组件使用 $emit 的方法 发布订阅向父组件 传递消息<br>(1) 子组件 发布 this.$emit(“订阅事件” , “要传递给父元素的数据”)<br>(2) 父组件下 子组件标签 上添加监听事件 @订阅事件 = callback<br>(3) 要接受的参数 在callback 中实现传递</p>
+</li>
 </ol>
-<h3 id="全局-components-挂载"><a href="#全局-components-挂载" class="headerlink" title="全局 components 挂载"></a>全局 components 挂载</h3><ol>
-<li>准备一个封装完成组件</li>
-<li>引入组件,install<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import FormDate from &quot;.&#x2F;FormDate.vue&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义 Form 对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const From &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; install 是默认的方法。当外界在 use 这个组件的时候，就会调用本身的 install 方法，同时传一个 Vue 这个类的参数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  install: function(Vue) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    Vue.component(&quot;FormDate&quot;, FormDate);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 导出</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">export default From;</span></pre></td></tr></table></figure></li>
-<li>引入mian.js use 挂载全局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import From from &#39;.&#x2F;components&#x2F;form&#x2F;index.js&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Vue.use(Form)</span></pre></td></tr></table></figure></li>
-<li>项目全局直接使用组件</li>
+<h3 id="父组件向子组件传递消息"><a href="#父组件向子组件传递消息" class="headerlink" title="父组件向子组件传递消息"></a>父组件向子组件传递消息</h3><ol>
+<li>使用 props 方式<br>(1) 父组件下 子组件标签 通过数据属性向子组件传递数据 :数据名=”数据”<br>(2) 子组件 同过 props:[“数据名”] 的方式接受数据</li>
+<li>使用 $parent 的方式获取父元素上的信息<br>(1) 子组件 通过 this.$parent == 父组件Vue实例 (父组件唯一所以不是数组)</li>
 </ol>
-<h3 id="全局-filters-挂载"><a href="#全局-filters-挂载" class="headerlink" title="全局 filters 挂载"></a>全局 filters 挂载</h3><ol>
-<li>书写全局 filters <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const filter &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">filter.install &#x3D; function (Vue) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; val 默认要过滤的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; list 过滤器使用时传入的值，不传则没有</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  Vue.filter(&quot;TextMap&quot;, (val, list) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    let obj &#x3D; list &amp;&amp; list.find(item &#x3D;&gt; item.value &#x3D;&#x3D;&#x3D; val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    if (obj) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      return obj.text;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      return &quot;&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">export default filter;</span></pre></td></tr></table></figure></li>
-<li>引入mian.js use 挂载全局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import filter from &quot;.&#x2F;libs&#x2F;filter.js&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Vue.use(filter);</span></pre></td></tr></table></figure></li>
-<li>项目全局直接使用过滤器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;value|TextMap(list)&#125;&#125;&lt;&#x2F;div&gt;</span></pre></td></tr></table></figure>
+<h3 id="兄弟组件之间传递消息-非父子组件"><a href="#兄弟组件之间传递消息-非父子组件" class="headerlink" title="兄弟组件之间传递消息(非父子组件)"></a>兄弟组件之间传递消息(非父子组件)</h3><ol>
+<li>只有通过 Vue实例 实现通讯的一种方式<br>(1) 创建一个 Vue实例 专门用于实现兄弟元素之间的通讯 var bus = new Vue()<br>(2) 发送消息的兄弟 在 methods 中 使用 bus.$emit(“名称” , 数据)<br>(3) 接受消息的兄弟 在 mounted (生命周期回调函数) 使用 bus.$on(“名称”,callback) 回调函数中接受消息</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/vue/vue02/" class="post-title-link" itemprop="url">模块(组件)上的 v-model 实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:20:28" itemprop="dateModified" datetime="2023-10-20T12:20:28+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="实现理论"><a href="#实现理论" class="headerlink" title="实现理论"></a>实现理论</h3><ol>
+<li>v-model 实际上是 @input + :value 的语法糖</li>
+<li>vue 中的 model 允许自定义里面 prop(组件 v-mode 值) event(事件类型)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">model: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model 的props 变量名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    prop: &#39;uname&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 自定义 v-model $emit事件命名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    event: &#39;changeXXX&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>两个方向数据双向绑定<br>父向同过 v-model 向组件传值<br>组件通过 this.$emit(“input”, value) 向父传值</li>
+</ol>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><blockquote>
+<p>页面通过 自定义属性的方式组件传值 涉及到异步数据 要对数据进行监听!!!</p>
+</blockquote>
+<h3 id="常用两种实现方式"><a href="#常用两种实现方式" class="headerlink" title="常用两种实现方式"></a>常用两种实现方式</h3><ol>
+<li><p>watch监听 和 过渡属性 immediate: true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;modelValue&quot; &gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      modelValue: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      immediate: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      handler (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        this.modelValue &#x3D; newVal;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    modelValue (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">      this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+</li>
+<li><p>计算属性 setter getter(建议使用)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;input type&#x3D;&quot;text&quot; v-model&#x3D;&quot;modelValue&quot; &gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  props: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    value: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      type: String,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      default: &quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    modelValue: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      get () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        return this.value;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      set (newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        this.$emit(&quot;input&quot;, newVal);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+
 
 </li>
 </ol>
-<h3 id="全局-directive-挂载"><a href="#全局-directive-挂载" class="headerlink" title="全局 directive 挂载"></a>全局 directive 挂载</h3><ol>
-<li>书写全局 directive<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const directive &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">directive.install &#x3D; function (Vue) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Vue.directive(&quot;mydirective&quot;, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    bind: function () &#123; &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    inserted: function () &#123; &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    update: function () &#123; &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    componentUpdated: function () &#123; &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    unbind: function () &#123; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">export default directive;</span></pre></td></tr></table></figure></li>
-<li>引入mian.js use 挂载全局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import directive from &quot;.&#x2F;libs&#x2F;directive.js&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Vue.use(directive);</span></pre></td></tr></table></figure></li>
-<li>项目全局直接使用自定义指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;div v-mydirective&gt;&lt;&#x2F;div&gt;</span></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/css/css03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/css/css03/" class="post-title-link" itemprop="url">阿里巴巴图标库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:14:03" itemprop="dateModified" datetime="2023-10-20T14:14:03+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线上引用"><a href="#线上引用" class="headerlink" title="线上引用"></a>线上引用</h3><ol>
+<li><p>查找图标添加至项目 进入项目</p>
+</li>
+<li><p>复制 Font class 在线生成 的地址<br>//at.alicdn.com/t/font_1199553_u7298mmz27i.css</p>
+</li>
+<li><p>页面 link 引用 注意加 http:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;http:&#x2F;&#x2F;at.alicdn.com&#x2F;t&#x2F;font_1199553_u7298mmz27i.css&quot;&gt;</span></pre></td></tr></table></figure>
+
 
 </li>
 </ol>
-<h3 id="全局方法挂载"><a href="#全局方法挂载" class="headerlink" title="全局方法挂载"></a>全局方法挂载</h3><ol>
-<li>书写全局 方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  install(Vue, options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    Vue.prototype.$utils &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 获取连接参数值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      getUrlParams(name) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        var reg &#x3D; new RegExp(&quot;(^|&amp;)&quot; + name + &quot;&#x3D;([^&amp;]*)(&amp;|$)&quot;, &quot;i&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        var r &#x3D; window.location.search.substr(1).match(reg);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        if (r !&#x3D; null) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">          return unescape(r[2]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        return null;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
-<li>引入mian.js use 挂载全局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import utils from &quot;@&#x2F;libs&#x2F;utils.js&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Vue.use(utils);</span></pre></td></tr></table></figure></li>
-<li>全局中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">this.$utils.getUrlParams(name)</span></pre></td></tr></table></figure>
+<ol start="4">
+<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+</li>
+<li><p>当项目 添加新的 图标 在线地址要更新 页面的引用地址也要更新</p>
+</li>
+</ol>
+<h3 id="下载引用"><a href="#下载引用" class="headerlink" title="下载引用"></a>下载引用</h3><ol>
+<li><p>查找图标添加至项目 进入项目</p>
+</li>
+<li><p>点击下载 解压文件 选取 iconfont.css iconfont.eot iconfont.svg iconfont.ttf iconfont.woff 文件, 放在项目 assets 文件夹下 (最好新建一个文件夹 一起放进去)</p>
+</li>
+<li><p>main.js 中引入 iconfont.css 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &quot;@&#x2F;assets&#x2F;font&#x2F;iconfont.css&quot;;</span></pre></td></tr></table></figure>
+</li>
+<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+</li>
+<li><p>当项目 添加新的 图标 整个文件夹需要重新打包 替换</p>
+</li>
+</ol>
+<h3 id="UI库扩展-iconfont"><a href="#UI库扩展-iconfont" class="headerlink" title="UI库扩展 iconfont"></a>UI库扩展 iconfont</h3><p>UI 一般也是icon一般也是使用字体图标 所以可以在可添加字体图标的组件上使用 icon=”iconfont icon-xxx”  方式扩展</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/vue/vue05/" class="post-title-link" itemprop="url">Vue 单文件组件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:21:15" itemprop="dateModified" datetime="2023-10-20T12:21:15+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- 书写html区域 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    components: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 挂载小组件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    props: [], &#x2F;&#x2F; 接受父组件传递的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    data() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 声明全局</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 计算属性</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 监听数据值的变化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    created() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 被实例化 完成</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    mounted() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 页面节点渲染完毕</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 书写 vue 函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#x2F;* 书写css区域 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;style&gt;</span></pre></td></tr></table></figure>
+
+<ol>
+<li><p>template 默认只能有一个根节点 可书写 指令 事件 差值表达式 filter 等等</p>
+</li>
+<li><p>components 注册引入该模板文件 的局部组件</p>
+</li>
+<li><p>props 接受父组件 传递的数据</p>
+</li>
+<li><p>data 作为主要数据源</p>
+</li>
+<li><p>computed 依赖其他数据源的值 计算出新值</p>
+</li>
+<li><p>watch 监听数据发生变化</p>
+</li>
+<li><p>created 组件 被实例化 完成</p>
+</li>
+<li><p>created 页面节点渲染完毕</p>
+</li>
+<li><p>methods 书写 function</p>
+</li>
+<li><p>scoped 针对当前文件样式锁定</p>
 </li>
 </ol>
 
@@ -649,7 +837,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
