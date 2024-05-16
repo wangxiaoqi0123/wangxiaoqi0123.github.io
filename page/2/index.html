@@ -310,6 +310,171 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/03/23/configuration/configuration10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/03/23/configuration/configuration10/" class="post-title-link" itemprop="url">eslint+prettier+stylelint项目风格配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-23 00:00:00" itemprop="dateCreated datePublished" datetime="2023-03-23T00:00:00+08:00">2023-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-21 10:29:31" itemprop="dateModified" datetime="2023-10-21T10:29:31+08:00">2023-10-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="eslint"><a href="#eslint" class="headerlink" title="eslint"></a>eslint</h3><ol>
+<li><p>eslint是什么<br>ESLint 是一个可配置的 JavaScript 检查器。它可以帮助你发现并修复 JavaScript 代码中的问题。问题可以指潜在的运行时漏洞、未使用最佳实践、风格问题等。<br>通过定义一组规则来工作，这些规则描述了代码中的期望行为和约定。开发人员可以根据自己的需求配置这些规则，以便在编码过程中得到及时的反馈和建议。ESLint支持大量的规则，并且可以根据项目的特定需求进行定制。<br><a href="https://zh-hans.eslint.org/" target="_blank" rel="noopener">文档地址</a></p>
+</li>
+<li><p>eslint工作机制</p>
+<img src="/images/2023/project-standard-001.png" />
+代码解析：ESLint首先会将JavaScript代码解析成抽象语法树（Abstract Syntax Tree，AST）。AST是一种将代码转换为树状结构的表示形式，可以更方便地进行代码分析和操作。<br/>
+规则匹配：一旦代码被解析成AST，ESLint会根据配置的规则集进行规则匹配。每个规则都描述了代码中的某种问题或期望行为。<br/>
+规则执行：当规则与代码匹配时，ESLint会执行规则所定义的逻辑。这可能包括发出警告、错误或建议，或者对代码进行自动修复。<br/>
+</li>
+<li><p>eslint使用及相关工具介绍</p>
+</li>
+</ol>
+<ul>
+<li><p>初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i eslint -D</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx eslint --init</span></pre></td></tr></table></figure>
+<img src="/images/2023/project-standard-002.png" />
+通过可以看到eslint帮我们安装了一些包
+
+<p><code>eslint-plugin-vue</code>：eslint-plugin-vue 是 eslint 的插件，用于提供针对 Vue.js 代码的特定规则和检查。它能够检查和规范 Vue 单文件组件中的 HTML 模板、JavaScript 和样式部分的代码。</p>
+<p><code>@typescript-eslint/parser</code>：@typescript-eslint/parser 是一个用于解析 TypeScript 代码的 ESLint 解析器。它可以将 TypeScript 代码转换为抽象语法树（AST），以便进行后续的静态代码分析和检查。</p>
+<p><code>@typescript-eslint/eslint-plugin</code>：@typescript-eslint/eslint-plugin 是一个为 TypeScript 代码提供规则和检查的 ESLint 插件。它扩展了 ESLint 的功能，使其能够处理 TypeScript 特有的语法和类型系统，并提供相关的规则来确保代码的正确性和一致性。</p>
+</li>
+<li><p>配置格式化规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .eslintrc.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &quot;env&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;browser&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        &quot;es2021&quot;: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        &quot;node&quot;: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &quot;extends&quot;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &quot;eslint:recommended&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        &quot;plugin:@typescript-eslint&#x2F;recommended&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &quot;plugin:vue&#x2F;vue3-essential&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &quot;parserOptions&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &quot;ecmaVersion&quot;: &quot;latest&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &quot;parser&quot;: &quot;@typescript-eslint&#x2F;parser&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &quot;sourceType&quot;: &quot;module&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        &quot;ecmaFeatures&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            jsx: true, &#x2F;&#x2F; 启用 JSX 语法支持</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &quot;plugins&quot;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        &quot;@typescript-eslint&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &quot;vue&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &quot;rules&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; &quot;quotes&quot;: [&quot;error&quot;, &quot;single&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><code>env</code> 指定当前代码语法的环境。<br><code>extends</code> 集成其他eslint的配置。<br><code>parserOptions</code> 解析器的配置项。<br><code>global</code> 配置全局变量。<br><code>plugins</code> 扩展插件。<br><code>rules</code> 校验规则配置。</p>
+<p>插件包名简写：<br>配置extends时可以省略包名的 eslint-config-前缀。如 airbnb 会被解析为 eslint-config-airbnb。<br>配置plugins时可以省略包名中的 eslint-plugin- 前缀。extends 属性值由以下内容组成：<br>plugin:<br>包名（可以省略其前缀，如 react 是 eslint-plugin-react 的缩写）<br>/<br>配置名称（如 recommended）<br>…<br>示例：<code>plugin:@typescript-eslint/recommended</code></p>
+<p>rules配置：<br>“off” 或 0：表示禁用规则。<br>“warn” 或 1：表示将规则视为警告。<br>“error” 或 2：表示将规则视为错误。<br>另外，规则的值还可以是一个数组，其中第一个元素是错误级别，后面的元素是配置规则的选项。<br>比如：semi: [‘error’, ‘always’]</p>
+</li>
+<li><p>.eslintignore</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">dist&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">index.html</span></pre></td></tr></table></figure></li>
+<li><p>配置eslint脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint:eslint&quot;: &quot;eslint --fix --ext .js,.ts,.tsx,.vue .&#x2F;src&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><a href="https://zh-hans.eslint.org/docs/latest/use/command-line-interface" target="_blank" rel="noopener">命令行配置</a></p>
+</li>
+</ul>
+<h3 id="prettier"><a href="#prettier" class="headerlink" title="prettier"></a>prettier</h3><ol>
+<li><p>prettier是什么<br>Prettier 是一个代码格式化工具，用于自动格式化代码，使代码保持一致的风格和布局。它支持多种编程语言，并且具有可配置的规则和选项，可以自动调整代码的缩进、空格、换行等。<br><a href="https://www.prettier.cn/" target="_blank" rel="noopener">文档地址</a></p>
+</li>
+<li><p>prettier使用及相关工具介绍</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i prettier -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm i eslint-config-prettier -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">pnpm i eslint-plugin-prettier -D</span></pre></td></tr></table></figure>
+<p><code>eslint-config-prettier</code>：eslint-config-prettier 是一个 ESLint 配置规则，用于解决 ESLint 和 Prettier 之间的规则冲突。由于 ESLint 和 Prettier 可能存在一些相互冲突的规则，使用 eslint-config-prettier 可以禁用 ESLint 中与 Prettier 冲突的规则，以确保代码格式化的一致性。</p>
+<p><code>eslint-plugin-prettier</code>：eslint-plugin-prettier 是一个 ESLint 插件，用于将 Prettier 的格式化功能集成到 ESLint 中。它会在 ESLint 的规则检查过程中，对不符合 Prettier 格式化规则的代码进行标记和报告，并可以通过 –fix 选项自动修复一些格式化问题。eslint-plugin-prettier 可以与 eslint-config-prettier 一起使用，以确保代码格式化的一致性和准确性。<br>&nbsp;<br>.eslintrc.js扩展</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">extends: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#39;prettier&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#39;plugin:prettier&#x2F;recommended&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"> ]</span></pre></td></tr></table></figure>
+</li>
+<li><p>prettier与eslint如何工作</p>
+<img src="/images/2023/project-standard-003.png" />
+</li>
+<li><p>配置文件格式化规则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; .prettierrc.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 一行最多 100 字符</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  printWidth: 100,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 2 个空格缩进</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  tabWidth: 2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 不使用 tab 缩进，而使用空格</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  useTabs: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 行尾需要有分号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  semi: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用单引号代替双引号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  singleQuote: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 对象的 key 仅在必要时用引号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  quoteProps: &#39;as-needed&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; jsx 不使用单引号，而使用双引号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  jsxSingleQuote: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 末尾不使用逗号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  trailingComma: &#39;none&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 大括号内的首尾需要空格 &#123; foo: bar &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  bracketSpacing: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; jsx 标签的反尖括号需要换行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  jsxBracketSameLine: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 箭头函数，只有一个参数的时候，也需要括号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  arrowParens: &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 每个文件格式化的范围是文件的全部内容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  rangeStart: 0,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  rangeEnd: Infinity,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 不需要写文件开头的 @prettier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  requirePragma: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 不需要自动在文件开头插入 @prettier</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  insertPragma: false,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用默认的折行标准</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">  proseWrap: &#39;preserve&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 根据显示样式决定 html 要不要折行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  htmlWhitespaceSensitivity: &#39;css&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 换行符使用 lf</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">  endOfLine: &#39;auto&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><a href="https://www.prettier.cn/playground/" target="_blank" rel="noopener">在线规则配置</a></p>
+</li>
+<li><p>.prettierignore</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;dist&#x2F;*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.local</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">.output.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;node_modules&#x2F;**</span></pre></td></tr></table></figure></li>
+<li><p>配置prettier脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint:prettier&quot;: &quot;prettier --write  \&quot;src&#x2F;**&#x2F;*.&#123;js,json,ts,tsx,css,less,vue,html,md&#125;\&quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><a href="https://www.prettier.cn/docs/cli.html" target="_blank" rel="noopener">命令行文档</a></p>
+</li>
+</ol>
+<h3 id="stylelint"><a href="#stylelint" class="headerlink" title="stylelint"></a>stylelint</h3><ol>
+<li><p>stylelint是什么<br>Stylelint 是一个用于检查和规范 CSS（默认） 和预处理器（如 LESS 和 SCSS）代码的工具。它可以帮助开发者遵循一致的编码规范，并发现潜在的问题和错误。<br><a href="https://stylelint.bootcss.com/" target="_blank" rel="noopener">文档地址</a></p>
+</li>
+<li><p>stylelint使用及相关工具介绍</p>
+</li>
+</ol>
+<ul>
+<li><p>stylelint配置<br>基础（对css文件中的样式进行校验）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-config-standard -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-config-prettier -D</span></pre></td></tr></table></figure>
+<p><code>stylelint-config-standard</code>：stylelint-config-standard 是一个 Stylelint 的标准配置规则集，适用于标准的 CSS 代码。它包含了一组常见的规范和推荐规则，帮助开发者维护一致的 CSS 代码风格和质量。</p>
+<p><code>stylelint-config-prettier</code>：stylelint-config-prettier 是一个 Stylelint 配置规则，用于禁用 Stylelint 中与 Prettier 冲突的规则。它可以确保 Stylelint 和 Prettier 之间的规则一致性，避免冲突和重复的检查。<br>&nbsp;<br>扩展less，对less文件校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-less -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm i postcss-less -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-config-recommended-less -D</span></pre></td></tr></table></figure>
+<p><code>stylelint-less</code>：stylelint-less 是一个 Stylelint 的插件，用于提供针对 LESS 代码的特定规则和检查。它可以检查和规范 LESS 文件中的样式代码，帮助开发者维护一致的 LESS 代码风格和质量。</p>
+<p><code>postcss-less</code>：postcss-less用途是将PostCSS转换直接应用于LESS源。</p>
+<p><code>stylelint-config-recommended-less</code>：stylelint-config-recommended-less 是一个 Stylelint 的推荐配置规则集，适用于 LESS 预处理器。它包含了一组针对 LESS 代码的推荐规则，帮助开发者规范化 LESS 代码的书写风格。<br>&nbsp;<br>扩展html|vue文件校验</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i postcss-html -D</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-config-standard-vue -D</span></pre></td></tr></table></figure>
+<p><code>postcss-html</code>：postcss-html 是一个 PostCSS 插件，用于解析 HTML 中的样式块（内联样式）。它可以解析 HTML 文件中 &lt;style&gt; 标签内的样式，并将其转换为 CSS 代码，以便进行后续的样式处理和分析。</p>
+<p><code>stylelint-config-standard-vue</code>：stylelint-config-standard-vue 是一个 Stylelint 的标准配置规则集，专门针对 Vue 单文件组件中的样式部分。它在 stylelint-config-standard 的基础上增加了一些针对 Vue 组件样式的规则，以确保 Vue 组件的样式一致性和质量。<br>&nbsp;<br>顺序插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm i stylelint-order -D</span></pre></td></tr></table></figure>
+<p><code>stylelint-order</code>：stylelint-order 是一个 Stylelint 的插件，用于定义和检查 CSS 属性的顺序。它可以帮助开发者规范 CSS 属性的排列顺序，以提高代码的可读性和维护性</p>
+</li>
+</ul>
+<ol start="2">
+<li><p>.stylelintrc.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 可以扩展现有配置（无论是自己的配置还是第三方配置</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  extends: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#39;stylelint-config-standard&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#39;stylelint-config-prettier&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#39;stylelint-config-recommended-less&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#39;stylelint-config-standard-vue&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 插件是社区构建的规则或规则集，支持方法，工具集，非标准 CSS功能或非常特定的用例</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  plugins: [&#39;stylelint-order&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  overrides: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      files: [&#39;**&#x2F;*.less&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      customSyntax: &#39;postcss-less&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      files: [&#39;**&#x2F;*.(html|vue)&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      customSyntax: &#39;postcss-html&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 忽略特定文件，node_modules 是默认情况下忽略的目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  ignoreFiles: [&#39;**&#x2F;*.js&#39;, &#39;**&#x2F;*.jsx&#39;, &#39;**&#x2F;*.tsx&#39;, &#39;**&#x2F;*.ts&#39;, &#39;**&#x2F;*.json&#39;, &#39;**&#x2F;*.md&#39;, &#39;**&#x2F;*.yaml&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 默认情况下未打开任何规则，也没有默认值。必须明确配置每个规则才能将其打开</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  rules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    indentation: 2,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#39;number-leading-zero&#39;: &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#39;no-descending-specificity&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &#39;function-url-quotes&#39;: &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    &#39;string-quotes&#39;: &#39;single&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    &#39;unit-case&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#39;color-hex-case&#39;: &#39;lower&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    &#39;color-hex-length&#39;: &#39;long&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    &#39;rule-empty-line-before&#39;: &#39;never&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    &#39;font-family-no-missing-generic-family-keyword&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    &#39;selector-type-no-unknown&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    &#39;block-opening-brace-space-before&#39;: &#39;always&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    &#39;at-rule-no-unknown&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">    &#39;no-duplicate-selectors&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    &#39;property-no-unknown&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    &#39;no-empty-source&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    &#39;selector-class-pattern&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    &#39;keyframes-name-pattern&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    &#39;selector-pseudo-class-no-unknown&#39;: [true, &#123; ignorePseudoClasses: [&#39;global&#39;, &#39;deep&#39;] &#125;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">    &#39;no-descending-specificity&#39;: null,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">    &#39;selector-pseudo-element-no-unknown&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">      true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">        ignorePseudoElements: [&#39;v-deep&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">    &#39;selector-pseudo-class-no-unknown&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">      true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">        ignorePseudoClasses: [&#39;deep&#39;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">    ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 指定声明块内属性的字母顺序</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">    &#39;order&#x2F;properties-order&#39;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">      &#39;position&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">      &#39;top&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">      &#39;left&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">      &#39;right&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">      &#39;bottom&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">64</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">65</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">66</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">67</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><code>extends</code> 扩展stylelint的规则配置。<br><code>plugins</code> 指定要在 Stylelint 中使用的插件,支持方法，工具集，非标准 CSS功能或非常特定的用例。<br><code>overrides</code> 规则覆盖主要用户配置 Stylelint 在不同文件或文件类型上应用不同的规则集或配置。<br><code>ignoreFiles</code> 忽略特定文件，node_modules 是默认情况下忽略的目录。<br><code>rules</code> 配置stylelint的规则。</p>
+<p>rules配置：<br>规则配置可以是一个简单的布尔值，表示启用或禁用规则，也可以是一个数组，其中包含额外的配置选项。<br>规则配置也可以是对象的规则项，具体配置参照官网。<a href="https://stylelint.bootcss.com/user-guide/rules.html" target="_blank" rel="noopener">https://stylelint.bootcss.com/user-guide/rules.html</a></p>
+</li>
+<li><p>配置stylelint脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;lint:style&quot;: &quot;stylelint \&quot;.&#x2F;**&#x2F;*.&#123;css,less,vue,html&#125;\&quot; --fix --aei&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><a href="https://stylelint.bootcss.com/user-guide/usage/cli.html" target="_blank" rel="noopener">命令行文档</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/01/23/server/server09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1565,183 +1730,6 @@ package.json<figure class="highlight plain"><table><tr><td class="gutter"><pre><
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/07/05/node/node06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/05/node/node06/" class="post-title-link" itemprop="url">Node脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-05 00:00:00" itemprop="dateCreated datePublished" datetime="2022-07-05T00:00:00+08:00">2022-07-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:08:38" itemprop="dateModified" datetime="2023-10-20T14:08:38+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><ol>
-<li>npm init -y 初始化一个包</li>
-</ol>
-<ol start="2">
-<li>package.json 中配置 bin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;bin&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;test-cli&quot;: &quot;test-cli.js&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="3">
-<li>创建脚本文件，指定执行脚本的解释器<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env node</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 或者</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;local&#x2F;bin&#x2F;node</span></pre></td></tr></table></figure>
-type node</li>
-</ol>
-<ol start="4">
-<li>npm link <img src="/images/2022/node_script_01.png">
-把当前包软链接到全局的node_modules下<br>
-脚本也会同样软连接到全局bin下
-npm unlink 移除软链接
-
-
-</li>
-</ol>
-<ol start="5">
-<li>全局执行脚本<br>test-cli</li>
-</ol>
-<h3 id="常用工具"><a href="#常用工具" class="headerlink" title="常用工具"></a>常用工具</h3><h5 id="commander"><a href="#commander" class="headerlink" title="commander"></a>commander</h5><blockquote>
-<p>命令行界面工具</p>
-</blockquote>
-<ul>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i commander</span></pre></td></tr></table></figure></li>
-<li>option<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const &#123; program &#125; &#x3D; require(&#39;commander&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">program</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  .option(&#39;-s, --separator &lt;char&gt;&#39;, &#39;这是一个描述信息&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  .action((options) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;options&#39;, options) &#x2F;&#x2F; options &#x3D;&#x3D;&#x3D; program.opts()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">program.parse() &#x2F;&#x2F; 在控制台打印信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">const options &#x3D; program.opts()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;options&#39;, options)</span></pre></td></tr></table></figure></li>
-<li>command<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">program</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.command(&#39;clone &lt;source&gt; [destination]&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">.description(&#39;这是一个描述信息&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">.action((source, destination) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;source, destination&#39;, source, destination)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">program.parse()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">const options &#x3D; program.opts()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(&#39;options&#39;, options)</span></pre></td></tr></table></figure></li>
-<li>async<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">program</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  .command(&#39;create &lt;project-name&gt;&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  .description(&#39;这是一个描述信息&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  .action((source) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      console.log(&#39;source&#39;, source)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;, 2000)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">program.parseAsync()</span></pre></td></tr></table></figure></li>
-<li>文档地址<br><a href="https://www.npmjs.com/package/commander" target="_blank" rel="noopener">https://www.npmjs.com/package/commander</a><br><a href="https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md" target="_blank" rel="noopener">https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md</a></li>
-</ul>
-<h5 id="inquirer"><a href="#inquirer" class="headerlink" title="inquirer"></a>inquirer</h5><blockquote>
-<p>交互式命令行工具</p>
-</blockquote>
-<ul>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i inquirer</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const inquirer &#x3D; require(&#39;inquirer&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">let prompt &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    type: &#39;input&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    name: &#39;version&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    message: &#39;version&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    default: &#39;1.0.0&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    type: &#39;confirm&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    name: &#39;confirm&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    message: &#39;Are you handsome?&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    default: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    type: &#39;checkbox&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    name: &#39;checkbox&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    choices: [&#39;选项一&#39;, &#39;选项二&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    default: [&#39;选项一&#39;],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; ....</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">inquirer.prompt(prompt).then((params) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;params&#39;, params)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>type 提示的类型。默认值input, 可选input, number, confirm, list, rawlist, expand, checkbox, password, editor。<br>name 键（变量名）<br>message 提示信息<br>default 默认值<br>choices 展示的列表<br>…</p>
-</li>
-<li><p>文档地址<br><a href="https://github.com/SBoudrias/Inquirer.js#readme" target="_blank" rel="noopener">https://github.com/SBoudrias/Inquirer.js#readme</a><br><a href="https://juejin.cn/post/6844903480700698638" target="_blank" rel="noopener">https://juejin.cn/post/6844903480700698638</a></p>
-</li>
-</ul>
-<h5 id="fs-extra"><a href="#fs-extra" class="headerlink" title="fs-extra"></a>fs-extra</h5><blockquote>
-<p>文件处理工具</p>
-</blockquote>
-<ul>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i fs-extra</span></pre></td></tr></table></figure></li>
-<li><p>文件复制</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fse.copy(&#39;&#x2F;tmp&#x2F;myfile&#39;, &#39;&#x2F;tmp&#x2F;mynewfile&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.then(() &#x3D;&gt; console.log(&#39;success!&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">.catch(err &#x3D;&gt; console.error(err))</span></pre></td></tr></table></figure></li>
-<li><p>创建文件<br>emptyDir 创建空文件。若文件存在，则删除创建。<br>ensureFile 创建文件，及文件夹。若文件存在，不进行修改。<br>ensureDir 创建文件夹。若文件夹存在，不进行创建。</p>
-</li>
-<li><p>移动文件<br>move</p>
-</li>
-<li><p>删除文件<br>remove</p>
-</li>
-<li><p>文件写入<br>outputFile</p>
-</li>
-<li><p>文件读取<br>readFile</p>
-</li>
-<li><p>json写入<br>outputJson</p>
-</li>
-<li><p>json读取<br>readJson</p>
-</li>
-<li><p>文档地址<br><a href="https://github.com/jprichardson/node-fs-extra" target="_blank" rel="noopener">https://github.com/jprichardson/node-fs-extra</a><br><a href="https://juejin.cn/post/6844903641594216455" target="_blank" rel="noopener">https://juejin.cn/post/6844903641594216455</a></p>
-</li>
-</ul>
-<h5 id="shelljs"><a href="#shelljs" class="headerlink" title="shelljs"></a>shelljs</h5><blockquote>
-<p>命令行工具</p>
-</blockquote>
-<ul>
-<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i shelljs</span></pre></td></tr></table></figure></li>
-<li>基本命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 命令行打印信息 &#x3D;&#x3D;&#x3D; console.log</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">shelljs.echo(&#39;hello world！&#39;)</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 退出当前进程</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">shelljs.exit(1) &#x2F;&#x2F; 0正常退出，其他异常退出</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; exec同步运行外部工具</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">if(shelljs.exec(&#39;npm -v&#39;).code !&#x3D;&#x3D; 0)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  shelljs.echo(&#39;npm -v 命令执行错误&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  shelljs.exit(1) &#x2F;&#x2F; 0正常退出，其他异常退出</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 切换文件目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">shelljs.cd(&#39;..&#39;)</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 递归删除 -f:强制删除 -r:递归处理</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">shelljs.rm(&#39;-rf&#39;, &#39;test&#39;)</span></pre></td></tr></table></figure></li>
-<li>文档地址<br><a href="https://www.kancloud.cn/outsider/clitool/313191" target="_blank" rel="noopener">https://www.kancloud.cn/outsider/clitool/313191</a></li>
-</ul>
-<h5 id="chalk"><a href="#chalk" class="headerlink" title="chalk"></a>chalk</h5><blockquote>
-<p>命令行样式处理工具</p>
-</blockquote>
-<ul>
-<li><p>安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 4版本为require 5版本为import</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">npm i chalk@4.1.1</span></pre></td></tr></table></figure></li>
-<li><p>字体颜色</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const chalk &#x3D; require(&#39;chalk&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 内置颜色</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 自定义颜色</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.rgb(9, 218, 158).visible(&#39;---- Hello Chalk ----&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.hex(&#39;#09DA9E&#39;).visible(&#39;---- Hello Chalk ----&#39;))</span></pre></td></tr></table></figure></li>
-<li><p>字体样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.dim(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.italic(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.underline(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.inverse(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.hidden(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.blue.strikethrough(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr></table></figure>
-<p>bold 加粗字体<br>dim 让字体稍微泛光<br>italic 斜体（powershell上不支持）<br>underline 下划线（git bash上不支持）<br>inverse 翻转背景色和前景色<br>hidden 打印文本，但使其不可见<br>strikethrough 将一条水平线穿过文本的中心（git bash和powershell都不支持）<br>visible 仅当chalk的颜色级别为&gt; 0时打印文本。</p>
-</li>
-<li><p>背景颜色</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 内置背景颜色</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.bgGreenBright(&#39;---- Hello Chalk ----&#39;));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 自定义背景颜色</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.bgHex(&#39;#09DA9E&#39;).visible(&#39;---- Hello Chalk ----&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(chalk.bgRgb(9, 218, 158).visible(&#39;---- Hello Chalk ----&#39;))</span></pre></td></tr></table></figure></li>
-<li><p>模板字符串</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const miles &#x3D; 18;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const calculateFeet &#x3D; miles &#x3D;&gt; miles * 5280;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(chalk&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  There are &#123;bold 5280 feet&#125; in a mile.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  In &#123;bold $&#123;miles&#125; miles&#125;, there are &#123;green.bold $&#123;calculateFeet(miles)&#125; feet&#125;.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#96;);</span></pre></td></tr></table></figure>
-</li>
-<li><p>文档地址<br><a href="https://github.com/chalk/chalk" target="_blank" rel="noopener">https://github.com/chalk/chalk</a></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1811,7 +1799,7 @@ npm unlink 移除软链接
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
