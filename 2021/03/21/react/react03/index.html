@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="路由安装引入 安装1npm i react-router-dom -S 引入1import &amp;#123;2  HashRouter,3  BrowserRouter,4  Switch,5  Route,6  Link,7  NavLink,8  Redirect9&amp;#125; from &amp;quot;react-router-dom&amp;quot;; HashRouter、HistoryRouter">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;03&#x2F;21&#x2F;react&#x2F;react03&#x2F;index.html">
+<meta property="og:site_name" content="我寄白雪三千片">
+<meta property="og:description" content="路由安装引入 安装1npm i react-router-dom -S 引入1import &amp;#123;2  HashRouter,3  BrowserRouter,4  Switch,5  Route,6  Link,7  NavLink,8  Redirect9&amp;#125; from &amp;quot;react-router-dom&amp;quot;; HashRouter、HistoryRouter">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2021&#x2F;react_router_property_01.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2021&#x2F;react_router_property_02.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2021&#x2F;react_router_property_03.png">
+<meta property="og:updated_time" content="2023-10-20T06:04:54.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2021&#x2F;react_router_property_01.png">
+
+<link rel="canonical" href="http://yoursite.com/2021/03/21/react/react03/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React Router | 我寄白雪三千片</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">我寄白雪三千片</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/21/react/react03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Router
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-21T00:00:00+08:00">2021-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:04:54" itemprop="dateModified" datetime="2023-10-20T14:04:54+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="路由安装引入"><a href="#路由安装引入" class="headerlink" title="路由安装引入"></a>路由安装引入</h3><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm i react-router-dom -S</span></pre></td></tr></table></figure></li>
+<li>引入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  HashRouter,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  BrowserRouter,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Switch,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  Route,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Link,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  NavLink,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  Redirect</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125; from &quot;react-router-dom&quot;;</span></pre></td></tr></table></figure>
+<strong>HashRouter</strong>、<strong>HistoryRouter</strong> 为别为两种不同的的路由容器组件。</li>
+</ul>
+<h3 id="react-router-dom"><a href="#react-router-dom" class="headerlink" title="react-router-dom"></a>react-router-dom</h3><ul>
+<li>router组件列表<table border="1">
+<tr>
+  <th width='180px'>组件名称</th>
+  <th>说明</th>
+</tr>
+<tr>
+  <td>HashRouter</td>
+  <td>
+    1. 容器组件，所有路由必须被此组件包裹。<br>
+    2. 使用锚点（#）与 onhashchange事件实现sap
+  </td>
+</tr>
+<tr>
+  <td>BrowserRouter</td>
+  <td>
+    1. 容器组件，所有路由必须被此组件包裹。<br>
+    2. 使用H5的history API，实现sap不兼容IE9及以下版本。
+  </td>
+</tr>
+<tr>
+  <td>Switch</td>
+  <td>
+    1. 用于渲染与路径匹配的第一个子 &lt;Route/    &gt; 或 &lt;Redirect/&gt;
+  </td>
+</tr>
+<tr>
+  <td>Route</td>
+  <td>
+    1. 根据路径匹配呈现对应的UI。
+  </td>
+</tr>
+<tr>
+  <td>Redirect</td>
+  <td>
+    1. 导航到一个新的的位置，新的位置将覆盖历史栈中的当前条目。<br/>
+    2. 只能在 &lt;Switch&gt;中使用
+  </td>
+</tr>
+<tr>
+  <td>Link</td>
+  <td>
+    1. 声明式、可访问的导航链接。
+  </td>
+</tr>
+<tr>
+  <td>NavLink</td>
+  <td>
+    1. 特殊的 Link 提供额外的样式
+  </td>
+</tr>
+</table>
+
+</li>
+</ul>
+<h3 id="React-Router"><a href="#React-Router" class="headerlink" title="React Router"></a>React Router</h3><blockquote>
+<p><strong>HashRouter</strong></p>
+</blockquote>
+<ul>
+<li>基本原理<br>1.hash 路由变化，onhashchange 事件触发<br>2.解析路由的地址，匹配要渲染的组件</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;HashRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;home&quot;&gt;首页&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;about&quot;&gt;关于&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;study&quot;&gt;学习&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;study&quot; component&#x3D;&#123;Study&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;HashRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>HistoryRouter</strong></p>
+</blockquote>
+<ul>
+<li>基本原理<br>1.主动触发 h5 history.pushState(state, title, url) API，改变地址栏路由。<br>2.解析url，匹配要渲染的组件<br>3.由于state值存在history.state中。所以区别于HashRouter路由传参数，页面刷新参数不会消失。</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;home&quot;&gt;首页&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;about&quot;&gt;关于&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;study&quot;&gt;学习&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;study&quot; component&#x3D;&#123;Study&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;BrowserRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>Switch</strong></p>
+</blockquote>
+<ul>
+<li>解释说明<br>1.用于渲染与路径匹配的第一个子 &lt;Route/    &gt; 或 &lt;Redirect/&gt;<br>2.如果仅仅使用 <Route/> 那么路径匹配的都会被渲染，如果放到 <Switch> 里面则只会渲染一个路由。</li>
+<li>使用案例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;&quot;&gt;index&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;home&quot;&gt;首页&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 当页面路由为 &#x2F;home 时Index组件与Home组件都渲染 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;&quot; component&#x3D;&#123;Index&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#123;&#x2F;* 当页面路由为 &#x2F;home 只渲染匹配的第一个Index组件 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;&quot; component&#x3D;&#123;Index&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;BrowserRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>Route</strong></p>
+</blockquote>
+<ul>
+<li>解释说明<br>1.根据路径匹配呈现对应的UI。</li>
+<li>属性说明<br><code>path</code>: { string | string [] } 路由路径<br><code>exact</code>: { boolean } 是否精确匹配 URL<br><code>component</code>: { Component } 需要渲染的组件<br><code>render</code>: { function } 行内渲染组件<br><code>children</code>: { function } 无论是否能匹配到路由都将显示的内容<br><code>strict</code>: { boolean } 带有尾部 “/” 的 path 只能匹配带有尾部 “/” 的 URL<br><code>sensitive</code>: { boolean } URL 是否区分大小写</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 普通 path *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;about&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;About &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Route&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 数组 path 数组内路径都可以匹配 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&#123;[&quot;&#x2F;about1&quot;, &quot;&#x2F;about2&quot;]&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &lt;About &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Route&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 使用 exact 时，切换路由为 &#x2F;home 只会精准匹配Home组件 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;&quot; exact component&#x3D;&#123;Index&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;home&quot; exact component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* render 允许内联组件 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;render&quot; render&#x3D;&#123;() &#x3D;&gt; &lt;div&gt;Render&lt;&#x2F;div&gt;&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 无论是否匹配路由都将显示 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &lt;Route children&#x3D;&#123;Study&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 带尾部 “&#x2F;” 才能匹配上 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &lt;Route strict path&#x3D;&quot;&#x2F;strict&#x2F;&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &lt;Strict &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Route&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#123;&#x2F;* 区分大小写 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &lt;Route sensitive path&#x3D;&quot;&#x2F;Sensitive&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    &lt;Sensitive &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Route&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;BrowserRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>Redirect</strong></p>
+</blockquote>
+<ul>
+<li>解释说明<br>1.导航到一个新的的位置，新的位置将覆盖历史栈中的当前条目。<br>2.只能在 &lt;Switch&gt;中使用。</li>
+<li>属性说明<br><code>from</code>: { string } 跳转的路径<br><code>to</code>: { string|object } 重定向到的路径<br><code>push</code>: { boolean } 如果为 true，重定向会将新的位置推入历史记录，而不是替换当前条目<br><code>exact</code>: { boolean } 是否精确匹配 URL<br><code>strict</code>: { boolean } 带有尾部 “/” 的 path 只能匹配带有尾部 “/” 的 URL<br><code>sensitive</code>: { boolean } URL 是否区分大小写</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;HashRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;&quot;&gt;index&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;home&quot;&gt;首页&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;ab&quot;&gt;关于&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;study&quot;&gt;学习&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &lt;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#123;&#x2F;* 精准匹配 当路径为 &#x2F; 重定向到 &#x2F;home *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &lt;Redirect from&#x3D;&quot;&#x2F;&quot; exact to&#x3D;&quot;&#x2F;home&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#123;&#x2F;* 匹配 &#x2F;ab 时 重定向到 &#x2F;home 同时向history添加两条历史记录 *&#x2F;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &lt;Redirect from&#x3D;&quot;&#x2F;ab&quot; push to&#x3D;&quot;&#x2F;about&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;study&#x2F;&quot; component&#x3D;&#123;Study&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;Switch&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;HashRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>Link</strong></p>
+</blockquote>
+<ul>
+<li>解释说明<br>1.声明式、可访问的导航链接。</li>
+<li>属性说明<br><code>to</code>: { string|object|function } 跳转的链接地址<br><code>replace</code>: { boolean } 默认为 false，如果为 true 点击链接后将替换历史栈中当前条目，而是不添加新条目</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"> &lt;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;home&quot;&gt;首页&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;Link to&#x3D;&quot;&#x2F;about&quot; replace&gt;关于&lt;&#x2F;Link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;BrowserRouter&gt;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p><strong>NavLink</strong></p>
+</blockquote>
+<ul>
+<li>解释说明<br>1.特殊的&lt;Link/&gt;，当它与当前 URL 匹配的时候可以加上样式来渲染一些元素。</li>
+<li>属性说明<br><code>activeClassName</code>: { string } 激活之后的 class 名<br><code>activeStyle</code>: { object } 激活之后的内联样式<br><code>exact</code>: { boolean } 是否精确匹配 URL 之后样式才会生效<br><code>strict</code>: { boolean } 带有尾部 “/” 的 path 只能匹配带有尾部 “/” 的 URL 样式才会生效<br><code>isActive</code>: { function } 添加额外的激活此链接的函数</li>
+<li>基本使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const isActiveFun &#x3D; (match, location) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;match&quot;, match);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  console.log(&quot;location&quot;, location);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  return !!match;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">return (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &lt;NavLink</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      to&#x3D;&quot;&#x2F;home&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      activeClassName&#x3D;&quot;link_active_class&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      activeStyle&#x3D;&#123;&#123; fontSize: &quot;30px&quot; &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      isActive&#x3D;&#123;isActiveFun&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      首页</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;NavLink&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &lt;NavLink to&#x3D;&quot;&#x2F;about&quot;&gt;关于&lt;&#x2F;NavLink&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;home&quot; component&#x3D;&#123;Home&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &lt;Route path&#x3D;&quot;&#x2F;about&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;BrowserRouter&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">);</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Router-三大属性"><a href="#Router-三大属性" class="headerlink" title="Router 三大属性"></a>Router 三大属性</h3><ul>
+<li><p><strong>history</strong></p>
+<img src="/images/2021/react_router_property_01.png">
+  location 是指当前的位置（location）<br/>
+  push(path, state) 向 hisotry 堆栈顶加入一个新的条目<br/>
+  replace(path, state)替换在 history 堆栈中的当前条目<br/><br/>
+</li>
+<li><p><strong>location</strong></p>
+<img src="/images/2021/react_router_property_02.png">
+search 跳转路由传递在地址栏上的参数信息<br/>
+state 跳转时传递的参数信息<br/><br/>
+</li>
+<li><p><strong>match</strong></p>
+<img src="/images/2021/react_router_property_03.png">
+  params 路径参数
+
+</li>
+</ul>
+<h3 id="路由跳转传递参数"><a href="#路由跳转传递参数" class="headerlink" title="路由跳转传递参数"></a>路由跳转传递参数</h3><blockquote>
+<p><strong>match params 传递参数</strong></p>
+</blockquote>
+<ol>
+<li>路由中设置 key<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&quot;&#x2F;about&#x2F;:id?&quot; component&#x3D;&#123;About&#125; &#x2F;&gt;</span></pre></td></tr></table></figure></li>
+<li>useHistory push 路由跳转<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useHistory &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ... </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const history &#x3D; useHistory();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const onJump &#x3D; () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const id &#x3D; &quot;xxx123&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  history.push(&#96;&#x2F;about&#x2F;$&#123;id&#125;&#96;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>useParams 获取当前路由 match对象中的params<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useParams &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const params &#x3D; useParams();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&quot;params about&quot;, params); &#x2F;&#x2F; params about &#123;id: &quot;xxx123&quot;&#125;</span></pre></td></tr></table></figure>
+<br/>
+
+</li>
+</ol>
+<blockquote>
+<p><strong>BrowserRouter location state 传递参数</strong> (HashRouter 模式下 无效)</p>
+</blockquote>
+<ol>
+<li>useHistory push 路由跳转<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useHistory &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ... </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const history &#x3D; useHistory();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const onJump &#x3D; () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  history.push(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    pathname: &quot;&#x2F;about&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    state: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      id: &quot;xxx234&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      type: &quot;view&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>useLocation 获取当前路由 location对象中的state<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useLocation &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const location &#x3D; useLocation();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&quot;state about&quot;, location.state); &#x2F;&#x2F;state about &#123;id: &quot;xxx234&quot;, type: &quot;view&quot;&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p><strong>location search 传递参数</strong></p>
+</blockquote>
+<ol>
+<li>useHistory push 路由跳转<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useHistory &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ... </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const history &#x3D; useHistory();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const onJump &#x3D; () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  history.push(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    pathname: &quot;&#x2F;home&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    search: &#96;?id&#x3D;$&#123;123&#125;&amp;type&#x3D;view&#96;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure></li>
+<li>useLocation 获取当前路由 location对象中的search<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; useLocation &#125; from &quot;react-router-dom&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const location &#x3D; useLocation();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(&quot;search about&quot;, location.search); &#x2F;&#x2F;search about ?id&#x3D;xxx234&amp;type&#x3D;view</span></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/03/14/react/react04/" rel="prev" title="React常用hooks">
+      <i class="fa fa-chevron-left"></i> React常用hooks
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/05/react/react01/" rel="next" title="深入JSX">
+      深入JSX <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由安装引入"><span class="nav-number">1.</span> <span class="nav-text">路由安装引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router-dom"><span class="nav-number">2.</span> <span class="nav-text">react-router-dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Router"><span class="nav-number">3.</span> <span class="nav-text">React Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-三大属性"><span class="nav-number">4.</span> <span class="nav-text">Router 三大属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由跳转传递参数"><span class="nav-number">5.</span> <span class="nav-text">路由跳转传递参数</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">王小七</p>
+  <div class="site-description" itemprop="description">前端笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangxiaoqi0123" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangxiaoqi0123" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王小七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

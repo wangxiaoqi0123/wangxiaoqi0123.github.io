@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="环境准备 mysql下载 下载地址https:&#x2F;&#x2F;dev.mysql.com&#x2F;downloads&#x2F;mysql&#x2F; 安装过程注意记住 root用户名的密码   下载mysql可视化工具 例如 Navicat Premium    常用字段属性 字符串数据类型    MySQL数据类型   含义     char(n)   固定长度，最多255个字符     varchar(n)   可变长度，最多65">
+<meta name="keywords" content="server">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基本使用">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2021&#x2F;01&#x2F;20&#x2F;server&#x2F;server05&#x2F;index.html">
+<meta property="og:site_name" content="我寄白雪三千片">
+<meta property="og:description" content="环境准备 mysql下载 下载地址https:&#x2F;&#x2F;dev.mysql.com&#x2F;downloads&#x2F;mysql&#x2F; 安装过程注意记住 root用户名的密码   下载mysql可视化工具 例如 Navicat Premium    常用字段属性 字符串数据类型    MySQL数据类型   含义     char(n)   固定长度，最多255个字符     varchar(n)   可变长度，最多65">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-10-20T04:29:35.965Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2021/01/20/server/server05/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL基本使用 | 我寄白雪三千片</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">我寄白雪三千片</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/20/server/server05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL基本使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-20T00:00:00+08:00">2021-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:29:35" itemprop="dateModified" datetime="2023-10-20T12:29:35+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>mysql下载<ul>
+<li>下载地址<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></li>
+<li>安装过程注意记住 root用户名的密码</li>
+</ul>
+</li>
+<li>下载mysql可视化工具<ul>
+<li>例如 Navicat Premium</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用字段属性"><a href="#常用字段属性" class="headerlink" title="常用字段属性"></a>常用字段属性</h3><ul>
+<li>字符串数据类型<table border="1">
+<tr>
+  <th width='180px'>MySQL数据类型</th>
+  <th>含义</th>
+</tr>
+<tr>
+  <td>char(n)</td>
+  <td>固定长度，最多255个字符</td>
+</tr>
+<tr>
+  <td>varchar(n)</td>
+  <td>可变长度，最多65535个字符</td>
+</tr>
+<tr>
+  <td>tinytext</td>
+  <td>可变长度，最多255个字符</td>
+</tr>
+<tr>
+  <td>text</td>
+  <td>可变长度，最多65535个字符</td>
+</tr>
+<tr>
+  <td>mediumtext</td>
+  <td>可变长度，最多2的24次方-1个字符</td>
+</tr>
+<tr>
+  <td>longtext</td>
+  <td>可变长度，最多2的32次方-1个字符</td>
+</tr>
+</table>
+1. char（n）和varchar（n）中括号中n代表字符的个数，并不代表字节个数，所以当使用了中文的时候(UTF8)意味着可以插入m个中文，但是实际会占用m*3个字节。<br/>
+2. 同时char和varchar最大的区别就在于char不管实际value都会占用n个字符的空间，而varchar只会占用实际字符应该占用的空间+1，并且实际空间+1<=n。<br/>
+3. 超过char和varchar的n设置后，字符串会被截断。<br/>
+4. char的上限为255字节，varchar的上限65535字节，text的上限为65535。<br/>
+5. char在存储的时候会截断尾部的空格，varchar和text不会。<br/>
+6. varchar会使用1-3个字节来存储长度，text不会。<br/>
+
+
+</li>
+</ul>
+<ul>
+<li>数值数据类型（整型）<table border="1">
+<tr>
+  <th width='180px'>MySQL数据类型</th>
+  <th>含义（有符号）</th>
+</tr>
+<tr>
+  <td>tinyint</td>
+  <td>1字节，范围（-128~127）</td>
+</tr>
+<tr>
+  <td>smallint</td>
+  <td>2字节，范围（-32768~32767）</td>
+</tr>
+<tr>
+  <td>mediumint</td>
+  <td>3字节，范围（-8388608~8388607）</td>
+</tr>
+<tr>
+  <td>int</td>
+  <td>4字节，范围（-2^31~2^31 - 1）</td>
+</tr>
+<tr>
+  <td>bigint</td>
+  <td>8字节，范围（-2^63~2^63-1）</td>
+</tr>
+</table>
+1. 也可以加上unsigned关键字，定义成无符号的类型，那么对应的取值范围就要翻翻了，比如：tinyint unsigned的取值范为0~255。<br/>
+
+
+</li>
+</ul>
+<ul>
+<li>数值数据类型（浮点型）<table border="1">
+<tr>
+  <th width='180px'>MySQL数据类型</th>
+  <th>含义</th>
+</tr>
+<tr>
+  <td>float(m, d)</td>
+  <td>4字节，单精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+  <td>double(m, d)</td>
+  <td>8字节，双精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+  <td>decimal(m, d)</td>
+  <td>decimal是存储为字符串的浮点数</td>
+</tr>
+</table>
+
+
+</li>
+</ul>
+<ul>
+<li>日期和时间数据类型<table border="1">
+<tr>
+  <th width='180px'>MySQL数据类型</th>
+  <th>含义</th>
+</tr>
+<tr>
+  <td>date</td>
+  <td>3字节，日期，格式：yyyy-MM-dd</td>
+</tr>
+<tr>
+  <td>time</td>
+  <td>3字节，时间，格式：HH:mm:ss</td>
+</tr>
+<tr>
+  <td>datetime</td>
+  <td>8字节，日期时间，格式：yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+  <td>timestamp</td>
+  <td>4字节，日期+时间，可作时间戳，格式：yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+  <td>year</td>
+  <td>1字节，年份，格式：yyyy</td>
+</tr>
+</table>
+
+</li>
+</ul>
+<h3 id="常用查询语句"><a href="#常用查询语句" class="headerlink" title="常用查询语句"></a>常用查询语句</h3><ul>
+<li>增 关键字 <strong>insert</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">users</span> (username,<span class="string">`password`</span>,realname) <span class="keyword">VALUES</span> (<span class="string">'wangwu'</span>,<span class="string">'234'</span>,<span class="string">'王五'</span>)</span></pre></td></tr></table></figure>
+  1.insert into 表名(字段1，字段2…) values(值1，值2，….);<br>  2.关键字用 <strong>``</strong> 标识，例如`password`。</li>
+</ul>
+<ul>
+<li>删 关键字 <strong>delete</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">8</span>;</span></pre></td></tr></table></figure>
+  1.delete from 表名 where 条件<br>  2.数据删除不可逆，一般不使用物理删除<br>  3.<strong>where</strong>条件，如果不加则删除整个表</li>
+</ul>
+<ul>
+<li>改 关键字 <strong>update</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">users</span> <span class="keyword">SET</span> username=<span class="string">'zhangsan'</span>,<span class="string">`password`</span>=<span class="string">'123'</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">4</span>;</span></pre></td></tr></table></figure>
+  1.update 表名 set字段1 = 值1, 字段2 = 值2 where 条件<br>  2.<strong>where</strong>条件，如果不加则更新整个表</li>
+</ul>
+<ul>
+<li><p>查 关键字 <strong>select</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,username,<span class="string">`password`</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>&gt;<span class="number">4</span>;</span></pre></td></tr></table></figure>
+<p>  1.select 字段1,字段2 from 表名 where 条件</p>
+</li>
+<li><p>排序 关键字 <strong>order by</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span></pre></td></tr></table></figure>
+<p>  1.select 字段 from 表 order by 字段  排序关键词(desc | asc)<br>  2.desc 降序 asc 升序(默认)<br>  3.多字段排序字段 select 字段 from 表 order by 字段1  desc |asc,…字段n desc| asc;</p>
+</li>
+<li><p>分组 关键字 <strong>limit</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">10</span>;</span></pre></td></tr></table></figure>
+<p>  1.select * from 表名  limit 偏移量,数量<br>  2.偏移量默认为0<br>  3.分页的偏移量计算为 limit (n-1)*数量 ,数量 </p>
+</li>
+</ul>
+<ul>
+<li>关键字 <strong>where</strong> 后面跟的条件<ul>
+<li>关系：&gt; ， &lt; ， &gt;= ， &lt;= ， != ， =</li>
+<li>逻辑：or ， and</li>
+<li>区间：id between 4 and 6 （闭区间，包含边界）</li>
+<li>匹配：username like ‘%程序员%’（”%%”表示可以出现在任何位置）</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/server/" rel="tag"># server</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/18/node/node01/" rel="prev" title="HTTP模块">
+      <i class="fa fa-chevron-left"></i> HTTP模块
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/01/21/node/node04/" rel="next" title="Node操作MySQL">
+      Node操作MySQL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用字段属性"><span class="nav-number">2.</span> <span class="nav-text">常用字段属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用查询语句"><span class="nav-number">3.</span> <span class="nav-text">常用查询语句</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">王小七</p>
+  <div class="site-description" itemprop="description">前端笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangxiaoqi0123" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangxiaoqi0123" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王小七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
