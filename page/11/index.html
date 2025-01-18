@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/javascript/javascript04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue01/" class="post-title-link" itemprop="url">Vue 路由守卫</a>
+            <a href="/2020/06/19/javascript/javascript04/" class="post-title-link" itemprop="url">export与exports</a>
         </h2>
 
         <div class="post-meta">
@@ -215,7 +215,201 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:20:12" itemprop="dateModified" datetime="2023-10-20T12:20:12+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 14:10:27" itemprop="dateModified" datetime="2023-10-20T14:10:27+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="CommonJS-方式"><a href="#CommonJS-方式" class="headerlink" title="CommonJS 方式"></a>CommonJS 方式</h3><blockquote>
+<p><strong>动态引入 代码执行时引入</strong></p>
+</blockquote>
+<h4 id="CommonJS-解构导出"><a href="#CommonJS-解构导出" class="headerlink" title="CommonJS 解构导出"></a>CommonJS 解构导出</h4><p>exports.key1 = value1<br>exports.key2 = value2<br>exports.key3 = value3</p>
+<p>var {key1,key2,key3} = require(‘路径’)</p>
+<h4 id="CommonJS-对象导出"><a href="#CommonJS-对象导出" class="headerlink" title="CommonJS 对象导出"></a>CommonJS 对象导出</h4><p>module.exports = { …}</p>
+<p>var obj = require(‘路径’)</p>
+<h3 id="ES6-方式"><a href="#ES6-方式" class="headerlink" title="ES6 方式"></a>ES6 方式</h3><blockquote>
+<p><strong>静态引入，代码编译时引入</strong></p>
+</blockquote>
+<h4 id="ES6-结构导出"><a href="#ES6-结构导出" class="headerlink" title="ES6 结构导出"></a>ES6 结构导出</h4><p>export const key = value<br>export function fn () {}<br>export class Fn{}</p>
+<p>import {key,fn,Fn} from “路径”</p>
+<h4 id="ES6-对象导出"><a href="#ES6-对象导出" class="headerlink" title="ES6 对象导出"></a>ES6 对象导出</h4><p>export default {…}</p>
+<p>import obj from “路径”</p>
+<p>ES6 模块导入导出 只适合 结构的方式<br>export { key1 , key2} from “路径”</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/css/css03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/css/css03/" class="post-title-link" itemprop="url">阿里巴巴图标库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:14:03" itemprop="dateModified" datetime="2023-10-20T14:14:03+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index"><span itemprop="name">css</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="线上引用"><a href="#线上引用" class="headerlink" title="线上引用"></a>线上引用</h3><ol>
+<li><p>查找图标添加至项目 进入项目</p>
+</li>
+<li><p>复制 Font class 在线生成 的地址<br>//at.alicdn.com/t/font_1199553_u7298mmz27i.css</p>
+</li>
+<li><p>页面 link 引用 注意加 http:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;http:&#x2F;&#x2F;at.alicdn.com&#x2F;t&#x2F;font_1199553_u7298mmz27i.css&quot;&gt;</span></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+</li>
+<li><p>当项目 添加新的 图标 在线地址要更新 页面的引用地址也要更新</p>
+</li>
+</ol>
+<h3 id="下载引用"><a href="#下载引用" class="headerlink" title="下载引用"></a>下载引用</h3><ol>
+<li><p>查找图标添加至项目 进入项目</p>
+</li>
+<li><p>点击下载 解压文件 选取 iconfont.css iconfont.eot iconfont.svg iconfont.ttf iconfont.woff 文件, 放在项目 assets 文件夹下 (最好新建一个文件夹 一起放进去)</p>
+</li>
+<li><p>main.js 中引入 iconfont.css 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &quot;@&#x2F;assets&#x2F;font&#x2F;iconfont.css&quot;;</span></pre></td></tr></table></figure>
+</li>
+<li><p>标签 clas 添加 iconfont 和 对应图标名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;iconfont icon-xxx&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+</li>
+<li><p>当项目 添加新的 图标 整个文件夹需要重新打包 替换</p>
+</li>
+</ol>
+<h3 id="UI库扩展-iconfont"><a href="#UI库扩展-iconfont" class="headerlink" title="UI库扩展 iconfont"></a>UI库扩展 iconfont</h3><p>UI 一般也是icon一般也是使用字体图标 所以可以在可添加字体图标的组件上使用 icon=”iconfont icon-xxx”  方式扩展</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/vue/vue12/" class="post-title-link" itemprop="url">Vue 页面缓存 keep-alive</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:22:46" itemprop="dateModified" datetime="2023-10-20T12:22:46+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,32 +432,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="beforeEach-全局前置守卫钩子"><a href="#beforeEach-全局前置守卫钩子" class="headerlink" title="beforeEach 全局前置守卫钩子"></a>beforeEach 全局前置守卫钩子</h3><blockquote>
-<p>router.beforeEach<br>  to 即将要进入的目标 路由对象<br>  from 当前导航正要离开的路由<br>  next 路由拦截器</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+          <h3 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h3><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
+<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  meta: &#123; keepAlive: true &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<h3 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h3 id="afterEach-全局后置守卫钩子"><a href="#afterEach-全局后置守卫钩子" class="headerlink" title="afterEach 全局后置守卫钩子"></a>afterEach 全局后置守卫钩子</h3><blockquote>
-<p>router.afterEach<br>  afterEach 不会接受 next 函数也不会改变导航本身</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteEnter-进入组件时路由守卫"><a href="#beforeRouteEnter-进入组件时路由守卫" class="headerlink" title="beforeRouteEnter 进入组件时路由守卫"></a>beforeRouteEnter 进入组件时路由守卫</h3><blockquote>
-<p>beforeRouteEnter(to,from,next){}<br>   to 进入到哪个路由(默认当前)<br>   from 从哪个路由进入<br>   进入之前获取不到 this<br>   next 路由拦截器 第一个参数 等价于this</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    data()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        return&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            name:&quot;Arya&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    beforeRouteEnter(to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 不能获取组件实例 &#96;this&#96; 因为当钩子执行前，组件实例还没被创建</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;this :&gt;&gt; &quot;, this);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      next(vm &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        alert(&quot;hello&quot; + vm.name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteLeave-离开组件时路由守卫"><a href="#beforeRouteLeave-离开组件时路由守卫" class="headerlink" title="beforeRouteLeave 离开组件时路由守卫"></a>beforeRouteLeave 离开组件时路由守卫</h3><blockquote>
-<p>beforeRouteLeave(to,from,next){}<br>   from 从哪个路由离开 (默认当前)<br>   to 离开到哪个路由<br>   注意 直接为函数的写法 才可以获取到 <code>this</code><br>   next 路由拦截器 第一个参数 等价于 <code>this</code></p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave(to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 导航离开该组件的对应路由时调用 可以访问组件实例 &#96;this&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 注意 直接为函数的写法 才可以获取到 &#96;this&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (confirm(&quot;确定离开此页面吗？&quot;) &#x3D;&#x3D;&#x3D; true) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    next(false);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h3 id="路由守卫的应用"><a href="#路由守卫的应用" class="headerlink" title="路由守卫的应用"></a>路由守卫的应用</h3><ol>
-<li><p>vue路由守卫实际上为我们提供了一个类似生命周期的函数事件，让我们可以在进入路由前，离开路由时，可以写一下逻辑代码。</p>
-</li>
-<li><p>to和form，是路由守卫回调函数提供的，进入/离开的两个路由信息对象。它包含了路由所在的所有信息，包含 meta、query、params、path … 这些我们常用的信息</p>
-</li>
-</ol>
+<h3 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h3><ul>
+<li>使用keep-alive 之后页面被缓存</li>
+<li>再次打开页面 触发activated 生命周期钩子函数</li>
+</ul>
 
       
     </div>
@@ -386,7 +562,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue07/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -400,7 +576,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue07/" class="post-title-link" itemprop="url">Vue 路由跳转 router</a>
+            <a href="/2020/06/19/vue/vue05/" class="post-title-link" itemprop="url">Vue 单文件组件</a>
         </h2>
 
         <div class="post-meta">
@@ -417,7 +593,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:21:39" itemprop="dateModified" datetime="2023-10-20T12:21:39+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:21:15" itemprop="dateModified" datetime="2023-10-20T12:21:15+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -440,49 +616,118 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Vue-页面中实现跳转"><a href="#Vue-页面中实现跳转" class="headerlink" title="Vue 页面中实现跳转"></a>Vue 页面中实现跳转</h2><ol>
-<li>this.$router.push() <ul>
-<li>this.$router.push(‘路由路径’)</li>
-<li>this.$router.push({name:’组件名称’,path:’路由路径’})</li>
-<li>push 方式跳转 导航到不同的 url，向 history 栈添加一个新的记录</li>
-</ul>
-</li>
-<li>this.$router.replace()<ul>
-<li>this.$router.replace(‘路由路径’)</li>
-<li>this.$router.replace({name:’组件名称’,path:’路由路径’})</li>
-<li>replace 方式跳转 导航到不同 url，替换 history 栈中当前记录</li>
-</ul>
-</li>
-<li>this.$router.go()<ul>
-<li>router.go(n)：指定前进/回退的步数。n 为正数的时候是前进；负数的时候是后退；0的时候是刷新当前页面。（===window.history.go）</li>
-</ul>
-</li>
-<li>router.back()<ul>
-<li>回退一步</li>
-</ul>
-</li>
-<li>router-link <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;router-link to&#x3D;&#39;路由路径&#39;&gt; &lt;&#x2F;router-link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">直接在样式中设置 .router-link-exact-active</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">a.router-link-exact-active &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      color: #d7a51e;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;router-link to&#x3D;&#39;&#123;name:&#39;组件名称&#39;&#125;&#39;&gt; &lt;&#x2F;router-link&gt;</span></pre></td></tr></table></figure>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- 书写html区域 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    components: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 挂载小组件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    props: [], &#x2F;&#x2F; 接受父组件传递的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    data() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 声明全局</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 计算属性</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 监听数据值的变化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    created() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 被实例化 完成</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    mounted() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 页面节点渲染完毕</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 书写 vue 函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#x2F;* 书写css区域 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;style&gt;</span></pre></td></tr></table></figure>
 
+<ol>
+<li><p>template 默认只能有一个根节点 可书写 指令 事件 差值表达式 filter 等等</p>
+</li>
+<li><p>components 注册引入该模板文件 的局部组件</p>
+</li>
+<li><p>props 接受父组件 传递的数据</p>
+</li>
+<li><p>data 作为主要数据源</p>
+</li>
+<li><p>computed 依赖其他数据源的值 计算出新值</p>
+</li>
+<li><p>watch 监听数据发生变化</p>
+</li>
+<li><p>created 组件 被实例化 完成</p>
+</li>
+<li><p>created 页面节点渲染完毕</p>
+</li>
+<li><p>methods 书写 function</p>
+</li>
+<li><p>scoped 针对当前文件样式锁定</p>
 </li>
 </ol>
-<blockquote>
-<p>页面的路由信息对象<br>  this.$route</p>
-</blockquote>
-<h2 id="Vue-页面中跳转（push-replace）-带参数"><a href="#Vue-页面中跳转（push-replace）-带参数" class="headerlink" title="Vue 页面中跳转（push/replace） 带参数"></a>Vue 页面中跳转（push/replace） 带参数</h2><ol>
-<li>跳转传参 </li>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/vue/vue06/" class="post-title-link" itemprop="url">Vue 父子组件通讯</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:21:28" itemprop="dateModified" datetime="2023-10-20T12:21:28+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="子组件向父组件传递消息"><a href="#子组件向父组件传递消息" class="headerlink" title="子组件向父组件传递消息"></a>子组件向父组件传递消息</h3><ol>
+<li><p>使用 ref 的方式<br>(1) 父组件下 子组件标签 上标识 ref=”” 标识<br>(2) 父组件 通过 this.$refs.标识 === 子组件Vue实例</p>
+</li>
+<li><p>父组件通过 $children 的方式获取子组件消息<br>(1) 父组件 通过 this.$children === [子组件Vue实例 ,…] 子组件Vue实例的数组</p>
+</li>
+<li><p>子组件使用 $emit 的方法 发布订阅向父组件 传递消息<br>(1) 子组件 发布 this.$emit(“订阅事件” , “要传递给父元素的数据”)<br>(2) 父组件下 子组件标签 上添加监听事件 @订阅事件 = callback<br>(3) 要接受的参数 在callback 中实现传递</p>
+</li>
 </ol>
-<ul>
-<li>方式一  使用params 传递参数<br>this.$router.push({path:’组件路径/‘,params:{变量名:值}})<br>this.$router.push({name:’组件名称’,params:{变量名:值}})</li>
-<li>方式二  使用query 传递参数<br>this.$router.push({path:’组件路径/‘,query:{变量名:值}})<br>this.$router.push({name:’组件名称’,query:{变量名:值}})</li>
-</ul>
-<ol start="2">
-<li>接受参数 </li>
+<h3 id="父组件向子组件传递消息"><a href="#父组件向子组件传递消息" class="headerlink" title="父组件向子组件传递消息"></a>父组件向子组件传递消息</h3><ol>
+<li>使用 props 方式<br>(1) 父组件下 子组件标签 通过数据属性向子组件传递数据 :数据名=”数据”<br>(2) 子组件 同过 props:[“数据名”] 的方式接受数据</li>
+<li>使用 $parent 的方式获取父元素上的信息<br>(1) 子组件 通过 this.$parent == 父组件Vue实例 (父组件唯一所以不是数组)</li>
 </ol>
-<ul>
-<li>this.$route.params.变量名  (一般在 mounted 中接受参数) 页面路由看不见 页面刷新参数消失</li>
-<li>this.$route.query.变量名  (一般在 mounted 中接受参数) 页面路由显示 页面刷新参数不消失</li>
-</ul>
+<h3 id="兄弟组件之间传递消息-非父子组件"><a href="#兄弟组件之间传递消息-非父子组件" class="headerlink" title="兄弟组件之间传递消息(非父子组件)"></a>兄弟组件之间传递消息(非父子组件)</h3><ol>
+<li>只有通过 Vue实例 实现通讯的一种方式<br>(1) 创建一个 Vue实例 专门用于实现兄弟元素之间的通讯 var bus = new Vue()<br>(2) 发送消息的兄弟 在 methods 中 使用 bus.$emit(“名称” , 数据)<br>(3) 接受消息的兄弟 在 mounted (生命周期回调函数) 使用 bus.$on(“名称”,callback) 回调函数中接受消息</li>
+</ol>
 
       
     </div>
@@ -635,6 +880,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/19/vue/vue10/" class="post-title-link" itemprop="url">Vue 数据双向绑定底层实现</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:22:22" itemprop="dateModified" datetime="2023-10-20T12:22:22+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>  Vue 2.0 主要通过 Object.defineProperty 实现 vm（改变数据更新视图）<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;ie&#x3D;edge&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &lt;input type&#x3D;&quot;text&quot; id&#x3D;&quot;ipt&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &lt;span id&#x3D;&quot;text&quot;&gt;&lt;&#x2F;span&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;先获取节点</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    var ipt &#x3D; document.querySelector(&quot;#ipt&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    var text &#x3D; document.querySelector(&quot;#text&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;定义一个数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    var data &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        content: &quot;123456&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;实现能够更新数据的函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    var fn &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        content: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">            function (val) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">                ipt.value &#x3D; val</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">            function (val) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                text.innerHTML &#x3D; val</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    for (let attr in data) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;得到 data里面的数据 content</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;获取到data里原本的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        var oldVal &#x3D; data[attr]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;通过监听模式来双向监听数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;                  目标对象 目标属性</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        Object.defineProperty(data, attr, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">            &#x2F;&#x2F;在读取属性时执行 get() 方法</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">            get() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">                return oldVal;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">            &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">            &#x2F;&#x2F;在调用属性时执行 set() 方法</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">            set(newVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">                if (newVal &#x3D;&#x3D; oldVal) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">                    return;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">                &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">                    &#x2F;&#x2F;对页面上的两个节点的值进行替换</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">                    fn[attr].forEach(e &#x3D;&gt; e(newVal));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">                &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">            &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;初始化视图 , 节点添加数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">        for (let attr in data) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">            fn.content.forEach(e &#x3D;&gt; e(data[attr]))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F;改变属性值触发事件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">        ipt.oninput &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line">            data.content &#x3D; this.value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">61</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">62</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">63</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;html&gt;</span></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue17/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -756,87 +1075,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue12/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue12/" class="post-title-link" itemprop="url">Vue 页面缓存 keep-alive</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:22:46" itemprop="dateModified" datetime="2023-10-20T12:22:46+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="配置页面缓存"><a href="#配置页面缓存" class="headerlink" title="配置页面缓存"></a>配置页面缓存</h3><p>  app.vue 使用keep-alive进行缓存<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div id&#x3D;&quot;app&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      &lt;router-view v-if&#x3D;&quot;$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;keep-alive&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;router-view v-if&#x3D;&quot;!$route.meta.keepAlive&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure></p>
-<p>  自定义router中meta字段条件缓存页面<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  path: &quot;&#x2F;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  name: &quot;announcement&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  meta: &#123; keepAlive: true &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  component: () &#x3D;&gt; import(&quot;@&#x2F;views&#x2F;announcement&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<h3 id="路由守卫-监听路由-进入-离开"><a href="#路由守卫-监听路由-进入-离开" class="headerlink" title="路由守卫 监听路由 进入/离开"></a>路由守卫 监听路由 进入/离开</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 给页面做缓存，动态初始化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意路由要写成function的形式, 否则无法获取this</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave: function (to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (to.name !&#x3D;&#x3D; &quot;announcementContent&quot;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 一些逻辑操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h3 id="组件激活生命周期钩子-activated"><a href="#组件激活生命周期钩子-activated" class="headerlink" title="组件激活生命周期钩子 activated"></a>组件激活生命周期钩子 activated</h3><ul>
-<li>使用keep-alive 之后页面被缓存</li>
-<li>再次打开页面 触发activated 生命周期钩子函数</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -924,296 +1162,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue09/" class="post-title-link" itemprop="url">事件总线 bus</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:22:16" itemprop="dateModified" datetime="2023-10-20T12:22:16+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="main-js-创建实例化新的vue实例-作为bus"><a href="#main-js-创建实例化新的vue实例-作为bus" class="headerlink" title="main.js 创建实例化新的vue实例 作为bus"></a>main.js 创建实例化新的vue实例 作为bus</h2>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使用全局bus 跨组件传递数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Vue.prototype.bus &#x3D; new Vue();</span></pre></td></tr></table></figure>
-
-<h2 id="数据之间传递"><a href="#数据之间传递" class="headerlink" title="数据之间传递"></a>数据之间传递</h2><ol>
-<li>父组件通过 on   监听动作与接受数据</li>
-<li>子组件通过 emit 传递动作与数据<blockquote>
-<p>注意: </p>
-<ol>
-<li>数据传向由子组件传递出数据, 父组件接受数据</li>
-<li>子组件emit出数据, 父组件立即响应到数据(不要试图把数据存在this中,打开页面使用)</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="全局loading"><a href="#全局loading" class="headerlink" title="全局loading"></a>全局loading</h3><p>创建loading组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div class&#x3D;&quot;markbox&quot; v-show&#x3D;&quot;loading&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;div class&#x3D;&quot;sun-loading&quot;&gt;&lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  name: &quot;loading&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      loading: false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  created () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    this.bus.$on(&quot;loading&quot;, data &#x3D;&gt; &#123; this.loading &#x3D; !!data; &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-<p>页面使用组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 开启loading</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">this.bus.$emit(&quot;loading&quot;, true);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 关闭loading</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">this.bus.$emit(&quot;loading&quot;, false);</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue13/" class="post-title-link" itemprop="url">Vue 指令事件样式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:22:53" itemprop="dateModified" datetime="2023-10-20T12:22:53+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h3><ul>
-<li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
-</li>
-<li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
-</li>
-<li><p>data-xxx 自定义属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"onGoToDetail"</span> <span class="attr">:data-id</span>=<span class="string">"postId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onGoToDetail(event) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(event.srcElement.dataset.id)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>通过<code>data-</code>形式自定义的属性可以在event.srcElement.dataset中获取到。<br>1.自定义的属性在dataset中data-会被省略。例如 data-id =&gt; id<br>2.当自定义属性中存在大写字母会被转换成小写。例如 data-postId =&gt; postid<br>3.当自定义属性中存在多个-会被转换成驼峰。例如 data-post-id =&gt; postId</p>
-</li>
-<li><p>:style 运算符写法<br>:style=”{color:num == 3 ? ‘red’ :’green’}”<br>:style=”[{color:num == 3 ? ‘red’ :’green’}]”</p>
-</li>
-<li><p>:class 运算符写法<br>:class=”[isShow(变量) ? ‘icon-quanxuan1’(选择器一) : ‘icon-quanxuan’(选择器二)]”</p>
-</li>
-</ul>
-<h3 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h3><ul>
-<li>修改数组 对象中的值来改变页面的渲染<br>(数组)通过数组变异方法(可以改变原数组的方法)操作的方法来操作 pop push shift unshift splice sort reserve<br>(数组, 对象)通过改变引用值的方式 , 将整个数组或对象都替换掉<br>(数组, 对象) Vue.set(对象/数组,属性/下标,值) 实例上也可以引用到 set 方法 , this.$set(对象/数组,属性/下标,值)<br>(对象) 原生对象的的合并 Object.assign({},obj,obj) 一定要加{} 改变原来对象值的引用</li>
-</ul>
-<h3 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h3><ol>
-<li>:style=”{}” json 格式的对象</li>
-<li>:style=”[{},{}]” 数组的形式</li>
-<li>:class=”{class 选择器:true}”</li>
-<li>:class=”[{class 选择器:true},obj,’calss 选择器’]”</li>
-</ol>
-<h3 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h3><ul>
-<li><p>事件修饰符<br>stop 阻止事件的冒泡 相当于原生的 e.stopPropagation() e.cancelBubble=true<br>prevent 阻止默认事件 相当于原生的 return false e.returnValue=false e.preventDefault()<br>captrue 事件的捕获<br>self 只有点击时 target 为目标元素 事件才可以生效</p>
-</li>
-<li><p>v-model 数据修饰符<br>number 自动把绑定的数据类型转化为 number 类型<br>lazy 数据在双向绑定时 只会触发@change 函数 数据修改完成失去焦点时 页面才会重新渲染<br>trim 修剪首尾空格</p>
-</li>
-</ul>
-<h3 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h3><ol>
-<li>通过 v-for:”item in/of list” 实现对数组 对象的循环渲染</li>
-<li>key 的描述<br>如果不加 key 或者 key 为 index vue 在更新视图的时候, 采用就地更新策略, 每个元素只是一个容器,不会改变现有元素的排列顺序, 只是依次改变容器的内容<br>如果加了 key 并且 key 是唯一标识, vue 在更新列表的时候, 直接复用这些元素, 就会改变现有元素的排列顺序</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue06/" class="post-title-link" itemprop="url">Vue 父子组件通讯</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:21:28" itemprop="dateModified" datetime="2023-10-20T12:21:28+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="子组件向父组件传递消息"><a href="#子组件向父组件传递消息" class="headerlink" title="子组件向父组件传递消息"></a>子组件向父组件传递消息</h3><ol>
-<li><p>使用 ref 的方式<br>(1) 父组件下 子组件标签 上标识 ref=”” 标识<br>(2) 父组件 通过 this.$refs.标识 === 子组件Vue实例</p>
-</li>
-<li><p>父组件通过 $children 的方式获取子组件消息<br>(1) 父组件 通过 this.$children === [子组件Vue实例 ,…] 子组件Vue实例的数组</p>
-</li>
-<li><p>子组件使用 $emit 的方法 发布订阅向父组件 传递消息<br>(1) 子组件 发布 this.$emit(“订阅事件” , “要传递给父元素的数据”)<br>(2) 父组件下 子组件标签 上添加监听事件 @订阅事件 = callback<br>(3) 要接受的参数 在callback 中实现传递</p>
-</li>
-</ol>
-<h3 id="父组件向子组件传递消息"><a href="#父组件向子组件传递消息" class="headerlink" title="父组件向子组件传递消息"></a>父组件向子组件传递消息</h3><ol>
-<li>使用 props 方式<br>(1) 父组件下 子组件标签 通过数据属性向子组件传递数据 :数据名=”数据”<br>(2) 子组件 同过 props:[“数据名”] 的方式接受数据</li>
-<li>使用 $parent 的方式获取父元素上的信息<br>(1) 子组件 通过 this.$parent == 父组件Vue实例 (父组件唯一所以不是数组)</li>
-</ol>
-<h3 id="兄弟组件之间传递消息-非父子组件"><a href="#兄弟组件之间传递消息-非父子组件" class="headerlink" title="兄弟组件之间传递消息(非父子组件)"></a>兄弟组件之间传递消息(非父子组件)</h3><ol>
-<li>只有通过 Vue实例 实现通讯的一种方式<br>(1) 创建一个 Vue实例 专门用于实现兄弟元素之间的通讯 var bus = new Vue()<br>(2) 发送消息的兄弟 在 methods 中 使用 bus.$emit(“名称” , 数据)<br>(3) 接受消息的兄弟 在 mounted (生命周期回调函数) 使用 bus.$on(“名称”,callback) 回调函数中接受消息</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1279,7 +1231,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
