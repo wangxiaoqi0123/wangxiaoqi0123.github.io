@@ -20,22 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="用户管理1、组管理Linux的用户属于组（角色），系统可以对一个组中的全部用户进行集中管理（权限）。创建组：groupadd 组名删除组：groupdel 组名组的信息保存在文件&#x2F;etc&#x2F;group中。 2、用户管理创建用户：useradd -n 用户名 -g 组名 -d 用户的主目录删除用户：userdel 用户名用户的信息保存在文件&#x2F;etc&#x2F;passwd中。 3、修改用户的密码创建用户后，必须">
-<meta name="keywords" content="linux">
+  <meta name="description" content="Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。参考: https:&#x2F;&#x2F;docs.docker.com&#x2F;reference&#x2F;dockerfile&#x2F; 示例前端vue，后端nodejs的websocket服务，打包成docker镜像示例  前端镜像打包    1.本地vue项目构建打包出dist文件2.编写nginx&#x2F;nginx.conf文件3.编写Dockerf">
+<meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux用户及权限管理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2024&#x2F;05&#x2F;11&#x2F;linux&#x2F;02&#x2F;index.html">
+<meta property="og:title" content="Dockerfile">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2025&#x2F;01&#x2F;18&#x2F;docker&#x2F;04&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="用户管理1、组管理Linux的用户属于组（角色），系统可以对一个组中的全部用户进行集中管理（权限）。创建组：groupadd 组名删除组：groupdel 组名组的信息保存在文件&#x2F;etc&#x2F;group中。 2、用户管理创建用户：useradd -n 用户名 -g 组名 -d 用户的主目录删除用户：userdel 用户名用户的信息保存在文件&#x2F;etc&#x2F;passwd中。 3、修改用户的密码创建用户后，必须">
+<meta property="og:description" content="Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。参考: https:&#x2F;&#x2F;docs.docker.com&#x2F;reference&#x2F;dockerfile&#x2F; 示例前端vue，后端nodejs的websocket服务，打包成docker镜像示例  前端镜像打包    1.本地vue项目构建打包出dist文件2.编写nginx&#x2F;nginx.conf文件3.编写Dockerf">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2024&#x2F;linux_document_001.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2024&#x2F;linux_document_002.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2024&#x2F;linux_document_003.png">
-<meta property="og:updated_time" content="2024-05-11T06:57:31.998Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-002.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-003.png">
+<meta property="og:updated_time" content="2025-01-20T03:31:24.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2024&#x2F;linux_document_001.png">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-002.png">
 
-<link rel="canonical" href="http://yoursite.com/2024/05/11/linux/02/">
+<link rel="canonical" href="http://yoursite.com/2025/01/18/docker/04/">
 
 
 <script id="page-configurations">
@@ -48,7 +47,7 @@
   };
 </script>
 
-  <title>Linux用户及权限管理 | 我寄白雪三千片</title>
+  <title>Dockerfile | 我寄白雪三千片</title>
   
 
 
@@ -191,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/05/11/linux/02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/18/docker/04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -204,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Linux用户及权限管理
+          Dockerfile
         </h1>
 
         <div class="post-meta">
@@ -213,17 +212,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-05-11 00:00:00 / 修改时间：14:57:31" itemprop="dateCreated datePublished" datetime="2024-05-11T00:00:00+08:00">2024-05-11</time>
+              <time title="创建时间：2025-01-18 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-18T00:00:00+08:00">2025-01-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-20 11:31:24" itemprop="dateModified" datetime="2025-01-20T11:31:24+08:00">2025-01-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
                 </span>
             </span>
 
@@ -238,73 +243,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><p>1、组管理<br>Linux的用户属于组（角色），系统可以对一个组中的全部用户进行集中管理（权限）。<br>创建组：groupadd 组名<br>删除组：groupdel 组名<br>组的信息保存在文件<code>/etc/group</code>中。</p>
-<p>2、用户管理<br>创建用户：useradd -n 用户名 -g 组名 -d 用户的主目录<br>删除用户：userdel 用户名<br>用户的信息保存在文件<code>/etc/passwd</code>中。</p>
-<p>3、修改用户的密码<br>创建用户后，必须设置它的密码，否则无法登录。<br>root用户可以修改任何用户的密码：passwd 用户名<br>普通用户只能修改自己的密码：passwd<br>用户的密码保存在 文件<code>/etc/shadow</code>中。</p>
-<p>4、切换用户<br>root用户可以免密码切换到任何用户：su - 用户名<br>普通用户切换到其它用户：su - 或su - 用户名，然后输入目标用户的密码。</p>
-<p>5、修改目录和文件的拥有者<br>用root用户执行：<br>chown -R 用户:组 目录和文件列表<br>-R选项表示连同各子目录一起修改。</p>
-<h3 id="目录文件权限"><a href="#目录文件权限" class="headerlink" title="目录文件权限"></a>目录文件权限</h3><p>1.目录和文件的详细信息<br>ls -l 命令可以列出目录和文件权限、大小、用户和组等信息。<br><img src="/images/2024/linux_document_001.png" style="margin-left: 0px; width: 480px;"><br><img src="/images/2024/linux_document_002.png" style="margin-left: 0px; width: 280px;"></p>
-<p style="margin: -8px 0 0;">第1列权限的标志位。<br/>第1个字符为文件类型：d是目录；-是普通文件；l是链接；p是管道文件；b是块设备文件（硬盘）；c是字符设备文件（终端、打印机）；s是套接字文件；<br/>第2-10个字符为文件权限（r-读权限；w-写权限；x-可执行权限，-表示无权限）</p>
-第2列是文件硬链接数或目录的子目录数<br/>
-第3列是文件拥有者用户<br/>
-第4列是文件拥有者用户所在组<br/>
-第5列是目录或文件的大小<br/>
-第6、7、8列是目录或文件最后一次被修改的时间<br/>
-第9列是目录或文件名<br/><br/>
+        <p>Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。<br>参考: <a href="https://docs.docker.com/reference/dockerfile/" target="_blank" rel="noopener">https://docs.docker.com/reference/dockerfile/</a></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>前端vue，后端nodejs的websocket服务，打包成docker镜像示例</p>
+<blockquote>
+<p>前端镜像打包</p>
+</blockquote>
+<img src="/images/2025/docker-002.png">
 
-<p>2.文件的权限<br>r：表示具有读取文件内容的权限。<br>w：表示具有修改文件内容的权限，同时需要有r权限。注意，如果要删除文件，需要有目录的w权限。<br>x：表示具有执行文件的权限，同时需要有r权限。注意，文件是否能真的执行，还要由文件本身决定。</p>
-<p>3.目录的权限<br>x：表示可以进入目录。<br>r：表示可以浏览目录中有哪些子目录和文件，同时需要有x权限。<br>w：表示可以在目录中新增、删除、移动子目录和文件，同时需要有x权限。</p>
-<p>4.设置权限（八进制语法）<br>权限也可以用八进制的数字表示：r的值为4，w的值为2，x的值为1。<br>7 rwx &nbsp;&nbsp; 6 rw- &nbsp;&nbsp; 5 r-x &nbsp;&nbsp; 4 r-- &nbsp;&nbsp; 3 -wx &nbsp;&nbsp; 2 -w-  &nbsp;&nbsp; 1 --x  &nbsp;&nbsp; 0 ---<br><img src="/images/2024/linux_document_003.png" style="margin-left: 0px; width: 280px;"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [三位的八进制权限] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [三位的八进制权限] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
-<p>5.设置权限（符号模式）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chmod [who][operator][permission] [目录和文件列表]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">chmod -R [who][operator][permission] [目录和文件列表] 所有目录各子目录一起设置权限</span></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>who</th>
-<th>用户类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>u</td>
-<td>user</td>
-<td>文件的所有者</td>
-</tr>
-<tr>
-<td>g</td>
-<td>group</td>
-<td>文件所有者的组</td>
-</tr>
-<tr>
-<td>o</td>
-<td>others</td>
-<td>其它用户</td>
-</tr>
-<tr>
-<td>a</td>
-<td>all</td>
-<td>全部用户，相当于ugo</td>
-</tr>
-</tbody></table>
-<table border="1">
-  <tr>
-    <th width='123px'>operator</th>
-    <th >说明</th>
-  </tr>
-  <tr>
-    <td>+</td>
-    <td>增加权限</td>
-  </tr>
-  <tr>
-    <td>-</td>
-    <td>取消权限</td>
-  </tr>
-  <tr>
-    <td>=</td>
-    <td>重新设置权限</td>
-  </tr>
-</table>
+<p>1.本地vue项目构建打包出dist文件<br>2.编写nginx/nginx.conf文件<br>3.编写Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.14</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制应用代码到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> ./dist /usr/share/nginx/html</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制nginx配置到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> ./nginx/nginx.conf /etc/nginx/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 端口暴露</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span></pre></td></tr></table></figure>
+<p>4.将dist、nginx.conf、Dockerfile推送到服务器 /app/websocket/client 目录下<br>5.docker build -t websocketclient:v1.0 . (构建镜像，注意最后的点号表示当前目录为构建上下文)</p>
+<blockquote>
+<p>后端镜像打包</p>
+</blockquote>
+<img src="/images/2025/docker-003.png">
+
+<p>1.编写Dockerfile</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">16.16</span>.<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置工作目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制应用代码到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> . /app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 端口暴露</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 容器启动时运行应用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"npm"</span>,<span class="string">"run"</span>,<span class="string">"dev"</span>]</span></span></pre></td></tr></table></figure>
+<p>2.将Dockerfile、index.js工程文件推送到服务器 /app/websocket/server 目录下<br>3.docker build -t websocketserver:v1.0 . (构建镜像，注意最后的点号表示当前目录为构建上下文)</p>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker build -t [镜像名]:[版本号] .</span></pre></td></tr></table></figure>
 
     </div>
 
@@ -314,7 +271,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
           </div>
 
         
@@ -323,13 +280,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/04/29/linux/04/" rel="prev" title="Linux相关操作">
-      <i class="fa fa-chevron-left"></i> Linux相关操作
+    <a href="/2025/01/18/docker/03/" rel="prev" title="docker compose">
+      <i class="fa fa-chevron-left"></i> docker compose
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/05/12/linux/03/" rel="next" title="Linux主机防火墙">
-      Linux主机防火墙 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -388,7 +342,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#用户管理"><span class="nav-number">1.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录文件权限"><span class="nav-number">2.</span> <span class="nav-text">目录文件权限</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

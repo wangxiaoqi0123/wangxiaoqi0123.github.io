@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/javascript/javascript13/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/15/javascript/javascript14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/14/javascript/javascript13/" class="post-title-link" itemprop="url">JS数据类型</a>
+            <a href="/2020/07/15/javascript/javascript14/" class="post-title-link" itemprop="url">JS原型链</a>
         </h2>
 
         <div class="post-meta">
@@ -208,14 +208,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-14T00:00:00+08:00">2020-07-14</time>
+              <time title="创建时间：2020-07-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-15T00:00:00+08:00">2020-07-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:12:38" itemprop="dateModified" datetime="2023-10-20T14:12:38+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 14:12:49" itemprop="dateModified" datetime="2023-10-20T14:12:49+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -238,58 +238,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
-<li>基本（值）类型<ul>
-<li>String: 任意字符串</li>
-<li>Number: 任意数字</li>
-<li>Boolean: true/false</li>
-<li>undefined: undefined</li>
-<li>null: null</li>
+          <h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ul>
+<li>访问一个对象属性时<ul>
+<li>先在自身属性中查找，找到返回</li>
+<li>如果没有，再沿着<code>__proto__</code>这条链先上查找，找到返回</li>
+<li>如果最终没找到，返回undefined</li>
 </ul>
 </li>
-<li>对象（引用）类型<ul>
-<li>Object: 任意对象</li>
-<li>Function: 一种特别的对象（可书写逻辑，可执行）</li>
-<li>Array: 一种特别的对象（数值下标，内部数据是有序的）</li>
+<li>作用：查找对象的属性（方法）</li>
 </ul>
-</li>
-</ul>
-<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><ul>
-<li>typeof: 返回数据类型的字符串表达<ul>
-<li>可以判断: undefined / 数值 / 字符串 / 布尔值 / function</li>
-<li>不能判断: null与object  object与array</li>
-</ul>
-</li>
-<li>instanceof<ul>
-<li>判断对象的具体类型（实例 instanceof 构造函数）true/false</li>
-</ul>
-</li>
-<li>===<ul>
-<li>可以判断：undefined , null</li>
-</ul>
-</li>
-</ul>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><ul>
-<li>undefined代表变量定义未赋值</li>
-<li>null定义并赋值了，只是值为null</li>
-</ul>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
-<li>初始赋值，表明将要赋值为对象</li>
-<li>让对象成为垃圾对象（被垃圾回收机制回收）</li>
-</ul>
-<h3 id="严格区分变量类型与数据类型"><a href="#严格区分变量类型与数据类型" class="headerlink" title="严格区分变量类型与数据类型"></a>严格区分变量类型与数据类型</h3><ul>
-<li>数据的类型<ul>
-<li>基本类型</li>
-<li>对象类型</li>
-</ul>
-</li>
-<li>变量的类型（变量内存值得类型）<ul>
-<li>基本类型: 保存的为基本类型的数据</li>
-<li>引用类型: 保存的为内存引用地址</li>
-</ul>
-</li>
-</ul>
+<h3 id="构造函数-原型-实例对象的关系（图解）"><a href="#构造函数-原型-实例对象的关系（图解）" class="headerlink" title="构造函数/原型/实例对象的关系（图解）"></a>构造函数/原型/实例对象的关系（图解）</h3>  <img src="/images/2020/prototype3.jpg">
 
+<ul>
+<li>声明构造函数时 会添加prototype属性 它的值是一个Object空对象</li>
+<li><code>Object空对象</code>为<code>构造函数Object</code>的实例，它的隐式原型<code>__prpto__</code>指向构造函数的显式原型</li>
+<li><code>构造函数Object</code>的原型对象的隐式原型<code>__proto__</code>的值为 <code>null</code></li>
+</ul>
+<h3 id="Function-Object-自定义构造函数（图解）"><a href="#Function-Object-自定义构造函数（图解）" class="headerlink" title="Function/Object/自定义构造函数（图解）"></a>Function/Object/自定义构造函数（图解）</h3>  <img src="/images/2020/prototype4.jpg">
+
+<ul>
+<li><code>构造函数Function</code>通过new自身创建，他的显式原型与隐式原型是同一个对象</li>
+<li><code>构造函数Object</code>与<code>自定义构造函数</code>通过new Function 创建，属于<code>构造函数Function</code>的实例，它们的<code>隐式原型__proto__</code>指向<code>构造函数Function</code>的显式原型对象。</li>
+</ul>
+<h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><ol>
+<li>定义父类型构造函数</li>
+<li>给父类型的原型添加方法</li>
+<li>定义子类型构造函数</li>
+<li><span style="color:#f7c544">把父类型的实例对象赋值给子类型的原型</span></li>
+<li>给子类型的原型对象上添加方法</li>
+<li>实例子类型对象：可以调用父类型的方法</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 父类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  function Supper() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    this.supProp &#x3D; &#39;Supper property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  Supper.prototype.showSupperProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.supProp :&gt;&gt; &#39;, this.supProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  function Sub() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    this.subProp &#x3D; &#39;Sub property&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 子类型的原型对象为父类型的一个实例对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype &#x3D; new Supper()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 让子类型的原型的constructor指向子类型</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.constructor &#x3D; Sub</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  Sub.prototype.showSubProp &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    console.log(&#39;this.subProp :&gt;&gt; &#39;, this.subProp);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  var sub &#x3D; new Sub()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  sub.showSupperProp() &#x2F;&#x2F; Supper property</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
       
     </div>
 
@@ -415,7 +394,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/javascript02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/14/javascript/javascript13/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -429,7 +408,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/07/12/javascript/javascript02/" class="post-title-link" itemprop="url">async await 使用方式</a>
+            <a href="/2020/07/14/javascript/javascript13/" class="post-title-link" itemprop="url">JS数据类型</a>
         </h2>
 
         <div class="post-meta">
@@ -439,14 +418,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-12T00:00:00+08:00">2020-07-12</time>
+              <time title="创建时间：2020-07-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-14T00:00:00+08:00">2020-07-14</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:09:51" itemprop="dateModified" datetime="2023-10-20T14:09:51+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 14:12:38" itemprop="dateModified" datetime="2023-10-20T14:12:38+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -469,18 +448,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>作用: 用于将 <code>JS异步链式化</code> 使代码从上向下顺序执行, 相当于promise的 .then 的链式操作</p>
-</blockquote>
-<h3 id="asyns"><a href="#asyns" class="headerlink" title="asyns"></a>asyns</h3><ol>
-<li>声明了此函数为异步函数</li>
-<li>默认返回一个 promise 对象(函数后面可以接 .then 返回的结果就是 async函数里面 return的值 )</li>
-</ol>
-<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><ol>
-<li>一般是一个 promise 封装的异步函数 </li>
-<li>await的结果 是promise返回成功的回调 resolve 的值</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明了此函数为异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">async asyFun() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let res &#x3D; await this.test();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;res :&quot;, res); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;error :&quot;, error);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般是一个 promise 封装的异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">test() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 做一些异步操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    setTimeout(function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      resolve(&quot;随便什么数据&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;, 2000);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认返回一个 promise 对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">handle() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  this.asyFun().then(data &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;data :&quot;, data); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+          <h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><ul>
+<li>基本（值）类型<ul>
+<li>String: 任意字符串</li>
+<li>Number: 任意数字</li>
+<li>Boolean: true/false</li>
+<li>undefined: undefined</li>
+<li>null: null</li>
+</ul>
+</li>
+<li>对象（引用）类型<ul>
+<li>Object: 任意对象</li>
+<li>Function: 一种特别的对象（可书写逻辑，可执行）</li>
+<li>Array: 一种特别的对象（数值下标，内部数据是有序的）</li>
+</ul>
+</li>
+</ul>
+<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><ul>
+<li>typeof: 返回数据类型的字符串表达<ul>
+<li>可以判断: undefined / 数值 / 字符串 / 布尔值 / function</li>
+<li>不能判断: null与object  object与array</li>
+</ul>
+</li>
+<li>instanceof<ul>
+<li>判断对象的具体类型（实例 instanceof 构造函数）true/false</li>
+</ul>
+</li>
+<li>===<ul>
+<li>可以判断：undefined , null</li>
+</ul>
+</li>
+</ul>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><ul>
+<li>undefined代表变量定义未赋值</li>
+<li>null定义并赋值了，只是值为null</li>
+</ul>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><ul>
+<li>初始赋值，表明将要赋值为对象</li>
+<li>让对象成为垃圾对象（被垃圾回收机制回收）</li>
+</ul>
+<h3 id="严格区分变量类型与数据类型"><a href="#严格区分变量类型与数据类型" class="headerlink" title="严格区分变量类型与数据类型"></a>严格区分变量类型与数据类型</h3><ul>
+<li>数据的类型<ul>
+<li>基本类型</li>
+<li>对象类型</li>
+</ul>
+</li>
+<li>变量的类型（变量内存值得类型）<ul>
+<li>基本类型: 保存的为基本类型的数据</li>
+<li>引用类型: 保存的为内存引用地址</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
 
@@ -576,6 +595,90 @@
 </blockquote>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;h1&gt;header&lt;&#x2F;h1&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;slot name&#x3D;&quot;main&quot; v-bind&#x3D;&quot;&#123;text:&#39;hello world&#39;&#125;&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      &lt;p&gt;这是mian插槽的默认值标签 当使用插槽时 插槽里不添加任意内容 就使用当前默认值&lt;&#x2F;p&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;&#x2F;slot&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr></table></figure>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/javascript/javascript02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/12/javascript/javascript02/" class="post-title-link" itemprop="url">async await 使用方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-12T00:00:00+08:00">2020-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:09:51" itemprop="dateModified" datetime="2023-10-20T14:09:51+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>作用: 用于将 <code>JS异步链式化</code> 使代码从上向下顺序执行, 相当于promise的 .then 的链式操作</p>
+</blockquote>
+<h3 id="asyns"><a href="#asyns" class="headerlink" title="asyns"></a>asyns</h3><ol>
+<li>声明了此函数为异步函数</li>
+<li>默认返回一个 promise 对象(函数后面可以接 .then 返回的结果就是 async函数里面 return的值 )</li>
+</ol>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><ol>
+<li>一般是一个 promise 封装的异步函数 </li>
+<li>await的结果 是promise返回成功的回调 resolve 的值</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 声明了此函数为异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">async asyFun() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    let res &#x3D; await this.test();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;res :&quot;, res); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return res;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125; catch (error) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;error :&quot;, error);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 一般是一个 promise 封装的异步函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">test() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 做一些异步操作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    setTimeout(function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      resolve(&quot;随便什么数据&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;, 2000);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 默认返回一个 promise 对象</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">handle() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  this.asyFun().then(data &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;data :&quot;, data); &#x2F;&#x2F; 随便什么数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
       
     </div>
 
@@ -801,7 +904,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -815,7 +918,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue01/" class="post-title-link" itemprop="url">Vue 路由守卫</a>
+            <a href="/2020/06/19/vue/vue05/" class="post-title-link" itemprop="url">Vue 单文件组件</a>
         </h2>
 
         <div class="post-meta">
@@ -832,7 +935,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:20:12" itemprop="dateModified" datetime="2023-10-20T12:20:12+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:21:15" itemprop="dateModified" datetime="2023-10-20T12:21:15+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -855,30 +958,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="beforeEach-全局前置守卫钩子"><a href="#beforeEach-全局前置守卫钩子" class="headerlink" title="beforeEach 全局前置守卫钩子"></a>beforeEach 全局前置守卫钩子</h3><blockquote>
-<p>router.beforeEach<br>  to 即将要进入的目标 路由对象<br>  from 当前导航正要离开的路由<br>  next 路由拦截器</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- 书写html区域 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;div&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    components: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 挂载小组件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    props: [], &#x2F;&#x2F; 接受父组件传递的值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    data() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 声明全局</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 计算属性</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 监听数据值的变化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    created() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 被实例化 完成</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    mounted() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; vue 页面节点渲染完毕</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 书写 vue 函数</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">&lt;style lang&#x3D;&quot;scss&quot; scoped&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#x2F;* 书写css区域 *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;style&gt;</span></pre></td></tr></table></figure>
 
-<h3 id="afterEach-全局后置守卫钩子"><a href="#afterEach-全局后置守卫钩子" class="headerlink" title="afterEach 全局后置守卫钩子"></a>afterEach 全局后置守卫钩子</h3><blockquote>
-<p>router.afterEach<br>  afterEach 不会接受 next 函数也不会改变导航本身</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">router.afterEach((to, from) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteEnter-进入组件时路由守卫"><a href="#beforeRouteEnter-进入组件时路由守卫" class="headerlink" title="beforeRouteEnter 进入组件时路由守卫"></a>beforeRouteEnter 进入组件时路由守卫</h3><blockquote>
-<p>beforeRouteEnter(to,from,next){}<br>   to 进入到哪个路由(默认当前)<br>   from 从哪个路由进入<br>   进入之前获取不到 this<br>   next 路由拦截器 第一个参数 等价于this</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    data()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        return&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            name:&quot;Arya&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    beforeRouteEnter(to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 不能获取组件实例 &#96;this&#96; 因为当钩子执行前，组件实例还没被创建</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;this :&gt;&gt; &quot;, this);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      next(vm &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        alert(&quot;hello&quot; + vm.name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-<h3 id="beforeRouteLeave-离开组件时路由守卫"><a href="#beforeRouteLeave-离开组件时路由守卫" class="headerlink" title="beforeRouteLeave 离开组件时路由守卫"></a>beforeRouteLeave 离开组件时路由守卫</h3><blockquote>
-<p>beforeRouteLeave(to,from,next){}<br>   from 从哪个路由离开 (默认当前)<br>   to 离开到哪个路由<br>   注意 直接为函数的写法 才可以获取到 <code>this</code><br>   next 路由拦截器 第一个参数 等价于 <code>this</code></p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">beforeRouteLeave(to, from, next) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 导航离开该组件的对应路由时调用 可以访问组件实例 &#96;this&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 注意 直接为函数的写法 才可以获取到 &#96;this&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  if (confirm(&quot;确定离开此页面吗？&quot;) &#x3D;&#x3D;&#x3D; true) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    next(false);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<h3 id="路由守卫的应用"><a href="#路由守卫的应用" class="headerlink" title="路由守卫的应用"></a>路由守卫的应用</h3><ol>
-<li><p>vue路由守卫实际上为我们提供了一个类似生命周期的函数事件，让我们可以在进入路由前，离开路由时，可以写一下逻辑代码。</p>
+<ol>
+<li><p>template 默认只能有一个根节点 可书写 指令 事件 差值表达式 filter 等等</p>
 </li>
-<li><p>to和form，是路由守卫回调函数提供的，进入/离开的两个路由信息对象。它包含了路由所在的所有信息，包含 meta、query、params、path … 这些我们常用的信息</p>
+<li><p>components 注册引入该模板文件 的局部组件</p>
+</li>
+<li><p>props 接受父组件 传递的数据</p>
+</li>
+<li><p>data 作为主要数据源</p>
+</li>
+<li><p>computed 依赖其他数据源的值 计算出新值</p>
+</li>
+<li><p>watch 监听数据发生变化</p>
+</li>
+<li><p>created 组件 被实例化 完成</p>
+</li>
+<li><p>created 页面节点渲染完毕</p>
+</li>
+<li><p>methods 书写 function</p>
+</li>
+<li><p>scoped 针对当前文件样式锁定</p>
 </li>
 </ol>
 
@@ -900,7 +1001,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue11/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue17/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -914,7 +1015,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue11/" class="post-title-link" itemprop="url">Vue 小知识</a>
+            <a href="/2020/06/19/vue/vue17/" class="post-title-link" itemprop="url">watch监听属性 computed计算属性</a>
         </h2>
 
         <div class="post-meta">
@@ -931,7 +1032,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:22:28" itemprop="dateModified" datetime="2023-10-20T12:22:28+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:23:58" itemprop="dateModified" datetime="2023-10-20T12:23:58+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -954,154 +1055,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li><p>对象合并的方式 Object.assign(obj ,{}) 在vue中对象的合并 必须是 Object.assign({},obj,{}) 的方式,改变引用地址,从而使数据的视图更新</p>
-</li>
-<li><p>computed 计算属性 watch 监听属性 形式上是函数 实际上是变量 , 且computed 计算的属性不能在data中存在</p>
-</li>
-<li><p>Vue 模板中的this指向 window</p>
-</li>
-<li><p>模板中有且仅有一个顶层标签</p>
-</li>
-<li><p>所有的数据都是从外向内传递</p>
-</li>
-<li><p>component 的第一个参数组件名称 可以短横线 可以是驼峰 (不能使用关键字和标签名), 使用组件时 只能使用短横线的形式</p>
-</li>
-<li><p>给父组件下 子组件 绑定(原生)事件 使用事件修饰符 .native 就可以从父组件上直接监听到子组件</p>
-</li>
-<li><p>computed 默认get() 方法 手动修改数据 使用set(修改的值)方法</p>
-</li>
-<li><p><template></template> 标签是一个虚拟的标签,包裹原生标签,将vue语法写在template,使原生标签与逻辑分离</p>
-</li>
-<li><p>Vue 中不要使用 function , 尽量使用箭头函数 避免 this 的指向发生问题</p>
-</li>
-<li><p><router-view/> 页面上是哪个路由组件 就显示哪个组件<br>a.router-link-exact-active 在对应的路由页面 显示对应 router-link 样式</p>
-</li>
-<li><p>组件切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;keep-alive include&#x3D;&quot;froms&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- component 站位符用来站位符 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- v-once组件缓存在内存中 --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;component :is&#x3D;&#39;temp&#39; v-once&gt;&lt;&#x2F;component&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;keep-alive&gt;</span></pre></td></tr></table></figure>
-</li>
-<li><p>Vue.nextTick(callback) 数据和视图更新完成后，触发回调函数</p>
-</li>
-<li><p>mounted阶段 可通过<code>this.$el</code>获取到元素节点，把其挂载到页面已存在的元素节点上（大多数用于弹出框的挂挂载到根节点上）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  document.body.appendChild(this.$el)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/19/vue/vue07/" class="post-title-link" itemprop="url">Vue 路由跳转 router</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-19T00:00:00+08:00">2020-06-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:21:39" itemprop="dateModified" datetime="2023-10-20T12:21:39+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue-2-0/" itemprop="url" rel="index"><span itemprop="name">vue 2.0</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Vue-页面中实现跳转"><a href="#Vue-页面中实现跳转" class="headerlink" title="Vue 页面中实现跳转"></a>Vue 页面中实现跳转</h2><ol>
-<li>this.$router.push() <ul>
-<li>this.$router.push(‘路由路径’)</li>
-<li>this.$router.push({name:’组件名称’,path:’路由路径’})</li>
-<li>push 方式跳转 导航到不同的 url，向 history 栈添加一个新的记录</li>
-</ul>
-</li>
-<li>this.$router.replace()<ul>
-<li>this.$router.replace(‘路由路径’)</li>
-<li>this.$router.replace({name:’组件名称’,path:’路由路径’})</li>
-<li>replace 方式跳转 导航到不同 url，替换 history 栈中当前记录</li>
-</ul>
-</li>
-<li>this.$router.go()<ul>
-<li>router.go(n)：指定前进/回退的步数。n 为正数的时候是前进；负数的时候是后退；0的时候是刷新当前页面。（===window.history.go）</li>
-</ul>
-</li>
-<li>router.back()<ul>
-<li>回退一步</li>
-</ul>
-</li>
-<li>router-link <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;router-link to&#x3D;&#39;路由路径&#39;&gt; &lt;&#x2F;router-link&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">直接在样式中设置 .router-link-exact-active</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">a.router-link-exact-active &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      color: #d7a51e;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;router-link to&#x3D;&#39;&#123;name:&#39;组件名称&#39;&#125;&#39;&gt; &lt;&#x2F;router-link&gt;</span></pre></td></tr></table></figure>
-
-</li>
-</ol>
+          <blockquote>
+<p>computed<br>  是计算值 有get set 两个方法 默认是 get<br>  应用：就是简化tempalte里面计算和处理props或$emit的传值<br>  具有缓存性，页面重新渲染值不变化,计算属性会立即返回之前的计算结果，而不必再次执行函数</p>
+</blockquote>
 <blockquote>
-<p>页面的路由信息对象<br>  this.$route</p>
+<p>watch<br>  是观察的动作，<br>  应用：监听props，$emit或本组件的值执行异步操作<br>  无缓存性，页面重新渲染时值不变化也会执行</p>
 </blockquote>
-<h2 id="Vue-页面中跳转（push-replace）-带参数"><a href="#Vue-页面中跳转（push-replace）-带参数" class="headerlink" title="Vue 页面中跳转（push/replace） 带参数"></a>Vue 页面中跳转（push/replace） 带参数</h2><ol>
-<li>跳转传参 </li>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ul>
+<li><p>相同</p>
+<ol>
+<li>computed 与 watch 里面计算/监听的函数 形式上是函数 实际上是变量</li>
 </ol>
-<ul>
-<li>方式一  使用params 传递参数<br>this.$router.push({path:’组件路径/‘,params:{变量名:值}})<br>this.$router.push({name:’组件名称’,params:{变量名:值}})</li>
-<li>方式二  使用query 传递参数<br>this.$router.push({path:’组件路径/‘,query:{变量名:值}})<br>this.$router.push({name:’组件名称’,query:{变量名:值}})</li>
-</ul>
-<ol start="2">
-<li>接受参数 </li>
+</li>
+<li><p>区别一</p>
+<ol>
+<li>copmuted 计算的是一个自定义的变量 变量不可以在 data 中存在</li>
+<li>watch    监听的是一个必须 已经存在的变量 (data , computed, props …)</li>
 </ol>
-<ul>
-<li>this.$route.params.变量名  (一般在 mounted 中接受参数) 页面路由看不见 页面刷新参数消失</li>
-<li>this.$route.query.变量名  (一般在 mounted 中接受参数) 页面路由显示 页面刷新参数不消失</li>
+</li>
+<li><p>区别二</p>
+<ol>
+<li>computed 必须依赖一个或者多个数据项,然后对数据进行操作计算, 从而返回一个计算值 ,有get set 两个方法 默认是get方法, set方法  手动添加 可以接受一个修改后的值 val 形参</li>
+<li>watch    监听的是一个存在的变量, 且 函数可以接受 newVal, oldVal 两个形参 </li>
+</ol>
+</li>
+<li><p>区别三</p>
+<ol>
+<li>computed 不能够实现异步操作</li>
+<li>watch    允许异步操作</li>
+</ol>
+</li>
 </ul>
+<h4 id="computed-使用"><a href="#computed-使用" class="headerlink" title="computed 使用"></a>computed 使用</h4><ol>
+<li><p>默认get方法 直接依赖data props computed 等等 中数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  sum() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return this.num1 + this.num2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+</li>
+<li><p>get set 写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  sum: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    get() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      return this.num1 + this.num2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    set(val) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;val :&gt;&gt; &quot;, val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
+
+</li>
+</ol>
+<h4 id="watch-使用"><a href="#watch-使用" class="headerlink" title="watch 使用"></a>watch 使用</h4><ol>
+<li>默认写法 直接监听data中数据的变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  num(newV, oldV) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;newV :&gt;&gt; &quot;, newV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;oldV :&gt;&gt; &quot;, oldV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>对象深度监听<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;obj.num&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    deep: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    handler(newV, oldV) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;newV :&gt;&gt; &quot;, newV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;oldV :&gt;&gt; &quot;, oldV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>immediate 数据首次绑定watch立即执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">watch: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &quot;obj.num&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    deep: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    immediate: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    handler(newV, oldV) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;newV :&gt;&gt; &quot;, newV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      console.log(&quot;oldV :&gt;&gt; &quot;, oldV);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><h5 id="computed-return-依赖值计算的结果"><a href="#computed-return-依赖值计算的结果" class="headerlink" title="computed return 依赖值计算的结果"></a>computed return 依赖值计算的结果</h5><h5 id="watch-监听的变量-发生变化时执行函数内部的语句"><a href="#watch-监听的变量-发生变化时执行函数内部的语句" class="headerlink" title="watch 监听的变量 发生变化时执行函数内部的语句"></a>watch 监听的变量 发生变化时执行函数内部的语句</h5>
       
     </div>
 
@@ -1120,7 +1122,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue13/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/19/vue/vue19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1134,7 +1136,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/19/vue/vue13/" class="post-title-link" itemprop="url">Vue 指令事件样式</a>
+            <a href="/2020/06/19/vue/vue19/" class="post-title-link" itemprop="url">vuex 使用</a>
         </h2>
 
         <div class="post-meta">
@@ -1151,7 +1153,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:22:53" itemprop="dateModified" datetime="2023-10-20T12:22:53+08:00">2023-10-20</time>
+                <time title="修改时间：2023-10-20 12:24:40" itemprop="dateModified" datetime="2023-10-20T12:24:40+08:00">2023-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1174,40 +1176,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-数据-变量"><a href="#1-数据-变量" class="headerlink" title="1. 数据 变量"></a>1. 数据 变量</h3><ul>
-<li><p>插值表达式<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -</p>
+          <h3 id="vuex-模块化分类"><a href="#vuex-模块化分类" class="headerlink" title="vuex 模块化分类"></a>vuex 模块化分类</h3><h4 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import Vue from &quot;vue&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import Vuex from &quot;vuex&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">import VuexPersistence from &quot;vuex-persist&quot;; &#x2F;&#x2F; vuex 数据持久化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">import user from &quot;.&#x2F;module&#x2F;user&quot;; &#x2F;&#x2F; 需要引入的小模块</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const vuexLocal &#x3D; new VuexPersistence(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  storage: window.sessionStorage, &#x2F;&#x2F; 配置浏览器存储位置</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  modules: [&quot;user&quot;] &#x2F;&#x2F; 需要持久化的模块</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Vue.use(Vuex);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  modules: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    user &#x2F;&#x2F; 模块合并</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  plugins: [vuexLocal.plugin]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">export default store;</span></pre></td></tr></table></figure>
+<p>  vuex-persist 数据持久化插件</p>
+<blockquote>
+<p>npm install –save vuex-persist</p>
+</blockquote>
+<h4 id="子模块"><a href="#子模块" class="headerlink" title="子模块"></a>子模块</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const user &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  namespaced: true, &#x2F;&#x2F; 添加模块名称</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  state: &#123; &#x2F;&#x2F; 声明全局变量 &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  getters:&#123; &#x2F;&#x2F; 计算属性 &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  mutations: &#123; &#x2F;&#x2F; 使用 commit(&quot;state 变量名&quot;, value) 提交变量 &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  actions: &#123; &#x2F;&#x2F; 使用 dispatch(&#123;执行上下文对象&#125;,value) 提交 进而提交mutations 修改state中的值 &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">export default user;</span></pre></td></tr></table></figure>
+
+<h3 id="vuex-使用介绍"><a href="#vuex-使用介绍" class="headerlink" title="vuex 使用介绍"></a>vuex 使用介绍</h3><h4 id="namespaced"><a href="#namespaced" class="headerlink" title="namespaced"></a>namespaced</h4><blockquote>
+<p>vuex中的store分模块管理，需要在store的index.js中引入各个模块，为了解决不同模块命名冲突的问题，将不同模块的namespaced:true，之后在不同页面中引入getter、actions、mutations时，需要加上所属的模块名</p>
+</blockquote>
+<h4 id="state"><a href="#state" class="headerlink" title="state"></a>state</h4><ol>
+<li>vuex 模块中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">state: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  num: 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>页面使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; mapState &#125; from &quot;vuex&quot;;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ...mapState(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    num: state &#x3D;&gt; state.user.num</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<blockquote>
+<p>当映射的属性的名称与 state 的 子节点(一级节点) 名称相同时，我们也可以给 mapState 传一个字符串数组。</p>
+</blockquote>
 </li>
-<li><p>:属性<br>:属性= 后面都支持 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /</p>
-</li>
-<li><p>data-xxx 自定义属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click</span>=<span class="string">"onGoToDetail"</span> <span class="attr">:data-id</span>=<span class="string">"postId"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onGoToDetail(event) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(event.srcElement.dataset.id)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>通过<code>data-</code>形式自定义的属性可以在event.srcElement.dataset中获取到。<br>1.自定义的属性在dataset中data-会被省略。例如 data-id =&gt; id<br>2.当自定义属性中存在大写字母会被转换成小写。例如 data-postId =&gt; postid<br>3.当自定义属性中存在多个-会被转换成驼峰。例如 data-post-id =&gt; postId</p>
-</li>
-<li><p>:style 运算符写法<br>:style=”{color:num == 3 ? ‘red’ :’green’}”<br>:style=”[{color:num == 3 ? ‘red’ :’green’}]”</p>
-</li>
-<li><p>:class 运算符写法<br>:class=”[isShow(变量) ? ‘icon-quanxuan1’(选择器一) : ‘icon-quanxuan’(选择器二)]”</p>
-</li>
-</ul>
-<h3 id="2-修改数据更新视图"><a href="#2-修改数据更新视图" class="headerlink" title="2. 修改数据更新视图"></a>2. 修改数据更新视图</h3><ul>
-<li>修改数组 对象中的值来改变页面的渲染<br>(数组)通过数组变异方法(可以改变原数组的方法)操作的方法来操作 pop push shift unshift splice sort reserve<br>(数组, 对象)通过改变引用值的方式 , 将整个数组或对象都替换掉<br>(数组, 对象) Vue.set(对象/数组,属性/下标,值) 实例上也可以引用到 set 方法 , this.$set(对象/数组,属性/下标,值)<br>(对象) 原生对象的的合并 Object.assign({},obj,obj) 一定要加{} 改变原来对象值的引用</li>
-</ul>
-<h3 id="3-Vue-样式的绑定"><a href="#3-Vue-样式的绑定" class="headerlink" title="3. Vue 样式的绑定"></a>3. Vue 样式的绑定</h3><ol>
-<li>:style=”{}” json 格式的对象</li>
-<li>:style=”[{},{}]” 数组的形式</li>
-<li>:class=”{class 选择器:true}”</li>
-<li>:class=”[{class 选择器:true},obj,’calss 选择器’]”</li>
 </ol>
-<h3 id="4-修饰符"><a href="#4-修饰符" class="headerlink" title="4. 修饰符"></a>4. 修饰符</h3><ul>
-<li><p>事件修饰符<br>stop 阻止事件的冒泡 相当于原生的 e.stopPropagation() e.cancelBubble=true<br>prevent 阻止默认事件 相当于原生的 return false e.returnValue=false e.preventDefault()<br>captrue 事件的捕获<br>self 只有点击时 target 为目标元素 事件才可以生效</p>
+<h4 id="getters"><a href="#getters" class="headerlink" title="getters"></a>getters</h4><ol>
+<li>vuex 模块中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">getters: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  num1: state &#x3D;&gt; &#123; &#x2F;&#x2F; 通过方法访问</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return state.num + 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  num2: (state, getters) &#x3D;&gt; &#123; &#x2F;&#x2F; 通过属性访问</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return getters.num1 + 10;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>页面使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &quot;vuex&quot;;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">computed: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  ...mapGetters(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    num1: &quot;user&#x2F;num1&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    num2: &quot;user&#x2F;num2&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr></table></figure>
+<blockquote>
+<p>当映射的属性的名称与 getters 的 子节点(一级节点) 名称相同时，我们也可以给 mapGetters 传一个字符串数组。</p>
+</blockquote>
 </li>
-<li><p>v-model 数据修饰符<br>number 自动把绑定的数据类型转化为 number 类型<br>lazy 数据在双向绑定时 只会触发@change 函数 数据修改完成失去焦点时 页面才会重新渲染<br>trim 修剪首尾空格</p>
+</ol>
+<h4 id="mutations"><a href="#mutations" class="headerlink" title="mutations"></a>mutations</h4><blockquote>
+<p>主要用来改变 state 中的数据 不可以书写异步</p>
+</blockquote>
+<ol>
+<li>vuex 模块中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mutations: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  SET_NUM: (state, num) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    state.num &#x3D; num;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>页面使用</li>
+</ol>
+<ul>
+<li>$store.commit<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; namespaced 设置为true 需要设置模块路径</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">this.$store.commit(&#39;user&#x2F;SET_NUM&#39;,value)</span></pre></td></tr></table></figure></li>
+<li>mapMutations<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from &quot;vuex&quot;;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; this.setNum(value) 相当于 this.$store.commit(&#39;user&#x2F;SET_NUM&#39;,value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  ...mapMutations(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    setNum: &quot;user&#x2F;SET_NUM&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<blockquote>
+<p>当映射mutation的名称与 mutation 的 子节点(一级节点) 名称相同时，我们也可以给 mapMutations 传一个字符串数组。</p>
+</blockquote>
 </li>
 </ul>
-<h3 id="5-列表渲染"><a href="#5-列表渲染" class="headerlink" title="5. 列表渲染"></a>5. 列表渲染</h3><ol>
-<li>通过 v-for:”item in/of list” 实现对数组 对象的循环渲染</li>
-<li>key 的描述<br>如果不加 key 或者 key 为 index vue 在更新视图的时候, 采用就地更新策略, 每个元素只是一个容器,不会改变现有元素的排列顺序, 只是依次改变容器的内容<br>如果加了 key 并且 key 是唯一标识, vue 在更新列表的时候, 直接复用这些元素, 就会改变现有元素的排列顺序</li>
+<h4 id="actions"><a href="#actions" class="headerlink" title="actions"></a>actions</h4><blockquote>
+<p>主要用于处理异步动作</p>
+</blockquote>
+<ol>
+<li>vuex 模块中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">actions: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 第一个参数为执行上下文对象 &#123; commit, dispatch, getters &#125; 等等</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  async Num(&#123; commit &#125;, num) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    try &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; 等待异步结果返回后 返回 Promise</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      &#x2F;&#x2F; await ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      return new Promise((resolve, reject) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        if (num &gt; 5) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">          &#x2F;&#x2F; 模块内部 不管namespaced是否设置为true 不写模块前缀</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">          commit(&quot;SET_NUM&quot;, num);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">          resolve(num);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">          reject(num);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125; catch (e) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      await Promise.reject(e);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>页面使用</li>
 </ol>
+<ul>
+<li>$store.dispatch<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; namespaced 设置为true 需要设置模块路径</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">this.$store.dispatch(&#39;user&#x2F;Num&#39;,value)</span></pre></td></tr></table></figure></li>
+<li>mapActions<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; mapActions &#125; from &quot;vuex&quot;;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; this.Num(value) 相当于 this.$store.dispatch(&#39;user&#x2F;Num&#39;,value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  ...mapActions(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    Num: &quot;user&#x2F;Num&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<blockquote>
+<p>当映射action的名称与 action 的 子节点(一级节点) 名称相同时，我们也可以给 mapActions 传一个字符串数组。</p>
+</blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -1292,7 +1320,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">111</span>
+          <span class="site-state-item-count">112</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
