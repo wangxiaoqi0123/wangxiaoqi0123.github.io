@@ -20,21 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。参考: https:&#x2F;&#x2F;docs.docker.com&#x2F;reference&#x2F;dockerfile&#x2F; 示例前端vue，后端nodejs的websocket服务，打包成docker镜像示例  前端镜像打包    1.本地vue项目构建打包出dist文件2.编写nginx&#x2F;nginx.conf文件3.编写Dockerf">
+  <meta name="description" content="1.移除旧版本docker 1sudo yum remove docker docker-client \2                       docker-client-latest \3                       docker-common \4                       docker-latest \5">
 <meta name="keywords" content="docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dockerfile">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2025&#x2F;01&#x2F;18&#x2F;docker&#x2F;04&#x2F;index.html">
+<meta property="og:title" content="docker 安装">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2025&#x2F;01&#x2F;20&#x2F;docker&#x2F;05&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。参考: https:&#x2F;&#x2F;docs.docker.com&#x2F;reference&#x2F;dockerfile&#x2F; 示例前端vue，后端nodejs的websocket服务，打包成docker镜像示例  前端镜像打包    1.本地vue项目构建打包出dist文件2.编写nginx&#x2F;nginx.conf文件3.编写Dockerf">
+<meta property="og:description" content="1.移除旧版本docker 1sudo yum remove docker docker-client \2                       docker-client-latest \3                       docker-common \4                       docker-latest \5">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-002.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-003.png">
-<meta property="og:updated_time" content="2025-01-20T03:31:24.006Z">
+<meta property="og:updated_time" content="2025-01-20T04:14:21.462Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;2025&#x2F;docker-002.png">
 
-<link rel="canonical" href="http://yoursite.com/2025/01/18/docker/04/">
+<link rel="canonical" href="http://yoursite.com/2025/01/20/docker/05/">
 
 
 <script id="page-configurations">
@@ -47,7 +44,7 @@
   };
 </script>
 
-  <title>Dockerfile | 我寄白雪三千片</title>
+  <title>docker 安装 | 我寄白雪三千片</title>
   
 
 
@@ -190,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/18/docker/04/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/20/docker/05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Dockerfile
+          docker 安装
         </h1>
 
         <div class="post-meta">
@@ -212,16 +209,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2025-01-18 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-18T00:00:00+08:00">2025-01-18</time>
+              <time title="创建时间：2025-01-20 00:00:00 / 修改时间：12:14:21" itemprop="dateCreated datePublished" datetime="2025-01-20T00:00:00+08:00">2025-01-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-20 11:31:24" itemprop="dateModified" datetime="2025-01-20T11:31:24+08:00">2025-01-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -243,26 +234,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Dockerfile 用于自动化构建 Docker 镜像，定义镜像的环境、依赖和行为。<br>参考: <a href="https://docs.docker.com/reference/dockerfile/" target="_blank" rel="noopener">https://docs.docker.com/reference/dockerfile/</a></p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>前端vue，后端nodejs的websocket服务，打包成docker镜像示例</p>
-<blockquote>
-<p>前端镜像打包</p>
-</blockquote>
-<img src="/images/2025/docker-002.png">
-
-<p>1.本地vue项目构建打包出dist文件<br>2.编写nginx/nginx.conf文件<br>3.编写Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.14</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制应用代码到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> ./dist /usr/share/nginx/html</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制nginx配置到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> ./nginx/nginx.conf /etc/nginx/</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 端口暴露</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span></pre></td></tr></table></figure>
-<p>4.将dist、nginx.conf、Dockerfile推送到服务器 /app/websocket/client 目录下<br>5.docker build -t websocketclient:v1.0 . (构建镜像，注意最后的点号表示当前目录为构建上下文)</p>
-<blockquote>
-<p>后端镜像打包</p>
-</blockquote>
-<img src="/images/2025/docker-003.png">
-
-<p>1.编写Dockerfile</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">16.16</span>.<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置工作目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制应用代码到容器内</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span><span class="bash"> . /app</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 端口暴露</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">EXPOSE</span> <span class="number">3000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 容器启动时运行应用</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">"npm"</span>,<span class="string">"run"</span>,<span class="string">"dev"</span>]</span></span></pre></td></tr></table></figure>
-<p>2.将Dockerfile、index.js工程文件推送到服务器 /app/websocket/server 目录下<br>3.docker build -t websocketserver:v1.0 . (构建镜像，注意最后的点号表示当前目录为构建上下文)</p>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker build -t [镜像名]:[版本号] .</span></pre></td></tr></table></figure>
-
+        <p>1.移除旧版本docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo yum remove docker docker-client \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                       docker-client-latest \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                       docker-common \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                       docker-latest \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">                       docker-latest-logrotate \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                       docker-logrotate \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                       docker-engine</span></pre></td></tr></table></figure>
+<p>2.配置docker yum源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager --add-repo http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;docker-ce&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span></pre></td></tr></table></figure>
+<p>3.安装 最新 docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span></pre></td></tr></table></figure>
+<p>4.启动docker</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl enable docker # 开机启动</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">systemctl start docker</span></pre></td></tr></table></figure>
+<p>5.配置加速</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo mkdir -p &#x2F;etc&#x2F;docker</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo tee &#x2F;etc&#x2F;docker&#x2F;daemon.json &lt;&lt;-&#39;EOF&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &quot;registry-mirrors&quot;: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;https:&#x2F;&#x2F;mirror.ccs.tencentyun.com&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        &quot;https:&#x2F;&#x2F;docker.m.daocloud.io&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">EOF</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sudo systemctl restart docker</span></pre></td></tr></table></figure>
     </div>
 
     
@@ -280,8 +266,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2025/01/18/docker/03/" rel="prev" title="docker compose">
-      <i class="fa fa-chevron-left"></i> docker compose
+    <a href="/2025/01/19/docker/04/" rel="prev" title="Dockerfile">
+      <i class="fa fa-chevron-left"></i> Dockerfile
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -342,7 +328,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令"><span class="nav-number">2.</span> <span class="nav-text">命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,7 +341,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

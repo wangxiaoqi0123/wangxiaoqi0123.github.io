@@ -184,6 +184,307 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/17/server/server04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/17/server/server04/" class="post-title-link" itemprop="url">mongodb基本使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-17T00:00:00+08:00">2021-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:29:22" itemprop="dateModified" datetime="2023-10-20T12:29:22+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
+<li>mongodb安装<ul>
+<li>社区版本安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install mongodb-community</span></pre></td></tr></table></figure></li>
+<li><a href="https://github.com/mongodb/homebrew-brew" target="_blank" rel="noopener">https://github.com/mongodb/homebrew-brew</a> （文档）</li>
+</ul>
+</li>
+<li>mongodb服务启动/停止<ul>
+<li>启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew services start mongodb-community</span></pre></td></tr></table></figure></li>
+<li>停止<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew services stop mongodb-community</span></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>下载mongodb可视化工具<ul>
+<li>例如 Navicat Premium</li>
+</ul>
+</li>
+</ul>
+<h3 id="mongodb简介"><a href="#mongodb简介" class="headerlink" title="mongodb简介"></a>mongodb简介</h3><ul>
+<li>数据库<ul>
+<li>mongodb是一个数据的服务或者系统。一个数据库系统可以对接多个服务，一个服务也可以对接多个数据库。</li>
+</ul>
+</li>
+<li>集合collection<ul>
+<li>集合是mongodb的文档组，存在于数据库中。</li>
+</ul>
+</li>
+<li>文档document<ul>
+<li>文档是单条数据，可以被增删改查。</li>
+</ul>
+</li>
+<li>bson<ul>
+<li>mongodb内数据存储是一以一种<strong>二进制类型的json</strong>存储的，数据格式是一种json的格式。</li>
+</ul>
+</li>
+<li>NoSQL<ul>
+<li>mongodb 与 一些关系型数据库不同，不需要使用SQL语句查询。</li>
+</ul>
+</li>
+<li>mongodb区别于关系型数据库<table border="1">
+<tr>
+  <th width='50%'>mysql</th>
+  <th width='50%'>mongodb</th>
+</tr>
+<tr>
+  <td>数据库</td>
+  <td>数据库</td>
+</tr>
+<tr>
+  <td>表格</td>
+  <td>集合</td>
+</tr>
+<tr>
+  <td>行</td>
+  <td>文档</td>
+</tr>
+<tr>
+  <td>列</td>
+  <td>字段</td>
+</tr>
+<tr>
+  <td>主键</td>
+  <td>mongodb 默认主键 _id</td>
+</tr>
+</table>
+
+</li>
+</ul>
+<h3 id="mongodb-常用命令"><a href="#mongodb-常用命令" class="headerlink" title="mongodb 常用命令"></a>mongodb 常用命令</h3><blockquote>
+<p><strong>数据库</strong></p>
+</blockquote>
+<ul>
+<li>产看数据库列表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show dbs</span></pre></td></tr></table></figure></li>
+<li>切换数据库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">use mydb</span></pre></td></tr></table></figure>
+当存在数据库时，切换到该数据库。当不存在数据库时，创建该数据库，并切换到该数据库。</li>
+</ul>
+<ul>
+<li>删除数据库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">use mydb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">db.dropDatabase()</span></pre></td></tr></table></figure>
+先切换到需要删除的数据库，然后执行db.dropDatabase()删除数据库。</li>
+</ul>
+<blockquote>
+<p><strong>集合collection</strong></p>
+</blockquote>
+<ul>
+<li>查看当前数据库集合列表<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show collections</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">show tables</span></pre></td></tr></table></figure></li>
+<li>插入文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert(&#123;name:&quot;wangxiaoqi&quot;&#125;)</span></pre></td></tr></table></figure>
+当存在集合时，向集合中插入一条数据。当集合不存在时，创建新的集合并插入数据。</li>
+</ul>
+<ul>
+<li>删除集合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollecction.drop()</span></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<blockquote>
+<p><strong>插入文档</strong></p>
+</blockquote>
+<ul>
+<li>insert 插入一条或多条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert(&#123;number:1&#125;) &#x2F;&#x2F; 插入单条数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insert([&#123;number:2&#125;,&#123;number:3&#125;]) &#x2F;&#x2F; 插入多条数据</span></pre></td></tr></table></figure></li>
+<li>insertOne 插入一条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insertOne(&#123;number:4&#125;)</span></pre></td></tr></table></figure></li>
+<li>insertMany 插入多条数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.insertMany([&#123;number:5&#125;,&#123;number:6&#125;])</span></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<blockquote>
+<p><strong>更新文档</strong></p>
+</blockquote>
+<ul>
+<li>update 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.update(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;query&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &lt;update&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    upsert: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    multi: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    writeConcern: &lt;ducument&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+query: update的查询条件，类似sql update查询内where后面的<br>update: update的对象和一些更新的操作符（如$,$inc…）等，也可以理解为sql update查询内set后面的<br>upsert: 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入<br>multi: 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新<br>writeConcern: 可选，抛出异常的级别</li>
+</ul>
+<ul>
+<li>update<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.update(&#123;number:6&#125;,&#123;$set:&#123;number:66&#125;&#125;,&#123;multi:true&#125;)</span></pre></td></tr></table></figure>
+匹配number为6的文档，文档的number字段全部更新为66。</li>
+</ul>
+<blockquote>
+<p><strong>删除文档</strong></p>
+</blockquote>
+<ul>
+<li>remove 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;query&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    justOne: &lt;boolean&gt;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    writeConcern: &lt;document&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+query: (可选) 删除的文档的条件<br>justOne: (可选) 如果设为 true 或 1，则只删除第一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档<br>writeConcern: (可选) 抛出异常的级别</li>
+</ul>
+<ul>
+<li>remove<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(&#123;number:66&#125;,&#123;justOne:true&#125;)</span></pre></td></tr></table></figure>
+删除第一个number为66的文档。</li>
+</ul>
+<ul>
+<li>删除所有数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.remove(&#123;&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteMany(&#123;&#125;)</span></pre></td></tr></table></figure></li>
+<li>deleteOne 删除匹配的第一条文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteOne(&#123;number:2&#125;)</span></pre></td></tr></table></figure></li>
+<li>deleteMany 删除匹配到的所有文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.deleteMany(&#123;number:2&#125;)</span></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<blockquote>
+<p><strong>查询文档</strong></p>
+</blockquote>
+<ul>
+<li>find 语法格式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(query)</span></pre></td></tr></table></figure>
+query: 可选，使用查询操作符指定查询条件</li>
+</ul>
+<ul>
+<li>条件操作符<table border="1">
+<tr>
+  <th width='25%'>操作</th>
+  <th width='25%'>格式</th>
+  <th width='50%'>范例</th>
+</tr>
+<tr>
+  <td>等于</td>
+  <td>{key:valve}</td>
+  <td>db.myCollection.find({number:1})</td>
+</tr>
+<tr>
+  <td>小于</td>
+  <td>{key:{$lt:value}}</td>
+  <td>db.myCollection.find({number:{$lt:5}})</td>
+</tr>
+<tr>
+  <td>小于等于</td>
+  <td>{key:{$lte:value}}</td>
+  <td>db.myCollection.find({number:{$lte:5}})</td>
+</tr>
+<tr>
+  <td>大于</td>
+  <td>{key:{$gt:value}}</td>
+  <td>db.myCollection.find({number:{$gt:5}})</td>
+</tr>
+<tr>
+  <td>大于等于</td>
+  <td>{key:{$gte:value}}</td>
+  <td>db.myCollection.find({number:{$gte:5}})</td>
+</tr>
+<tr>
+  <td>不等于</td>
+  <td>{key:{$ne:value}}</td>
+  <td>db.myCollection.find({number:{$ne:5}})</td>
+</tr>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;number:&#123;$gt:2,$lt:5&#125;&#125;)</span></pre></td></tr></table></figure>
+number 大于2小于5的文档。
+
+
+</li>
+</ul>
+<ul>
+<li>and条件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;number:&#123;$gt:1&#125;,author:&quot;zhangsan&quot;&#125;)</span></pre></td></tr></table></figure>
+传入多个键(key)，每个键(key)以逗号隔开，相当于 SQL 的 AND 条件。</li>
+</ul>
+<ul>
+<li>or条件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  $or:[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;number:1,author:&quot;zhangsan&quot;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#123;number:&#123;$gt:5&#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+ $or 数组中 每个对象的查询结果，得到的并集。</li>
+</ul>
+<ul>
+<li>and与or组合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  number:7,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  $or:[&#123;number:1&#125;,&#123;number:&#123;$gt:5&#125;&#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+query 中 查询条件交集的结果。</li>
+</ul>
+<ul>
+<li>模糊查询<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;XXX&#x2F;&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 或者</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#123;$regex:&#x2F;XXX&#x2F;&#125;&#125;)</span></pre></td></tr></table></figure>
+查询description中包含 ‘XXX’ 的文档。<br/>
+<br/>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;^XXX&#x2F;&#125;)</span></pre></td></tr></table></figure>
+查询description字段以 'XXX 开头的文档。
+<br/>
+<br/>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find(&#123;description:&#x2F;XXX$&#x2F;&#125;)</span></pre></td></tr></table></figure>
+查询description 字段以 'XXX' 结尾的文档。
+
+
+</li>
+</ul>
+<ul>
+<li>limit指定数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().limit(2)</span></pre></td></tr></table></figure>
+limit()方法接受一个数字参数，该参数指定从MongoDB中读取的记录条数</li>
+</ul>
+<ul>
+<li>skip跳过数目<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollecion.find().skip(2)</span></pre></td></tr></table></figure>
+skip方法接受一个数字参数作为跳过的记录条数</li>
+</ul>
+<ul>
+<li>sort 排序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().sort(&#123;number:-1&#125;)</span></pre></td></tr></table></figure>
+sort方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列</li>
+</ul>
+<ul>
+<li>skip、limit、sort 联合<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">db.myCollection.find().skip(2).limit(2).sort(&#123;number:-1&#125;)</span></pre></td></tr></table></figure>
+skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是先 sort(), 然后是 skip()，最后是显示的 limit()。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/09/server/server07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1338,143 +1639,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/node/node01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/18/node/node01/" class="post-title-link" itemprop="url">HTTP模块</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-18T00:00:00+08:00">2021-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 14:07:28" itemprop="dateModified" datetime="2023-10-20T14:07:28+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="创建一个服务"><a href="#创建一个服务" class="headerlink" title="创建一个服务"></a>创建一个服务</h3><ul>
-<li><p>node 提供http核心模块用于创建服务</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"content-type"</span>: <span class="string">"text/plain"</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  response.write(<span class="string">"hello node"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
-<blockquote>
-<p>引入http模块，使用http.createServer函数创建一个服务<br>调用response.writeHead设置响应头，第一个参数表示HTTP的响应状态，第二个参数“content-type”表示响应给客户端的类容类型<br>调用response.write方法，写入传递给客户端的内容<br>最后调用response.end表示此次请求已处理完成</p>
-</blockquote>
-<blockquote>
-<p>.listen(port) 第一个参数表示监听端口号，第二个参数是监听开启后立即触发的回调函数</p>
-</blockquote>
-</li>
-<li><p>http.Server实例化创建一个服务，等同于上述代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> server = <span class="keyword">new</span> http.Server()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">server.on(<span class="string">'request'</span>, (request, response) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  response.writeHead(<span class="number">200</span>, &#123; <span class="string">"content-type"</span>: <span class="string">"text/plain"</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  response.write(<span class="string">"hello node"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">server.listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
-<blockquote>
-<p>通过创建一个http.Server对象，然后为其添加request事件监听的方式创建的服务等同于http.cresteServer</p>
-</blockquote>
-</li>
-<li><p>createServer方法中的两个参数<code>request</code>和<code>response</code>分别代表了<code>请求对象</code>和<code>响应对象</code>。</p>
-<blockquote>
-<p> <strong>request</strong> 是 <strong>http.IncomingMessage</strong> 的实例<br> <strong>response</strong> 是 <strong>http.ServerResponse</strong> 的实例</p>
-</blockquote>
-<ul>
-<li>http.IncomingMessage是HTTP请求的信息，包含三个事件<ul>
-<li><strong>data</strong>: 当<code>请求体</code>数据到来时，该事件被触发，该事件提供一个chunk，表示接受的数据。如果该事件没有被监听，则请求体会被抛弃。<strong>且该事件可能会被调用多次</strong>。</li>
-<li><strong>end</strong>: 当<code>请求体</code>数据传递完毕时，该事件会被触发，此后不会再有数据</li>
-<li><strong>close</strong>: 用户当前请求结束时，该事件被触发，不同于end，如果用户强制终止传输，也是close<br/>
-<br/></li>
-</ul>
-</li>
-<li>http.ServerResponse是返回给客户端的信息，决定了用户最终看到的内容，他有三个重要的函数，用于返回响应头、响应内容以及结束请求<ul>
-<li><strong>response.writeHead(statusCode,[headers])</strong>: 向请求的客户端发送响应头，该函数在一个请求中最多调用一次，如果不调用，则会自动生成一个响应头</li>
-<li><strong>response.write(data,[encoding])</strong>: 向请求的客户端发送相应的内容，data是一个buffer或者字符串，如果data是字符串，则需要定制编码方式，默认为utf-8。在res.end调用之前可以多次调用。</li>
-<li><strong>response.end([data],[encoding])</strong>: 结束响应，告知客户端所有发送已经结束，当所有要返回的内容发送完毕时，该函数必须被调用一次，两个可选参数与response.write()相同。如果不掉用这个函数，客户端将一直处于等待状态。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>GET</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> querystring = <span class="built_in">require</span>(<span class="string">'querystring'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (req.method === <span class="string">'GET'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> query = querystring.parse(req.url.split(<span class="string">'?'</span>)[<span class="number">1</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    res.end(<span class="built_in">JSON</span>.stringify(query))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="string">'5000'</span>)</span></pre></td></tr></table></figure>
-<blockquote>
-<p>POST</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (req.method === <span class="string">'POST'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> postData = <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    req.on(<span class="string">'data'</span>, chunk =&gt; &#123;postData += chunk.toString()&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    req.on(<span class="string">'end'</span>, () =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">console</span>.log(postData)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      res.end(<span class="string">'hello world!'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="string">'5000'</span>)</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="http-client-客户端向服务端发起请求（类似前端ajax、axios）"><a href="#http-client-客户端向服务端发起请求（类似前端ajax、axios）" class="headerlink" title="http client 客户端向服务端发起请求（类似前端ajax、axios）"></a>http client 客户端向服务端发起请求（类似前端ajax、axios）</h3><blockquote>
-<p>http模块提供了两个函数 http.request 和 http.get</p>
-</blockquote>
-<ul>
-<li><p>http.request(options,callback)</p>
-<ul>
-<li>options表示请求参数，常见的参数有host、port（默认80）、method（默认GET）、path（请求相对于根的路径，默认’/‘）、headers（请求头内容）</li>
-<li>callback回调函数，需要传递一个参数，为http.ClientResponse的实例</li>
-<li>http.request返回一个http.ClientRequest的实例</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> options = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  hostname: <span class="string">"127.0.0.1"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  path: <span class="string">"/?user=zhangsan&amp;age=18"</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  port: <span class="number">5000</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> req = http.request(options, (res) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  res.setEncoding(<span class="string">"utf-8"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> dataChunk = <span class="string">""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  res.on(<span class="string">"data"</span>, (chunk) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    dataChunk += chunk.toString()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  res.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">"dataChunk"</span>, dataChunk);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">"statusCode"</span>, res.statusCode);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">req.on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(err.message);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">req.end();</span></pre></td></tr></table></figure>
-</li>
-<li><p>http.get(options,callback)</p>
-<ul>
-<li>方法是http.request方法的简化版，唯一的区别是http.get自动将请求方法设为了GET请求，同时不需要手动调用req.end()。注意http.request方法时没有调用end方法，服务器将不会收到信息。</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1544,7 +1708,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
