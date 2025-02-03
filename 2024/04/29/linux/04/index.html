@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="我寄白雪三千片">
 <meta property="og:description" content="软件包安装1、安装软件包 1yum -y install [软件包名] 2、删除软件包 1yum -y remove [软件包名] 3、升级软件包 1yum update [软件包名] 4、如何知道需要安装的软件包名百度5、yum仓库互联网上有很多yum仓库，不需要任何配置就可以使用不允许访问互联网的企业用户可能自建yum仓库6、查找软件包。 1yum search [软件包名] 7、列出所有可更">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2025-01-23T07:32:08.674Z">
+<meta property="og:updated_time" content="2025-02-03T02:17:54.951Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2024/04/29/linux/04/">
@@ -217,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-23 15:32:08" itemprop="dateModified" datetime="2025-01-23T15:32:08+08:00">2025-01-23</time>
+                <time title="修改时间：2025-02-03 10:17:54" itemprop="dateModified" datetime="2025-02-03T10:17:54+08:00">2025-02-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,7 +255,9 @@
 <p>9、列出所有可安装软件包的清单</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yum list</span></pre></td></tr></table></figure>
 
-<h3 id="附件上传下载"><a href="#附件上传下载" class="headerlink" title="附件上传下载"></a>附件上传下载</h3><p>建立SFTP链接<br>1.显示本地当前目录</p>
+<h3 id="附件上传下载"><a href="#附件上传下载" class="headerlink" title="附件上传下载"></a>附件上传下载</h3><p>建立SFTP链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sftp [用户名]@[服务器地址]</span></pre></td></tr></table></figure>
+<p>1.显示本地当前目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">lpwd</span></pre></td></tr></table></figure>
 <p>2.显示服务器当前目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pwd</span></pre></td></tr></table></figure>
@@ -268,9 +270,9 @@
 <p>6.切换服务器当前目录</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd [目录名]</span></pre></td></tr></table></figure>
 <p>7.上传文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">put [文件名] &#x2F;&#x2F; 可以用\*匹配文件名。</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">put [文件名] &#x2F;&#x2F; 可以用\*匹配文件名。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">put -r [文件目录] &#x2F;&#x2F; 递归上传目录及其子目录中的所有文件。</span></pre></td></tr></table></figure>
 <p>8.下载文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">get [文件名] &#x2F;&#x2F; 可以用\*匹配文件名。</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">get [文件名] &#x2F;&#x2F; 可以用\*匹配文件名。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">get -r [文件目录] &#x2F;&#x2F; 递归下载目录及其子目录中的所有文件。</span></pre></td></tr></table></figure>
 <p>9.退出SFTP</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">exit</span></pre></td></tr></table></figure>
 
@@ -383,20 +385,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
