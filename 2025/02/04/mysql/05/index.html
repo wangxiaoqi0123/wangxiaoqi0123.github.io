@@ -20,16 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前端笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我寄白雪三千片">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;10&#x2F;index.html">
+  <meta name="description" content="分组查询分组是将数据分成若干个组，并对每个组进行单独的查询，最终统计的是组的特性和数据（分组列，聚合函数）。语法：  group by 分组列, 分组列, … hanving 分组后进行比较。提示：  分组查询只能查询分组字段和聚合函数。  having是分组后的条件，where是分组前的条件。  having只能出现在group by后面，where可以出现在任何位置。  having通常比较的">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql 高级查询">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2025&#x2F;02&#x2F;04&#x2F;mysql&#x2F;05&#x2F;index.html">
 <meta property="og:site_name" content="我寄白雪三千片">
-<meta property="og:description" content="前端笔记">
+<meta property="og:description" content="分组查询分组是将数据分成若干个组，并对每个组进行单独的查询，最终统计的是组的特性和数据（分组列，聚合函数）。语法：  group by 分组列, 分组列, … hanving 分组后进行比较。提示：  分组查询只能查询分组字段和聚合函数。  having是分组后的条件，where是分组前的条件。  having只能出现在group by后面，where可以出现在任何位置。  having通常比较的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2025-02-04T08:40:26.155Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2020/10/">
+<link rel="canonical" href="http://yoursite.com/2025/02/04/mysql/05/">
 
 
 <script id="page-configurations">
@@ -37,12 +39,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 我寄白雪三千片</title>
+  <title>mysql 高级查询 | 我寄白雪三千片</title>
   
 
 
@@ -178,71 +180,92 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">很好! 目前共计 118 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          mysql 高级查询
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-04 17:00:00 / 修改时间：16:40:26" itemprop="dateCreated datePublished" datetime="2025-02-04T17:00:00+08:00">2025-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-25T00:00:00+08:00"
-              content="2020-10-25">
-          10-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/25/configuration/configuration08/" itemprop="url">
-            <span itemprop="name">vue-cli4</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-18T00:00:00+08:00"
-              content="2020-10-18">
-          10-18
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/18/javascript/javascript06/" itemprop="url">
-            <span itemprop="name">ES6 Class 类</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><p>分组是将数据分成若干个组，并对每个组进行单独的查询，最终统计的是组的特性和数据（分组列，聚合函数）。<br>语法：<br>  <code>group by</code> 分组列, 分组列, … <code>hanving</code> 分组后进行比较。<br>提示：<br>  分组查询只能查询<strong>分组字段</strong>和<strong>聚合函数</strong>。<br>  <code>having</code>是分组后的条件，<code>where</code>是分组前的条件。<br>  <code>having</code>只能出现在<code>group by</code>后面，<code>where</code>可以出现在任何位置。<br>  <code>having</code>通常比较的是聚合函数，<code>where</code>可以是任何参数比较。<br>  <code>having</code>可以引用别名，<code>where</code>不可以，因为<code>having</code>是在分组之后执行，已经有了查询结果。</p>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><p>语法：<br>  <code>order by</code> 列名 <code>asc</code>/<code>desc</code>, 列名 <code>asc</code>/<code>desc</code>, …<br>提示：<br>  <code>asc</code>升序 从小到大，<code>desc</code>降序 从大到小。<br>  默认是<code>asc</code>，可以不写。<br>  <code>order by</code>后面可以有多个列，按照第一个排序，如果相同则按第二个排序，以此类推。</p>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>语法：<br>  <code>limit</code> 起始索引, 每页条数<br>提示：<br>  起始索引可以省略，省略默认为0。<br>  <code>limit</code>影响的是查询结果，通常用在查询的最后。</p>
+<h3 id="查询的执行流程"><a href="#查询的执行流程" class="headerlink" title="查询的执行流程"></a>查询的执行流程</h3><p>关键字书写的顺序：<br>  select -&gt; from -&gt; where -&gt; group by -&gt; having -&gt; order by -&gt; limit<br>关键字的执行顺序：<br>  from -&gt; where -&gt; group by -&gt; having -&gt; select -&gt; order by -&gt; limit<br>提示：<br>  mysql8.0+版本存在优化，使 group by 、having 可以使用 select 产生的列（别名）。</p>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/02/04/mysql/04/" rel="prev" title="mysql 运算符">
+      <i class="fa fa-chevron-left"></i> mysql 运算符
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -295,6 +318,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#分组查询"><span class="nav-number">1.</span> <span class="nav-text">分组查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序查询"><span class="nav-number">2.</span> <span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页查询"><span class="nav-number">3.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询的执行流程"><span class="nav-number">4.</span> <span class="nav-text">查询的执行流程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
