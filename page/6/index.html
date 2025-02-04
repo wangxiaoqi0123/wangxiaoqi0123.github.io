@@ -184,6 +184,159 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/27/applets/applets01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/27/applets/applets01/" class="post-title-link" itemprop="url">小程序基础使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-27T00:00:00+08:00">2021-02-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 12:16:42" itemprop="dateModified" datetime="2023-10-20T12:16:42+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">微信小程序</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h3><blockquote>
+<p>WXML中的动态数据均来自对应Page的data。</p>
+</blockquote>
+<ul>
+<li>“Mustache”语法（双大括号）数据绑定<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;message&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    message: <span class="string">'Hello MINA!'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></li>
+<li><code>setData</code> 添加/修改data中数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  data: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    message: <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.setData(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      message:<span class="string">'Hello World!'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/data.html" target="_blank" rel="noopener">数据绑定</a></li>
+</ul>
+<h3 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h3><ul>
+<li>应用生命周期<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">App(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  onLaunch (options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something initial when launch.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onShow (options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something when show.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  onHide () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// Do something when hide.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<strong>onLaunch</strong>: 小程序初始化完成时触发，全局只触发一次。<br><strong>onShow</strong>: 小程序启动，或从后台进入前台显示时触发。<br><strong>onHide</strong>: 小程序从前台进入后台时触发。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html" target="_blank" rel="noopener">小程序生命周期文档</a><br/>
+<br/></li>
+<li>页面生命周期<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  onLoad: <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面创建时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  onShow: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面出现在前台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  onReady: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面首次渲染完毕时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  onHide: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面从前台变为后台时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  onUnload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 页面销毁时执行</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<strong>onLoad</strong>: 页面创建时执行。<br><strong>onShow</strong>: 页面出现在前台时执行。<br><strong>onReady</strong>: 页面首次渲染完毕时执行。<br><strong>onHide</strong>: 页面从前台变为后台时执行。<br><strong>onUnload</strong>: 页面销毁时执行。<br>页面初始化时 <code>onLoad &gt; onShow &gt; onReady</code><br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html" target="_blank" rel="noopener">页面生命周期文档</a></li>
+</ul>
+<h3 id="WXML中常用语法"><a href="#WXML中常用语法" class="headerlink" title="WXML中常用语法"></a>WXML中常用语法</h3><ul>
+<li>插值表达式&lcub;&lcub;&rcub;&rcub;<br>放置 死值<br>放置 变量<br>可以支持运算符 &gt; &lt; ? : ( 三元运算符 ) + -<br>
+<br></li>
+<li>属性<br>属性=&lcub;&lcub;死值 变量 运算符 &gt; &lt; ? : ( 三元运算符 ) + - * /&rcub;&rcub;<br>
+<br></li>
+<li>data-xxx 自定义属性<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">bind:tap</span>=<span class="string">"onGoToDetail"</span> <span class="attr">data-id</span>=<span class="string">"&#123;&#123;postId&#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onGoToDetail(event) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(event.currentTarget.dataset.id)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+  通过<code>data-</code>形式自定义的属性可以在event.currentTarget.dataset中获取到。<br>  1.自定义的属性在dataset中data-会被省略。例如 data-id =&gt; id<br>  2.当自定义属性中存在大写字母会被转换成小写。例如 data-postId =&gt; postid<br>  3.当自定义属性中存在多个-会被转换成驼峰。例如 data-post-id =&gt; postId<br>
+<br></li>
+<li>style 运算符写法<br>style=&quot;&lcub;&lcub;color?&apos;color:&apos;+color+&apos;;&apos;:&apos;&apos;&rcub;&rcub;&lcub;&lcub;size?&apos;font-size:&apos;+size+&apos;rpx&apos;:&apos;&apos;&rcub;&rcub;&quot;<br>
+<br></li>
+<li>class 运算符写法<br>class=&quot;text-class &lcub;&lcub;colorRed&rcub;&rcub; &lcub;&lcub;textSize&rcub;&rcub;&quot;<br>
+<br></li>
+<li>wx:if 条件渲染<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;view == 'WEBVIEW'&#125;&#125;"</span>&gt;</span> WEBVIEW <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:elif</span>=<span class="string">"&#123;&#123;view == 'APP'&#125;&#125;"</span>&gt;</span> APP <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>=<span class="string">"&#123;&#123;view == 'MINA'&#125;&#125;"</span>&gt;</span> MINA <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
+  <a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/conditional.html" target="_blank" rel="noopener">条件渲染</a><br>
+<br></li>
+<li>wx:for 列表渲染<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;array&#125;&#125;"</span> <span class="attr">wx:for-item</span>=<span class="string">"item"</span> <span class="attr">wx:for-index</span>=<span class="string">"index"</span> <span class="attr">wx:key</span>=<span class="string">"index"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#123;&#123;index&#125;&#125;: &#123;&#123;item.message&#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
+  wx:for-item 默认值 item<br>  wx:for-index 默认值 index<br>  <a href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/list.html" target="_blank" rel="noopener">列表渲染</a><br>
+<br></li>
+<li>事件<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">catch:tap</span>=<span class="string">"handleViewTap"</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">text</span> <span class="attr">bind:tap</span>=<span class="string">"handleTextTap"</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Page(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  handleViewTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'on view tap'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  handleTextTap: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'on text tap'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+bind <code>允许</code>事件冒泡<br>catch <code>阻止</code>事件冒泡<br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html" target="_blank" rel="noopener">事件系统</a></li>
+</ul>
+<h3 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h3><ul>
+<li>navigateTo<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.navigateTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+保留当前页面，跳转到应用内的某个页面。<br>不能跳到 tabbar 页面。<br>不可以无限使用，小程序中页面栈最多十层。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html" target="_blank" rel="noopener">wx.navigateTo</a><br/>
+<br/></li>
+<li>redirectTo<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.redirectTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+关闭当前页面，跳转到应用内的某个页面。<br>不能跳转到 tabbar 页面。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.redirectTo.html" target="_blank" rel="noopener">wx.redirectTo</a><br/>
+<br/></li>
+<li>switchTab<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.switchTab(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面<br><a href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.switchTab.html" target="_blank" rel="noopener">wx.switchTab</a><br/>
+<br/></li>
+<li>页面之间通讯<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.navigateTo(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: <span class="string">'/pages/posts/posts?pid='</span>+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+与浏览器地址传参一样，通过在url ？ 后面 以 key=value&amp;key=value 的方式传递数据<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">onLoad(options) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(options) <span class="comment">// &#123; "pid": "1" &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+在跳转后的页面通过<code>onLoad生命周期函数</code>中拿到传递的参数对象</li>
+</ul>
+<h3 id="数据缓存"><a href="#数据缓存" class="headerlink" title="数据缓存"></a>数据缓存</h3><ul>
+<li><p>App </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">App(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  globalData: <span class="string">'I am global data'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>app.js文件中，在App内可以存储公共数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = getApp()</span></pre></td></tr></table></figure>
+<p>在小程序的<code>任何位置</code>都可以通过getApp()函数，进行访问和修改。<br>当小程序<code>重新加载</code>时，数据会被<code>初始化</code>。</p>
+</li>
+<li><p>Storage</p>
+<blockquote>
+<p>小程序的Storage，类似于浏览器的localStorage，本地永久存储。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.setStorageSync(<span class="string">'data'</span>, &#123; <span class="attr">message</span>: <span class="string">'Storage'</span> &#125;)</span></pre></td></tr></table></figure>
+<p><code>setStorageSync</code> 同步操作 增加/修改Storage数据。</p>
+<br/>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = wx.getStorageSync(<span class="string">'data'</span>)</span></pre></td></tr></table></figure>
+<p><code>getStorageSync</code> 同步操作 获取Storage中对应key的数据。</p>
+<br/>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.removeStorageSync(<span class="string">'data'</span>)</span></pre></td></tr></table></figure>
+<p><code>removeStorageSync</code> 同步操作 删除Storage中对应key的数据。</p>
+<br/>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">wx.clearStorageSync()</span></pre></td></tr></table></figure>
+<p><code>clearStorageSync</code> 同步操作 清空整个Storage数据。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/25/applets/applets02/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1421,143 +1574,6 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/24/server/server01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/24/server/server01/" class="post-title-link" itemprop="url">Cookie</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-24T00:00:00+08:00">2021-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:28:37" itemprop="dateModified" datetime="2023-10-20T12:28:37+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="cookie-特点"><a href="#cookie-特点" class="headerlink" title="cookie 特点"></a>cookie 特点</h3><ol>
-<li>cookie 是存储在浏览器中的一段字符串，无数据结构的，但是统一约定为<code>key=value; key=value</code>（分号后紧接着空格）的一串字符串，大小一般不超过4k。</li>
-<li>发起http请求，会<strong>自动携带</strong>http请求所在域名的cookie。</li>
-</ol>
-<h3 id="cookie-重要属性"><a href="#cookie-重要属性" class="headerlink" title="cookie 重要属性"></a>cookie 重要属性</h3><ul>
-<li>属性说明<table border="1">
-<tr>
-  <th width='180px'>属性</th>
-  <th>说明</th>
-</tr>
-<tr>
-  <td>domain</td>
-  <td>指定cookie所属的域名，默认是当前域名</td>
-</tr>
-<tr>
-  <td>path</td>
-  <td>指定cookie在哪个路径（路由下生效）</td>
-</tr>
-<tr>
-  <td>maxAge</td>
-  <td>cookie失效日期，单位秒。如果为整数，则该cookie在maxAge秒后失效。如果为负数，该cookie为临时cookie，关闭浏览器即失效，浏览器也不会以任何形式保存该cookie。如果为0，标识删除该cookie。默认为-1</td>
-</tr>
-<tr>
-  <td>expires</td>
-  <td>
-    过期时间，在设置的某个时间点后该cookie就会消失。时间要转成GMT形式，toGMTString()。<br/>
-    一般浏览器的cookie都是默认存储的，当关闭浏览器结束这个回话的时候，这个cookie也就会被删除
-  </td>
-</tr>
-<tr>
-  <td>secure</td>
-  <td>该cookie是否仅被使用安全协议传输。安全协议有HTTPS，SSL等，在网络上传输数据之前先将数据加密。默认false。</td>
-</tr>
-<tr>
-  <td>httpOnly</td>
-  <td>如果给某个cookie设置了httpOnly属性，则无法通过js脚本读取到该cookie信息，但是还是可以通过Application中手动修改cookie</td>
-</tr>
-</table>
-
-</li>
-</ul>
-<h3 id="前端操作cookie"><a href="#前端操作cookie" class="headerlink" title="前端操作cookie"></a>前端操作cookie</h3><blockquote>
-<p>前端通过 document.cookie 设置 cookie， 设置多个 cookie 则需要编写多条 document.cookie = ‘…’， 如果需要对 cookie 进行修改创建一条相同名称的 cookie 即可对 cookie 进行替换</p>
-</blockquote>
-<ul>
-<li>设置cookie<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * 通用方法： 设置cookie 方法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;String&#125; name     cookie 名称</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;String&#125; value    cookie 值</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @param &#123;Number&#125; maxAge   cookie 存活时间（maxAge秒， 默认存储 30 天）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">&#123; name, value, maxAge &#125;</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  maxAge = maxAge || <span class="number">30</span> * <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// escape： 对字符串进行编码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;<span class="built_in">escape</span> (value)&#125;</span>;max-age=<span class="subst">$&#123;maxAge&#125;</span>`</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<strong>创建</strong>：当document.cookie中没有相同的name时创建一个cookie<br><strong>修改</strong>：把对应document.cookie中的name的value直接替换<br><strong>删除</strong>：把对应document.cookie中的name的max-age设置为0<br/><br/></li>
-<li>获取cookie<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * 通用方法： 将 cookie 转为对象 &#123;anme: value&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> * @return &#123;Object&#125; &#123;name, value&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"> */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookieObj</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> cookieArr = <span class="built_in">document</span>.cookie.split(<span class="string">";"</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> obj = &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  cookieArr.forEach(<span class="function"><span class="params">v</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> arr = v.split(<span class="string">"="</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> key = arr[<span class="number">0</span>].trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> val = arr[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    obj[key] = <span class="built_in">unescape</span>(val);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> obj</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="后端操作cookie（nodejs）"><a href="#后端操作cookie（nodejs）" class="headerlink" title="后端操作cookie（nodejs）"></a>后端操作cookie（nodejs）</h3><blockquote>
-<p>服务端设置 cookie 主要是通过设置<strong>响应头</strong> set-cookie 来设置 cookie， 如果需要设置多个 cookie 得多写几个 set-cookie</p>
-</blockquote>
-<ul>
-<li><p>设置cookie</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  response.setHeader(<span class="string">'Set-Cookie'</span>, <span class="string">'token=xxx; path=/ ;max-age=30; httpOnly'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
-<p>通过<strong>response</strong>设置cookie token值为xxx 当前域根路径 失效时间30秒 客户端不可以通过js操作</p>
-</li>
-<li><p>获取cookie</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.createServer(<span class="function">(<span class="params">request, response</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  request.cookie = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> cookieStr = request.headers.cookie || <span class="string">''</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  cookieStr.split(<span class="string">';'</span>).forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!item) &#123; <span class="keyword">return</span> &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> arr = item.split(<span class="string">'='</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> key = arr[<span class="number">0</span>].trim()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> val = arr[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    request.cookie[key] = val</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  response.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(<span class="number">5000</span>)</span></pre></td></tr></table></figure>
-<p>通过<strong>request</strong>获取cookie</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1627,7 +1643,7 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
