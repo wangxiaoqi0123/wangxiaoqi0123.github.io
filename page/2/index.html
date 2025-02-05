@@ -184,6 +184,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/14/docker/01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/01/14/docker/01/" class="post-title-link" itemprop="url">docker 常用命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-01-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-14T00:00:00+08:00">2025-01-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-01-18 15:48:32" itemprop="dateModified" datetime="2025-01-18T15:48:32+08:00">2025-01-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1.查看容器列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker ps</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker ps -a #列出目所有容器</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker ps -aq #列出所有容器ID</span></pre></td></tr></table></figure>
+<p>2.查看镜像列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker images</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker images -q #列出所有镜像ID</span></pre></td></tr></table></figure>
+<p>3.下载镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker pull [镜像名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker pull [镜像名:版本号]</span></pre></td></tr></table></figure>
+<p>4.删除镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker rmi 镜像名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q) #删除所有镜像</span></pre></td></tr></table></figure>
+<p>5.删除容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker rm [容器名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker rm -f [容器名] #强制删除</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker rm $(docker ps -aq) #删除所有容器</span></pre></td></tr></table></figure>
+<p>6.运行容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run [镜像名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker run -d [镜像名] #后台运行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker run -v [宿主机目录]:[容器目录] [镜像名] #挂载目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">docker run -p [本地端口]:[容器端口] [镜像名] #将容器端口映射到宿主机</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">docker run -e [环境变量名]&#x3D;[值] [镜像名] #设置环境变量</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">docker run -d -p [本地端口]:[容器端口] --name [容器名] [镜像名] #后台运行，并指定容器名和端口映射</span></pre></td></tr></table></figure>
+<p>7.启动容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker start [容器名]</span></pre></td></tr></table></figure>
+<p>8.重启容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker restart [容器名]</span></pre></td></tr></table></figure>
+<p>9.停止容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker stop [容器名]</span></pre></td></tr></table></figure>
+<p>10.进入容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker exec -it [容器名] &#x2F;bin&#x2F;bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker exec -it [容器名] bash</span></pre></td></tr></table></figure>
+<p>11.查看容器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker inspect [容器名]</span></pre></td></tr></table></figure>
+<p>12.查看容器日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker logs [容器名]</span></pre></td></tr></table></figure>
+<p>13.提交容器为镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker commit -m &quot;提交信息&quot; [容器名] [镜像名:版本号]</span></pre></td></tr></table></figure>
+<p>14.保存镜像为文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker save -o [文件名.tar] [镜像名:版本号]</span></pre></td></tr></table></figure>
+<p>15.加载镜像文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker load -i [文件名.tar]</span></pre></td></tr></table></figure>
+<p>16.登陆镜像仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker login [仓库地址]</span></pre></td></tr></table></figure>
+<p>17.镜像设置标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker tag [镜像名:版本号] [仓库地址&#x2F;镜像名:版本号]</span></pre></td></tr></table></figure>
+<p>18.推送镜像到仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker push [镜像名:版本号]</span></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/07/25/typescript/typescript10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1482,97 +1591,6 @@ never类型是一个特殊的类型，它表示的是那些永不存在的值的
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/10/26/configuration/configuration13/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/26/configuration/configuration13/" class="post-title-link" itemprop="url">Micro App微前端方案</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-10-26 00:00:00 / 修改时间：18:34:34" itemprop="dateCreated datePublished" datetime="2023-10-26T00:00:00+08:00">2023-10-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">项目基础配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="前言介绍"><a href="#前言介绍" class="headerlink" title="前言介绍"></a>前言介绍</h3><p>从我的使用角度而言，微前端本质上做的事情，其实是对大型单体的前端应用将其拆分为多个小的、相对独立的子应用。<br>借用一下Micro App官网图<br><img src="/images/2023/plan-design-003.png" /><br>既然拆分成多个相对独立的应用，且这些应用都要集中运行在一起，那么自然而然就会出现一下的一些问题。<br>样式如何隔离？<br>元素如何隔离？<br>js如何沙箱？<br>应用直接如何通讯？<br>…<br>当然作为应用层的开发者来说，如何实现这些问题确不是我们的重点工作，框架一般会帮我们解决。<br>我们的核心工作是在确保这些功能都正常运行的情况下，规划出整体的对接方案。</p>
-<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><p><strong>单页应用的接入方案</strong><br>单页应用是一个独立的闭环应用，从用户打开页面到进入页面有这以下几个关键逻辑。<br><img src="/images/2023/plan-design-001.png" style="width:380px;" /><br>具体<a href="/2023/10/24/configuration/configuration12">单页应用接入</a>的实现方案可以参考这篇文章。<br>从上述图中，可以看出一个独立应用的闭环系统，在进入页面时，基本都满足了，用户已登录、用户信息已获取到，以及用户拥有该页面的权限这些条件之后，页面才能展示出来。<br>&nbsp;</p>
-<p><strong>微前端的接入方案</strong><br>所以微前端也需要实现该闭环逻辑，以达到业务逻辑的完整。<br>&nbsp;<br>基于京东Micro App接入方式<br>可以将该闭环逻辑分别拆分到主应用、子应用中。<br><img src="/images/2023/plan-design-004.png" style="width:340px;" /><br>主应用承担用户登录、以及用户信息获取的功能，此外主应用还必须确保这些信息都获取到之后才能开始加载子应用。<br><img src="/images/2023/plan-design-005.png" style="width:380px;" /><br>子应用承担对应子应用下的页面权限的管控。<br><img src="/images/2023/plan-design-006.png" style="width:380px;" /><br>当然还要包括应用之间数据通信，对应micro app而言提供了应用之间通讯，全局通讯.<br>当然不仅仅是主应用主动向子应用通讯，子应用也可以主动向主应用<a href="https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/data" target="_blank" rel="noopener">数据通信</a>。实际使用一般主应用会以方法的形式提供功能Api接口，供子应用使用。<br><img src="/images/2023/plan-design-007.png" /><br><img src="/images/2023/plan-design-008.png" /><br>基于此完成数据通讯<br><img src="/images/2023/plan-design-009.png" /></p>
-<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p><strong>登录鉴权与数据鉴权</strong><br>这块功能与单页应用中的<code>登录鉴权</code>与<code>数据鉴权</code>可以说是完全一样。<br>具体流程就是：<br>用户进入页面，先检查token是否存在，token不存在证明用户没有登录让用户去登录。token存在就检查用户基本信息是否存在，如果不存在就重新调取接口获取用户信息，存值pinia中，如果用户信息已存在就可以开始挂载子应用了。<br>可参照<a href="/2023/10/24/configuration/configuration12">单页应用接入</a>方案。</p>
-<p>需要注意的是，需要选好触发该操作的场景。<br>这里是以vue作为主应用，vue路由匹配成功到就会加载对应的组件（页面），每个组件（页面）里面挂载不同的子应用。<br>所以在主应用的全局路由守卫来触发改场景太合适了。</p>
-<p>文件结构如下：<br>router<br>  ├── auths<br>  │   ├── index.ts<br>  │   ├── initDataMiddleware.ts<br>  │   └── loginAuthMiddleware.ts<br>  └── index.ts</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// router/index.ts</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createRouter, createWebHistory &#125; <span class="keyword">from</span> <span class="string">'vue-router'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> beforeAuth <span class="keyword">from</span> <span class="string">'./auths'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    path: <span class="string">'/'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    redirect: <span class="string">'/vite4/'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    path: <span class="string">'/vite4/:page*'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/vite4.vue'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    path: <span class="string">'/react/:page*'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    component: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'../views/react.vue'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">] <span class="keyword">as</span> <span class="built_in">any</span>[]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> router = createRouter(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  history: createWebHistory(<span class="keyword">import</span>.meta.env.BASE_URL),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  routes: routes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">router.beforeEach(beforeAuth)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span></pre></td></tr></table></figure>
-<p><code>beforeAuth</code>与单页应用的逻辑基本一致，只是中间件数量上的区别，可参照<a href="/2023/10/24/configuration/configuration12">单页应用接入</a>方案。<br>&nbsp;<br><strong>路由鉴权</strong><br>也是与单页应用的逻辑一致，唯一区别就是需要处理一下主应用那边下发的数据。<br>文件结构如下：<br>router<br>├── auths<br>│ ├── index.ts<br>│ ├── initDataMiddleware.ts<br>│ └── routeAuthMiddleware.ts<br>└── index.ts</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; RouteLocationNormalized &#125; from &quot;vue-router&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import &#123; useUserStoreWithOut &#125; from &quot;&#x2F;@&#x2F;store&#x2F;modules&#x2F;user&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">export default async (to: RouteLocationNormalized, _from: any, next: any) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const userStore &#x3D; useUserStoreWithOut();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 校验store里的userInfo 是否存在</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  const userInfoToken &#x3D; userStore.token;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  if (!userInfoToken) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    const microStore &#x3D; window.microApp.getGlobalData()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    const data &#x3D; microStore.getUserInfo(); &#x2F;&#x2F; 返回主应用下发的data数据</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    userStore.setUserInfo(data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  next();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
-<p>&nbsp;<br><strong>Micro App主应用接入</strong><br>整体来说micro的接入非常的简单，下载安装<code>@micro-zoe/micro-app</code>之后，在main.ts中start一下，然后组件中就可以使用webComponent<code>micro-app</code>注册子应用了。<br>文件结构如下：<br>micro<br>├── micro.config.ts<br>├── micro.store.ts<br>└── index.ts</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> microApp <span class="keyword">from</span> <span class="string">'@micro-zoe/micro-app'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> microConfig <span class="keyword">from</span> <span class="string">'./micro.config'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> microStore <span class="keyword">from</span> <span class="string">'./micro.store'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">microApp.start(microConfig)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">microApp.setGlobalData(microStore)</span></pre></td></tr></table></figure>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> microConfig = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'disable-memory-router'</span>: <span class="literal">true</span>, <span class="comment">// 关闭虚拟路由</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  lifeCycles: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    created() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// console.log('created 全局监听')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    beforemount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// console.log('beforemount 全局监听')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    mounted() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// console.log('mounted 全局监听')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    unmount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// console.log('unmount 全局监听')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    error() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// console.log('error 全局监听')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  plugins: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    modules: &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> microConfig</span></pre></td></tr></table></figure>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useUserStoreWithOut &#125; <span class="keyword">from</span> <span class="string">'../store/modules/user'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> userStore = useUserStoreWithOut()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 获取用户基本信息 */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getUserInfo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> userStore.userInfo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 登录 */</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> login = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> userStore.login()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> microStore = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  getUserInfo,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  login</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> microStore</span></pre></td></tr></table></figure>
-<p><a href="https://micro-zoe.github.io/micro-app/docs.html#/" target="_blank" rel="noopener">官方文档地址</a><br><a href="https://github.com/wangxiaoqi0123/micro-app-test" target="_blank" rel="noopener">示例代码地址</a></p>
-<h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><p>micro app 目前还存在些许问题，记录一下方便后面问题处理。</p>
-<p>1.&nbsp;路由回退路径会缺失<br>使用router.push()切换到不同子应用时，路由回退路径会缺失。<br>目前想到的解决办法是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">history.pushState(&#123;&#125;, &#39;&#39;, path)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">router.replace(&#123; path &#125;)</span></pre></td></tr></table></figure>
-<p>去替代router.push()<br>&nbsp;<br>2.&nbsp;vite中使用new URL()生成的动态路径错误<br>vite中使用动态路径，一般按照一下方式；<br>这样处理之后项目构建之后vite会自动帮我们替换成带有hash的文件地址。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;button v-for&#x3D;&quot;item in list&quot; :key&#x3D;&quot;item&quot; @click&#x3D;&quot;fileType &#x3D; item&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#123;&#123; item &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;button&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &lt;img :src&#x3D;&quot;fileImage&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;template&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&lt;script setup lang&#x3D;&quot;ts&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">const list &#x3D; [&quot;pdf&quot;, &quot;png&quot;, &quot;ppt&quot;];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">const fileType &#x3D; ref(&quot;pdf&quot;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">const fileImage &#x3D; computed(() &#x3D;&gt; new URL(&#96;&#x2F;src&#x2F;assets&#x2F;$&#123;fileType.value&#125;.png&#96;, import.meta.url).href)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-<p>单在微前端环境中，这种方式得到的url地址的origin是微前端服务地址，而不是子应用的服务地址。这就导致图片加载失败。<br>基于这个问题可以用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const combineURLs &#x3D; (baseURL, relativeURL) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  return relativeURL</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    ? &#96;$&#123;baseURL.replace(&#x2F;\&#x2F;+$&#x2F;, &#39;&#39;)&#125;&#x2F;$&#123;relativeURL.replace(&#x2F;^\&#x2F;+&#x2F;, &#39;&#39;)&#125;&#96;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    : baseURL</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const getMicroAssetsPath &#x3D; (url: URL) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  if (window.__MICRO_APP_ENVIRONMENT__) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    return combineURLs(window.__MICRO_APP_URL__, url.pathname)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125; else &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    return url.href</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">const fileImage &#x3D; computed(() &#x3D;&gt; getMicroAssetsPath(new URL(&#96;&#x2F;src&#x2F;assets&#x2F;$&#123;fileType.value&#125;.png&#96;, import.meta.url)))</span></pre></td></tr></table></figure>
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1642,7 +1660,7 @@ never类型是一个特殊的类型，它表示的是那些永不存在的值的
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

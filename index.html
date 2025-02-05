@@ -184,6 +184,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/05/mysql/06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/05/mysql/06/" class="post-title-link" itemprop="url">mysql 函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-05 00:00:00 / 修改时间：16:17:18" itemprop="dateCreated datePublished" datetime="2025-02-05T00:00:00+08:00">2025-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="常规函数"><a href="#常规函数" class="headerlink" title="常规函数"></a>常规函数</h3><p><strong>数字函数</strong><br>abs(x): 返回 x 的绝对值<br>ceil(x): 返回 大于或等于 x 的最小整数（向上取整）<br>floor(x): 返回 小于或等于 x 的最大整数（向下取整）<br>round(x): 返回 x 四舍五入最接近的整数<br>round(x,n): 返回 x 四舍五入保留 n 位小数<br>rand(): 返回 0 到 1 之间的随机浮点数（0 ≤ x &lt; 1）<br>rand(x): 当 x 相同时，RAND(x) 返回相同的随机数（用于伪随机种子）<br>truncate(x,n): 返回 x 截断到 n 位小数（不四舍五入）</p>
+<p><strong>字符串函数</strong><br>concat(str1, str2, …): 返回连接参数产生的字符串<br>char_length(str): 返回 str 的字符数<br>find_in_set(str, strlist): 返回 str 在字符串列表 strlist 中的位置</p>
+<p><strong>时间日期函数</strong><br>日期获取<br>now()、curdate()、curtime()、utc_date()、utc_time(): 返回当前日期和时间、当前日期、当前时间、utc日期、utc时间<br>year(date)、month(date)、day(date): 返回日期参数的年份部分、月份部分、日部分<br>week(date): 返回日期参数的年份的第几周<br>weekday(date): 返回日期参数的星期索引（0 周一，1 周二，…，6 周日）<br>dayofyear(date): 返回日期参数的年中的天数</p>
+<p>日期计算<br>adddate(date, INTERVAL expr unit): 返回日期加上一个时间间隔<br>addtime(date, expr): 返回日期加上一个时间<br>datediff(expr1, expr2): 返回两个日期之间的天数</p>
+<p>日期格式化<br>date_format(date, format): 根据格式返回日期。<br>str_to_date(str, format): 根据格式返回日期。<br>format 可以是：%Y 年，%m 月，%d 日，%H 时，%i 分，%s 秒。</p>
+<h3 id="控制函数"><a href="#控制函数" class="headerlink" title="控制函数"></a>控制函数</h3><p><strong>单行函数</strong><br>if(表达式,true_value,false_value)：if 函数处理有两个结果的流程<br>ifnull(字段名,null_value)：处理列等于 null 的时候,我们赋予其他的默认值<br>case: 处理多流程结果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式一</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">case </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  when 表达式1 then 结果1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  when 表达式2 then 结果3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  else 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式二</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> 列名|表达式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">1</span> <span class="keyword">then</span> 结果<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">2</span> <span class="keyword">then</span> 结果<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">else</span> 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure>
+
+<p><strong>聚合函数</strong><br>avg(列名) 求平均值<br>sum(列名) 求和<br>min|max(列名) 求最小值和最大值<br>count(列名/*/1) 计数<br>注意：<br>聚合函数不能嵌套在其他函数中<br>聚合函数遇到null值，会自动忽略</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1151,115 +1227,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/14/docker/01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/14/docker/01/" class="post-title-link" itemprop="url">docker 常用命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-01-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-14T00:00:00+08:00">2025-01-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-18 15:48:32" itemprop="dateModified" datetime="2025-01-18T15:48:32+08:00">2025-01-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>1.查看容器列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker ps</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker ps -a #列出目所有容器</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker ps -aq #列出所有容器ID</span></pre></td></tr></table></figure>
-<p>2.查看镜像列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker images</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker images -q #列出所有镜像ID</span></pre></td></tr></table></figure>
-<p>3.下载镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker pull [镜像名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker pull [镜像名:版本号]</span></pre></td></tr></table></figure>
-<p>4.删除镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker rmi 镜像名</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q) #删除所有镜像</span></pre></td></tr></table></figure>
-<p>5.删除容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker rm [容器名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker rm -f [容器名] #强制删除</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker rm $(docker ps -aq) #删除所有容器</span></pre></td></tr></table></figure>
-<p>6.运行容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run [镜像名]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker run -d [镜像名] #后台运行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker run -v [宿主机目录]:[容器目录] [镜像名] #挂载目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">docker run -p [本地端口]:[容器端口] [镜像名] #将容器端口映射到宿主机</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">docker run -e [环境变量名]&#x3D;[值] [镜像名] #设置环境变量</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">docker run -d -p [本地端口]:[容器端口] --name [容器名] [镜像名] #后台运行，并指定容器名和端口映射</span></pre></td></tr></table></figure>
-<p>7.启动容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker start [容器名]</span></pre></td></tr></table></figure>
-<p>8.重启容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker restart [容器名]</span></pre></td></tr></table></figure>
-<p>9.停止容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker stop [容器名]</span></pre></td></tr></table></figure>
-<p>10.进入容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker exec -it [容器名] &#x2F;bin&#x2F;bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker exec -it [容器名] bash</span></pre></td></tr></table></figure>
-<p>11.查看容器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker inspect [容器名]</span></pre></td></tr></table></figure>
-<p>12.查看容器日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker logs [容器名]</span></pre></td></tr></table></figure>
-<p>13.提交容器为镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker commit -m &quot;提交信息&quot; [容器名] [镜像名:版本号]</span></pre></td></tr></table></figure>
-<p>14.保存镜像为文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker save -o [文件名.tar] [镜像名:版本号]</span></pre></td></tr></table></figure>
-<p>15.加载镜像文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker load -i [文件名.tar]</span></pre></td></tr></table></figure>
-<p>16.登陆镜像仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker login [仓库地址]</span></pre></td></tr></table></figure>
-<p>17.镜像设置标签</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker tag [镜像名:版本号] [仓库地址&#x2F;镜像名:版本号]</span></pre></td></tr></table></figure>
-<p>18.推送镜像到仓库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker push [镜像名:版本号]</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1329,7 +1296,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
