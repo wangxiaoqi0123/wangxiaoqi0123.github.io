@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="我寄白雪三千片">
 <meta property="og:description" content="算数运算符语法：  +（加） -（减） *（乘） &#x2F;（除） div（整除） %（模）mod（模）注意：  &#x2F; 浮点数除法，div整数除法。  &#x2F;0 不会抛出异常，返回null。  浮点数类型运算结果为浮点数。  优先级：* &#x2F; div % mod &amp;gt; + -，提升优先级使用括号。 比较运算符比较对比：&amp;gt; &amp;lt; &amp;gt;&#x3D; &amp;lt;&#x3D;等于对比：&#x3D; 不能做空判断 null &#x3D; null">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2025-02-04T08:40:49.730Z">
+<meta property="og:updated_time" content="2025-02-05T02:01:00.877Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2025/02/04/mysql/04/">
@@ -209,10 +209,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2025-02-04 15:00:00 / 修改时间：16:40:49" itemprop="dateCreated datePublished" datetime="2025-02-04T15:00:00+08:00">2025-02-04</time>
+              <time title="创建时间：2025-02-04 15:00:00" itemprop="dateCreated datePublished" datetime="2025-02-04T15:00:00+08:00">2025-02-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-05 10:01:00" itemprop="dateModified" datetime="2025-02-05T10:01:00+08:00">2025-02-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -237,6 +243,60 @@
         <h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>语法：<br>  <code>+</code>（加） <code>-</code>（减） <code>*</code>（乘） <code>/</code>（除） <code>div</code>（整除） <code>%</code>（模）<code>mod</code>（模）<br>注意：<br>  <code>/</code> 浮点数除法，<code>div</code>整数除法。<br>  <code>/</code>0 不会抛出异常，返回null。<br>  浮点数类型运算结果为浮点数。<br>  优先级：<code>*</code> <code>/</code> <code>div</code> <code>%</code> <code>mod</code> <code>&gt;</code> <code>+</code> <code>-</code>，提升优先级使用括号。</p>
 <h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>比较对比：<code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code><br>等于对比：<code>=</code> 不能做空判断 null <code>=</code> null 结果为 false，null <code>&lt;=&gt;</code> null 结果为 true（mysql独有）<br>不等于对比：<code>&lt;&gt;</code> <code>!=</code>（mysql独有）<br>空值处理：<code>is null</code> <code>is not null</code><br>区间比较：<code>between min and max</code> <code>not between min and max</code><br>范围比较：<code>key in(x,y,z)</code> <code>key = x or key = y or key = z</code> <code>not in</code><br>模糊匹配：<code>like</code> <code>not like</code> like 匹配规则，<code>%</code>任意字符出现0次或多次，<code>_</code>单一字符。</p>
 <h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>语法：<code>and</code> <code>or</code> <code>not</code> <code>xor</code><br>注意：数据库中非空 非0代表true 反之为false, true -&gt; 1 | false -&gt; 0</p>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><table border="1">
+    <tr>
+        <th width='90px'>优先级</th>
+        <th>运算符</th>
+        <th width='240px'>说明</th>
+    </tr>
+    <tr>
+        <th>1（最高）</th>
+        <th>!</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>2</th>
+        <th>*，/，div，%，mod</th>
+        <th>乘、除、整除、取模，取模</th>
+    </tr>
+    <tr>
+        <th>3</th>
+        <th>+，-</th>
+        <th>加、减</th>
+    </tr>
+    <tr>
+        <th>4</th>
+        <th>=，<=>，>=，>，<，<=，!=，IS，LIKE，IN，REGEXP</th>
+        <th>比较运算</th>
+    </tr>
+    <tr>
+        <th>5</th>
+        <th>BETWEEN，CASE，WHEN，THEN，ELSE</th>
+        <th>逻辑运算</th>
+    </tr>
+    <tr>
+        <th>6</th>
+        <th>NOT</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>7</th>
+        <th>AND</th>
+        <th>逻辑与</th>
+    </tr>
+    <tr>
+        <th>8</th>
+        <th>XOR</th>
+        <th>逻辑异或</th>
+    </tr>
+    <tr>
+        <th>9（最低）</th>
+        <th>OR</th>
+        <th>逻辑或</th>
+    </tr>
+</table>
+
+<p>注意：<br>一般情况下的运算符优先级。在实际使用中，如果不确定优先级，可以使用<strong>括号</strong>来明确运算的顺序！<strong>()</strong>内优先级最高！</p>
 
     </div>
 
@@ -320,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算数运算符"><span class="nav-number">1.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">2.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算符</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#算数运算符"><span class="nav-number">1.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">2.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">3.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符优先级"><span class="nav-number">4.</span> <span class="nav-text">运算符优先级</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
