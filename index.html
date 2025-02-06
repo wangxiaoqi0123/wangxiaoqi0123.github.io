@@ -184,6 +184,99 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/06/mysql/07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/06/mysql/07/" class="post-title-link" itemprop="url">mysql 约束</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-06 00:00:00 / 修改时间：18:16:03" itemprop="dateCreated datePublished" datetime="2025-02-06T00:00:00+08:00">2025-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="NOT-NULL"><a href="#NOT-NULL" class="headerlink" title="NOT NULL"></a>NOT NULL</h3><p>作用：确保列中不能有NULL值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">NOT</span> <span class="literal">NULL</span>); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 <span class="keyword">NOT</span> <span class="literal">NULL</span>; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+
+<h3 id="DEFAULT"><a href="#DEFAULT" class="headerlink" title="DEFAULT"></a>DEFAULT</h3><p>作用：为列提供一个默认值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">DEFAULT</span> 默认值); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 <span class="keyword">DEFAULT</span> 默认值; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：如果主动插入NULL值，则不会触发默认值行为。</p>
+<h3 id="CKECK"><a href="#CKECK" class="headerlink" title="CKECK"></a>CKECK</h3><p>作用：确保列中的值满足某个条件。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">CHECK</span> (条件);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 约束名 <span class="keyword">CHECK</span> (条件); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+
+<h3 id="AUTO-INCREMENT"><a href="#AUTO-INCREMENT" class="headerlink" title="AUTO_INCREMENT"></a>AUTO_INCREMENT</h3><p>作用：自动增长约束，确保列中的数据唯一且不为空。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 AUTO_INCREMENT; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：<br>添加AUTO_INCREMENT约束的列必须是主键或者唯一约束。<br>每个表只能有一个AUTO_INCREMENT约束。<br>自增列必须是整数类型。<br>插入数据时，不指定自增列的值或值为null或0时，会自动增长。</p>
+<h3 id="PIRMARY-KEY"><a href="#PIRMARY-KEY" class="headerlink" title="PIRMARY KEY"></a>PIRMARY KEY</h3><p>作用：主键约束，确保列中的数据唯一且不为空。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 PRIMARY <span class="keyword">KEY</span>); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  PRIMARY <span class="keyword">KEY</span>(字段名,...);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span>(字段名,...); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span>; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：一个表只能有一个主键，但是可以有多个字段组合成一个复合主键。</p>
+<h3 id="UNIQUE"><a href="#UNIQUE" class="headerlink" title="UNIQUE"></a>UNIQUE</h3><p>作用：唯一约束，确保列中的数据唯一。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>]); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>](字段名,...);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>] (字段名,...); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名;</span></pre></td></tr></table></figure>
+<p>提示：同一个表上可以多个字段有唯一约束，或者多个字段组合唯一。</p>
+<h3 id="FOREIGN-KEY"><a href="#FOREIGN-KEY" class="headerlink" title="FOREIGN KEY"></a>FOREIGN KEY</h3><p>作用：外键约束，确保列中的数据在另一个表中存在。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (子表外键字段) <span class="keyword">REFERENCES</span> 主表(主表的主键)[级联配置];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 约束名 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (子表外键字段) <span class="keyword">REFERENCES</span> 主表(主表的主键)[级联配置]; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名; <span class="comment"># 移除</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> 子表名; <span class="comment"># 查看索引</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AlTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">INDEX</span> 约束名; <span class="comment"># 移除索引</span></span></pre></td></tr></table></figure>
+<p>外键概念：外键就是在一个表中定义另一个表的主键列，从而达到两个表之间的关联。<br>外键约束概念：外键约束是用来保证外键数据正确的限制。外键没有外键约束也是外键，最好添加外键约束。<br>级联配置：<br>在定义外键时，可以使用 <code>ON DELETE 配置 ON UPDATE 配置</code> 关键字来指定当父表数据被删除或更新时，子表应该执行的操作。<br><code>CASCADE</code> 级联删除/更新，如果删除/更新父表的记录，子表对应记录也被删除/更新。<br><code>SET NULL</code> 子表的外键允许为空，且删除父表记录时，子表数据应保留但失去关联，如部门被删除时，员工仍然存在，但 department_id 变 NULL。<br><code>RESTRICT / NO ACTION</code>（默认）限制删除/更新父表记录，如果子表有对应数据则不允许操作。</p>
+<p>注意：<br>一个表可以有多个外键约束。<br>外键是跨表引用其他表的主键值。<br>外键所在的表叫子表，被引用的主键所在的表叫主表。<br>外键的类型必须必须和主键的类型相同，命名最好相同。<br>主外键关系，就代表两张表存在关联关系，之后可以进行多表的水平查询。<br>有主外键约束，删除主表数据的前提是子表没有引用数据！否则应该先删除子表的引用数据，再删除主表数据！</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看表结构，可查看`NOT NULL`、`DEFAULT`、`AUTO_INCREMENT`约束信息。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">DESC 表名;</span></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看约束信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> information_schema.table_constraints <span class="keyword">WHERE</span> table_name = <span class="string">'表名'</span>;</span></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看索引信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> 子表名;</span></pre></td></tr></table></figure>
+<p>注意：<br>使用<code>ALTER TABLE 表名 MODIFY 字段 数据类型;</code>进行修改时，会将之前的 <code>NOT NULL</code>、<code>DEFAULT</code>、<code>AUTO_INCREMENT</code>约束一并移除。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/05/mysql/06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1120,113 +1213,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/01/17/docker/02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/01/17/docker/02/" class="post-title-link" itemprop="url">docker 基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-01-17 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-17T00:00:00+08:00">2025-01-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-01-18 15:48:49" itemprop="dateModified" datetime="2025-01-18T15:48:49+08:00">2025-01-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><img src="/images/2025/docker-001.png" style="height:260px; margin-left:0" >
-1.docker是一个容器技术，可以将应用打包成镜像，然后运行在容器中。
-<br />
-2.每个容器都是相互隔离的完整操作系统环境，互不影响。
-<br />
-3.通过端口映射、自定义网络，可以实现容器与容器与外部的通信。
-<br />
-4.通过卷挂载，可以实现容器内数据持久化。
-
-<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>1.目录挂载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-v &#x2F;app&#x2F;nghtml:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html</span></pre></td></tr></table></figure>
-<p>将本机的/app/nghtml目录挂载到容器内的/usr/share/nginx/html目录。</p>
-<p>2.卷挂载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-v ngconfig:&#x2F;etc&#x2F;nginx</span></pre></td></tr></table></figure>
-<p>将本机的ngconfig卷挂载到容器内的/etc/nginx目录，如果卷不存在，则会自动创建，卷里默认数据是挂载容器目录的数据。<br>卷默认在本机的/var/lib/docker/volumes目录下。<br>修改卷数据，修改容器内数据，卷数据都会同步更新。</p>
-<p>3.卷相关命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker volume create [卷名] # 创建卷</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker volume ls # 列出卷</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker volume inspect [卷名] # 查看卷信息</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">docker volume rm [卷名] # 删除卷</span></pre></td></tr></table></figure>
-
-<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><p>1.自定义网络<br>docker会为每个容器分配唯一id，使用容器ip+容器端口可以实现互相访问。<br>但是ip由于各种原因可能会变化，自定义网络后容器名就是域名。</p>
-<p>创建自定义网络</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network create mynet</span></pre></td></tr></table></figure>
-
-<p>将容器连接到自定义网络</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -d -p 80:80 --name app1 --network mynet nginx</span></pre></td></tr></table></figure>
-
-
-<p>2.网络相关命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">--nextwork [网络名] # 指定容器连接的网络</span></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker network create [网络名] # 创建自定义网络</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">docker network rm [网络名] # 删除自定义网络</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">docker network ls # 列出网络</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">docker network connect [网络名] [容器id或名称] # 将容器连接到自定义网络</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">docker network disconnect [网络名] [容器id或名称] # 将容器从自定义网络断开</span></pre></td></tr></table></figure>
-
-<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>1.环境变量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">-e MYSQL_ROOT_PASSWORD&#x3D;123456</span></pre></td></tr></table></figure>
-<p>将本机的MYSQL_ROOT_PASSWORD环境变量传递给容器。</p>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306 --name mysql --network mynet \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&gt; -v &#x2F;app&#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&gt; -v &#x2F;app&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&gt; -e MYSQL_ROOT_PASSWORD&#x3D;123456 \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&gt; mysql</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1296,7 +1282,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
