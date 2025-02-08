@@ -184,6 +184,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/23/node/node03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/23/node/node03/" class="post-title-link" itemprop="url">Node操作mongodb</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-02-23T00:00:00+08:00">2021-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-20 14:07:54" itemprop="dateModified" datetime="2023-10-20T14:07:54+08:00">2023-10-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index"><span itemprop="name">node</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="mongodb模块"><a href="#mongodb模块" class="headerlink" title="mongodb模块"></a>mongodb模块</h3><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install mongodb --save</span></pre></td></tr></table></figure></li>
+<li>mongodb模块的文档<ul>
+<li><a href="https://www.npmjs.com/package/mongodb" target="_blank" rel="noopener">https://www.npmjs.com/package/mongodb</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>node操作mongodb<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MongoClient = <span class="built_in">require</span>(<span class="string">'mongodb'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// mongodb数据库地址</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">'mongodb://localhost:27017'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数据库</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dbName = <span class="string">'mydb'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">MongoClient.connect(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  url,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    useUnifiedTopology: <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  (err, client) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 异常处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (err) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">console</span>.log(<span class="string">'mongodb connet error'</span>, err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 没有报错，连接成功</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">"mongodb connect success"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 切换到数据库，相当于 use dbName</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> db = client.db(dbName)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 连接集合</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> myCollection = db.collection(<span class="string">'myCollection'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 查询数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    myCollection.find().toArray(<span class="function">(<span class="params">err, result</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (err) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.error(<span class="string">'myCollection find error'</span>, err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// 输出查询结果</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">console</span>.log(result);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// 关闭连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">      client.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr></table></figure>
+  连接mongodb，切换到数据库，找到对应集合，进行增删改查。具体参考mongodb模块的文档 <a href="https://www.npmjs.com/package/mongodb" target="_blank" rel="noopener">https://www.npmjs.com/package/mongodb</a></li>
+</ul>
+<h3 id="mongoose模块"><a href="#mongoose模块" class="headerlink" title="mongoose模块"></a>mongoose模块</h3><ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install mongoose --save</span></pre></td></tr></table></figure></li>
+<li>mongoose模块文档<ul>
+<li><a href="https://www.npmjs.com/package/mongoose" target="_blank" rel="noopener">https://www.npmjs.com/package/mongoose</a>  （npm）</li>
+<li><a href="https://mongoosejs.com/" target="_blank" rel="noopener">https://mongoosejs.com/</a>  （官方文档）<br/>
+<br/></li>
+</ul>
+</li>
+<li>mongoose连接数据库<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">'mongodb://localhost:27017'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dbName = <span class="string">'myblog'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 执行连接</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">mongoose.connect(<span class="string">`<span class="subst">$&#123;url&#125;</span>/<span class="subst">$&#123;dbName&#125;</span>`</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  useNewUrlParser: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  useUnifiedTopology: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  useFindAndModify: <span class="literal">false</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  useCreateIndex: <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建连接对象</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = mongoose.connection</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异常监听处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">db.on(<span class="string">'error'</span>, (err) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.error(err)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 连接成功</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// db.on('open', () =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   console.log('mongoose connect success')</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = mongoose</span></pre></td></tr></table></figure>
+<strong>mongoose.connect(‘mongodb://username:password@host:port/database’);</strong> 如果数据库开启校验 需要账户密码时 使用此规则对数据库进行连接。<br/>
+<br/></li>
+<li>Schema定义数据格式的规范，以Model规范Collection<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'../db'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用 Schema 定义数据规范</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UserSchema = mongoose.Schema(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  username: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    type: <span class="built_in">String</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    required: <span class="literal">true</span>,<span class="comment">// 必须</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    unique: <span class="literal">true</span> <span class="comment">// 唯一，不能重复</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  password: <span class="built_in">String</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  realname: <span class="built_in">String</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// Model 对应 collection</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> User = mongoose.model(<span class="string">'user'</span>, UserSchema) <span class="comment">// user可不用加s</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = User</span></pre></td></tr></table></figure>
+Schame文档 <a href="https://mongoosejs.com/docs/api/schema.html" target="_blank" rel="noopener">https://mongoosejs.com/docs/api/schema.html</a><br/>
+<br/></li>
+<li>Model 对文档进行增删改查<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> User = <span class="built_in">require</span>(<span class="string">'../modules/User'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// insert一条数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// User.create(&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   username: 'zhangsan',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   password: '123',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   realname: '张三'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;, (err, result) =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   if (err) &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//     console.error('User create error', err)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//     return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   console.log('result :&gt;&gt; ', result);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 或者</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// User.create(&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   username: 'lisi',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   password: '123',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   realname: '李四'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;).then((result) =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   console.log('result', result)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// delete一条数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// User.deleteOne(&#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   username: 'aaa',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   password: '123'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;).then((result) =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   console.log('result', result)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// update 一条数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// User.updateOne(</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//     username: 'lisi',</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//     password: '123'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   &#125;,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//     $set: &#123; realname: '历史' &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// ).then((result) =&gt; &#123;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//   console.log('result', result)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// &#125;)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// find 数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">User.find()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">  .sort(&#123; <span class="attr">_id</span>: <span class="number">-1</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  .skip(<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">  .limit(<span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">  .then(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.log(<span class="string">'result'</span>, result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr></table></figure>
+model 操作集合 即可以通过回调函数的形式读取操作结果，也可以通过Promise.then读取结果<br>model 的api 文档具体请查看 <a href="https://mongoosejs.com/docs/api/model.html" target="_blank" rel="noopener">https://mongoosejs.com/docs/api/model.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/17/server/server04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1394,251 +1495,6 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/20/server/server05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/20/server/server05/" class="post-title-link" itemprop="url">MySQL基本使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-20T00:00:00+08:00">2021-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-20 12:29:35" itemprop="dateModified" datetime="2023-10-20T12:29:35+08:00">2023-10-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/server/" itemprop="url" rel="index"><span itemprop="name">server</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><ul>
-<li>mysql下载<ul>
-<li>下载地址<a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener">https://dev.mysql.com/downloads/mysql/</a></li>
-<li>安装过程注意记住 root用户名的密码</li>
-</ul>
-</li>
-<li>下载mysql可视化工具<ul>
-<li>例如 Navicat Premium</li>
-</ul>
-</li>
-</ul>
-<h3 id="常用字段属性"><a href="#常用字段属性" class="headerlink" title="常用字段属性"></a>常用字段属性</h3><ul>
-<li>字符串数据类型<table border="1">
-<tr>
-  <th width='180px'>MySQL数据类型</th>
-  <th>含义</th>
-</tr>
-<tr>
-  <td>char(n)</td>
-  <td>固定长度，最多255个字符</td>
-</tr>
-<tr>
-  <td>varchar(n)</td>
-  <td>可变长度，最多65535个字符</td>
-</tr>
-<tr>
-  <td>tinytext</td>
-  <td>可变长度，最多255个字符</td>
-</tr>
-<tr>
-  <td>text</td>
-  <td>可变长度，最多65535个字符</td>
-</tr>
-<tr>
-  <td>mediumtext</td>
-  <td>可变长度，最多2的24次方-1个字符</td>
-</tr>
-<tr>
-  <td>longtext</td>
-  <td>可变长度，最多2的32次方-1个字符</td>
-</tr>
-</table>
-1. char（n）和varchar（n）中括号中n代表字符的个数，并不代表字节个数，所以当使用了中文的时候(UTF8)意味着可以插入m个中文，但是实际会占用m*3个字节。<br/>
-2. 同时char和varchar最大的区别就在于char不管实际value都会占用n个字符的空间，而varchar只会占用实际字符应该占用的空间+1，并且实际空间+1<=n。<br/>
-3. 超过char和varchar的n设置后，字符串会被截断。<br/>
-4. char的上限为255字节，varchar的上限65535字节，text的上限为65535。<br/>
-5. char在存储的时候会截断尾部的空格，varchar和text不会。<br/>
-6. varchar会使用1-3个字节来存储长度，text不会。<br/>
-
-
-</li>
-</ul>
-<ul>
-<li>数值数据类型（整型）<table border="1">
-<tr>
-  <th width='180px'>MySQL数据类型</th>
-  <th>含义（有符号）</th>
-</tr>
-<tr>
-  <td>tinyint</td>
-  <td>1字节，范围（-128~127）</td>
-</tr>
-<tr>
-  <td>smallint</td>
-  <td>2字节，范围（-32768~32767）</td>
-</tr>
-<tr>
-  <td>mediumint</td>
-  <td>3字节，范围（-8388608~8388607）</td>
-</tr>
-<tr>
-  <td>int</td>
-  <td>4字节，范围（-2^31~2^31 - 1）</td>
-</tr>
-<tr>
-  <td>bigint</td>
-  <td>8字节，范围（-2^63~2^63-1）</td>
-</tr>
-</table>
-1. 也可以加上unsigned关键字，定义成无符号的类型，那么对应的取值范围就要翻翻了，比如：tinyint unsigned的取值范为0~255。<br/>
-
-
-</li>
-</ul>
-<ul>
-<li>数值数据类型（浮点型）<table border="1">
-<tr>
-  <th width='180px'>MySQL数据类型</th>
-  <th>含义</th>
-</tr>
-<tr>
-  <td>float(m, d)</td>
-  <td>4字节，单精度浮点型，m总个数，d小数位</td>
-</tr>
-<tr>
-  <td>double(m, d)</td>
-  <td>8字节，双精度浮点型，m总个数，d小数位</td>
-</tr>
-<tr>
-  <td>decimal(m, d)</td>
-  <td>decimal是存储为字符串的浮点数</td>
-</tr>
-</table>
-
-
-</li>
-</ul>
-<ul>
-<li>日期和时间数据类型<table border="1">
-<tr>
-  <th width='180px'>MySQL数据类型</th>
-  <th>含义</th>
-</tr>
-<tr>
-  <td>date</td>
-  <td>3字节，日期，格式：yyyy-MM-dd</td>
-</tr>
-<tr>
-  <td>time</td>
-  <td>3字节，时间，格式：HH:mm:ss</td>
-</tr>
-<tr>
-  <td>datetime</td>
-  <td>8字节，日期时间，格式：yyyy-MM-dd HH:mm:ss</td>
-</tr>
-<tr>
-  <td>timestamp</td>
-  <td>4字节，日期+时间，可作时间戳，格式：yyyy-MM-dd HH:mm:ss</td>
-</tr>
-<tr>
-  <td>year</td>
-  <td>1字节，年份，格式：yyyy</td>
-</tr>
-</table>
-
-</li>
-</ul>
-<h3 id="常用查询语句"><a href="#常用查询语句" class="headerlink" title="常用查询语句"></a>常用查询语句</h3><ul>
-<li>增 关键字 <strong>insert</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> <span class="keyword">users</span> (username,<span class="string">`password`</span>,realname) <span class="keyword">VALUES</span> (<span class="string">'wangwu'</span>,<span class="string">'234'</span>,<span class="string">'王五'</span>)</span></pre></td></tr></table></figure>
-  1.insert into 表名(字段1，字段2…) values(值1，值2，….);<br>  2.关键字用 <strong>``</strong> 标识，例如`password`。</li>
-</ul>
-<ul>
-<li>删 关键字 <strong>delete</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">8</span>;</span></pre></td></tr></table></figure>
-  1.delete from 表名 where 条件<br>  2.数据删除不可逆，一般不使用物理删除<br>  3.<strong>where</strong>条件，如果不加则删除整个表</li>
-</ul>
-<ul>
-<li>改 关键字 <strong>update</strong><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">users</span> <span class="keyword">SET</span> username=<span class="string">'zhangsan'</span>,<span class="string">`password`</span>=<span class="string">'123'</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>=<span class="number">4</span>;</span></pre></td></tr></table></figure>
-  1.update 表名 set字段1 = 值1, 字段2 = 值2 where 条件<br>  2.<strong>where</strong>条件，如果不加则更新整个表</li>
-</ul>
-<ul>
-<li><p>查 关键字 <strong>select</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span>,username,<span class="string">`password`</span> <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">WHERE</span> <span class="keyword">id</span>&gt;<span class="number">4</span>;</span></pre></td></tr></table></figure>
-<p>  1.select 字段1,字段2 from 表名 where 条件</p>
-</li>
-<li><p>排序 关键字 <strong>order by</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span></pre></td></tr></table></figure>
-<p>  1.select 字段 from 表 order by 字段  排序关键词(desc | asc)<br>  2.desc 降序 asc 升序(默认)<br>  3.多字段排序字段 select 字段 from 表 order by 字段1  desc |asc,…字段n desc| asc;</p>
-</li>
-<li><p>分组 关键字 <strong>limit</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">LIMIT</span> <span class="number">0</span>,<span class="number">10</span>;</span></pre></td></tr></table></figure>
-<p>  1.select * from 表名  limit 偏移量,数量<br>  2.偏移量默认为0<br>  3.分页的偏移量计算为 limit (n-1)*数量 ,数量 </p>
-</li>
-</ul>
-<ul>
-<li>关键字 <strong>where</strong> 后面跟的条件<ul>
-<li>关系：&gt; ， &lt; ， &gt;= ， &lt;= ， != ， =</li>
-<li>逻辑：or ， and</li>
-<li>区间：id between 4 and 6 （闭区间，包含边界）</li>
-<li>匹配：username like ‘%程序员%’（”%%”表示可以出现在任何位置）</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1708,7 +1564,7 @@ skip(), limilt(), sort()三个放在一起执行的时候，执行的顺序是�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

@@ -290,6 +290,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/06/configuration/configuration01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/06/configuration/configuration01/" class="post-title-link" itemprop="url">项目环境配置cross-env</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-06T00:00:00+08:00">2020-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-07 15:51:46" itemprop="dateModified" datetime="2025-02-07T15:51:46+08:00">2025-02-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install --save-dev cross-env</span></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><blockquote>
+<p>package.json中配置是环境变量<code>VUE_APP_ENV</code>为 <code>开发: dev</code> / <code>测试：test</code> / <code>正式：prod</code></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        &quot;dev&quot;: &quot;cross-env VUE_APP_ENV&#x3D;dev vue-cli-service serve --open&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        &quot;test&quot;: &quot;cross-env VUE_APP_ENV&#x3D;test vue-cli-service serve --open&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        &quot;build:test&quot;: &quot;cross-env VUE_APP_ENV&#x3D;test vue-cli-service build&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        &quot;build:prod&quot;: &quot;cross-env VUE_APP_ENV&#x3D;prod vue-cli-service build&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<blockquote>
+<p>项目中根据环境变量 配置不同的 运行环境 例如：axios 的基础路径 ，项目打包路径 …</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">switch (process.env.VUE_APP_ENV) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    case &quot;dev&quot;:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        BASE_API &#x3D; &quot;&quot;; &#x2F;&#x2F; 开发环境的 接口地址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        break;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    case &quot;test&quot;:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        BASE_API &#x3D; &quot;&quot;; &#x2F;&#x2F; 测试环境的接口地址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        break;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    case &quot;prod&quot;:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        BASE_API &#x3D; &quot;&quot;; &#x2F;&#x2F; 正式环境接口地址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        break;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h3 id="cross-env"><a href="#cross-env" class="headerlink" title="cross-env"></a>cross-env</h3><blockquote>
+<p>1.它是运行跨平台设置和使用环境变量(Node中的环境变量)的脚本。<br>2.webpack中本身提供<code>NODE_ENV</code>环境变量，分别对应 <code>开发：development</code> / <code>生产：production</code>。但是windows不支持NODE_ENV=development的设置方式，使用cross-env可以做到对windows的兼容。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/03/javascript/javascript08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -883,6 +970,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/javascript10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/17/javascript/javascript10/" class="post-title-link" itemprop="url">JS零碎知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00+08:00">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-07 09:28:16" itemprop="dateModified" datetime="2025-02-07T09:28:16+08:00">2025-02-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>内存溢出<ul>
+<li>一种程序运行的错误</li>
+<li>当程序运行需要的内存超过了剩余内存时，就抛出内存溢出的错误</li>
+</ul>
+</li>
+<li>内存泄漏<ul>
+<li>占用内存没有及时释放</li>
+<li>内存泄漏多了就容易导致内存溢出</li>
+<li>常见的内存泄漏<br>（1）意外的全局变量<br>（2）没有及时清理的计时器或回调函数<br>（3）闭包 </li>
+</ul>
+</li>
+<li>this<ul>
+<li>this 是什么<br>（1）任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）<br>（2）所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
+<li>如何确定this的值<br>（1）全局函数调用时，this 为 window<br>（2）以方法的形式调用时，this就为调用方法的那个对象<br>（3）以构造函数的形式实例对象，则构造函数中的this为实例出的对象<br>（4）以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）<br>（5）响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁<br>（6）ES6中箭头函数没有this，他的this为当前作用域中的this</li>
+</ul>
+</li>
+<li>事件冒泡<ul>
+<li>所谓的事件冒泡值得就是事件的向上传到，当后代元素上的事件被触发时，其祖先元素上的相同事件也会触发</li>
+<li>取消事件冒泡的方法<br>（1）event.cancelBubble = true<br>（2）event.stopPropagation()</li>
+</ul>
+</li>
+<li>事件委派<ul>
+<li>将事件统一绑定给元素共同的祖先元素，这样当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/javascript07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1002,214 +1189,6 @@
 </li>
 </ol>
 <h3 id="未解之谜"><a href="#未解之谜" class="headerlink" title="未解之谜"></a>未解之谜</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  function fun(n, o) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    console.log(o);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      fun: function (m) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        return fun(m, n)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  var a &#x3D; fun(0); a.fun(1); a.fun(2); a.fun(3); &#x2F;&#x2F; undefined,?,?,?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  var b &#x3D; fun(0).fun(1).fun(2).fun(3); &#x2F;&#x2F; undefined,?,?,?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  var c &#x3D; fun(0).fun(1); c.fun(2); c.fun(3) &#x2F;&#x2F; undefined,?,?,？ </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/17/javascript/javascript10/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/17/javascript/javascript10/" class="post-title-link" itemprop="url">JS零碎知识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-17T00:00:00+08:00">2020-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-07 09:28:16" itemprop="dateModified" datetime="2025-02-07T09:28:16+08:00">2025-02-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>内存溢出<ul>
-<li>一种程序运行的错误</li>
-<li>当程序运行需要的内存超过了剩余内存时，就抛出内存溢出的错误</li>
-</ul>
-</li>
-<li>内存泄漏<ul>
-<li>占用内存没有及时释放</li>
-<li>内存泄漏多了就容易导致内存溢出</li>
-<li>常见的内存泄漏<br>（1）意外的全局变量<br>（2）没有及时清理的计时器或回调函数<br>（3）闭包 </li>
-</ul>
-</li>
-<li>this<ul>
-<li>this 是什么<br>（1）任何函数本质上都是通过某个对象来调用的（如果没有直接指定就是window）<br>（2）所有函数内部都有一个变量<code>this</code>它的值就是调用当前函数的对象</li>
-<li>如何确定this的值<br>（1）全局函数调用时，this 为 window<br>（2）以方法的形式调用时，this就为调用方法的那个对象<br>（3）以构造函数的形式实例对象，则构造函数中的this为实例出的对象<br>（4）以call() apply() 方法调用时，this为这两个方法指定的对象（传入的第一个参数）<br>（5）响应函数的this就是绑定事件的那个元素，给谁绑定事件this就为谁<br>（6）ES6中箭头函数没有this，他的this为当前作用域中的this</li>
-</ul>
-</li>
-<li>事件冒泡<ul>
-<li>所谓的事件冒泡值得就是事件的向上传到，当后代元素上的事件被触发时，其祖先元素上的相同事件也会触发</li>
-<li>取消事件冒泡的方法<br>（1）event.cancelBubble = true<br>（2）event.stopPropagation()</li>
-</ul>
-</li>
-<li>事件委派<ul>
-<li>将事件统一绑定给元素共同的祖先元素，这样当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件</li>
-</ul>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/16/javascript/javascript15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/16/javascript/javascript15/" class="post-title-link" itemprop="url">JS执行上下文</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-16 00:00:00" itemprop="dateCreated datePublished" datetime="2020-07-16T00:00:00+08:00">2020-07-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-07 09:28:33" itemprop="dateModified" datetime="2025-02-07T09:28:33+08:00">2025-02-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="全局执行上下文"><a href="#全局执行上下文" class="headerlink" title="全局执行上下文"></a>全局执行上下文</h3><ul>
-<li>在执行全局代码前将window确定为全局执行上下文</li>
-<li>对全局数据进行预处理<ol>
-<li>var定义的全局变量==&gt;undefined，添加为window的属性</li>
-<li>function声明的全局函数==&gt;赋值（fun），添加为window的方法</li>
-<li>this==&gt;赋值（window）</li>
-</ol>
-</li>
-<li>开始执行全局代码</li>
-</ul>
-<h3 id="函数执行上下文"><a href="#函数执行上下文" class="headerlink" title="函数执行上下文"></a>函数执行上下文</h3><ul>
-<li>在调用函数之前，准备执行函数体之前，创建对应的函数执行上下文对象（虚拟的，存在于栈内存中）</li>
-<li>对局部参数进行预处理<ol>
-<li>形参变量==&gt;赋值（实参）==&gt;添加为执行上下文的属性</li>
-<li>arrguments(伪数组)==&gt;赋值（实参列表），添加为执行上下文的属性</li>
-<li>var定义的局部变量==&gt;undefined，添加为执行上下文的属性</li>
-<li>function声明的函数==&gt;赋值（fun），添加为执行上下文的方法</li>
-<li>this==&gt;赋值（调用函数的对象）</li>
-</ol>
-</li>
-<li>开始执行函数体代码</li>
-</ul>
-<h3 id="执行上下文栈"><a href="#执行上下文栈" class="headerlink" title="执行上下文栈"></a>执行上下文栈</h3><ol>
-<li><p>在全局代码执行前，JS引擎就会创建一个栈来存储管理所有的执行上下文对象</p>
-</li>
-<li><p>在全局执行上下文（window）确定后，将其添加到栈中（压栈）</p>
-</li>
-<li><p>在函数执行上下文创建后，将其添加到栈中（压栈）</p>
-</li>
-<li><p>在当前函数执行完后，将栈顶的对象移除（出栈）</p>
-</li>
-<li><p>当所有代码执行完成后，栈中只剩下window</p>
-<img src="/images/2020/context.jpg">
-</li>
-</ol>
 
       
     </div>
@@ -1420,7 +1399,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-count">124</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
