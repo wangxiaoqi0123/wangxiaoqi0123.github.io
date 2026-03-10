@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":20,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前端笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我寄白雪三千片">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:site_name" content="我寄白雪三千片">
+<meta property="og:description" content="前端笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>我寄白雪三千片</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">我寄白雪三千片</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/03/10/technical/python-uv-usage-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/03/10/technical/python-uv-usage-guide/" class="post-title-link" itemprop="url">Python uv 使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-03-10 00:00:00 / 修改时间：10:05:19" itemprop="dateCreated datePublished" datetime="2026-03-10T00:00:00+08:00">2026-03-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Technical/" itemprop="url" rel="index"><span itemprop="name">Technical</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="什么是-uv？"><a href="#什么是-uv？" class="headerlink" title="什么是 uv？"></a>什么是 uv？</h2><p>uv 是一个极快的 Python 包和项目管理器，由 Rust 编写。它提供了现代化的项目管理方式，通过 <code>pyproject.toml</code> 统一管理项目依赖和配置。</p>
+<h2 id="快速安装"><a href="#快速安装" class="headerlink" title="快速安装"></a>快速安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># macOS/Linux</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">curl -LsSf https://astral.sh/uv/install.sh | sh</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">powershell -c <span class="string">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 Homebrew (macOS)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">brew install uv</span></pre></td></tr></table></figure>
+
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><h3 id="创建新项目"><a href="#创建新项目" class="headerlink" title="创建新项目"></a>创建新项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目录下创建项目</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv init</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的 Python 项目</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv init myproject</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> myproject</span></pre></td></tr></table></figure>
+
+<p>执行后会生成以下结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">myproject&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">├── pyproject.toml    # 项目配置文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── README.md         # 项目说明</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">├── .python-version   # Python 版本</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">└── hello.py          # 示例代码</span></pre></td></tr></table></figure>
+
+<h3 id="指定-Python-版本创建项目"><a href="#指定-Python-版本创建项目" class="headerlink" title="指定 Python 版本创建项目"></a>指定 Python 版本创建项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用特定 Python 版本</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv init myproject --python 3.11</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用系统中的 Python</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv init myproject --python python3.12</span></pre></td></tr></table></figure>
+
+<h3 id="生成的-pyproject-toml"><a href="#生成的-pyproject-toml" class="headerlink" title="生成的 pyproject.toml"></a>生成的 pyproject.toml</h3><figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[project]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span> = <span class="string">"myproject"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">version</span> = <span class="string">"0.1.0"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="attr">description</span> = <span class="string">"Add your description here"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">readme</span> = <span class="string">"README.md"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="attr">requires-python</span> = <span class="string">"&gt;=3.11"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies</span> = []</span></pre></td></tr></table></figure>
+
+<h2 id="添加包"><a href="#添加包" class="headerlink" title="添加包"></a>添加包</h2><h3 id="添加运行时依赖"><a href="#添加运行时依赖" class="headerlink" title="添加运行时依赖"></a>添加运行时依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加单个包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv add requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加多个包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv add requests numpy pandas</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加指定版本的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">uv add <span class="string">"django&gt;=4.0,&lt;5.0"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">uv add <span class="string">"flask==3.0.0"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加包并指定额外功能</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">uv add <span class="string">"fastapi[all]"</span></span></pre></td></tr></table></figure>
+
+<p>执行后，<code>pyproject.toml</code> 会自动更新：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[project]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">dependencies</span> = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    "requests&gt;=2.31.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    "numpy&gt;=1.26.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    "pandas&gt;=2.1.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+<h3 id="添加开发依赖"><a href="#添加开发依赖" class="headerlink" title="添加开发依赖"></a>添加开发依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加开发工具</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv add --dev pytest</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">uv add --dev black ruff mypy</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加测试框架</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">uv add --dev pytest-cov pytest-asyncio</span></pre></td></tr></table></figure>
+
+<p>开发依赖会添加到 <code>pyproject.toml</code> 的 <code>dev-dependencies</code> 部分：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[tool.uv]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">dev-dependencies</span> = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    "pytest&gt;=7.4.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    "black&gt;=23.0.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    "ruff&gt;=0.1.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+<h3 id="添加可选依赖组"><a href="#添加可选依赖组" class="headerlink" title="添加可选依赖组"></a>添加可选依赖组</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加文档相关依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv add --optional docs sphinx sphinx-rtd-theme</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加数据库相关依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv add --optional database sqlalchemy psycopg2-binary</span></pre></td></tr></table></figure>
+
+<p>在 <code>pyproject.toml</code> 中：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="section">[project.optional-dependencies]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="attr">docs</span> = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    "sphinx&gt;=7.0.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    "sphinx-rtd-theme&gt;=1.3.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="attr">database</span> = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    "sqlalchemy&gt;=2.0.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    "psycopg2-binary&gt;=2.9.0",</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><h3 id="删除运行时依赖"><a href="#删除运行时依赖" class="headerlink" title="删除运行时依赖"></a>删除运行时依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除单个包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv remove requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除多个包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv remove numpy pandas</span></pre></td></tr></table></figure>
+
+<h3 id="删除开发依赖"><a href="#删除开发依赖" class="headerlink" title="删除开发依赖"></a>删除开发依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除开发依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv remove --dev pytest</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除多个开发依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv remove --dev black ruff</span></pre></td></tr></table></figure>
+
+<h3 id="删除可选依赖"><a href="#删除可选依赖" class="headerlink" title="删除可选依赖"></a>删除可选依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除可选依赖组中的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv remove --optional docs sphinx</span></pre></td></tr></table></figure>
+
+<h2 id="查看包"><a href="#查看包" class="headerlink" title="查看包"></a>查看包</h2><h3 id="查看项目依赖"><a href="#查看项目依赖" class="headerlink" title="查看项目依赖"></a>查看项目依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看 pyproject.toml 中定义的依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">cat pyproject.toml</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看依赖树</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv tree</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看特定包的依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">uv tree requests</span></pre></td></tr></table></figure>
+
+<h3 id="查看已安装的包"><a href="#查看已安装的包" class="headerlink" title="查看已安装的包"></a>查看已安装的包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有已安装的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv pip list</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以表格形式显示</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv pip list --format columns</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看过时的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">uv pip list --outdated</span></pre></td></tr></table></figure>
+
+<h3 id="查看包详情"><a href="#查看包详情" class="headerlink" title="查看包详情"></a>查看包详情</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示包的详细信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv pip show requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示多个包的信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv pip show requests numpy pandas</span></pre></td></tr></table></figure>
+
+
+
+<h2 id="同步-pyproject-toml"><a href="#同步-pyproject-toml" class="headerlink" title="同步 pyproject.toml"></a>同步 pyproject.toml</h2><h3 id="基本同步"><a href="#基本同步" class="headerlink" title="基本同步"></a>基本同步</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据 pyproject.toml 和 uv.lock 同步环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv sync</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这会：</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 pyproject.toml 中定义的所有依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. 移除不在依赖列表中的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3. 确保环境与锁文件完全一致</span></span></pre></td></tr></table></figure>
+
+<h3 id="同步选项"><a href="#同步选项" class="headerlink" title="同步选项"></a>同步选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 仅同步运行时依赖（不包含开发依赖）</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv sync --no-dev</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 同步时包含可选依赖组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">uv sync --extra docs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">uv sync --extra database</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">uv sync --all-extras</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 同步并重新锁定</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">uv sync --locked</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 强制重新安装所有包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">uv sync --reinstall</span></pre></td></tr></table></figure>
+
+
+<h2 id="常用命令速查"><a href="#常用命令速查" class="headerlink" title="常用命令速查"></a>常用命令速查</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 项目管理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">uv init &lt;name&gt;              <span class="comment"># 创建新项目</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">uv init                     <span class="comment"># 初始化当前目录</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 依赖管理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">uv add &lt;package&gt;            <span class="comment"># 添加依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">uv add --dev &lt;package&gt;      <span class="comment"># 添加开发依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">uv remove &lt;package&gt;         <span class="comment"># 删除依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">uv tree                     <span class="comment"># 查看依赖树</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 环境同步</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">uv sync                     <span class="comment"># 同步环境</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">uv sync --no-dev            <span class="comment"># 仅同步运行时依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">uv lock                     <span class="comment"># 锁定依赖版本</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">uv lock --upgrade           <span class="comment"># 更新所有依赖</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包查看</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">uv pip list                 <span class="comment"># 列出已安装的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">uv pip show &lt;package&gt;       <span class="comment"># 查看包详情</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">uv pip list --outdated      <span class="comment"># 查看过时的包</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 运行命令</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">uv run python script.py     <span class="comment"># 运行 Python 脚本</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">uv run pytest               <span class="comment"># 运行测试</span></span></pre></td></tr></table></figure>
+
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li><a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">uv 官方文档</a></li>
+<li><a href="https://github.com/astral-sh/uv" target="_blank" rel="noopener">GitHub 仓库</a></li>
+<li><a href="https://docs.astral.sh/uv/guides/projects/" target="_blank" rel="noopener">项目管理指南</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/08/mysql/11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/08/mysql/11/" class="post-title-link" itemprop="url">mysql 数据备份与还原</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-08 00:00:00 / 修改时间：10:22:27" itemprop="dateCreated datePublished" datetime="2025-02-08T00:00:00+08:00">2025-02-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="全量"><a href="#全量" class="headerlink" title="全量"></a>全量</h3><p>1.全量备份</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mysqldump -u用户 -p密码 数据库名 &gt; 文件.sql # 导出数据库</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mysqldump -u用户 -p密码 数据库名 表名<span class="number">1</span> 表名<span class="number">2</span> &gt; 文件.sql # 导出数据库中的部分表</span></pre></td></tr></table></figure>
+
+<p>2.全量恢复</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mysql -u用户 -p密码 数据库名 &lt; 文件.sql # 导入</span></pre></td></tr></table></figure>
+<p>注意：<br>迁移过程中，确保源服务器和目标服务器的MySQL版本一致。</p>
+<h3 id="手动"><a href="#手动" class="headerlink" title="手动"></a>手动</h3><p>如果误删除数据，也可以通过手动的方式恢复，前提是开启了binlog日志。<br>1.查看是否开启了 binlog 以及它的存储路径，mysql8.0 版本是默认开启</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'%log_bin%'</span>;</span></pre></td></tr></table></figure>
+
+<p>2.查看binlog日志文件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">master</span> <span class="keyword">logs</span>; <span class="comment"># 查看所有日志</span></span></pre></td></tr></table></figure>
+
+<p>3.查看误删除数据的binlog日志位置</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">binlog</span> <span class="keyword">events</span> <span class="keyword">in</span> 日志文件名 [<span class="keyword">from</span> 日志pos <span class="keyword">limit</span> <span class="keyword">offset</span>, <span class="built_in">number</span>]; <span class="comment"># 查看日志内容</span></span></pre></td></tr></table></figure>
+
+<p>4.恢复数据<br>方式一：先导出，再导入</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mysqlbinlog 日志文件（路径+名称） --<span class="built_in">start</span>-position=日志pos --stop-position=日志pos &gt; 文件.sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mysql -u用户 -p密码 [数据库名] &lt; 文件.sql</span></pre></td></tr></table></figure>
+<p>方式二：直接导入</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mysqlbinlog 日志文件（路径+名称） --<span class="built_in">start</span>-position=日志pos --stop-position=日志pos | mysql -u用户 -p密码 [数据库名]</span></pre></td></tr></table></figure>
+<p>注意：<br>这种方式恢复数据的本质是重新执行一遍日志中的SQL语句。通过剔除误操作的日志，执行剩下的日志，从而达到恢复数据的目的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/07/mysql/10/" class="post-title-link" itemprop="url">mysql 用户权限</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-07 15:00:00 / 修改时间：15:54:43" itemprop="dateCreated datePublished" datetime="2025-02-07T15:00:00+08:00">2025-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="用户登陆"><a href="#用户登陆" class="headerlink" title="用户登陆"></a>用户登陆</h3><p>1.登录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mysql [-h 主机地址 -P 端口] -u用户名 -p密码</span></pre></td></tr></table></figure>
+<p>-h 主机地址：可以不写，默认是localhost<br>-P 端口：可以不写，默认是3306</p>
+<h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>1.创建用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">'账号'</span>@<span class="string">'访问的主机地址 localhost | ip地址 | %'</span> <span class="keyword">IDENTIFIED</span> <span class="keyword">BY</span> <span class="string">'密码'</span>;</span></pre></td></tr></table></figure>
+<p>2.赋予权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> 权限,权限 <span class="keyword">ON</span> 数据库名.表名（* 任何库和表） <span class="keyword">TO</span> <span class="string">'账号'</span>@<span class="string">'访问的主机地址 localhost | ip地址 | %'</span>;</span></pre></td></tr></table></figure>
+<p>权限：<br><code>SELECT</code> 查询数据<br><code>INSERT</code> 插入数据<br><code>UPDATE</code> 修改数据<br><code>DELETE</code> 删除数据<br><code>CREATE</code> 创建数据库<br><code>DROP</code> 删除数据库<br><code>GRAANT OPTION</code> 授予权限<br><code>ALL PRIVILEGES</code> 所有权限<br>3.回收权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> 权限,权限 <span class="keyword">ON</span> 数据库名.表名（* 任何库和表） <span class="keyword">FROM</span> <span class="string">'账号'</span>@<span class="string">'访问的主机地址 localhost | ip地址 | %'</span>;</span></pre></td></tr></table></figure>
+<p>4.删除用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">USER</span> <span class="string">'账号'</span>@<span class="string">'访问的主机地址 localhost | ip地址 | %'</span>;</span></pre></td></tr></table></figure>
+<p>5.查看用户和权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">user</span>,host <span class="keyword">FROM</span> mysql.user;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">GRANTS</span> <span class="keyword">FOR</span> <span class="string">'账号'</span>@<span class="string">'访问的主机地址 localhost | ip地址 | %'</span>;</span></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/07/mysql/09/" class="post-title-link" itemprop="url">mysql 事务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-07 00:00:00 / 修改时间：15:12:36" itemprop="dateCreated datePublished" datetime="2025-02-07T00:00:00+08:00">2025-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="手动提交事务"><a href="#手动提交事务" class="headerlink" title="手动提交事务"></a>手动提交事务</h3><p>通过 set autocommit = 0 | false; 关闭事务自动提交，然后手动执行 commit 或者 rollback。<br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
+<p>注意：<br>关闭自动提交后，直到执行 COMMIT 或 ROLLBACK 前，所有的 SQL 语句都会被视为一个事务的一部分。<br>commit 提交事务，将所有更改永久保存到数据库中。<br>rollback 回滚事务，撤销自上次 commit 或 rollback 后执行的所有更改。<br>设置 set autocommit = 1 | true; 可以重新开启自动提交。<br>通过 set autocommit 设置事务的提交方式，只适用于当前会话。<br>通过 show variables like ‘autocommit’; 可以查看当前会话的自动提交状态。</p>
+<h3 id="开启独立事务"><a href="#开启独立事务" class="headerlink" title="开启独立事务"></a>开启独立事务</h3><p>通过 start transaction; 开启一个独立的事务，然后执行一系列的 SQL 语句，最后通过 COMMIT 或 ROLLBACK 来提交或回滚事务。<br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
+<p>注意：<br>不管是否关闭自动提交，都可以通过 start transaction 开启一个独立的事务。</p>
+<h3 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h3><p>事务不支持 DDL 语句（如 CREATE TABLE、ALTER TABLE 等），因为这些操作会立即生效，无法回滚。</p>
+<h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3><p>隔离作用：<br>避免并发事务之间的干扰，保证数据的一致性。<br>隔离级别：<br>read-uncommitted（读未提交）：最低的隔离级别，会出现 脏读 不可能重复读 幻读。<br>read-committed（读已提交）：避免了脏读，可能出现 不可重复读 和幻读。<br>repeatable-read（可重复读）：避免了脏读和不可重复读，可能出现幻读。<br>serializable（可串行化）：最高的隔离级别，避免了脏读、不可重复读和幻读。<br>隔离问题：<br>脏读：一个事务读取了另一个未提交的事务的数据（真实错误）。<br>不可重复读：一个事物读取了另一个事务提交的修改数据（不符合一致性原则，不是数据错误）。<br>幻读：一个事务读取了另一个事务提交的插入数据（不符合一致性原则，不是数据错误）。<br>修改查看语法：<br>select @@transaction_isolation;<br>set transaction_isolation = 隔离级别;<br>总结：<br>隔离级别越高，数据越安全，性能越低。建议设置隔离级别为 read-committed。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/07/mysql/08/" class="post-title-link" itemprop="url">mysql 多表查询</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-07 00:00:00 / 修改时间：15:06:03" itemprop="dateCreated datePublished" datetime="2025-02-07T00:00:00+08:00">2025-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="表关系"><a href="#表关系" class="headerlink" title="表关系"></a>表关系</h3><p><strong>一对一</strong><br>特点：双方的数据行都对应对方至多一条数据<br>意义：用于优化冷热数据查询<br>如何建立关系：<br>方式一：子表的外键与主键融合，两张表公用同一个主键。<br>方式二：子表外键添加唯一约束</p>
+<p><strong>一对多</strong><br>特点：主表对应多条子表数据，子表对应主表至多一条数据<br>意义：解决数据冗余问题。<br>如何建立关系：<br>子表的外键不进行约束。</p>
+<p><strong>多对多</strong><br>特点：双方的数据行都可以对应对方多条数据<br>如何建立关系：<br>多对多需要创建中间表建立数据之间的关联。<br>中间表包含两个外键，主表数据之间间接关联。</p>
+<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p><strong>内连接（inner join）</strong><br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段 <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">as</span> 表<span class="number">1</span>别名 [<span class="keyword">inner</span>] <span class="keyword">join</span> 表<span class="number">2</span> 表<span class="number">2</span>别名 <span class="keyword">on</span> 表<span class="number">1</span>别名.主键 = 表<span class="number">2</span>别名.外键; <span class="comment"># 标准语法</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段 <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">as</span> 表<span class="number">1</span>别名, 表<span class="number">2</span> 表<span class="number">2</span>别名 <span class="keyword">where</span> 表<span class="number">1.</span>主键 = 表<span class="number">2.</span>外键; <span class="comment"># mysql语法</span></span></pre></td></tr></table></figure>
+
+<p>作用：<br>可以将多个表的数据行，正确水平拼接到一个结果集中。<br>两个表中必须存在相同的主外键，内连接才能查询到结果。</p>
+<p>注意：<br>为了避免错误数据行连接（笛卡尔积，连接查询，将所有的行都拼接一遍），需要添加主外键相等的条件。<br>多表中可能存在相同的列名，建议表别名，以区分。<br>存在N个表相连接时，会先将前两个表进行连接，再将结果与第三个表进行连接。</p>
+<p><strong>外连接 （left outer join）</strong><br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段 <span class="keyword">from</span> 表<span class="number">1</span> <span class="keyword">as</span> 表<span class="number">1</span>别名 <span class="keyword">left</span> [<span class="keyword">outer</span>] <span class="keyword">join</span> 表<span class="number">2</span> 表<span class="number">2</span>别名 <span class="keyword">on</span> 表<span class="number">1</span>别名.主键 = 表<span class="number">2</span>别名.外键;</span></pre></td></tr></table></figure>
+
+<p>作用：<br>外连接可以通过left或right指定一个逻辑主表，逻辑主表的数据一定会显示全。<br>逻辑主表之外的行，如果存在匹配的外键则显示，否则为null。</p>
+<p>注意：<br>内连接必须存在主外键主外键相等的条件。<br>外连接指定一个逻辑主表，一点会显示全。<br>外连接的outer关键字可以省略。<br>如果有逻辑主表，就将逻辑组表放在第一位，后面全部是用left连接。</p>
+<p><strong>自然连接 （natural join）</strong><br>自然连接 是 内连接，外连接的一种简化写法。</p>
+<p><strong>自连接</strong><br>自连接就是表与自身进行连接的一种特殊场景。</p>
+<p>注意：<br>一个表中的数据引用这个表中的另一行数据。<br>自连接依然使用内外连接语法进行实现。</p>
+<h3 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h3><p>概念：一个sql语句中嵌套了另一个或多个完整的sql语句，称为子查询或内查询。</p>
+<p>根据子查询的结果，可分为4种情况：<br>标量子查询：子查询返回结果是一行一列，单一值，一般用在条件判断。<br>行子子查询：子查询返回结果是一行多列，一般用于插入数据的值，或者整体对比。<br>列子子查询：子查询返回结果是一列多行，一般用于条件对比，需要配合 in any all 等关键字。<br>表子子查询：子查询返回结果是多行多列，不能用于条件判断，一般用于查询的虚拟表的中间表。</p>
+<p>提示：<br>any all 关键字只用在列子查询中。<br>any 关键字相当于 or 关系，all 关键字相当于 and 关系。</p>
+<p>子查询可以在select，update，delete，insert，等语句中使用。<br>注意：update，delete 中使用时，更新的表与子查询的表是同一个表，会产生冲突。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t_employee <span class="keyword">SET</span> salary = (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> t_employee <span class="keyword">WHERE</span> ename = <span class="string">'孙红梅'</span>) <span class="keyword">WHERE</span> ename = <span class="string">'李冰冰'</span>; <span class="comment"># 错误</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t_employee <span class="keyword">SET</span> salary = (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> t_employee <span class="keyword">WHERE</span> ename = <span class="string">'孙红梅'</span>) <span class="keyword">as</span> temp) <span class="keyword">WHERE</span> ename = <span class="string">'李冰冰'</span>; <span class="comment"># 正确</span></span></pre></td></tr></table></figure>
+<p>这里update占用了员工表的引用，内部又需要查员工表，也占用了员工表的引用，所以需要用一个子查询来做临时表，先执行子查询，然后释放掉对员工表的引用，再通过临时表来做更新。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/06/mysql/07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/06/mysql/07/" class="post-title-link" itemprop="url">mysql 约束</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-06 00:00:00 / 修改时间：18:34:44" itemprop="dateCreated datePublished" datetime="2025-02-06T00:00:00+08:00">2025-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="NOT-NULL"><a href="#NOT-NULL" class="headerlink" title="NOT NULL"></a>NOT NULL</h3><p>作用：确保列中不能有NULL值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">NOT</span> <span class="literal">NULL</span>); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 <span class="keyword">NOT</span> <span class="literal">NULL</span>; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+
+<h3 id="DEFAULT"><a href="#DEFAULT" class="headerlink" title="DEFAULT"></a>DEFAULT</h3><p>作用：为列提供一个默认值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">DEFAULT</span> 默认值); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 <span class="keyword">DEFAULT</span> 默认值; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：如果主动插入NULL值，则不会触发默认值行为。</p>
+<h3 id="CKECK"><a href="#CKECK" class="headerlink" title="CKECK"></a>CKECK</h3><p>作用：确保列中的值满足某个条件。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">CHECK</span> (条件);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 约束名 <span class="keyword">CHECK</span> (条件); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+
+<h3 id="AUTO-INCREMENT"><a href="#AUTO-INCREMENT" class="headerlink" title="AUTO_INCREMENT"></a>AUTO_INCREMENT</h3><p>作用：自动增长约束，确保列中的数据唯一且不为空。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 PRIMARY <span class="keyword">KEY</span> AUTO_INCREMENT); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型 AUTO_INCREMENT; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">MODIFY</span> 字段 数据类型; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：<br>添加AUTO_INCREMENT约束的列必须是主键或者唯一约束。<br>每个表只能有一个AUTO_INCREMENT约束。<br>自增列必须是整数类型。<br>插入数据时，不指定自增列的值或值为null或0时，会自动增长。</p>
+<h3 id="PIRMARY-KEY"><a href="#PIRMARY-KEY" class="headerlink" title="PIRMARY KEY"></a>PIRMARY KEY</h3><p>作用：主键约束，确保列中的数据唯一且不为空。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 PRIMARY <span class="keyword">KEY</span>); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  PRIMARY <span class="keyword">KEY</span>(字段名,...);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> PRIMARY <span class="keyword">KEY</span>(字段名,...); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> PRIMARY <span class="keyword">KEY</span>; <span class="comment"># 移除</span></span></pre></td></tr></table></figure>
+<p>提示：一个表只能有一个主键，但是可以有多个字段组合成一个复合主键。</p>
+<h3 id="UNIQUE"><a href="#UNIQUE" class="headerlink" title="UNIQUE"></a>UNIQUE</h3><p>作用：唯一约束，确保列中的数据唯一。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(字段 数据类型 <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>]); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>](字段名,...);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [<span class="keyword">KEY</span>] (字段名,...); <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名;</span></pre></td></tr></table></figure>
+<p>提示：同一个表上可以多个字段有唯一约束，或者多个字段组合唯一。</p>
+<h3 id="FOREIGN-KEY"><a href="#FOREIGN-KEY" class="headerlink" title="FOREIGN KEY"></a>FOREIGN KEY</h3><p>作用：外键约束，确保列中的数据在另一个表中存在。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">1</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  字段<span class="number">2</span> 数据类型,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ...,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  [<span class="keyword">CONSTRAINT</span> 约束名] <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (子表外键字段) <span class="keyword">REFERENCES</span> 主表(主表的主键)[级联配置];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">); <span class="comment"># 创建表时添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> 约束名 <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (子表外键字段) <span class="keyword">REFERENCES</span> 主表(主表的主键)[级联配置]; <span class="comment"># 添加</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 约束名; <span class="comment"># 移除</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> 子表名; <span class="comment"># 查看索引</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">AlTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">INDEX</span> 约束名; <span class="comment"># 移除索引</span></span></pre></td></tr></table></figure>
+<p>外键概念：外键就是在一个表中定义另一个表的主键列，从而达到两个表之间的关联。<br>外键约束概念：外键约束是用来保证外键数据正确的限制。外键没有外键约束也是外键，最好添加外键约束。<br>级联配置：<br>在定义外键时，可以使用<code>ON DELETE 配置 ON UPDATE 配置</code> 关键字来指定当父表数据被删除或更新时，子表应该执行的操作。<br><code>CASCADE</code> 级联删除/更新，如果删除/更新父表的记录，子表对应记录也被删除/更新。<br><code>SET NULL</code> 子表的外键允许为空，且删除父表记录时，子表数据应保留但失去关联，如部门被删除时，员工仍然存在，但 department_id 变 NULL。<br><code>RESTRICT / NO ACTION</code>（默认）限制删除/更新父表记录，如果子表有对应数据则不允许操作。</p>
+<p>注意：<br>一个表可以有多个外键约束。<br>外键是跨表引用其他表的主键值。<br>外键所在的表叫子表，被引用的主键所在的表叫主表。<br>外键的类型必须必须和主键的类型相同，命名最好相同。<br>主外键关系，就代表两张表存在关联关系，之后可以进行多表的水平查询。<br>有主外键约束，删除主表数据的前提是子表没有引用数据！否则应该先删除子表的引用数据，再删除主表数据！</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看表结构，可查看`NOT NULL`、`DEFAULT`、`AUTO_INCREMENT`约束信息。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">DESC 表名;</span></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看约束信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> information_schema.table_constraints <span class="keyword">WHERE</span> table_name = <span class="string">'表名'</span>;</span></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看索引信息</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> 子表名;</span></pre></td></tr></table></figure>
+<p>注意：<br>使用<code>ALTER TABLE 表名 MODIFY 字段 数据类型;</code>进行修改时，会将之前的 <code>NOT NULL</code>、<code>DEFAULT</code>、<code>AUTO_INCREMENT</code>约束一并移除。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/05/mysql/06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/05/mysql/06/" class="post-title-link" itemprop="url">mysql 函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-05T00:00:00+08:00">2025-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-08 11:33:07" itemprop="dateModified" datetime="2025-02-08T11:33:07+08:00">2025-02-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="常规函数"><a href="#常规函数" class="headerlink" title="常规函数"></a>常规函数</h3><p><strong>数字函数</strong><br>abs(x): 返回 x 的绝对值<br>ceil(x): 返回 大于或等于 x 的最小整数（向上取整）<br>floor(x): 返回 小于或等于 x 的最大整数（向下取整）<br>round(x): 返回 x 四舍五入最接近的整数<br>round(x,n): 返回 x 四舍五入保留 n 位小数<br>rand(): 返回 0 到 1 之间的随机浮点数（0 ≤ x &lt; 1）<br>rand(x): 当 x 相同时，RAND(x) 返回相同的随机数（用于伪随机种子）<br>truncate(x,n): 返回 x 截断到 n 位小数（不四舍五入）</p>
+<p><strong>字符串函数</strong><br>concat(str1, str2, …): 返回连接参数产生的字符串<br>char_length(str): 返回 str 的字符数<br>find_in_set(str, strlist): 返回 str 在字符串列表 strlist 中的位置</p>
+<p><strong>时间日期函数</strong><br>日期获取<br>now()、curdate()、curtime()、utc_date()、utc_time(): 返回当前日期和时间、当前日期、当前时间、utc日期、utc时间<br>year(date)、month(date)、day(date): 返回日期参数的年份部分、月份部分、日部分<br>week(date): 返回日期参数的年份的第几周<br>weekday(date): 返回日期参数的星期索引（0 周一，1 周二，…，6 周日）<br>dayofyear(date): 返回日期参数的年中的天数</p>
+<p>日期计算<br>adddate(date, INTERVAL expr unit): 返回日期加上一个时间间隔<br>addtime(date, expr): 返回日期加上一个时间<br>datediff(expr1, expr2): 返回两个日期之间的天数</p>
+<p>日期格式化<br>date_format(date, format): 根据格式返回日期。<br>str_to_date(str, format): 根据格式返回日期。<br>format 可以是：%Y 年，%m 月，%d 日，%H 时，%i 分，%s 秒。</p>
+<h3 id="控制函数"><a href="#控制函数" class="headerlink" title="控制函数"></a>控制函数</h3><p><strong>单行函数</strong><br>if(表达式,true_value,false_value)：if 函数处理有两个结果的流程<br>ifnull(字段名,null_value)：处理列等于 null 的时候,我们赋予其他的默认值<br>case: 处理多流程结果</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式一</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">case </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  when 表达式1 then 结果1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  when 表达式2 then 结果3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  else 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式二</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> 列名|表达式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">1</span> <span class="keyword">then</span> 结果<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">2</span> <span class="keyword">then</span> 结果<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">else</span> 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure>
+
+<p><strong>聚合函数</strong><br>avg(列名) 求平均值<br>sum(列名) 求和<br>min|max(列名) 求最小值和最大值<br>count(列名/*/1) 计数<br>注意：<br>聚合函数不能嵌套在其他函数中<br>聚合函数遇到null值，会自动忽略</p>
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><p>作用：<br>允许在结果集中执行聚合、分析、排序操作，而不会改变查询结果行数。</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 多行函数 <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> 字段名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 <span class="keyword">ASC</span>|<span class="keyword">DESC</span>) <span class="keyword">from</span> table_name,</span></pre></td></tr></table></figure>
+
+<p><code>ROW_NUMBER</code> 顺序排序，从1开始。<br><code>RANK()</code> 并列挂序，会跳过重复的序号，比如序号为1、1、3。<br><code>PERCENT_RANK()</code> 等级值百分比，通过<code>RANK - 1 / 总行数 - 1</code>进行计算结果。</p>
+<p>注意：<br>多行函数 可以是聚合函数，也可以是窗口函数。<br>聚合函数：SUM、AVG、MAX、MIN …<br>窗口函数：ROW_NUMBER()、RANK()、PERCENT_RANK …</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/04/mysql/05/" class="post-title-link" itemprop="url">mysql 高级查询</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-04 17:00:00 / 修改时间：16:40:26" itemprop="dateCreated datePublished" datetime="2025-02-04T17:00:00+08:00">2025-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h3><p>分组是将数据分成若干个组，并对每个组进行单独的查询，最终统计的是组的特性和数据（分组列，聚合函数）。<br>语法：<br>  <code>group by</code> 分组列, 分组列, … <code>hanving</code> 分组后进行比较。<br>提示：<br>  分组查询只能查询<strong>分组字段</strong>和<strong>聚合函数</strong>。<br>  <code>having</code>是分组后的条件，<code>where</code>是分组前的条件。<br>  <code>having</code>只能出现在<code>group by</code>后面，<code>where</code>可以出现在任何位置。<br>  <code>having</code>通常比较的是聚合函数，<code>where</code>可以是任何参数比较。<br>  <code>having</code>可以引用别名，<code>where</code>不可以，因为<code>having</code>是在分组之后执行，已经有了查询结果。</p>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><p>语法：<br>  <code>order by</code> 列名 <code>asc</code>/<code>desc</code>, 列名 <code>asc</code>/<code>desc</code>, …<br>提示：<br>  <code>asc</code>升序 从小到大，<code>desc</code>降序 从大到小。<br>  默认是<code>asc</code>，可以不写。<br>  <code>order by</code>后面可以有多个列，按照第一个排序，如果相同则按第二个排序，以此类推。</p>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>语法：<br>  <code>limit</code> 起始索引, 每页条数<br>提示：<br>  起始索引可以省略，省略默认为0。<br>  <code>limit</code>影响的是查询结果，通常用在查询的最后。</p>
+<h3 id="查询的执行流程"><a href="#查询的执行流程" class="headerlink" title="查询的执行流程"></a>查询的执行流程</h3><p>关键字书写的顺序：<br>  select -&gt; from -&gt; where -&gt; group by -&gt; having -&gt; order by -&gt; limit<br>关键字的执行顺序：<br>  from -&gt; where -&gt; group by -&gt; having -&gt; select -&gt; order by -&gt; limit<br>提示：<br>  mysql8.0+版本存在优化，使 group by 、having 可以使用 select 产生的列（别名）。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/04/mysql/04/" class="post-title-link" itemprop="url">mysql 运算符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-04 15:00:00" itemprop="dateCreated datePublished" datetime="2025-02-04T15:00:00+08:00">2025-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-05 10:01:00" itemprop="dateModified" datetime="2025-02-05T10:01:00+08:00">2025-02-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>语法：<br>  <code>+</code>（加） <code>-</code>（减） <code>*</code>（乘） <code>/</code>（除） <code>div</code>（整除） <code>%</code>（模）<code>mod</code>（模）<br>注意：<br>  <code>/</code> 浮点数除法，<code>div</code>整数除法。<br>  <code>/</code>0 不会抛出异常，返回null。<br>  浮点数类型运算结果为浮点数。<br>  优先级：<code>*</code> <code>/</code> <code>div</code> <code>%</code> <code>mod</code> <code>&gt;</code> <code>+</code> <code>-</code>，提升优先级使用括号。</p>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>比较对比：<code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code><br>等于对比：<code>=</code> 不能做空判断 null <code>=</code> null 结果为 false，null <code>&lt;=&gt;</code> null 结果为 true（mysql独有）<br>不等于对比：<code>&lt;&gt;</code> <code>!=</code>（mysql独有）<br>空值处理：<code>is null</code> <code>is not null</code><br>区间比较：<code>between min and max</code> <code>not between min and max</code><br>范围比较：<code>key in(x,y,z)</code> <code>key = x or key = y or key = z</code> <code>not in</code><br>模糊匹配：<code>like</code> <code>not like</code> like 匹配规则，<code>%</code>任意字符出现0次或多次，<code>_</code>单一字符。</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>语法：<code>and</code> <code>or</code> <code>not</code> <code>xor</code><br>注意：数据库中非空 非0代表true 反之为false, true -&gt; 1 | false -&gt; 0</p>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><table border="1">
+    <tr>
+        <th width='90px'>优先级</th>
+        <th>运算符</th>
+        <th width='240px'>说明</th>
+    </tr>
+    <tr>
+        <th>1（最高）</th>
+        <th>!</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>2</th>
+        <th>*，/，div，%，mod</th>
+        <th>乘、除、整除、取模，取模</th>
+    </tr>
+    <tr>
+        <th>3</th>
+        <th>+，-</th>
+        <th>加、减</th>
+    </tr>
+    <tr>
+        <th>4</th>
+        <th>=，<=>，>=，>，<，<=，!=，IS，LIKE，IN，REGEXP</th>
+        <th>比较运算</th>
+    </tr>
+    <tr>
+        <th>5</th>
+        <th>BETWEEN，CASE，WHEN，THEN，ELSE</th>
+        <th>逻辑运算</th>
+    </tr>
+    <tr>
+        <th>6</th>
+        <th>NOT</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>7</th>
+        <th>AND</th>
+        <th>逻辑与</th>
+    </tr>
+    <tr>
+        <th>8</th>
+        <th>XOR</th>
+        <th>逻辑异或</th>
+    </tr>
+    <tr>
+        <th>9（最低）</th>
+        <th>OR</th>
+        <th>逻辑或</th>
+    </tr>
+</table>
+
+<p>注意：<br>一般情况下的运算符优先级。在实际使用中，如果不确定优先级，可以使用<strong>括号</strong>来明确运算的顺序！<strong>()</strong>内优先级最高！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/04/mysql/03/" class="post-title-link" itemprop="url">mysql 增删改与select</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-04 00:00:00 / 修改时间：16:43:02" itemprop="dateCreated datePublished" datetime="2025-02-04T00:00:00+08:00">2025-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h3><h4 id="数据添加"><a href="#数据添加" class="headerlink" title="数据添加"></a>数据添加</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...); <span class="comment"># 添加一行数据，但不指定字段。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...); <span class="comment"># 添加一行数据，并指定字段。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...), (值<span class="number">11</span>, 值<span class="number">12</span>, ...); <span class="comment"># 添加多行数据。</span></span></pre></td></tr></table></figure>
+<p>注意：<br>如果不指定字段，则必须按照表中定义的顺序添加值。<br>添加的值要和字段类型匹配。<br>如果要添加多行，则需要使用逗号分隔。</p>
+<h4 id="数据修改"><a href="#数据修改" class="headerlink" title="数据修改"></a>数据修改</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 字段<span class="number">1</span> = 新值<span class="number">1</span>, 字段<span class="number">2</span> = 新值<span class="number">2</span>, ...; <span class="comment"># 修改表中所有行的数据。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 字段<span class="number">1</span> = 新值<span class="number">1</span>, 字段<span class="number">2</span> = 新值<span class="number">2</span>, ... <span class="keyword">WHERE</span> 条件; <span class="comment"># 修改表中符合条件的行的数据。</span></span></pre></td></tr></table></figure>
+
+<h4 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名; <span class="comment"># 删除表中所有数据，但不删除表结构。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> 表名; <span class="comment"># 删除表中所有数据，并重置自增计数器。</span></span></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 条件; <span class="comment"># 删除表中符合条件的行。</span></span></pre></td></tr></table></figure>
+
+<h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h3><p><strong>非表查询</strong><br>解释：利用select关键字，快速输出一个运算结果或者函数，类似 java 控制台输出。<br>语法：select 运算，函数。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span>+<span class="number">1</span>;</span></pre></td></tr></table></figure>
+
+<p><strong>指定表进行查询</strong><br>解释：利用select关键字，指定表名进行查询。<br>语法：select 列名,列名,列名,… from 表名;<br>提示：* 表示查询所有列，且*必须写在最前面。<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
+
+<p><strong>查询列并且起别名</strong><br>解释：利用select关键字，查询列并且起别名。<br>语法：select 列名 as 别名,列名 as 别名,… from 表名;<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> eid <span class="keyword">as</span> <span class="keyword">id</span>, ename <span class="keyword">name</span> <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
+
+<p><strong>去掉重复行数据</strong><br>解释：利用select关键字，去掉重复行数据。<br>语法：SELECT DISTINCT 字段名 FROM 表名;</p>
+<p><strong>查询常数列</strong><br>解释：人为制造的一个值和一个列！（多个值，多个列）<br>语法：select 列名,…, ‘值’ as 列名 from 表名;<br>示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> eid,ename,<span class="string">'我是常量'</span> <span class="keyword">as</span> const_value <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">王小七</p>
+  <div class="site-description" itemprop="description">前端笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wangxiaoqi0123" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wangxiaoqi0123" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王小七</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
