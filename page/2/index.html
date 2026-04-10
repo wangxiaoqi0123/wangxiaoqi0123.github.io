@@ -184,6 +184,136 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/04/mysql/04/" class="post-title-link" itemprop="url">mysql 运算符</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2025-02-04 15:00:00" itemprop="dateCreated datePublished" datetime="2025-02-04T15:00:00+08:00">2025-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-02-05 10:01:00" itemprop="dateModified" datetime="2025-02-05T10:01:00+08:00">2025-02-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>语法：<br>  <code>+</code>（加） <code>-</code>（减） <code>*</code>（乘） <code>/</code>（除） <code>div</code>（整除） <code>%</code>（模）<code>mod</code>（模）<br>注意：<br>  <code>/</code> 浮点数除法，<code>div</code>整数除法。<br>  <code>/</code>0 不会抛出异常，返回null。<br>  浮点数类型运算结果为浮点数。<br>  优先级：<code>*</code> <code>/</code> <code>div</code> <code>%</code> <code>mod</code> <code>&gt;</code> <code>+</code> <code>-</code>，提升优先级使用括号。</p>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>比较对比：<code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code><br>等于对比：<code>=</code> 不能做空判断 null <code>=</code> null 结果为 false，null <code>&lt;=&gt;</code> null 结果为 true（mysql独有）<br>不等于对比：<code>&lt;&gt;</code> <code>!=</code>（mysql独有）<br>空值处理：<code>is null</code> <code>is not null</code><br>区间比较：<code>between min and max</code> <code>not between min and max</code><br>范围比较：<code>key in(x,y,z)</code> <code>key = x or key = y or key = z</code> <code>not in</code><br>模糊匹配：<code>like</code> <code>not like</code> like 匹配规则，<code>%</code>任意字符出现0次或多次，<code>_</code>单一字符。</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>语法：<code>and</code> <code>or</code> <code>not</code> <code>xor</code><br>注意：数据库中非空 非0代表true 反之为false, true -&gt; 1 | false -&gt; 0</p>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><table border="1">
+    <tr>
+        <th width='90px'>优先级</th>
+        <th>运算符</th>
+        <th width='240px'>说明</th>
+    </tr>
+    <tr>
+        <th>1（最高）</th>
+        <th>!</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>2</th>
+        <th>*，/，div，%，mod</th>
+        <th>乘、除、整除、取模，取模</th>
+    </tr>
+    <tr>
+        <th>3</th>
+        <th>+，-</th>
+        <th>加、减</th>
+    </tr>
+    <tr>
+        <th>4</th>
+        <th>=，<=>，>=，>，<，<=，!=，IS，LIKE，IN，REGEXP</th>
+        <th>比较运算</th>
+    </tr>
+    <tr>
+        <th>5</th>
+        <th>BETWEEN，CASE，WHEN，THEN，ELSE</th>
+        <th>逻辑运算</th>
+    </tr>
+    <tr>
+        <th>6</th>
+        <th>NOT</th>
+        <th>逻辑非</th>
+    </tr>
+    <tr>
+        <th>7</th>
+        <th>AND</th>
+        <th>逻辑与</th>
+    </tr>
+    <tr>
+        <th>8</th>
+        <th>XOR</th>
+        <th>逻辑异或</th>
+    </tr>
+    <tr>
+        <th>9（最低）</th>
+        <th>OR</th>
+        <th>逻辑或</th>
+    </tr>
+</table>
+
+<p>注意：<br>一般情况下的运算符优先级。在实际使用中，如果不确定优先级，可以使用<strong>括号</strong>来明确运算的顺序！<strong>()</strong>内优先级最高！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1226,221 +1356,6 @@ never类型是一个特殊的类型，它表示的是那些永不存在的值的
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2024/05/16/linux/07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/05/16/linux/07/" class="post-title-link" itemprop="url">Linux进程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-05-16 00:00:00 / 修改时间：11:56:17" itemprop="dateCreated datePublished" datetime="2024-05-16T00:00:00+08:00">2024-05-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>进程就是系统中正在运行的程序（linux 的命令也是程序）。</p>
-<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><p>用<code>ps</code>命令可以查看进程。<br>方法一：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ps -ef|less</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ps -ef|grep [关键字]</span></pre></td></tr></table></figure>
-<img src="/images/2024/linux_ps_001.png">
-
-<table>
-<thead>
-<tr>
-<th>字段名 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>UID</td>
-<td>启动进程的用户名。</td>
-</tr>
-<tr>
-<td>PID</td>
-<td>进程编号。</td>
-</tr>
-<tr>
-<td>PPID</td>
-<td>父进程编号。</td>
-</tr>
-<tr>
-<td>C</td>
-<td>进程当前占用 CPU 的百分比，如果该值过高，需要重点关注。</td>
-</tr>
-<tr>
-<td>STIME</td>
-<td>进程启动的时间。</td>
-</tr>
-<tr>
-<td>TTY</td>
-<td>运行进程的终端：tty1 是图形化终端；tty2-tty6 是本地字符界面终端；pts/0-255 是虚拟终端；?是与终端无关的后台进程。</td>
-</tr>
-<tr>
-<td>TIME</td>
-<td>进程使用的 CPU 时间（合计）。</td>
-</tr>
-<tr>
-<td>CMD</td>
-<td>产生此进程的程序或命令。</td>
-</tr>
-</tbody></table>
-<p>方法二：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ps aux|less</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ps aux|grep [关键字]</span></pre></td></tr></table></figure>
-<img src="/images/2024/linux_ps_002.png">
-
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>USER</td>
-<td>启动进程的用户名。</td>
-</tr>
-<tr>
-<td>PID</td>
-<td>进程编号。</td>
-</tr>
-<tr>
-<td>%CPU</td>
-<td>进程占用的CPU百分比。</td>
-</tr>
-<tr>
-<td>%MEM</td>
-<td>占用内存的百分比。</td>
-</tr>
-<tr>
-<td>VSZ</td>
-<td>该进程使用的虚拟內存量（KB）。</td>
-</tr>
-<tr>
-<td>RSS</td>
-<td>该进程使用的物理內存量（KB）。</td>
-</tr>
-<tr>
-<td>TTY</td>
-<td>运行进程的终端：tty1是图形化终端；tty2-tty6是本地字符界面终端；pts/0-255是虚拟终端；?是与终端无关的后台进程。</td>
-</tr>
-<tr>
-<td>STAT</td>
-<td>进程的状态。</td>
-</tr>
-<tr>
-<td>START</td>
-<td>进程启动的时间。</td>
-</tr>
-<tr>
-<td>TIME</td>
-<td>进程使用的CPU时间（合计）。</td>
-</tr>
-<tr>
-<td>COMMAND</td>
-<td>产生此进程的程序或命令。</td>
-</tr>
-</tbody></table>
-<p>其中STAT常见的状态有：</p>
-<table>
-<thead>
-<tr>
-<th>字段名</th>
-<th>说明 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>R</td>
-<td>运行状态</td>
-</tr>
-<tr>
-<td>S</td>
-<td>休眠状态</td>
-</tr>
-<tr>
-<td>T</td>
-<td>暂停状态</td>
-</tr>
-<tr>
-<td>Z</td>
-<td>僵尸状态</td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td>优先级高的进程</td>
-</tr>
-<tr>
-<td>N</td>
-<td>优先级低的进程</td>
-</tr>
-<tr>
-<td>s</td>
-<td>进程的领导者（在它之下有子进程）</td>
-</tr>
-<tr>
-<td>l</td>
-<td>多线程</td>
-</tr>
-<tr>
-<td>+</td>
-<td>前台显示的进程</td>
-</tr>
-</tbody></table>
-<h3 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">kill 进程编号</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">killall 程序名</span></pre></td></tr></table></figure>
-<p>加-9的选项表示强行终止进程。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1510,7 +1425,7 @@ never类型是一个特殊的类型，它表示的是那些永不存在的值的
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

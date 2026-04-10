@@ -184,6 +184,77 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/04/10/ai/02RAG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/04/10/ai/02RAG/" class="post-title-link" itemprop="url">RAG</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-04-10 00:00:00 / 修改时间：16:50:54" itemprop="dateCreated datePublished" datetime="2026-04-10T00:00:00+08:00">2026-04-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="为什么要使用RAG"><a href="#为什么要使用RAG" class="headerlink" title="为什么要使用RAG"></a>为什么要使用RAG</h3><p>是为了让大模型能够使用外部知识的技术。它的核心思想非常简单：先检索资料，再让大模型生成答案。</p>
+<h3 id="RAG的整体流程"><a href="#RAG的整体流程" class="headerlink" title="RAG的整体流程"></a>RAG的整体流程</h3><p>RAG的实现可以大致分成两个阶段分别是<strong>数据准备阶段</strong>、<strong>用户问答阶段</strong><br><img src="/images/2026/ai-rag-01.png"></p>
+<h4 id="数据准备阶段"><a href="#数据准备阶段" class="headerlink" title="数据准备阶段"></a>数据准备阶段</h4><p>主要用于将原始数据存入数据库<br>核心要点是 数据的切分原则</p>
+<h4 id="用户问答阶段"><a href="#用户问答阶段" class="headerlink" title="用户问答阶段"></a>用户问答阶段</h4><p>用户提出问题后，把问题向量化，然后根据向量数据库查找n条相似度最高的文本片段（召回），然后把这n条片段给到处理文本相似度的AI（CrossEncoder），再找到最精准的m条数据，然后跟用户问题一起给到大模型，大模型完成回答。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/04/09/ai/01%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -971,136 +1042,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/02/04/mysql/04/" class="post-title-link" itemprop="url">mysql 运算符</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-02-04 15:00:00" itemprop="dateCreated datePublished" datetime="2025-02-04T15:00:00+08:00">2025-02-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-05 10:01:00" itemprop="dateModified" datetime="2025-02-05T10:01:00+08:00">2025-02-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>语法：<br>  <code>+</code>（加） <code>-</code>（减） <code>*</code>（乘） <code>/</code>（除） <code>div</code>（整除） <code>%</code>（模）<code>mod</code>（模）<br>注意：<br>  <code>/</code> 浮点数除法，<code>div</code>整数除法。<br>  <code>/</code>0 不会抛出异常，返回null。<br>  浮点数类型运算结果为浮点数。<br>  优先级：<code>*</code> <code>/</code> <code>div</code> <code>%</code> <code>mod</code> <code>&gt;</code> <code>+</code> <code>-</code>，提升优先级使用括号。</p>
-<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><p>比较对比：<code>&gt;</code> <code>&lt;</code> <code>&gt;=</code> <code>&lt;=</code><br>等于对比：<code>=</code> 不能做空判断 null <code>=</code> null 结果为 false，null <code>&lt;=&gt;</code> null 结果为 true（mysql独有）<br>不等于对比：<code>&lt;&gt;</code> <code>!=</code>（mysql独有）<br>空值处理：<code>is null</code> <code>is not null</code><br>区间比较：<code>between min and max</code> <code>not between min and max</code><br>范围比较：<code>key in(x,y,z)</code> <code>key = x or key = y or key = z</code> <code>not in</code><br>模糊匹配：<code>like</code> <code>not like</code> like 匹配规则，<code>%</code>任意字符出现0次或多次，<code>_</code>单一字符。</p>
-<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>语法：<code>and</code> <code>or</code> <code>not</code> <code>xor</code><br>注意：数据库中非空 非0代表true 反之为false, true -&gt; 1 | false -&gt; 0</p>
-<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><table border="1">
-    <tr>
-        <th width='90px'>优先级</th>
-        <th>运算符</th>
-        <th width='240px'>说明</th>
-    </tr>
-    <tr>
-        <th>1（最高）</th>
-        <th>!</th>
-        <th>逻辑非</th>
-    </tr>
-    <tr>
-        <th>2</th>
-        <th>*，/，div，%，mod</th>
-        <th>乘、除、整除、取模，取模</th>
-    </tr>
-    <tr>
-        <th>3</th>
-        <th>+，-</th>
-        <th>加、减</th>
-    </tr>
-    <tr>
-        <th>4</th>
-        <th>=，<=>，>=，>，<，<=，!=，IS，LIKE，IN，REGEXP</th>
-        <th>比较运算</th>
-    </tr>
-    <tr>
-        <th>5</th>
-        <th>BETWEEN，CASE，WHEN，THEN，ELSE</th>
-        <th>逻辑运算</th>
-    </tr>
-    <tr>
-        <th>6</th>
-        <th>NOT</th>
-        <th>逻辑非</th>
-    </tr>
-    <tr>
-        <th>7</th>
-        <th>AND</th>
-        <th>逻辑与</th>
-    </tr>
-    <tr>
-        <th>8</th>
-        <th>XOR</th>
-        <th>逻辑异或</th>
-    </tr>
-    <tr>
-        <th>9（最低）</th>
-        <th>OR</th>
-        <th>逻辑或</th>
-    </tr>
-</table>
-
-<p>注意：<br>一般情况下的运算符优先级。在实际使用中，如果不确定优先级，可以使用<strong>括号</strong>来明确运算的顺序！<strong>()</strong>内优先级最高！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1170,7 +1111,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
