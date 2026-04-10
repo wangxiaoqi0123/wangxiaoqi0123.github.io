@@ -184,6 +184,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/04/09/ai/01%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/04/09/ai/01%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">大模型的基本理解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2026-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2026-04-09T00:00:00+08:00">2026-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2026-04-10 14:26:54" itemprop="dateModified" datetime="2026-04-10T14:26:54+08:00">2026-04-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是大模型"><a href="#什么是大模型" class="headerlink" title="什么是大模型"></a>什么是大模型</h3><p>大模型本质上就是一个通过大量数据训练出来的<strong>概率预测机器</strong>，核心目的用一句话来说就是：<strong>根据已有的内容，预测下一个最可能出现的词（Token）</strong>。</p>
+<p>举个例子：假设给你一句话</p>
+<blockquote>
+<p>今天天气很好，我想去___</p>
+</blockquote>
+<p>脑袋就会联想：<strong>公园、散步、玩、其他</strong></p>
+<p><strong>大模型就是把这种“经验”放大到几十亿句子的级别。</strong></p>
+<h3 id="大模型是怎么工作的"><a href="#大模型是怎么工作的" class="headerlink" title="大模型是怎么工作的"></a>大模型是怎么工作的</h3><p>我给发了一个消息给大模型到大模型回答我，这中间发生了什么？</p>
+<img src="/images/2026/ai-basic-modal-01.png">
+
+<p>第一步就是把用户发送的消息给拆分成Token<br>那什么是Token如何拆分呢？<br>有一套算法比如（BPE）来处理，简单来说就是，是先把所有文字序列化为Token，然后再根据模型训练的资料，匹配出最高频出现在一起的字的组合成新的Token。<br>所以Token可以是单个的字，也能是词语…</p>
+<p>Token生成好之后就会把Token转化成向量</p>
+<p>然后丢给大模型</p>
+<p>大模型一顿运算，就配出一个个概率最高的向量</p>
+<p>然后再由映射出文本给到用户</p>
+<h3 id="大模型如何匹配"><a href="#大模型如何匹配" class="headerlink" title="大模型如何匹配"></a>大模型如何匹配</h3><p>Transformer 、注意力机制 （todo）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/03/10/technical/python-uv-usage-guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -470,81 +559,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/02/07/mysql/09/" class="post-title-link" itemprop="url">mysql 事务</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-07 00:00:00 / 修改时间：15:12:36" itemprop="dateCreated datePublished" datetime="2025-02-07T00:00:00+08:00">2025-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="手动提交事务"><a href="#手动提交事务" class="headerlink" title="手动提交事务"></a>手动提交事务</h3><p>通过 set autocommit = 0 | false; 关闭事务自动提交，然后手动执行 commit 或者 rollback。<br>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
-<p>注意：<br>关闭自动提交后，直到执行 COMMIT 或 ROLLBACK 前，所有的 SQL 语句都会被视为一个事务的一部分。<br>commit 提交事务，将所有更改永久保存到数据库中。<br>rollback 回滚事务，撤销自上次 commit 或 rollback 后执行的所有更改。<br>设置 set autocommit = 1 | true; 可以重新开启自动提交。<br>通过 set autocommit 设置事务的提交方式，只适用于当前会话。<br>通过 show variables like ‘autocommit’; 可以查看当前会话的自动提交状态。</p>
-<h3 id="开启独立事务"><a href="#开启独立事务" class="headerlink" title="开启独立事务"></a>开启独立事务</h3><p>通过 start transaction; 开启一个独立的事务，然后执行一系列的 SQL 语句，最后通过 COMMIT 或 ROLLBACK 来提交或回滚事务。<br>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
-<p>注意：<br>不管是否关闭自动提交，都可以通过 start transaction 开启一个独立的事务。</p>
-<h3 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h3><p>事务不支持 DDL 语句（如 CREATE TABLE、ALTER TABLE 等），因为这些操作会立即生效，无法回滚。</p>
-<h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3><p>隔离作用：<br>避免并发事务之间的干扰，保证数据的一致性。<br>隔离级别：<br>read-uncommitted（读未提交）：最低的隔离级别，会出现 脏读 不可能重复读 幻读。<br>read-committed（读已提交）：避免了脏读，可能出现 不可重复读 和幻读。<br>repeatable-read（可重复读）：避免了脏读和不可重复读，可能出现幻读。<br>serializable（可串行化）：最高的隔离级别，避免了脏读、不可重复读和幻读。<br>隔离问题：<br>脏读：一个事务读取了另一个未提交的事务的数据（真实错误）。<br>不可重复读：一个事物读取了另一个事务提交的修改数据（不符合一致性原则，不是数据错误）。<br>幻读：一个事务读取了另一个事务提交的插入数据（不符合一致性原则，不是数据错误）。<br>修改查看语法：<br>select @@transaction_isolation;<br>set transaction_isolation = 隔离级别;<br>总结：<br>隔离级别越高，数据越安全，性能越低。建议设置隔离级别为 read-committed。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -615,6 +629,81 @@
 <p>子查询可以在select，update，delete，insert，等语句中使用。<br>注意：update，delete 中使用时，更新的表与子查询的表是同一个表，会产生冲突。<br>示例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t_employee <span class="keyword">SET</span> salary = (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> t_employee <span class="keyword">WHERE</span> ename = <span class="string">'孙红梅'</span>) <span class="keyword">WHERE</span> ename = <span class="string">'李冰冰'</span>; <span class="comment"># 错误</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t_employee <span class="keyword">SET</span> salary = (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> salary <span class="keyword">FROM</span> t_employee <span class="keyword">WHERE</span> ename = <span class="string">'孙红梅'</span>) <span class="keyword">as</span> temp) <span class="keyword">WHERE</span> ename = <span class="string">'李冰冰'</span>; <span class="comment"># 正确</span></span></pre></td></tr></table></figure>
 <p>这里update占用了员工表的引用，内部又需要查员工表，也占用了员工表的引用，所以需要用一个子查询来做临时表，先执行子查询，然后释放掉对员工表的引用，再通过临时表来做更新。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/07/mysql/09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/07/mysql/09/" class="post-title-link" itemprop="url">mysql 事务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2025-02-07 00:00:00 / 修改时间：15:12:36" itemprop="dateCreated datePublished" datetime="2025-02-07T00:00:00+08:00">2025-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="手动提交事务"><a href="#手动提交事务" class="headerlink" title="手动提交事务"></a>手动提交事务</h3><p>通过 set autocommit = 0 | false; 关闭事务自动提交，然后手动执行 commit 或者 rollback。<br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
+<p>注意：<br>关闭自动提交后，直到执行 COMMIT 或 ROLLBACK 前，所有的 SQL 语句都会被视为一个事务的一部分。<br>commit 提交事务，将所有更改永久保存到数据库中。<br>rollback 回滚事务，撤销自上次 commit 或 rollback 后执行的所有更改。<br>设置 set autocommit = 1 | true; 可以重新开启自动提交。<br>通过 set autocommit 设置事务的提交方式，只适用于当前会话。<br>通过 show variables like ‘autocommit’; 可以查看当前会话的自动提交状态。</p>
+<h3 id="开启独立事务"><a href="#开启独立事务" class="headerlink" title="开启独立事务"></a>开启独立事务</h3><p>通过 start transaction; 开启一个独立的事务，然后执行一系列的 SQL 语句，最后通过 COMMIT 或 ROLLBACK 来提交或回滚事务。<br>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">sql</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">commit</span> / <span class="keyword">rollback</span>;</span></pre></td></tr></table></figure>
+<p>注意：<br>不管是否关闭自动提交，都可以通过 start transaction 开启一个独立的事务。</p>
+<h3 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h3><p>事务不支持 DDL 语句（如 CREATE TABLE、ALTER TABLE 等），因为这些操作会立即生效，无法回滚。</p>
+<h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3><p>隔离作用：<br>避免并发事务之间的干扰，保证数据的一致性。<br>隔离级别：<br>read-uncommitted（读未提交）：最低的隔离级别，会出现 脏读 不可能重复读 幻读。<br>read-committed（读已提交）：避免了脏读，可能出现 不可重复读 和幻读。<br>repeatable-read（可重复读）：避免了脏读和不可重复读，可能出现幻读。<br>serializable（可串行化）：最高的隔离级别，避免了脏读、不可重复读和幻读。<br>隔离问题：<br>脏读：一个事务读取了另一个未提交的事务的数据（真实错误）。<br>不可重复读：一个事物读取了另一个事务提交的修改数据（不符合一致性原则，不是数据错误）。<br>幻读：一个事务读取了另一个事务提交的插入数据（不符合一致性原则，不是数据错误）。<br>修改查看语法：<br>select @@transaction_isolation;<br>set transaction_isolation = 隔离级别;<br>总结：<br>隔离级别越高，数据越安全，性能越低。建议设置隔离级别为 read-committed。</p>
 
       
     </div>
@@ -1012,92 +1101,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/04/mysql/03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/02/04/mysql/03/" class="post-title-link" itemprop="url">mysql 增删改与select</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2025-02-04 00:00:00 / 修改时间：16:43:02" itemprop="dateCreated datePublished" datetime="2025-02-04T00:00:00+08:00">2025-02-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h3><h4 id="数据添加"><a href="#数据添加" class="headerlink" title="数据添加"></a>数据添加</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...); <span class="comment"># 添加一行数据，但不指定字段。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...); <span class="comment"># 添加一行数据，并指定字段。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名 (字段<span class="number">1</span>, 字段<span class="number">2</span>, ...) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>, ...), (值<span class="number">11</span>, 值<span class="number">12</span>, ...); <span class="comment"># 添加多行数据。</span></span></pre></td></tr></table></figure>
-<p>注意：<br>如果不指定字段，则必须按照表中定义的顺序添加值。<br>添加的值要和字段类型匹配。<br>如果要添加多行，则需要使用逗号分隔。</p>
-<h4 id="数据修改"><a href="#数据修改" class="headerlink" title="数据修改"></a>数据修改</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 字段<span class="number">1</span> = 新值<span class="number">1</span>, 字段<span class="number">2</span> = 新值<span class="number">2</span>, ...; <span class="comment"># 修改表中所有行的数据。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 字段<span class="number">1</span> = 新值<span class="number">1</span>, 字段<span class="number">2</span> = 新值<span class="number">2</span>, ... <span class="keyword">WHERE</span> 条件; <span class="comment"># 修改表中符合条件的行的数据。</span></span></pre></td></tr></table></figure>
-
-<h4 id="数据删除"><a href="#数据删除" class="headerlink" title="数据删除"></a>数据删除</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名; <span class="comment"># 删除表中所有数据，但不删除表结构。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> 表名; <span class="comment"># 删除表中所有数据，并重置自增计数器。</span></span></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 条件; <span class="comment"># 删除表中符合条件的行。</span></span></pre></td></tr></table></figure>
-
-<h3 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h3><p><strong>非表查询</strong><br>解释：利用select关键字，快速输出一个运算结果或者函数，类似 java 控制台输出。<br>语法：select 运算，函数。<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span>+<span class="number">1</span>;</span></pre></td></tr></table></figure>
-
-<p><strong>指定表进行查询</strong><br>解释：利用select关键字，指定表名进行查询。<br>语法：select 列名,列名,列名,… from 表名;<br>提示：* 表示查询所有列，且*必须写在最前面。<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
-
-<p><strong>查询列并且起别名</strong><br>解释：利用select关键字，查询列并且起别名。<br>语法：select 列名 as 别名,列名 as 别名,… from 表名;<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> eid <span class="keyword">as</span> <span class="keyword">id</span>, ename <span class="keyword">name</span> <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
-
-<p><strong>去掉重复行数据</strong><br>解释：利用select关键字，去掉重复行数据。<br>语法：SELECT DISTINCT 字段名 FROM 表名;</p>
-<p><strong>查询常数列</strong><br>解释：人为制造的一个值和一个列！（多个值，多个列）<br>语法：select 列名,…, ‘值’ as 列名 from 表名;<br>示例：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> eid,ename,<span class="string">'我是常量'</span> <span class="keyword">as</span> const_value <span class="keyword">FROM</span> t_employee;</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1167,20 +1170,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
