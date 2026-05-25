@@ -184,6 +184,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/05/25/technical/pnpm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="王小七">
+      <meta itemprop="description" content="前端笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我寄白雪三千片">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/05/25/technical/pnpm/" class="post-title-link" itemprop="url">pnpm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2026-05-25 09:51:54 / 修改时间：11:23:32" itemprop="dateCreated datePublished" datetime="2026-05-25T09:51:54+08:00">2026-05-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/technical/" itemprop="url" rel="index"><span itemprop="name">technical</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>大家都知道pnpm相比较npm、yarn，会更快，更省磁盘，那为什么会这样呢？</p>
+<h3 id="pnpm-install-发什么了什么？"><a href="#pnpm-install-发什么了什么？" class="headerlink" title="pnpm install 发什么了什么？"></a>pnpm install 发什么了什么？</h3><p>当我们执行以下pnpm install express之后，得到一个pnpm安装的express项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm-test&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">└── package.json </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">└── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    ├── express  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    │                        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    └── .pnpm&#x2F;               </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        ├── accepts@2.0.0&#x2F;   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        │   └── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        │       └── accepts&#x2F; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        │                    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        ├──express@5.2.1&#x2F;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        │   └── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        │       ├── express&#x2F; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        │       ├── accepts&#x2F; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        │       └── ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        └── ...</span></pre></td></tr></table></figure>
+
+<p>相比较npm、yarn，pnpm安装的项目node_modules下面就只有package.json安装的包，且多了一个.pnpm的文件<br>.pnpm下面是项目所有需要用的包，包含嵌套依赖包。</p>
+<p><strong>第一步：全局store存储</strong><br>当执行pnpm install express，pnpm会把express以及express的依赖包如accepts的文件下载到电脑的的全局仓库<code>~/.pnpm-store</code><br>pnpm会把文件根据其内容哈希值命名，存放，全局唯一。</p>
+<img style="height: 180px;" src="/images/2026/pnpm-store-01.svg">
+
+<p><a href="https://pnpm.io/zh/motivation" target="_blank" rel="noopener">官方文档</a>中给出了这么一张图，可以很清晰地明白其中的原理。</p>
+<p><strong>第二步：构建.pnpm 目录</strong><br>pnpm会在<code>node_modules/.pnpm</code>中建立一个完全由版本号平铺的虚拟硬链接池<br>在这个池子里，目录的命名格式通常是 包名@版本号（或是加了依赖哈希）。<br>物理结构长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm-test&#x2F;node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">├── .pnpm&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">│   ├── accepts@2.0.0&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">│   │   └── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">│   │       └── accepts&#x2F;  &lt;--- [硬链接] 指向全局 Store。里面是 accepts 的真实文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">│   └── express@5.2.1&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">│       └── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">│           ├── express&#x2F;  &lt;--- [硬链接] 指向全局 Store。里面是 express 的真实文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">│           └── accepts&#x2F;  &lt;--- (软链接) 指向 ..&#x2F;..&#x2F;accepts@2.0.0&#x2F;node_modules&#x2F;accepts</span></pre></td></tr></table></figure>
+<p>问题来了<code>.pnpm/</code>里面实现平铺express如何找到accepts？<br>pnpm-test/node_modules/.pnpm/express@5.2.1/node_modules/ 内部：存在<code>express/</code>、<code>accepts/</code>、…文件夹<br>(1) express/文件夹里面的文件是通过硬链接从全局Store挂载过来的。<br>(2) 当express内部执行require(‘accepts’)时，就会在当前目录的node_modules下寻找。<br>(3) 于是，找到了pnpm-test/node_modules/.pnpm/express@5.2.1/node_modules/accepts/。<br>(4) 然而，这个accepts/不是真的文件夹，是一个软链接，它指向../../accepts@2.0.0/node_modules/accepts。<br>(5) 最终，express顺着软链接，成功读取到了它需要的 accepts 依赖。</p>
+<p><strong>第三步：映射项目依赖</strong><br>项目中想要使用包也是在当前node_modules下面寻找<br>为了项目中能够<code>import &#39;express&#39;</code>,pnpm会在根目录下创建了一个软链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm-test&#x2F;node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">├── express ───&gt; [软链接] 指向 .pnpm&#x2F;express@5.2.1&#x2F;node_modules&#x2F;express</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">└── .pnpm&#x2F;     （就是上面第二步的链接池）</span></pre></td></tr></table></figure>
+
+<p>所有的软链接连起来看，整个项目的物理布局是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pnpm-test&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">└── package.json (只声明了 express)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">└── node_modules&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    ├── express (软链接) 指向 .&#x2F;.pnpm&#x2F;express@5.2.1&#x2F;node_modules&#x2F;express</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    │</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    └── .pnpm&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        ├── accepts@2.0.0&#x2F; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        │   └── node_modules&#x2F; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        │       └── accepts&#x2F; [硬链接] 真正的物理文件 (2.0.0)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        │                                                          </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        └── express@5.2.1&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            └── node_modules&#x2F;      </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">                ├── express&#x2F; [硬链接] 真正的物理文件 (5.2.1)       </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                └── accepts&#x2F; (软链接) 指向 ..&#x2F;..&#x2F;accepts@2.0.0&#x2F;node_modules&#x2F;accepts</span></pre></td></tr></table></figure>
+<p>通过这种方式彻底解决幽灵依赖的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2026/04/11/ai/03Agent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,94 +1043,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2025/02/05/mysql/06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="王小七">
-      <meta itemprop="description" content="前端笔记">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我寄白雪三千片">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/02/05/mysql/06/" class="post-title-link" itemprop="url">mysql 函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-05T00:00:00+08:00">2025-02-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-02-08 11:33:07" itemprop="dateModified" datetime="2025-02-08T11:33:07+08:00">2025-02-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="常规函数"><a href="#常规函数" class="headerlink" title="常规函数"></a>常规函数</h3><p><strong>数字函数</strong><br>abs(x): 返回 x 的绝对值<br>ceil(x): 返回 大于或等于 x 的最小整数（向上取整）<br>floor(x): 返回 小于或等于 x 的最大整数（向下取整）<br>round(x): 返回 x 四舍五入最接近的整数<br>round(x,n): 返回 x 四舍五入保留 n 位小数<br>rand(): 返回 0 到 1 之间的随机浮点数（0 ≤ x &lt; 1）<br>rand(x): 当 x 相同时，RAND(x) 返回相同的随机数（用于伪随机种子）<br>truncate(x,n): 返回 x 截断到 n 位小数（不四舍五入）</p>
-<p><strong>字符串函数</strong><br>concat(str1, str2, …): 返回连接参数产生的字符串<br>char_length(str): 返回 str 的字符数<br>find_in_set(str, strlist): 返回 str 在字符串列表 strlist 中的位置</p>
-<p><strong>时间日期函数</strong><br>日期获取<br>now()、curdate()、curtime()、utc_date()、utc_time(): 返回当前日期和时间、当前日期、当前时间、utc日期、utc时间<br>year(date)、month(date)、day(date): 返回日期参数的年份部分、月份部分、日部分<br>week(date): 返回日期参数的年份的第几周<br>weekday(date): 返回日期参数的星期索引（0 周一，1 周二，…，6 周日）<br>dayofyear(date): 返回日期参数的年中的天数</p>
-<p>日期计算<br>adddate(date, INTERVAL expr unit): 返回日期加上一个时间间隔<br>addtime(date, expr): 返回日期加上一个时间<br>datediff(expr1, expr2): 返回两个日期之间的天数</p>
-<p>日期格式化<br>date_format(date, format): 根据格式返回日期。<br>str_to_date(str, format): 根据格式返回日期。<br>format 可以是：%Y 年，%m 月，%d 日，%H 时，%i 分，%s 秒。</p>
-<h3 id="控制函数"><a href="#控制函数" class="headerlink" title="控制函数"></a>控制函数</h3><p><strong>单行函数</strong><br>if(表达式,true_value,false_value)：if 函数处理有两个结果的流程<br>ifnull(字段名,null_value)：处理列等于 null 的时候,我们赋予其他的默认值<br>case: 处理多流程结果</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式一</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">case </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  when 表达式1 then 结果1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  when 表达式2 then 结果3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  else 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式二</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> 列名|表达式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">1</span> <span class="keyword">then</span> 结果<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">when</span> 值<span class="number">2</span> <span class="keyword">then</span> 结果<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">else</span> 默认结果</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure>
-
-<p><strong>聚合函数</strong><br>avg(列名) 求平均值<br>sum(列名) 求和<br>min|max(列名) 求最小值和最大值<br>count(列名/*/1) 计数<br>注意：<br>聚合函数不能嵌套在其他函数中<br>聚合函数遇到null值，会自动忽略</p>
-<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><p>作用：<br>允许在结果集中执行聚合、分析、排序操作，而不会改变查询结果行数。</p>
-<p>语法：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 多行函数 <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> 字段名 <span class="keyword">ORDER</span> <span class="keyword">BY</span> 字段名 <span class="keyword">ASC</span>|<span class="keyword">DESC</span>) <span class="keyword">from</span> table_name,</span></pre></td></tr></table></figure>
-
-<p><code>ROW_NUMBER</code> 顺序排序，从1开始。<br><code>RANK()</code> 并列挂序，会跳过重复的序号，比如序号为1、1、3。<br><code>PERCENT_RANK()</code> 等级值百分比，通过<code>RANK - 1 / 总行数 - 1</code>进行计算结果。</p>
-<p>注意：<br>多行函数 可以是聚合函数，也可以是窗口函数。<br>聚合函数：SUM、AVG、MAX、MIN …<br>窗口函数：ROW_NUMBER()、RANK()、PERCENT_RANK …</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1115,7 +1112,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
